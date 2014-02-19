@@ -1,0 +1,165 @@
+﻿<Page x:Class="UserMS.Views.AfterSale.ReturnVisit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+                xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+    xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter" 
+   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:UserMS="clr-namespace:UserMS"   xmlns:MyControl="clr-namespace:UserMS.MyControl"
+	Title="ReturnVisit">
+
+    <telerik:RadBusyIndicator x:Name="isbusy">
+        <DockPanel >
+            <telerik:RadMenu x:Name="radMenu" DockPanel.Dock="Top" ClickToOpen="False" >
+                <WrapPanel MaxHeight="100">
+                    <telerik:RadMenuItem Header="确认回访" FontSize="13" Name="Save" Click="Save_Click"/>
+                </WrapPanel>
+            </telerik:RadMenu>
+
+            <DockPanel DockPanel.Dock="Top">
+                <WrapPanel DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="网点:" Foreground="Black"></TextBlock>
+                        <!--<UserMS:MyAutoTextBox Width="150" x:Name="hall" Height="25"></UserMS:MyAutoTextBox>-->
+                        <MyControl:MyMulSelect Width="150" x:Name="hall" Height="25" />
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="受理日期:" Foreground="Black"></TextBlock>
+                        <telerik:RadDatePicker Height="25" Name="sysdate" Width="150"></telerik:RadDatePicker>
+                    </StackPanel>-->
+                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="手工单号:" Foreground="Black"></TextBlock>
+                        <TextBox Height="25" Width="150" Text=""></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="客户姓名:" Foreground="Black"></TextBlock>
+                        <TextBox Height="25" Width="150" Name="cus_name" Text=""></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="手机号码:" Foreground="Black"></TextBlock>
+                        <TextBox Height="25" Width="150" Name="cus_phone" Text=""></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="会员卡号:" Foreground="Black"></TextBlock>
+                        <TextBox Height="25" Width="150" Text="" Name="vipimei"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <Button Content="查询" Width="80" Click="search_Click"></Button>
+                    </StackPanel>
+                </WrapPanel>
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Top" Height="200">
+                <DockPanel DockPanel.Dock="Bottom" >
+                    <telerik:RadNumericUpDown  x:Name="pagesize" Minimum="1" Value="20" ValueChanged="pagesize_ValueChanged"  Width="50" NumberDecimalDigits="0" DockPanel.Dock="Right" />
+                    <telerik:RadDataPager x:Name="radDataPager1" IsTotalItemCountFixed="True" PageIndexChanged="radDataPager1_PageIndexChanged"    DisplayMode="All"  VerticalAlignment="Stretch" DockPanel.Dock="Left"/>
+                </DockPanel>
+                <telerik:RadGridView   DockPanel.Dock="Top"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                 SelectionMode="Extended" Name="searchGrid" MinHeight="200" AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+                        <telerik:GridViewBoundColumnBase  Header="受理单号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ServiceID}" IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="手工单号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding OldID}"  IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="客户姓名" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Cus_Name}"  IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="手机号码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Cus_Phone}" IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="会员卡号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding IMEI}" IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="服务网点" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding RecHallName}"  IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_Type}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="商品名称" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_Name}"   IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProFormat}"    IsFilterable="False"/>
+                        <!--<telerik:GridViewBoundColumnBase  Header="机头串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_IMEI}"   IsFilterable="False" />-->
+                        <!--<telerik:GridViewBoundColumnBase  Header="主板串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_HeaderIMEI}"   IsFilterable="False" />-->
+                        <telerik:GridViewBoundColumnBase  Header="串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_HeaderIMEI}"   IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="受理日期"  DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding SysDate}"  />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+            </DockPanel>
+
+            <Splitter:DockPanelSplitter Background="Silver" DockPanel.Dock="Top"></Splitter:DockPanelSplitter>
+
+            <DockPanel DockPanel.Dock="Top">
+                <WrapPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="服务网点:" Foreground="Black"></TextBlock>
+                        <TextBox Height="25" Width="150" Text="" Name="serviceHall" IsReadOnly="True"></TextBox>
+                    </StackPanel>
+               
+                 
+                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="返修次数:" Foreground="Black"></TextBlock>
+                        <TextBox Height="25" Width="150" Text="2" IsReadOnly="True"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="手工单号:" Foreground="Black"></TextBlock>
+                        <TextBox Height="25" Width="150" Text="" Name="oldid" IsReadOnly="True"></TextBox>
+                    </StackPanel>
+                  
+                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="受理人:" Foreground="Black"></TextBlock>
+                        <TextBox Height="25" Width="150" Name="receiver" IsReadOnly="True"></TextBox>
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                        <TextBlock Height="25" Width="80" Text="缺料状态:" Foreground="Black"></TextBlock>
+                        <TextBox Height="25" Width="150" Text=""></TextBox>
+                    </StackPanel>-->
+                 
+                </WrapPanel>
+            </DockPanel>
+            <telerik:RadTabControl  Foreground="Black">
+            
+            <telerik:RadTabItem Header="回访信息">
+                <DockPanel DockPanel.Dock="top" >
+                    <WrapPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                            <TextBlock Height="25" Width="80" Text="应答情况:" Foreground="Black"></TextBlock>
+                            <!--<TextBox Height="25" Width="150" ></TextBox>-->
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"  Margin="50 5 0 5" Name="allAnswer">
+                                <CheckBox Content="客户姓名相符" Name="answer1" Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="送修日期相符"  Name="answer2"  Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="产品名称相符" Name="answer3"  Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="故障现象相符" Name="answer4"  Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="处理方法相符" Name="answer5"  Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="最终状态相符" Name="answer6"  Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="收费情况相符"  Name="answer7"  Margin="10 5 0 5"></CheckBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                            <TextBlock Height="25" Width="80" Text="结算金额:"  Foreground="Black"></TextBlock>
+                           <telerik:RadNumericUpDown Width="150" Name="realMoney"></telerik:RadNumericUpDown>
+                              
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                            <TextBlock Height="25" Width="80" Text="服务评价:" Foreground="Black"></TextBlock>
+                            <TextBox Height="25" Width="150" ></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                            <TextBlock Height="25" Width="80" Text="总体评分:" Foreground="Black"></TextBlock>
+                            <TextBox Height="25" Width="150" ></TextBox>
+                        </StackPanel>-->
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                            <TextBlock Height="25" Width="80" Text="顾客建议:" Foreground="Black"></TextBlock>
+                                <TextBox Height="45" Width="630"  AcceptsReturn="True" Name="cusSuggest"></TextBox>
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                            <TextBlock Height="25" Width="80" Text="真实性:" Foreground="Black"></TextBlock>
+                            <TextBox Height="25" Width="150" ></TextBox>
+                        </StackPanel>-->
+
+                        <WrapPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="回访备注:" Foreground="Black"></TextBlock>
+                                    <TextBox Height="45" Width="630"  AcceptsReturn="True"  Name="cbNote"></TextBox>
+                            </StackPanel>
+                        </WrapPanel>
+
+                    </WrapPanel>
+
+                </DockPanel>
+            </telerik:RadTabItem>
+          
+        </telerik:RadTabControl>
+        </DockPanel>
+    </telerik:RadBusyIndicator>
+</Page>

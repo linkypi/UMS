@@ -1,0 +1,164 @@
+﻿<src:BasePage x:Class="UserMS.Views.ProSell.VipOff.CancelReNew" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d" 
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+           xmlns:src="clr-namespace:UserMS" 
+
+              Title="AddSingleOff Page" d:DesignWidth="800" d:DesignHeight="600" >
+    
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        
+        <toolkit:DockPanel x:Name="LayoutRoot"  >
+
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Text="卡号" Width="80" ></TextBlock>
+                    <TextBox Width="120" x:Name="TbIMEI"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock  Text="证件号码" Width="80" ></TextBlock>
+                    <TextBox Width="120" x:Name="TbIDCardNun"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Text="会员姓名" Width="80" ></TextBlock>
+                    <TextBox Width="120" x:Name="VIPName"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock  Text="手机号码" Width="80" ></TextBlock>
+                    <TextBox Width="120" x:Name="MobilePhone"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <!--<TextBlock Width="80" Text="注册日期" ></TextBlock>
+                    <telerik:RadDatePicker x:Name="StartTime"></telerik:RadDatePicker>
+                    <TextBlock Width="20" Text="至" TextAlignment="Center"></TextBlock>
+                    <telerik:RadDatePicker x:Name="EndTime"></telerik:RadDatePicker>-->
+
+                    <Button  Content="查 询" Width="80" Margin="5,0" x:Name="BTVIPsearch" Click="BTVIPsearch_Click"></Button>
+                </StackPanel>
+         
+          
+                
+
+            </toolkit:WrapPanel>
+            
+            <toolkit:DockPanel toolkit:DockPanel.Dock="Bottom" Height="150">
+                <Button Height="30" toolkit:DockPanel.Dock="Bottom"  HorizontalAlignment="Right" Content="确定取消" Width="100" Click="Sumbit_Click"></Button>
+
+                <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,5"  >
+                    <StackPanel Orientation="Horizontal" Margin="3,2">
+                        <TextBlock Width="80" Text="审批单号"></TextBlock>
+                        <TextBox Width="120" Height="25" x:Name="TbAduitID"></TextBox>
+                        <Button Margin="10 0 0 0" Width="70"  Content="检测" Click="Button_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3,2">
+                        <TextBlock Text="退现金" Width="80"></TextBlock>
+                        <TextBox Width="120" Height="25" x:Name="TbReturnMoney" IsReadOnly="True"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3,2">
+                        <TextBlock Text="退积分" Width="80" ></TextBlock>
+                        <TextBox Width="120" Height="25" x:Name="TbReturnPoint" IsReadOnly="True"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3,2">
+                        <TextBlock Width="80" Text="取消后有效期"></TextBlock>
+                        <telerik:RadDatePicker Width="120" x:Name="BackTime" IsEnabled="False"></telerik:RadDatePicker>
+                    </StackPanel>
+
+
+
+                </toolkit:WrapPanel>
+            </toolkit:DockPanel>
+            
+            <!--<ScrollViewer toolkit:DockPanel.Dock="Top"    >-->
+                <StackPanel>
+                    <telerik:RadGridView x:Name="dataGrid1" Height="150"   IsFilteringAllowed="False"  SelectionChanged="dataGrid1_SelectionChanged"                                  
+             toolkit:DockPanel.Dock="Top"    AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewSelectColumn />
+
+                        </telerik:RadGridView.Columns>
+
+                    </telerik:RadGridView>
+
+                    <telerik:RadDataPager  x:Name="RadPager"  PageSize="10"  toolkit:DockPanel.Dock="Top"></telerik:RadDataPager>
+
+                    <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2"  x:Name="OldCardPanel">
+
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="卡号"></TextBlock>
+                            <TextBox Width="120" Text="{Binding IMEI}" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="卡类型" ></TextBlock>
+                            <TextBox Width="120" Text="{Binding VIPType}" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="会员姓名"></TextBlock>
+                            <TextBox Width="120"  Text="{Binding MemberName}" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock  Text="性别："  Width="80" />
+                            <TextBox  x:Name="cbsex" Width="120"  Text="{Binding Sex}" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="证件类别"></TextBlock>
+                            <TextBox Width="120" IsReadOnly="True" Text="{Binding CardTypeName}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="证件号码"></TextBlock>
+                            <TextBox Width="120" IsReadOnly="True" Text="{Binding IDCard}"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="手机号码"></TextBlock>
+                            <TextBox Width="120" Text="{Binding MobiPhone}" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="积分" ></TextBlock>
+                            <TextBox Width="120" x:Name="TbPoint" Text="{Binding Point}" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="注册日期"></TextBlock>
+                            <telerik:RadDatePicker Width="120" SelectedValue="{Binding StartTime}" IsReadOnly="True"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="当前有效期至"></TextBlock>
+                            <telerik:RadDatePicker Width="120" SelectedValue="{Binding EndTime}" IsReadOnly="True"></telerik:RadDatePicker>
+                        </StackPanel>
+
+
+
+
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="现金续期比例"></TextBlock>
+                            <TextBox Width="120" IsReadOnly="True" x:Name="TbRatio_Cash"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="积分续期比列"></TextBlock>
+                            <TextBox Width="120" IsReadOnly="True" x:Name="TbRatio_Point"></TextBox>
+                        </StackPanel>
+                        
+                        <!--<StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="审批状态"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>-->
+            
+                    </toolkit:WrapPanel>
+                  
+                </StackPanel>
+            <!--</ScrollViewer>-->
+
+            
+
+
+ 
+
+
+            
+        </toolkit:DockPanel>
+         
+    </xctk:BusyIndicator>
+</src:BasePage>

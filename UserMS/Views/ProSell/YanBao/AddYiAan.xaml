@@ -1,0 +1,116 @@
+﻿<src:BasePage x:Class="UserMS.Views.ProSell.VipOff.AddYiAan" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d" Loaded="Page_Loaded"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+           xmlns:src="clr-namespace:UserMS"
+           
+           d:DesignWidth="800" d:DesignHeight="600"
+           Title="AddSingleOff Page">
+    
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        
+        <toolkit:DockPanel x:Name="LayoutRoot" >
+
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                <telerik:RadMenuItem  Header="保存"/>
+                <telerik:RadMenuItem  Header="取消全部"/>
+                <telerik:RadMenuItem  Header="删除"/>    
+            </telerik:RadMenu>
+            
+            <ScrollViewer toolkit:DockPanel.Dock="Bottom">
+            <StackPanel >
+                <toolkit:WrapPanel Margin="0,2">
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="门店"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="销售员"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="客户姓名"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="客户电话"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="销售商"></TextBlock>
+                            <TextBox Width="120" Text="广信中山分公司"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="合同号"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                    </toolkit:WrapPanel>
+               
+                <toolkit:WrapPanel Margin="0,2">
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="终端串码"></TextBlock>
+                            <TextBox Width="80"></TextBox>
+                            <Button Width="40" Content="验证"></Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="终端型号"></TextBlock>
+                            <TextBox Width="120" IsEnabled="False"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="终端品牌"></TextBlock>
+                            <TextBox Width="120" IsEnabled="False"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="终端价格"></TextBlock>
+                            <TextBox Width="120" IsEnabled="False"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="发票号码"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="电池编码"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="充电器编码"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="耳机编码" ></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel> 
+                    </toolkit:WrapPanel>
+                
+                <toolkit:WrapPanel Margin="0,2">
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="备注"></TextBlock>
+                            <TextBox Width="325"></TextBox>
+                        </StackPanel>
+                    </toolkit:WrapPanel>
+                
+                <toolkit:WrapPanel Margin="0,2" >
+                        <StackPanel Orientation="Horizontal"  Margin="3,2">
+                        <TextBlock Text="" Width="80"></TextBlock>
+                        <Button  Content="确 定" Width="100"></Button>
+                        <Button  Content="取 消" Width="100" Margin="5,0"></Button>
+                    </StackPanel>
+
+                </toolkit:WrapPanel>
+            </StackPanel>
+            </ScrollViewer>
+            <telerik:RadGridView x:Name="dataGridOffList"  toolkit:DockPanel.Dock="Top"   SelectionMode="Multiple"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewSelectColumn />
+
+                </telerik:RadGridView.Columns>
+
+            </telerik:RadGridView>
+        </toolkit:DockPanel>
+         
+    </xctk:BusyIndicator>
+</src:BasePage>

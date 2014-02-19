@@ -1,0 +1,48 @@
+﻿ <userMs:BasePage xmlns:MyControl="clr-namespace:UserMS.MyControl" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:userMs="clr-namespace:UserMS" xmlns:DCDetails="clr-namespace:UserMS.Views.StockMS.Allot"
+   x:Class="UserMS.Views.StockMS.EnteringStock.Recordsearch"
+    mc:Ignorable="d" Loaded="Page_Loaded"
+      d:DesignWidth="640" d:DesignHeight="480">
+
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        <toolkit:DockPanel x:Name="LayoutRoot" >
+
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                <telerik:RadMenuItem Header="刷新" FontSize="13" x:Name="Update"/>
+            </telerik:RadMenu>
+
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="10 0">
+                <StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="时间：" VerticalAlignment="Center"></TextBlock>
+                    <telerik:RadDateTimePicker x:Name="StartTime" Width="150" />
+                    <TextBlock Text="至：" VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
+                    <telerik:RadDateTimePicker x:Name="EndTime" Width="150" />                  
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="型号：" VerticalAlignment="Center"></TextBlock>
+                    <telerik:RadComboBox Width="100"  x:Name="TbProName"  Height="25"  IsEditable="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="初始仓库：" VerticalAlignment="Center"></TextBlock>
+                    <userMs:MyAutoTextBox Width="100" x:Name="TbHall" Height="25" ></userMs:MyAutoTextBox>
+                    <Button x:Name="BtSearch" Content="查 询" Width="60"  Height="25" Margin="10 0 0 0" Click="BtSearch_Click"></Button>
+                </StackPanel>
+ 
+            </toolkit:WrapPanel>
+            <telerik:RadDataPager x:Name="RadPager"  IsTotalItemCountFixed="True" PageIndexChanging="RadPager_PageIndexChanging_1"  toolkit:DockPanel.Dock="Bottom"  PageSize="20" DisplayMode="All"  VerticalAlignment="Stretch" />
+            <telerik:RadGridView x:Name="dataGrid1" toolkit:DockPanel.Dock="Top" 
+                                GridLinesVisibility="Both" SelectionMode="Single" IsFilteringAllowed="False"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewSelectColumn />
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </toolkit:DockPanel>
+    </xctk:BusyIndicator>
+</userMs:BasePage>

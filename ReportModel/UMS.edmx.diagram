@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="046e6e242b0b43249b74e3d363b60a47" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="ReportModel.Demo_提成报表" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Pro_HallInfo" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Pro_ProInfo" Width="1.5" PointX="3" PointY="7.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Sys_Role_Menu_HallInfo" Width="2.75" PointX="3" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Sys_Role_MenuInfo" Width="1.5" PointX="3" PointY="4.5" IsExpanded="false" />
+        <AssociationConnector Association="ReportModel.FK_Sys_Role_Menu_HallInfo_Pro_HallInfo" />
+        <EntityTypeShape EntityType="ReportModel.Sys_MenuInfo" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="false" />
+        <AssociationConnector Association="ReportModel.FK_Sys_MenuInfo_Sys_MenuInfo" />
+        <AssociationConnector Association="ReportModel.FK_Sys_Role_Menu_HallInfo_Sys_MenuInfo" />
+        <AssociationConnector Association="ReportModel.FK_Sys_Role_MenuInfo_Sys_MenuInfo" />
+        <EntityTypeShape EntityType="ReportModel.Report_Borow" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_Return" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_IMEIInfo" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_IMEITracksInfo" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Pro_ClassInfo" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Sys_Role_Menu_ProInfo" Width="1.5" PointX="3" PointY="0.75" IsExpanded="false" />
+        <AssociationConnector Association="ReportModel.FK_PRO_PROI_REFERENCE_PRO_CLAS" />
+        <AssociationConnector Association="ReportModel.FK_Sys_Role_Menu_ProInfo_Pro_ClassInfo" />
+        <AssociationConnector Association="ReportModel.FK_Sys_Role_ProInfo_Sys_MenuInfo" />
+        <EntityTypeShape EntityType="ReportModel.Report_OutInfo" Width="1.5" PointX="5.75" PointY="6.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_InOrderInfo" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_BackIMEIInfo" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_BackInfo" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_BackListInfo" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_ChangeIMEIInfo" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_ChangeListInfo" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_ChangeProInfo" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_EveryHallStoreInfo" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_PriceInfo" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_OutOrderIMEIInfo" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_OutOrderListInfo" Width="1.5" PointX="8" PointY="6.875" IsExpanded="false" />
+        <AssociationConnector Association="ReportModel.Report_OutInfoReport_OutOrderListInfo" />
+        <EntityTypeShape EntityType="ReportModel.Report_ReturnIMEIInfo" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_ReturnListInfo" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_ReNewInfo" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_RepairReturnInfo" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Print_SellListInfo" Width="1.5" PointX="9" PointY="2.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Print_SellInfo" Width="1.5" PointX="6.75" PointY="2.875" IsExpanded="false" />
+        <AssociationConnector Association="ReportModel.Print_SellInfoPrint_SellListInfo" />
+        <EntityTypeShape EntityType="ReportModel.Demo_ReportViewInfo" Width="1.5" PointX="3" PointY="5.625" IsExpanded="false" />
+        <AssociationConnector Association="ReportModel.FK_Demo_ReportViewInfo_Sys_MenuInfo" />
+        <EntityTypeShape EntityType="ReportModel.Print_SellBackInfo" Width="1.5" PointX="5.75" PointY="4.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Print_SellBackListInfo" Width="1.5" PointX="8" PointY="4.875" IsExpanded="false" />
+        <AssociationConnector Association="ReportModel.Print_SellBackInfoPrint_SellBackListInfo" />
+        <EntityTypeShape EntityType="ReportModel.Report_ProductInfo" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_AirOutListInfo" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_StoreInfo" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_CostPriceListInfo" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_YANBAO" Width="1.5" PointX="10.75" PointY="12.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_InOutSellInfo" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_InOrderIMEIInfo" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_SellListInfo" Width="2" PointX="14.75" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_BorrowAduitInfo" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_BorrowAduitListInfo" Width="1.5" PointX="8" PointY="0.875" IsExpanded="false" />
+        <AssociationConnector Association="ReportModel.Report_BorrowAduitInfoReport_BorrowAduitListInfo" />
+        <EntityTypeShape EntityType="ReportModel.Report_Profit" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_SellReport" Width="1.5" PointX="10.75" PointY="1.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_SellReport2" Width="2.125" PointX="0.5" PointY="25" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_Profit2" Width="1.5" PointX="8.0811913349112459" PointY="17.391367339245679" />
+        <EntityTypeShape EntityType="ReportModel.Pro_OutModel" Width="1.5" PointX="1.8491332353321526" PointY="9.71903273915827" />
+        <EntityTypeShape EntityType="ReportModel.Report_SellChart" Width="1.5" PointX="3.5656386108908982" PointY="13.458216196605106" />
+        <EntityTypeShape EntityType="ReportModel.View_AirOutInfo" Width="1.5" PointX="2.6804431950116729" PointY="12.130694335387412" />
+        <EntityTypeShape EntityType="ReportModel.View_AirOutListModel" Width="1.5" PointX="5.5570542726465746" PointY="16.621484197965582" />
+        <EntityTypeShape EntityType="ReportModel.View_BorowAduit" Width="1.5" PointX="10.153182555992707" PointY="14.396726123242045" />
+        <EntityTypeShape EntityType="ReportModel.View_BorowAduit2" Width="1.5" PointX="8.699104259116158" PointY="23.043905388118656" />
+        <EntityTypeShape EntityType="ReportModel.View_BorowAduit3" Width="1.5" PointX="11.970003051669337" PointY="6.2488613157760637" />
+        <EntityTypeShape EntityType="ReportModel.View_BorowAduit4" Width="1.5" PointX="6.1758845905661044" PointY="24.533881720404086" />
+        <EntityTypeShape EntityType="ReportModel.View_BorowInfo" Width="1.5" PointX="7.7117383832632278" PointY="13.634182370097461" />
+        <EntityTypeShape EntityType="ReportModel.View_BorowReturnDetail" Width="1.5" PointX="2.2538278094743509" PointY="26.6997822498436" />
+        <EntityTypeShape EntityType="ReportModel.View_BorowReturnInfo" Width="1.5" PointX="7.5060432886267279" PointY="17.044360004851761" />
+        <EntityTypeShape EntityType="ReportModel.View_CostBillReport" Width="1.5" PointX="4.1986217443824847" PointY="6.7524623008223541" />
+        <EntityTypeShape EntityType="ReportModel.View_GroupTypeInfo" Width="1.5" PointX="11.180383203169509" PointY="28.180839894423652" />
+        <EntityTypeShape EntityType="ReportModel.View_HallInfo" Width="1.5" PointX="11.430223440486111" PointY="26.448637363709807" />
+        <EntityTypeShape EntityType="ReportModel.View_Off_AduitProInfo" Width="1.5" PointX="9.1267193318934741" PointY="20.491991499667982" />
+        <EntityTypeShape EntityType="ReportModel.View_Off_AduitTypeInfo" Width="1.5" PointX="2.6646469564478128" PointY="26.804751080835587" />
+        <EntityTypeShape EntityType="ReportModel.View_OffList" Width="1.5" PointX="10.354443126523142" PointY="23.541251625652077" />
+        <EntityTypeShape EntityType="ReportModel.View_OutOrderList" Width="1.5" PointX="0.54576572614990437" PointY="11.465352182958904" />
+        <EntityTypeShape EntityType="ReportModel.View_OutSearch" Width="1.5" PointX="7.2308919668341485" PointY="11.318376918937256" />
+        <EntityTypeShape EntityType="ReportModel.View_PackageGroupTypeInfo" Width="1.5" PointX="3.81124206996115" PointY="11.208310728524024" />
+        <EntityTypeShape EntityType="ReportModel.View_PackageSalesNameInfo" Width="1.5" PointX="8.2611538079852025" PointY="21.03868157651214" />
+        <EntityTypeShape EntityType="ReportModel.View_PriceBillReport" Width="1.5" PointX="4.7344077419184183" PointY="22.989998783445916" />
+        <EntityTypeShape EntityType="ReportModel.View_PriceTypeClassInfo" Width="1.5" PointX="3.9643406718803291" PointY="13.407127148195695" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_ChangeList" Width="1.5" PointX="11.225425734755316" PointY="11.586012592346414" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_Class_TypeInfo" Width="1.5" PointX="9.2630175208966321" PointY="0.1309629232301204" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_CostChangeList" Width="1.5" PointX="0.35380777733112118" PointY="26.140026581538855" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_InOrder" Width="1.5" PointX="5.0742186908955773" PointY="9.92391036912981" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_NoCostInfo" Width="1.5" PointX="8.84074023963918" PointY="19.886661956033979" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_NoCostLeftTree" Width="1.5" PointX="11.446015532801866" PointY="2.755907328220041" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_RepairInfo" Width="1.5" PointX="5.8664478705574048" PointY="10.967008625607477" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_RepairRetrunDetail" Width="1.5" PointX="5.1187869352841684" PointY="20.370174030014393" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_RepairReturnInfo" Width="1.5" PointX="9.10633724234362" PointY="6.5831619829792354" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_SellAduit" Width="1.5" PointX="2.7341253397679539" PointY="28.3928602768075" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_SellBackAduit" Width="1.5" PointX="10.287021394021354" PointY="8.378756512132826" />
+        <EntityTypeShape EntityType="ReportModel.View_Pro_SellInfo" Width="1.5" PointX="1.7975572672661193" PointY="5.0036733918840408" />
+        <EntityTypeShape EntityType="ReportModel.View_ProAllType" Width="1.5" PointX="1.9693136783173837" PointY="9.246258769764685" />
+        <EntityTypeShape EntityType="ReportModel.View_ProBandInfo" Width="1.5" PointX="1.3015763188253977" PointY="26.801896763407576" />
+        <EntityTypeShape EntityType="ReportModel.View_ProInfo" Width="1.5" PointX="1.7512645357061478" PointY="30.9774338598258" />
+        <EntityTypeShape EntityType="ReportModel.View_ProMainInfo" Width="1.5" PointX="1.6572272599009925" PointY="20.206325868240711" />
+        <EntityTypeShape EntityType="ReportModel.View_ProNameInfo" Width="1.5" PointX="10.567832690928054" PointY="16.40722806025633" />
+        <EntityTypeShape EntityType="ReportModel.View_ProOffList" Width="1.5" PointX="11.342389225653554" PointY="18.894583248949882" />
+        <EntityTypeShape EntityType="ReportModel.View_ProSellBackAduitDetail" Width="1.5" PointX="0.65522149049454437" PointY="24.206955295152476" />
+        <EntityTypeShape EntityType="ReportModel.View_RemindList" Width="1.5" PointX="7.3306890350443732" PointY="12.965698635655315" />
+        <EntityTypeShape EntityType="ReportModel.View_RepaireRetList" Width="1.5" PointX="4.9775629644177686" PointY="17.687937968265235" />
+        <EntityTypeShape EntityType="ReportModel.View_RepairInfo" Width="1.5" PointX="11.987229119980349" PointY="13.568713313699101" />
+        <EntityTypeShape EntityType="ReportModel.View_RepairReturnReceive" Width="1.5" PointX="4.8534915358077226" PointY="16.526471250004356" />
+        <EntityTypeShape EntityType="ReportModel.View_ReturnInfo" Width="1.5" PointX="10.377943474044066" PointY="31.196303560955592" />
+        <EntityTypeShape EntityType="ReportModel.View_Rules_OffList" Width="1.5" PointX="11.08432958791234" PointY="1.6595694579461446" />
+        <EntityTypeShape EntityType="ReportModel.View_SalaryList" Width="1.5" PointX="10.783168348848433" PointY="6.041925328803214" />
+        <EntityTypeShape EntityType="ReportModel.View_Sell_Back_NewSpecialOffListInfo" Width="1.5" PointX="5.8871242040242642" PointY="14.178714848206711" />
+        <EntityTypeShape EntityType="ReportModel.View_SellBackListInfo" Width="1.5" PointX="6.7406512865520316" PointY="21.555712113881349" />
+        <EntityTypeShape EntityType="ReportModel.View_SellBackNewInfo" Width="1.5" PointX="2.5471974548637855" PointY="19.697706663840314" />
+        <EntityTypeShape EntityType="ReportModel.View_SellListInfo" Width="1.5" PointX="10.079797417893913" PointY="23.697228636451637" />
+        <EntityTypeShape EntityType="ReportModel.View_SellOffAduitInfo" Width="1.5" PointX="8.5009336492516727" PointY="18.72935307898063" />
+        <EntityTypeShape EntityType="ReportModel.View_SellOffAduitInfo2" Width="1.5" PointX="1.9702018527175309" PointY="24.597873445878676" />
+        <EntityTypeShape EntityType="ReportModel.View_SellOffAduitInfoList" Width="1.5" PointX="5.8002709736117488" PointY="10.316382219230935" />
+        <EntityTypeShape EntityType="ReportModel.View_SellOffAduitProList" Width="1.5" PointX="2.4656325571544619" PointY="31.23663292789675" />
+        <EntityTypeShape EntityType="ReportModel.View_SellTypeProduct" Width="1.5" PointX="4.7702390089492495" PointY="26.755515245141236" />
+        <EntityTypeShape EntityType="ReportModel.View_SingleSellPrice" Width="1.5" PointX="6.9835937707608533" PointY="0.076610684430511056" />
+        <EntityTypeShape EntityType="ReportModel.View_SpecialOffListInfo" Width="1.5" PointX="7.1379967085728406" PointY="26.325302270392562" />
+        <EntityTypeShape EntityType="ReportModel.View_StoreWithNum" Width="1.5" PointX="5.6697596393850445" PointY="9.7441190824583721" />
+        <EntityTypeShape EntityType="ReportModel.View_Sys_Option" Width="1.5" PointX="3.1548045720694606" PointY="23.224772732343883" />
+        <EntityTypeShape EntityType="ReportModel.View_Sys_UserInfo" Width="1.5" PointX="9.0228859861487916" PointY="20.725031892175334" />
+        <EntityTypeShape EntityType="ReportModel.View_UserBorowInfo" Width="1.5" PointX="5.0894035646176912" PointY="4.2745666225788028" />
+        <EntityTypeShape EntityType="ReportModel.View_UserRemindList" Width="1.5" PointX="10.9663816983655" PointY="3.0104693039369161" />
+        <EntityTypeShape EntityType="ReportModel.View_VIP_OffList" Width="1.5" PointX="0.83336934858624334" PointY="30.3773473642661" />
+        <EntityTypeShape EntityType="ReportModel.View_VIP_Renew" Width="1.5" PointX="1.6902479965660013" PointY="14.00217232760143" />
+        <EntityTypeShape EntityType="ReportModel.View_VIP_RenewBackAduit" Width="1.5" PointX="11.412059236044092" PointY="8.6906591545281273" />
+        <EntityTypeShape EntityType="ReportModel.View_VIPBackAduit" Width="1.5" PointX="4.5382712634924207" PointY="14.049550644145137" />
+        <EntityTypeShape EntityType="ReportModel.View_VIPBackApply" Width="1.5" PointX="10.997810817788267" PointY="27.851275457000021" />
+        <EntityTypeShape EntityType="ReportModel.View_VIPInfo" Width="1.5" PointX="8.36120333911907" PointY="26.544148159466754" />
+        <EntityTypeShape EntityType="ReportModel.View_VIPService" Width="1.5" PointX="4.6627748853819329" PointY="7.3680708740689189" />
+        <EntityTypeShape EntityType="ReportModel.View_VIPTypeService" Width="1.5" PointX="11.287996519025414" PointY="2.626261876256327" />
+        <EntityTypeShape EntityType="ReportModel.View_YanBoPriceStepInfo" Width="1.5" PointX="3.731794161597171" PointY="28.437883002887425" />
+        <EntityTypeShape EntityType="ReportModel.Report_BorrowInfo" Width="1.5" PointX="0.53217083240494634" PointY="16.280529342722396" />
+        <EntityTypeShape EntityType="ReportModel.Report_SellAduitInfo" Width="1.5" PointX="10.497277607441543" PointY="25.286086779686663" />
+        <EntityTypeShape EntityType="ReportModel.Report_SellAduitListInfo" Width="2.5" PointX="6.25" PointY="29" />
+        <AssociationConnector Association="ReportModel.Report_SellAduitInfoReport_SellAduitListInfo" />
+        <EntityTypeShape EntityType="ReportModel.Report_SellReport3" Width="1.5" PointX="11.5" PointY="14" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_VipBuyTimeInfo2" Width="1.5" PointX="6.2045359863920773" PointY="20.691480974057448" />
+        <EntityTypeShape EntityType="ReportModel.Report_YANBAO2" Width="1.5" PointX="3.3838227146229816" PointY="25.087343793868712" />
+        <EntityTypeShape EntityType="ReportModel.Report_SellListInfo2" Width="2.125" PointX="5.875" PointY="14.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_BorrowIMEIInfo" Width="1.5" PointX="15.125" PointY="7.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ReportModel.Report_RepairInfo" Width="1.5" PointX="11.980212584128703" PointY="28.8105995640208" />
+        <EntityTypeShape EntityType="ReportModel.Report_SMSSign" Width="1.5" PointX="3.7963613252138542" PointY="5.4915251608432856" />
+        <EntityTypeShape EntityType="ReportModel.Report_VipBuyTimeInfo" Width="1.5" PointX="10.2994837808886" PointY="22.868750716964133" />
+        <EntityTypeShape EntityType="ReportModel.View_Package_GroupInfo" Width="1.5" PointX="9.5" PointY="97.375" />
+        <EntityTypeShape EntityType="ReportModel.View_VIPOffListAduit" Width="1.5" PointX="6.75" PointY="97.25" />
+        <EntityTypeShape EntityType="ReportModel.View_VIPOffListAduitHeader" Width="1.5" PointX="4.625" PointY="97" />
+        <AssociationConnector Association="ReportModel.View_VIPOffListAduitHeaderView_VIPOffListAduit" />
+        <AssociationConnector Association="ReportModel.View_VIPOffListAduitView_Package_GroupInfo" />
+        <EntityTypeShape EntityType="ReportModel.Report_InOrderListInfo" Width="1.5" PointX="10.36504845245045" PointY="24.820231583351376" />
+        <EntityTypeShape EntityType="ReportModel.Chart_MapReport" Width="1.5" PointX="6.8610106049389632" PointY="17.050553523493257" />
+        <AssociationConnector Association="ReportModel.Report_OutInfoReport_OutOrderIMEIInfo" />
+        <EntityTypeShape EntityType="ReportModel.Sys_Option" Width="1.5" PointX="9.3227174642135928" PointY="11.597853159344687" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

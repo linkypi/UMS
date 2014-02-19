@@ -1,0 +1,112 @@
+﻿
+  <src:BasePage x:Class="UserMS.Sys_tem.Pro.AddProMain"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           mc:Ignorable="d" 
+           xmlns:src="clr-namespace:UserMS" 
+
+              d:DesignWidth="640" d:DesignHeight="480"
+           Title="AddPro Page">
+    <xctk:BusyIndicator  x:Name="isbusy" IsBusy="False" BusyContent="请稍后...">
+        <Grid x:Name="LayoutRoot" Margin="10,0,-10,0">
+            <Grid.Resources>
+                <HierarchicalDataTemplate x:Key="ttreeTemplate" ItemsSource="{Binding Menu}" >
+                    <TextBlock Text="{Binding MenuText}" />
+                </HierarchicalDataTemplate>
+                <DataTemplate  x:Key="itemteplate">
+                    <TextBlock Text="{Binding MenuText}" />
+                </DataTemplate>
+            </Grid.Resources>
+
+            <toolkit:DockPanel>
+
+                <telerik:RadMenu toolkit:DockPanel.Dock="Top">
+                    <telerik:RadMenuItem Header="确定新增" x:Name="Sumbit" Click="Sumbit_Click"></telerik:RadMenuItem>
+                    <!--<telerik:RadMenuItem Header="取消"></telerik:RadMenuItem>-->
+                    <!--<telerik:RadMenuItem Header="添加商品"  Click="AddProName_Click_1"></telerik:RadMenuItem>-->
+                    <telerik:RadMenuItem Header="删除商品" x:Name="DelPro" Click="DelPro_Click"></telerik:RadMenuItem>
+                    <!--<telerik:RadMenuItem Header="权限应用到所有" x:Name="Role_pro" Click="Role_pro_Click"></telerik:RadMenuItem>-->
+                </telerik:RadMenu>
+
+                <WrapPanel toolkit:DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal" Margin="2,3">
+                        <TextBlock Text="类别" Width="80"></TextBlock>
+                        <telerik:RadComboBox Width="120"  Name="ClassName" IsEditable="True" TextSearchMode="Contains" IsFilteringEnabled="True"></telerik:RadComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2,3">
+                        <TextBlock Text="品牌" Width="80"></TextBlock>
+                        <telerik:RadComboBox Width="120" Name="TypeName"  IsEditable="True" TextSearchMode="Contains" IsFilteringEnabled="True"></telerik:RadComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2,3">
+                        <TextBlock Text="类型" Width="80"></TextBlock>
+                        <telerik:RadComboBox Width="120" Name="ProName"  IsEditable="True" TextSearchMode="Contains" IsFilteringEnabled="True"></telerik:RadComboBox>
+                        
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2,3">
+                        <telerik:RadButton Content="添加" Width="80"  Click="Button_Click"/>
+
+                    </StackPanel>
+                </WrapPanel>
+
+
+
+                <!--<StackPanel toolkit:DockPanel.Dock="Bottom" Orientation="Horizontal" Height="30" HorizontalAlignment="Center" >
+
+                                <Button Content="全 选"  Height="25" Margin="5,3,5,0" Width="80" VerticalAlignment="Top" Click="Button_Click_5"></Button>
+                                <Button Content="反 选"  Height="25" Margin="5,0" Width="80" Click="Button_Click_6"></Button>
+
+                            </StackPanel>
+                            <ScrollViewer  toolkit:DockPanel.Dock="Left" Padding="0">
+                                <telerik:RadTreeView    toolkit:DockPanel.Dock="Top"  IsLineEnabled="True"
+				    ItemsOptionListType="CheckList" IsOptionElementsEnabled="True" IsDragDropEnabled="True"
+				    IsRootLinesEnabled="True" x:Name="RadTreeView3" IsEnabled="False"  IsTriStateMode="True"
+                                           DisplayMemberPath="Title" 
+                     ItemTemplate="{StaticResource ttreeTemplate}" />
+                            </ScrollViewer>-->
+                <!--<telerik:RadGridView x:Name="AddProNameDG"  SelectionChanged="ProNameDG_SelectionChanged"
+                                         IsFilteringAllowed="False" toolkit:DockPanel.Dock="Right"  AutoGenerateColumns="False" ShowGroupPanel="False"  SelectionMode="Multiple"   CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="False">
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewSelectColumn/>
+                                    <telerik:GridViewDataColumn Header="类别" DataMemberBinding="{Binding ProClassName}" IsReadOnly="True"/>
+                                    <telerik:GridViewDataColumn Header="品牌" DataMemberBinding="{Binding ProTypeName}" IsReadOnly="True"/>
+                                    <telerik:GridViewDataColumn Header="商品名称" DataMemberBinding="{Binding ProName,Mode=TwoWay}" IsReadOnly="True"/>
+                                    <telerik:GridViewDataColumn Header="需要串码"  DataMemberBinding="{Binding NeedIMEI,Mode=TwoWay}" IsReadOnly="True"/>
+                                    <telerik:GridViewDataColumn Header="属于服务" DataMemberBinding="{Binding IsService,Mode=TwoWay}" IsReadOnly="True"/>
+                         
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>-->
+
+
+                <!--<ScrollViewer  toolkit:DockPanel.Dock="Left" Padding="0">
+                        <telerik:RadTreeView     toolkit:DockPanel.Dock="Top" SelectionMode="Single" IsLineEnabled="True" SelectionChanged="RoleTV_SelectionChanged"
+				    ItemsOptionListType="CheckList" IsOptionElementsEnabled="True" IsDragDropEnabled="True" Checked="RoleTV_Checked"  Unchecked="RoleTV_Unchecked"
+				    IsRootLinesEnabled="True" x:Name="RoleTV"  IsTriStateMode="True" 
+                     />
+                    </ScrollViewer>-->
+
+
+
+                <toolkit:DockPanel toolkit:DockPanel.Dock="Left" >
+                    <telerik:RadGridView x:Name="ProNameDG"   
+                             MouseDoubleClick="ProNameDG_MouseDoubleClick"      IsFilteringAllowed="False" toolkit:DockPanel.Dock="Top"  AutoGenerateColumns="False" ShowGroupPanel="False"  
+                             SelectionUnit="Cell" SelectionMode="Extended"  CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewSelectColumn/>
+                            <telerik:GridViewDataColumn Header="类别" DataMemberBinding="{Binding ProClassName}" IsReadOnly="True"/>
+                            <telerik:GridViewDataColumn Header="品牌" DataMemberBinding="{Binding ProTypeName}" IsReadOnly="True"/>
+                            <telerik:GridViewDataColumn Header="商品型号" DataMemberBinding="{Binding ProName,Mode=TwoWay}" IsReadOnly="True"/>
+                            <telerik:GridViewDataColumn Header="相关说明（双击编辑）" DataMemberBinding="{Binding Introduction,Mode=TwoWay}" IsReadOnly="True"/>
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </toolkit:DockPanel>
+
+
+            </toolkit:DockPanel>
+        </Grid>
+
+    </xctk:BusyIndicator>
+    </src:BasePage>

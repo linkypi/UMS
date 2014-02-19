@@ -1,0 +1,141 @@
+﻿<Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d" Loaded="Page_Loaded"
+       xmlns:UserMS="clr-namespace:UserMS"
+          
+xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+     
+    
+     x:Class="UserMS.Views.ProSell.YanBao.AddGX" 
+      d:DesignWidth="800" d:DesignHeight="600"
+           Title="AddSingleOff Page">
+    
+    <telerik:RadBusyIndicator  x:Name="busy" BusyContent="请稍后...">
+        
+        <DockPanel x:Name="LayoutRoot" >
+
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  DockPanel.Dock="Top" >
+                <telerik:RadMenuItem  Header="保存" x:Name="_Save" Click="_Save_OnClick"/>
+                <telerik:RadMenuItem  Header="保存并转到结算" x:Name="_Next" Click="_Next_OnClick"/>
+                <telerik:RadMenuItem  Header="取消全部" x:Name="_CancelALL" Click="_CancelALL_OnClick"/>
+                <telerik:RadMenuItem  Header="删除" x:Name="_Del" Click="_Del_OnClick"/>    
+            </telerik:RadMenu> 
+                
+            
+            
+            <ScrollViewer DockPanel.Dock="Bottom" Padding="0" HorizontalScrollBarVisibility="Disabled" >
+                <StackPanel Background="White">
+                    <WrapPanel DockPanel.Dock="Top" Margin="0,2">
+                       
+                        <StackPanel Orientation="Horizontal" Margin="3,2" >
+                            <TextBlock Width="80" Text="门店"></TextBlock>
+                            <telerik:RadButton x:Name="_Hall" Content="{Binding HallName}" Width="120" Click="_Hall_OnClick"></telerik:RadButton>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2" Visibility="Collapsed">
+                            <TextBlock Width="80" Text="销售员"></TextBlock>
+                            <UserMS:MyAutoTextBox x:Name="_Seller" Width="120" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2" Visibility="Collapsed">
+                            <TextBlock Width="80" Text="客户姓名"></TextBlock>
+                            <TextBox Width="120" x:Name="_Name"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2" Visibility="Collapsed">
+                            <TextBlock Width="80" Text="客户电话"></TextBlock>
+                            <TextBox Width="120" x:Name="_Phone"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="销售商"></TextBlock>
+                            <TextBox Width="120" Text="广信中山分公司" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2" Visibility="Collapsed">
+                            <TextBlock Width="80" Text="销售单号"></TextBlock>
+                            <TextBox Width="120" x:Name="_SellID"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="合同号"></TextBlock>
+                            <TextBox Width="120" x:Name="_OldID"></TextBox>
+                        </StackPanel>
+                        
+                    </WrapPanel>
+                    <WrapPanel DockPanel.Dock="Top" Margin="0,2">
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="终端串码"></TextBlock>
+                            <TextBox Width="80" x:Name="_IMEI"></TextBox>
+                            <Button Width="40" Content="验证" x:Name="_CheckIMEI" Click="_CheckIMEI_Click_1"></Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="终端型号"></TextBlock>
+                            <TextBox Width="120" IsReadOnly="True" x:Name="_Model" ></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="终端品牌"></TextBlock>
+                            <TextBox Width="120"  IsReadOnly="True" x:Name="_ModelClass"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="终端价格"></TextBlock>
+                            <Border BorderBrush="#FF9C9C9C" BorderThickness="1">
+                                <telerik:RadMaskedCurrencyInput x:Name="_ModelPrice" Width="118" IsClearButtonVisible="False" Mask="c6.2" TextMode="PlainText" SelectionOnFocus="SelectAll" IsReadOnly="True" ></telerik:RadMaskedCurrencyInput>
+                            </Border>
+                            <!--                            <TextBox Width="120" IsReadOnly="True" x:Name="_ModelPrice"></TextBox>-->
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="发票号码"></TextBlock>
+                            <TextBox Width="120" x:Name="_InvoiceNumber"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="电池编码"></TextBlock>
+                            <TextBox Width="120" x:Name="_BatteryIMEI"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="充电器编码"></TextBlock>
+                            <TextBox Width="120" x:Name="_ChargerIMEI"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="耳机编码" ></TextBlock>
+                            <TextBox Width="120" x:Name="_HandphoneIMEI"></TextBox>
+                        </StackPanel> 
+                    </WrapPanel>
+                    <WrapPanel DockPanel.Dock="Top" Margin="0,2">
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="备注"></TextBlock>
+                            <TextBox Width="325"  x:Name="_Note"></TextBox>
+                        </StackPanel>
+                    </WrapPanel>
+                    <WrapPanel DockPanel.Dock="Top" Margin="0,2">
+                        <StackPanel DockPanel.Dock="Bottom" Height="50" Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Width="80" Text=""></TextBlock>
+                            <Button Height="30" Content="添 加" Width="100" x:Name="_Add" Click="_Add_OnClick"></Button>
+                            <Button Height="30" Content="取 消" Width="100" Margin="5,0" x:Name="_Cancel" Click="_Cancel_OnClick"></Button>
+                        </StackPanel>
+                    </WrapPanel>
+                </StackPanel>
+            </ScrollViewer>
+
+            <telerik:RadGridView DockPanel.Dock="Top" x:Name="dataGrid"   SelectionMode="Multiple"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True" IsFilteringAllowed="False" >
+                <telerik:RadGridView.Columns>
+<!--                    <telerik:GridViewDataColumn Header="销售单号" DataMemberBinding="{Binding SellID}" IsReadOnly="True"/>-->
+                    <telerik:GridViewDataColumn Header="合同号" DataMemberBinding="{Binding OldID}" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="终端型号" DataMemberBinding="{Binding Model}" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="终端串号" DataMemberBinding="{Binding IMEI}" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="终端品牌" DataMemberBinding="{Binding Class}" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="终端价格" DataMemberBinding="{Binding ModelPrice}" DataFormatString="{}{0:0.00}" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="延保价格" DataMemberBinding="{Binding YanBaoPrice}" DataFormatString="{}{0:0.00}" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="发票号码" DataMemberBinding="{Binding InvoiceNumber}" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="电池编码" DataMemberBinding="{Binding BatteryIMEI}" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="充电器编码" DataMemberBinding="{Binding ChargerIMEI}" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header ="耳机编码" DataMemberBinding="{Binding HandphoneIMEI}" IsReadOnly="True"/>
+<!--                    <telerik:GridViewDataColumn Header="客户姓名" DataMemberBinding="{Binding Name}" IsReadOnly="True"/>-->
+<!--                    <telerik:GridViewDataColumn Header="客户电话" DataMemberBinding="{Binding Phone}" IsReadOnly="True"/>-->
+                    
+
+
+                </telerik:RadGridView.Columns>
+
+            </telerik:RadGridView>
+        </DockPanel>
+         
+    </telerik:RadBusyIndicator>
+</Page>

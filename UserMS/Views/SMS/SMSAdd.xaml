@@ -1,0 +1,34 @@
+﻿<telerik:RadWindow x:Class="UserMS.Views.SMS.SMSAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:userMs="clr-namespace:UserMS"
+        WindowStartupLocation="CenterScreen"
+        Header="发送短信/收款" Height="167" Width="262" CanClose="False" HideMaximizeButton="True" HideMinimizeButton="True">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Top">
+            <TextBlock Text="选择短信通道" Width="100"></TextBlock>
+
+            <telerik:RadComboBox SelectedValuePath="ProID" DisplayMemberPath="ProName" Width="120" x:Name="ComboBox"></telerik:RadComboBox>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Top">
+            <TextBlock Text="发送短信数量" Width="100"></TextBlock>
+
+            <telerik:RadMaskedNumericInput x:Name="Send"  Width="120" IsClearButtonVisible="False" Mask="#8.0" TextMode="PlainText" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Top">
+            <TextBlock Text="本次收款金额" Width="100" ></TextBlock>
+            <telerik:RadMaskedNumericInput x:Name="Pay"  Width="120" IsClearButtonVisible="False" Mask="#8.2" TextMode="PlainText"  />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Top">
+            <TextBlock Text="收款人" Width="100" ></TextBlock>
+            <userMs:MyAutoTextBox x:Name="Seller"  Width="120"/>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <telerik:RadButton Content="确定" x:Name="OK" Click="OK_OnClick"></telerik:RadButton>
+            <telerik:RadButton Content="取消" x:Name="Cancel" Click="Cancel_OnClick"/>
+        </StackPanel>
+    </DockPanel>
+</telerik:RadWindow>

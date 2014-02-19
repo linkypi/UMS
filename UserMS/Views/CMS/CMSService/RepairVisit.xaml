@@ -1,0 +1,54 @@
+﻿<src:BasePage x:Class="UserMS.Report.InOrder.RepairVisit" 
+           xmlns:src="clr-namespace:UserMS"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"   
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+              
+              mc:Ignorable="d"
+           
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="InOrder_Report Page">
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        <toolkit:DockPanel x:Name="LayoutRoot" >
+            
+                <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                    <telerik:RadMenuItem/>
+
+                </telerik:RadMenu>
+           
+            
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,5">
+                <TextBlock Text="客户姓名:"></TextBlock>
+                <TextBox Width="80" x:Name="txt_news_title"></TextBox>
+                <TextBlock Text="终端型号:"></TextBlock>
+                <TextBox Width="80" x:Name="txt_news_abstract" Height="26" ></TextBox>
+                <TextBlock Text="保养内容:"></TextBlock>
+                <TextBox Width="80" x:Name="news_content" Height="26" ></TextBox>
+                 
+                <Button Content="查 询" Width="60"  Height="26"></Button>
+                 
+                <Button Content="导 出" Width="60"  Height="26" Click="Button_Click_1"></Button>
+
+            </toolkit:WrapPanel>
+
+            
+            
+                <telerik:RadDataPager x:Name="RadPager" PageIndexChanging="RadPager_PageIndexChanging_1"  toolkit:DockPanel.Dock="Bottom"  PageSize="20" DisplayMode="All"  VerticalAlignment="Stretch" />
+            
+            
+                <telerik:RadGridView x:Name="dataGrid1" toolkit:DockPanel.Dock="Top" SelectionMode="Multiple"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+
+                    </telerik:RadGridView.Columns>
+
+                </telerik:RadGridView>
+           
+
+
+        </toolkit:DockPanel>
+    </xctk:BusyIndicator>
+</src:BasePage>

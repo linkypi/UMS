@@ -1,0 +1,101 @@
+﻿<src:BasePage x:Class="UserMS.Sys_tem.Role.AddRole" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d" 
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+           xmlns:src="clr-namespace:UserMS"
+           xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"   
+              Title="AddSingleOff Page" d:DesignWidth="800" d:DesignHeight="600" Loaded="BasePage_Loaded_1">
+    <Grid>
+
+        <Grid.Resources>
+            <HierarchicalDataTemplate x:Key="ttreeTemplate" ItemsSource="{Binding Menu}" >
+               
+                    <TextBlock Text="{Binding MenuText}" />
+               
+            </HierarchicalDataTemplate>
+
+            <DataTemplate  x:Key="itemteplate">
+                <TextBlock Text="{Binding MenuText}" />
+            </DataTemplate>
+        </Grid.Resources>
+    
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+           
+        <toolkit:DockPanel x:Name="LayoutRoot"  >
+           
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                <telerik:RadMenuItem  Header="保存" Click="RadMenuItem_Click_2"/> 
+                <telerik:RadMenuItem  Header="取消" Click="RadMenuItem_Click_1"/>
+            </telerik:RadMenu>
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="角色名称"></TextBlock>
+                    <TextBox Width="120" x:Name="roleName"></TextBox>
+                </StackPanel> 
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="备注"></TextBlock>
+                    <TextBox Width="200" x:Name="note"></TextBox> 
+                </StackPanel>
+                
+
+            </toolkit:WrapPanel>
+ 
+               
+               
+            <toolkit:DockPanel toolkit:DockPanel.Dock="Left" MinWidth="100">
+                    
+                 <StackPanel toolkit:DockPanel.Dock="Bottom" Orientation="Horizontal" Height="30" HorizontalAlignment="Center" >
+                        <Button Content="全 选"  Height="25" Margin="5,0" Width="80" Click="Button_Click_1"></Button>
+                        <Button Content="反 选"  Height="25" Margin="5,0" Width="80" Click="Button_Click_2"></Button> 
+                </StackPanel>
+                <ScrollViewer  toolkit:DockPanel.Dock="Left" Padding="0">
+                        <telerik:RadTreeView   toolkit:DockPanel.Dock="Top" SelectionMode="Single" IsLineEnabled="True"
+				    ItemsOptionListType="CheckList" IsOptionElementsEnabled="True"  
+				    IsRootLinesEnabled="True" x:Name="RadTreeView1" IsTriStateMode="True"
+                    SelectionChanged="RadTreeView1_SelectionChanged_1" Unchecked="RadTreeView1_Unchecked"    Checked="RadTreeView1_Checked"           />
+                </ScrollViewer>
+            </toolkit:DockPanel>
+            <Splitter:DockPanelSplitter DockPanel.Dock="Left"/>
+            <toolkit:DockPanel toolkit:DockPanel.Dock="Left" MinWidth="100">
+
+                <StackPanel toolkit:DockPanel.Dock="Bottom" Orientation="Horizontal" Height="30" HorizontalAlignment="Center" >
+                 
+                    <Button Content="全 选"  Height="25" Margin="5,0" Width="80" Click="Button_Click_3"></Button>
+                    <Button Content="反 选"  Height="25" Margin="5,0" Width="80" Click="Button_Click_4"></Button>
+                    
+                </StackPanel>
+                <ScrollViewer  toolkit:DockPanel.Dock="Left" Padding="0">
+                        <telerik:RadTreeView     toolkit:DockPanel.Dock="Top" SelectionMode="Single" IsLineEnabled="True"
+				    ItemsOptionListType="CheckList" IsOptionElementsEnabled="True" 
+				    IsRootLinesEnabled="True" x:Name="RadTreeView2"   IsTriStateMode="True" Checked="RadTreeView2_Checked" Unchecked="RadTreeView2_Unchecked"
+                     />
+                    </ScrollViewer>
+            </toolkit:DockPanel>
+            <Splitter:DockPanelSplitter DockPanel.Dock="Left"/>
+            <toolkit:DockPanel toolkit:DockPanel.Dock="Left" MinWidth="100">
+
+                    <StackPanel toolkit:DockPanel.Dock="Bottom" Orientation="Horizontal" Height="30" HorizontalAlignment="Center" >
+
+                        <Button Content="全 选"  Height="25" Margin="5,3,5,0" Width="80" VerticalAlignment="Top" Click="Button_Click_5"></Button>
+                        <Button Content="反 选"  Height="25" Margin="5,0" Width="80" Click="Button_Click_6"></Button>
+
+                    </StackPanel>
+                    <ScrollViewer  toolkit:DockPanel.Dock="Left" Padding="0">
+                        <telerik:RadTreeView    toolkit:DockPanel.Dock="Top"  IsLineEnabled="True" 
+				    ItemsOptionListType="CheckList" IsOptionElementsEnabled="True"  
+				    IsRootLinesEnabled="True" x:Name="RadTreeView3"   IsTriStateMode="True"
+                                           DisplayMemberPath="Title" 
+                       Checked="RadTreeView3_Checked" Unchecked="RadTreeView3_Unchecked"/>
+                    </ScrollViewer>
+                </toolkit:DockPanel>
+        
+
+        </toolkit:DockPanel>
+         
+    </xctk:BusyIndicator>
+    </Grid>
+</src:BasePage>

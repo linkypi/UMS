@@ -1,0 +1,220 @@
+﻿  <src:BasePage xmlns:UserMS="clr-namespace:UserMS"  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    x:Class="UserMS.Views.StockMS.EnteringStock.TypeOfChange"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:src="clr-namespace:UserMS"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"              
+      mc:Ignorable="d" Loaded="Page_Loaded"  d:DesignWidth="800" d:DesignHeight="600">
+        <telerik:RadBusyIndicator x:Name="IsBusy">
+
+            <Grid  >
+                <toolkit:DockPanel>
+                <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  toolkit:DockPanel.Dock="Top">
+                        <toolkit:WrapPanel>
+                            <telerik:RadMenuItem x:Name="Sumbit" FontSize="13"  Header="保存"/>
+                            <telerik:RadMenuItem Header="取消" x:Name="cancel" FontSize="13" />
+                            <!--<telerik:RadMenuItem Header="拣货" FontSize="13" x:Name="checkPro"/>-->
+
+                            <!--<telerik:RadMenuItem Header="添加新商品"  FontSize="13" Click="RadMenuItem_Click"/>-->
+                            <!--<telerik:RadMenuItem Header="删除商品" FontSize="13"  Click="RadMenuItem_Click_1"/>-->
+                            <!--<telerik:RadMenuItem Header="删除串码" x:Name="delIMEI" FontSize="13" />-->
+                        </toolkit:WrapPanel>
+
+
+                    </telerik:RadMenu>
+                <toolkit:WrapPanel  toolkit:DockPanel.Dock="Top" MaxHeight="150">
+                        <StackPanel Margin="2,3" Orientation="Horizontal">
+                            <TextBlock  Text="单据编号：" Width="80"/>
+                            <TextBox  x:Name="inOrderID" Text="系统自动生成" IsReadOnly="True" Width="120"/>
+
+                        </StackPanel>
+                        <StackPanel Margin="2,3" Orientation="Horizontal">
+                            <TextBlock  Text="原始单号：" Width="80"/>
+                            <TextBox  x:Name="oldID"  Width="120"/>
+
+                        </StackPanel>
+                        <StackPanel Margin="2,3" Orientation="Horizontal">
+                            <TextBlock  Text="仓库：" Width="80"/>
+                            <UserMS:MyAutoTextBox x:Name="GHHall"     Width="120"/>
+
+
+                        </StackPanel>
+           
+                        <StackPanel Margin="2,3" Orientation="Horizontal">
+                            <TextBlock  Text="日期：" Width="80"/>
+
+                            <telerik:RadDatePicker x:Name="toDate"  Width="120"  IsReadOnly="True" IsEnabled="False"/>
+
+
+                        </StackPanel>
+                        <StackPanel Margin="2,3" Orientation="Horizontal">
+                            <TextBlock  Text="录入人：" Width="80"/>
+                            <TextBox  x:Name="userID" IsReadOnly="True"      Width="120"   />
+                        </StackPanel>
+
+                        <!--<StackPanel Margin="2,3" Orientation="Horizontal">
+                            <TextBlock  Text="备注：" Width="80"/>
+                            <TextBox  x:Name="tbNote"  Width="120"   />
+                        </StackPanel>-->
+                    <toolkit:WrapPanel Orientation="Horizontal">
+                        <StackPanel Margin="2,3" Orientation="Horizontal">
+                            <TextBlock  Text="备注：" Width="80"/>
+                            <TextBox  x:Name="tbNote"  Width="500"  Height="50" AcceptsReturn="True" />
+                        </StackPanel>
+                    </toolkit:WrapPanel>
+                </toolkit:WrapPanel>
+                
+                    
+                
+
+
+                <toolkit:DockPanel toolkit:DockPanel.Dock="Top" Height="250">
+                    
+                    <toolkit:DockPanel toolkit:DockPanel.Dock="Right">
+                        <toolkit:DockPanel toolkit:DockPanel.Dock="Bottom">
+                            <Button x:Name="DelIMEI"     Content="删除"  Click="DelIMEI_Click_1"  Height="28"/>
+                        </toolkit:DockPanel>
+                        <toolkit:DockPanel toolkit:DockPanel.Dock="Top">
+                            <telerik:RadGridView  x:Name="GridCheckedIMEI"  toolkit:DockPanel.Dock="Left" ShowGroupPanel="False" ShowColumnHeaders="True" CanUserInsertRows="False"    RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" CanUserFreezeColumns="False" 
+                              GridLinesVisibility="Both"        AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False"  Width="200" >
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewSelectColumn/>
+                                    <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding OldIMEI}" Width="auto" HeaderTextAlignment="Center" Header="检货串码" IsGroupable="False" IsFilterable="False"/>
+                                    <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding IMEI, Mode=OneWay}" Width="auto" HeaderTextAlignment="Center" Header="新串码" IsGroupable="False" IsFilterable="False"/>
+
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>
+                        </toolkit:DockPanel>
+                                                                                 
+                    </toolkit:DockPanel>
+               
+
+                        <telerik:RadGridView  x:Name="GridCheckedPro"  toolkit:DockPanel.Dock="Left" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="False" 
+                          GridLinesVisibility="Both"  CanUserFreezeColumns="False" IsReadOnly="False" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False"  SelectionChanged="GridCheckedPro_SelectionChanged_1"
+    						RowDetailsVisibilityMode="VisibleWhenSelected"  >
+                            <telerik:RadGridView.Columns>
+                             <telerik:GridViewSelectColumn/>
+                                <telerik:GridViewBoundColumnBase  Header="批次号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProInListID}" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="商品类别" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProClassName}" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProTypeName}" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="商品型号" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProName}" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProFormat}" IsFilterable="False" />
+                                <telerik:GridViewDataColumn DataMemberBinding="{Binding Count}" Header="商品数量" IsReadOnly="True" IsFilterable="False" />
+                                <telerik:GridViewDataColumn DataMemberBinding="{Binding IsNeedIMEI}" Header="需要串码" IsGroupable="True" IsReadOnly="True" IsFilterable="False" />
+                 
+                                
+                                
+                                
+                            <telerik:GridViewBoundColumnBase  Header="新类别" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding NewClassName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="新品牌" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding NewTypeName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="新型号" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding NewProName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="新商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding NewProFormat}" IsFilterable="False" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding NewIsNeedIMEI}" Header="需要串码" IsGroupable="True" IsReadOnly="True" IsFilterable="False" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding NewNote, Mode=TwoWay}" Header="备注" IsReadOnly="False" />
+                        </telerik:RadGridView.Columns>
+                        </telerik:RadGridView>
+                    </toolkit:DockPanel>
+                <Splitter:DockPanelSplitter DockPanel.Dock="Top"/>
+                <toolkit:DockPanel toolkit:DockPanel.Dock="Top" >
+                    <!--<StackPanel Margin="2,3" Orientation="Horizontal">
+                        <telerik:RadButton Width="100" Content="添加无串码商品"  Click="Add_Click"/>
+                    </StackPanel>
+                    <StackPanel Margin="2,3" Orientation="Horizontal">
+                        <telerik:RadButton Width="100" Content="删除无串码商品" Click="delCheckedPro_Click"/>
+                    </StackPanel>
+                    <StackPanel Margin="2,3" Orientation="Horizontal">
+                        <telerik:RadButton Width="100" Content="删除串码" Click="delCheckedIMEI_Click"/>
+                    </StackPanel>
+                    <StackPanel Margin="2,3" Orientation="Horizontal">
+                        <telerik:RadButton Width="100" Content="拣货" Click="CheckProduct_Click"/>
+                    </StackPanel>-->
+                    <telerik:RadMenu ClickToOpen="False"  toolkit:DockPanel.Dock="Top">
+                        <toolkit:WrapPanel>
+                            <telerik:RadMenuItem  FontSize="13"  Header="添加商品" Click="Add_Click"/>
+                            <telerik:RadMenuItem Header="删除商品"  FontSize="13"  Click="delCheckedPro_Click"/>
+                            <telerik:RadMenuItem Header="添加新商品"  FontSize="13" Click="RadMenuItem_Click"/>
+                            <telerik:RadMenuItem Header="删除串码"  FontSize="13" Click="RadMenuItem_Click_2"/>
+                            <telerik:RadMenuItem Header="拣货" FontSize="13"  Click="CheckProduct_Click"/>
+                            <!--<telerik:RadMenuItem Header="删除串码" x:Name="delIMEI" FontSize="13" />-->
+                        </toolkit:WrapPanel>
+
+
+                    </telerik:RadMenu>
+                </toolkit:DockPanel>
+                <toolkit:DockPanel toolkit:DockPanel.Dock="Top">
+
+
+                    <toolkit:DockPanel toolkit:DockPanel.Dock="Right" >
+                        <Button toolkit:DockPanel.Dock="Bottom" x:Name="BatchAddIMEI"  Height="28"   Content="添加串码 "  Click="BatchAddIMEI_Click"/>
+                        <toolkit:DockPanel toolkit:DockPanel.Dock="Right" >
+                            <!--<Button toolkit:DockPanel.Dock="Bottom" x:Name="AddNewIMEI"  Height="28"   Content="添加新串码"  Click="AddNewIMEI_Click" />-->
+                            <GroupBox toolkit:DockPanel.Dock="Left" Header="捡货串码">
+                                <TextBox  x:Name="txtIMEI" AcceptsReturn="True" Width="150"  TextWrapping="NoWrap" KeyUp="AddNewIMEI_KeyUp"/>
+                            </GroupBox>
+                            <!--</toolkit:DockPanel>
+
+                        <toolkit:DockPanel toolkit:DockPanel.Dock="Right" Width="150">-->
+                            <GroupBox toolkit:DockPanel.Dock="Left" Header="新串码">
+                                <TextBox toolkit:DockPanel.Dock="Right" x:Name="TextIMEI" AcceptsReturn="True"  Width="150" TextWrapping="NoWrap"  KeyUp="txtIMEI_KeyUp_1"/>
+                            </GroupBox>
+                        </toolkit:DockPanel>
+
+                    </toolkit:DockPanel>
+
+                    <toolkit:DockPanel toolkit:DockPanel.Dock="Right">
+                        <toolkit:DockPanel toolkit:DockPanel.Dock="Bottom">
+                            <Button x:Name="DeletIMEI"     Content="删除"  Click="DelIMEI_Click_1"  Height="28"/>
+                        </toolkit:DockPanel>
+                        <telerik:RadGridView  x:Name="GridUnCheckIMEI" toolkit:DockPanel.Dock="Right" ShowGroupPanel="False" ShowColumnHeaders="True" CanUserInsertRows="False"   
+                 GridLinesVisibility="Both"   RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" CanUserFreezeColumns="False" Width="200" 
+                                      AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False">
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewSelectColumn  />
+                                <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding OldIMEI}" Width="auto" HeaderTextAlignment="Center" Header="检货串码" IsGroupable="False" IsFilterable="False"/>
+                                <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding IMEI, Mode=OneWay}" Width="auto" HeaderTextAlignment="Center" Header="新串码" IsGroupable="False" IsFilterable="False"/>
+                                <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding Note}" Width="auto"  HeaderTextAlignment="Center" Header="备注" IsGroupable="False" IsFilterable="True"/>
+                            </telerik:RadGridView.Columns>
+                        </telerik:RadGridView>
+                    </toolkit:DockPanel>
+
+                    <telerik:RadGridView toolkit:DockPanel.Dock="Left"  x:Name="GridUnCheckPro" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" 
+                    CellEditEnded="DGCardType_CellEditEnded"    GridLinesVisibility="Both"    CanUserFreezeColumns="False"  AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+    				 	RowDetailsVisibilityMode="VisibleWhenSelected"   SelectionChanged="GridUnCheckPro_SelectionChanged">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewSelectColumn  />
+                            <telerik:GridViewBoundColumnBase  Header="商品类别" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProClassName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProTypeName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="商品型号" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProFormat}" IsFilterable="False" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Count, Mode=TwoWay}" Header="商品数量" IsReadOnly="False" IsFilterable="False" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding IsNeedIMEI}" Header="需要串码" IsGroupable="False" IsReadOnly="True" IsFilterable="False" />
+
+
+
+                            <telerik:GridViewBoundColumnBase  Header="新类别" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding NewClassName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="新品牌" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding NewTypeName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="新型号" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding NewProName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="新商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding NewProFormat}" IsFilterable="False" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding NewIsNeedIMEI}" Header="需要串码" IsGroupable="True" IsReadOnly="True" IsFilterable="False" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Note, Mode=TwoWay}" Header="备注" IsReadOnly="True" />
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </toolkit:DockPanel>
+            </toolkit:DockPanel>
+
+
+
+
+
+
+
+
+            </Grid>
+
+        </telerik:RadBusyIndicator>
+
+    </src:BasePage>
+

@@ -1,0 +1,89 @@
+﻿ <userMs:BasePage xmlns:pivot="http://schemas.telerik.com/2008/xaml/presentation/pivot" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:userMs="clr-namespace:UserMS" xmlns:DCDetails="clr-namespace:UserMS.Views.StockMS.Allot"
+    x:Class="UserMS.Views.Configuration.Configuration_Dep.Add_DeptInfo"
+    mc:Ignorable="d"
+   d:DesignWidth="640" d:DesignHeight="480" Loaded="Page_Loaded">
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.Resources>
+            <Style x:Key="myTextBox" TargetType="TextBox">
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="Margin" Value="0 0 0 0"/>
+            </Style>
+
+            <Style x:Key="myTextBlock" TargetType="TextBlock" >
+
+                <Setter Property="Width"  Value="80" />
+            </Style>
+            <Style x:Key="mycheck" TargetType="CheckBox">
+
+                <Setter Property="Height"  Value="25" />
+            </Style>
+            <HierarchicalDataTemplate x:Key="ttreeTemplate" ItemsSource="{Binding Children,Mode=TwoWay}" >
+                <TextBlock Text="{Binding Title, Mode=TwoWay}" />
+            </HierarchicalDataTemplate>
+        </Grid.Resources>
+        <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+            <toolkit:DockPanel x:Name="LayoutRoot1">
+
+
+                <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                   
+                    <!--<telerik:RadMenuItem Header="新建下级" FontSize="13" x:Name="Sumbit"/>-->
+                    <!--<telerik:RadMenuItem Header="新增同级" FontSize="13" x:Name="AddParent" Click="AddParent_Click"/>-->
+                    <telerik:RadMenuItem Header="新增下级" FontSize="13" x:Name="AddChild" Click="AddChild_Click"/>
+                    <telerik:RadMenuItem Header="删除选中项" FontSize="13" x:Name="DelItem" Click="DelItem_Click"/>
+                    <!--<telerik:RadMenuItem Header="重置" FontSize="13" x:Name="BtReSet" Click="BtReSet_Click"/>-->
+                </telerik:RadMenu>
+
+                <telerik:RadTreeView x:Name="TreeView"  SelectionMode="Single"  SelectionChanged="TreeView_SelectionChanged"
+                                      ItemTemplate="{StaticResource ttreeTemplate}"  MinWidth="200"  Margin="1,3,-1,-1" Grid.RowSpan="3" BorderBrush="#FF99BBE8"  />
+
+
+                <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="10 0">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <TextBlock Style="{StaticResource myTextBlock}" Text="部门名称：" FontSize="13"  VerticalAlignment="Center" />
+                            <!--<CheckBox Style="{StaticResource mycheck}" Height="18"  x:Name="CbType"/>-->
+                            <TextBox Style="{StaticResource myTextBox}" x:Name="TbDeptName" FontSize="13"  />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <TextBlock Style="{StaticResource myTextBlock}" Text="备注：" FontSize="13"  VerticalAlignment="Center" />
+                            <!--<CheckBox Style="{StaticResource mycheck}" Height="18" x:Name="CbMoney"/>-->
+                            <TextBox Style="{StaticResource myTextBox}" x:Name="TbNote" FontSize="13" Grid.Row="2" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <TextBlock Style="{StaticResource myTextBlock}" Text="部门负责人：" FontSize="13"  VerticalAlignment="Center" />
+                            <!--<CheckBox Style="{StaticResource mycheck}" Height="18" x:Name="CbMoney"/>-->
+                            <TextBox Style="{StaticResource myTextBox}" x:Name="TbHead" FontSize="13" Grid.Row="2" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <TextBlock Style="{StaticResource myTextBlock}" Text="负责人电话：" FontSize="13"  VerticalAlignment="Center" />
+                            <!--<CheckBox Style="{StaticResource mycheck}" Height="18" x:Name="CbMoney"/>-->
+                            <TextBox Style="{StaticResource myTextBox}" x:Name="HeadTele" FontSize="13" Grid.Row="2" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Horizontal" Margin="0 5">
+                            <TextBlock Style="{StaticResource myTextBlock}" Text="有效期：" FontSize="13"  VerticalAlignment="Center" Margin="0 0 75 0"/>
+                            <CheckBox Style="{StaticResource mycheck}"  Height="18" x:Name="CbValidity"/>
+                            <TextBox Style="{StaticResource myTextBox}" x:Name="TbValidity" FontSize="13"   VerticalAlignment="Center"/>
+                            <TextBlock Style="{StaticResource myTextBlock}" Text="天" FontSize="13"  VerticalAlignment="Center" Margin="0 0 75 0"/>
+                        </StackPanel>-->
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <telerik:RadButton Content="确定" Width="80" x:Name="BTAdd"  Margin="0 0 30 0" Click="BTAdd_Click"/>
+                            <telerik:RadButton Content="取消" Width="80" x:Name="BTCancel"  Click="BTCancel_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </toolkit:WrapPanel>
+           
+                 
+            </toolkit:DockPanel>
+        </xctk:BusyIndicator>
+    </Grid>
+    </userMs:BasePage>
+

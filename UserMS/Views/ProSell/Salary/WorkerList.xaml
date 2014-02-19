@@ -1,0 +1,108 @@
+﻿<src:BasePage xmlns:MyControl="clr-namespace:UserMS.MyControl"  x:Class="UserMS.Views.ProSell.Price.WorkerList" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d" 
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+           xmlns:src="clr-namespace:UserMS"
+           
+           d:DesignWidth="600" d:DesignHeight="500"
+           Title="AddSingleOff Page">
+
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+
+        <toolkit:DockPanel x:Name="LayoutRoot" >
+
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                <telerik:RadMenuItem  Header="离职" x:Name="TbLeave" Click="TbLeave_Click_1"/>
+            </telerik:RadMenu>
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="姓名"></TextBlock>
+                    <TextBox Width="120" x:Name="StaffName"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="职位"></TextBlock>
+                    <TextBox Width="120" x:Name="StaffPosition"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="部门"></TextBlock>
+                    <TextBox Width="120" x:Name="StaffDepartment"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="在职状态"></TextBlock>
+                    <ComboBox Width="120" x:Name="StaffFlag">
+                        <ComboBoxItem Content="全部"></ComboBoxItem>
+                        <ComboBoxItem Content="在职" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="已离职"></ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="入职日期"></TextBlock>
+                    <telerik:RadDatePicker Width="120" x:Name="StaffStartTime"></telerik:RadDatePicker>
+                    <TextBlock Width="30" Text="至"  TextAlignment="Center"></TextBlock>
+                    <telerik:RadDatePicker Width="120" x:Name="StaffEndTime"></telerik:RadDatePicker>
+
+                    <Button  Content="查 询" Width="80" Margin="5,0" x:Name="Search" Click="Search_Click_1"></Button>
+                </StackPanel>
+
+            </toolkit:WrapPanel>
+            <ScrollViewer Padding="0" toolkit:DockPanel.Dock="Top">
+                <StackPanel>
+                    <telerik:RadGridView  x:Name="StaffGrid" SelectionChanged="StaffGrid_SelectionChanged_1" 
+                  GridLinesVisibility="Both"        IsFilteringAllowed="False"       SelectionMode="Single" MinHeight="100"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewSelectColumn />
+                        </telerik:RadGridView.Columns>
+
+                    </telerik:RadGridView>
+                    <telerik:RadDataPager  IsTotalItemCountFixed="True"
+                x:Name="RadPager" PageIndexChanging="RadPager_PageIndexChanging_1"  toolkit:DockPanel.Dock="Bottom"  PageSize="10" DisplayMode="All"  VerticalAlignment="Stretch" />
+                </StackPanel>
+            </ScrollViewer>
+
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="0,2" Height="30">
+                <StackPanel Orientation="Horizontal" Margin="3,2" >
+
+
+                    <Button  Content="重新入职" Width="80" Margin="5,0" x:Name="BtEnter" Click="BtEnter_Click_1"></Button>
+                    <Button  Content="取 消" Width="80" Margin="5,0"></Button>
+                </StackPanel>
+            </toolkit:WrapPanel>
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2" x:Name="StaffContent">
+             
+   
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock  Text="姓名："  Width="80"></TextBlock>
+                    <TextBox Width="150" x:Name="TbStaffName" Text="{Binding RealName}"></TextBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock  Text="门店："  Width="80"></TextBlock>
+                    <MyControl:MyMulSelect x:Name="Hall"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock  Text="部门："  Width="80"></TextBlock>
+                    <MyControl:MyMulSelect x:Name="StaffDepart" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock  Text="职位：" Width="80"></TextBlock>
+                    <MyControl:MyMulSelect x:Name="TbStaffPosition" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="入职日期"></TextBlock>
+                    <telerik:RadDatePicker Width="120" IsEnabled="False" x:Name="TbCreatTime" SelectedValue="{Binding CreateDate}"></telerik:RadDatePicker>
+                </StackPanel>
+
+            </toolkit:WrapPanel>
+        </toolkit:DockPanel>
+
+    </xctk:BusyIndicator>
+</src:BasePage>

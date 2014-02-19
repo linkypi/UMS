@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../../styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="../../styles/kendo.default.min.css" rel="stylesheet" />
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/kendo.all.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+        <div id="example" class="k-content">
+    <div class="chart-wrapper">
+        <div id="chart" 
+       style="background: center no-repeat; width:500px;" ></div>
+    </div>
+    <script>
+        function createChart() {
+            $("#chart").kendoChart({
+                title: {
+                    position: "bottom",
+                    text: "Share of Internet Population Growth, 2007 - 2012"
+                },
+                legend: {
+                    visible: false
+                },
+                chartArea: {
+                    background: ""
+                },
+                seriesDefaults: {
+                    labels: {
+                        visible: true,
+                        background: "transparent",
+                        template: "#= category #: #= value#%"
+                    }
+                },
+                series: [{
+                    type: "pie",//pie
+                    startAngle: 150,
+                    data: [{
+                        category: "Asia",
+                        value: 53.8,
+                        color: "#FFB415"
+                    }, {
+                        category: "Europe",
+                        value: 16.1,
+                        color: "#2990CC"
+                    }, {
+                        category: "Latin America",
+                        value: 11.3,
+                        color: "#97C93E"
+                    }, {
+                        category: "Africa",
+                        value: 9.6,
+                        color: "#006634"
+                    }, {
+                        category: "Middle East",
+                        value: 5.2,
+                        color: "#004d38"
+                    }, {
+                        category: "North America",
+                        value: 3.6,
+                        color: "#E33331"
+                    }]
+                }],
+                tooltip: {
+                    visible: true,
+                    format: "{0}%"
+                }
+            });
+        }
+
+        $(document).ready(createChart);
+        $(document).bind("kendo:skinChange", createChart);
+    </script>
+
+       <div class="chart-wrapper">
+        <div id="chart2" style="background: center no-repeat 
+		url('../examples/content/shared/styles/world-map.png');width:500px;"></div>
+    </div>
+	 <script>
+	     function createChart2() {
+	         $("#chart2").kendoChart({
+	             title: {
+	                 position: "bottom",
+	                 text: "Share of Internet Population Growth, 2007 - 2012"
+	             },
+	             legend: {
+	                 visible: false
+	             },
+	             chartArea: {
+	                 background: ""
+	             },
+	             seriesDefaults: {
+	                 labels: {
+	                     visible: true,
+	                     background: "transparent",
+	                     template: "#= category #: #= value#%"
+	                 }
+	             },
+	             series: [{
+	                 type: "line",//pie
+	                 startAngle: 150,
+	                 data: [{
+	                     category: "Asia",
+	                     value: 53.8,
+	                     color: "#FFB415"
+	                 }, {
+	                     category: "Europe",
+	                     value: 16.1,
+	                     color: "#2990CC"
+	                 }, {
+	                     category: "Latin America",
+	                     value: 11.3,
+	                     color: "#97C93E"
+	                 }, {
+	                     category: "Africa",
+	                     value: 9.6,
+	                     color: "#006634"
+	                 }, {
+	                     category: "Middle East",
+	                     value: 5.2,
+	                     color: "#004d38"
+	                 }, {
+	                     category: "North America",
+	                     value: 3.6,
+	                     color: "#E33331"
+	                 }]
+	             }],
+	             tooltip: {
+	                 visible: true,
+	                 format: "{0}%"
+	             }
+	         });
+	     }
+
+	     $(document).ready(createChart2);
+	     $(document).bind("kendo:skinChange", createChart2);
+    </script>
+</div>
+</body>
+</html>

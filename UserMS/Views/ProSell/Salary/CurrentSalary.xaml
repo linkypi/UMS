@@ -1,0 +1,40 @@
+﻿<Page x:Class="UserMS.Views.ProSell.Salary.CurrentSalary"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+        xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+           xmlns:src="clr-namespace:UserMS" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+	Title="CurrentSalary">
+
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+
+        <DockPanel>
+            <telerik:RadGridView x:Name="GridSalaryList" toolkit:DockPanel.Dock="Left" SelectionMode="Extended" 
+                        GridLinesVisibility="Both"    AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False"
+                                 CanUserInsertRows="False" >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewSelectColumn />
+
+                    <telerik:GridViewBoundColumnBase  Header="商品类别" DataMemberBinding="{Binding ClassName}" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  IsFilterable="False" />
+                    <telerik:GridViewBoundColumnBase  Header="商品型号" DataMemberBinding="{Binding ProName}"   Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center" IsFilterable="False" />
+                    <telerik:GridViewBoundColumnBase  Header="商品品牌" DataMemberBinding="{Binding TypeName}"  Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  IsFilterable="False" />
+                    <telerik:GridViewBoundColumnBase  Header="销售类别" DataMemberBinding="{Binding SellTypeName}"   Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center" IsFilterable="False" />
+                    <telerik:GridViewBoundColumnBase  Header="基本提成" DataMemberBinding="{Binding BaseSalary}" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  IsFilterable="False" />
+                    <telerik:GridViewBoundColumnBase  Header="特殊提成" DataMemberBinding="{Binding SpecialSalary}" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  IsFilterable="False" />
+
+                    <telerik:GridViewBoundColumnBase  Header="年份" DataMemberBinding="{Binding SalaryYear}"  Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center" IsFilterable="False" />
+                    <telerik:GridViewBoundColumnBase  Header="月份" DataMemberBinding="{Binding SalaryMonth}"  Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center" IsFilterable="False" />
+                    <telerik:GridViewBoundColumnBase  Header="日份" DataMemberBinding="{Binding SalaryDay}"  Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center" IsFilterable="False" />
+
+                </telerik:RadGridView.Columns>
+
+            </telerik:RadGridView>
+
+
+        </DockPanel>
+
+    </xctk:BusyIndicator>
+</Page>

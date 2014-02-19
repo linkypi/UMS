@@ -1,0 +1,242 @@
+﻿<userMs:BasePage
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:userMs="clr-namespace:UserMS"
+	xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+	x:Class="UserMS.Assets"
+	WindowTitle="Page"
+	FlowDirection="LeftToRight"
+	 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:api="clr-namespace:UserMS.API"
+    mc:Ignorable="d"
+    d:DesignHeight="600" d:DesignWidth="800"
+	>
+
+    <telerik:RadBusyIndicator x:Name="busy">
+
+        <DockPanel x:Name="LayoutRoot">
+            <telerik:RadMenu VerticalAlignment="Top" DockPanel.Dock="Top" >
+                <telerik:RadMenuItem x:Name="Back" Header="后退" Click="Back_OnClick" IsEnabled="False"/>
+                <telerik:RadMenuItem x:Name="New" Header="新建" Click="New_Click"/>
+                <telerik:RadMenuItem x:Name="Del" Header="删除行" Click="Del_Click"   Visibility="Collapsed"/>
+
+                <telerik:RadMenuItem x:Name="Next" Header="保存" Click="Next_Click"/>
+            </telerik:RadMenu>
+            <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
+                <WrapPanel VerticalAlignment="Top" Margin="14,0">
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+                        <Label HorizontalAlignment="Left" Content="当前仓库" Width="120" FontSize="18.667"/>
+                        <telerik:RadButton x:Name="HallName"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnClick" />
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <Label HorizontalAlignment="Left" Content="资产编号" Width="120" FontSize="18.667"/>
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="IMEI" TextWrapping="Wrap" Margin="0" Width="200"   FontSize="18.667"/>
+                        <telerik:RadButton x:Name="IMEISearch" Content="搜索" Click="IMEISearch_OnClick" Width="50"/>
+
+
+                    </StackPanel>
+                </WrapPanel>
+                <WrapPanel x:Name="MainPanel" IsEnabled="False" VerticalAlignment="Top" Margin="14,0" d:DataContext="{d:DesignInstance Type=api:Asset_UseInfo}">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <Label HorizontalAlignment="Left" Content="卡片编号" Width="120" FontSize="18.667"/>
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox  Text="{Binding CardID,Mode=TwoWay}" TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <Label HorizontalAlignment="Left" Content="临时编码" Width="120" FontSize="18.667"/>
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox  Text="{Binding TempID,Mode=TwoWay}" TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <Label HorizontalAlignment="Left" Content="资产属性" Width="120" FontSize="18.667"/>
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="SellOldID3" Text="{Binding ProFormat,Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667"/>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <Label HorizontalAlignment="Left" Content="设备名称" Width="120" FontSize="18.667"/>
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="SellOldID5" Text="{Binding ProName,Mode=OneWay}" TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <Label HorizontalAlignment="Left" Content="设备型号" Width="120" FontSize="18.667"/>
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="SellOldID6" Text="{Binding ProName,Mode=OneWay}" TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <Label HorizontalAlignment="Left" Content="供应商" Width="120" FontSize="18.667"/>
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="SellOldID7" Text="{Binding AssetForm,Mode=OneWay}" TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="采购日期" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="InOrderDate"  TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="使用人" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <userMs:MyAutoTextBox x:Name="UseUser" d:LayoutOverrides="Height" Width="250"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="责任人" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <userMs:MyAutoTextBox x:Name="RespUser" d:LayoutOverrides="Height" Width="250"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="使用地点" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="SellOldID11" Text="{Binding UsePlace,Mode=TwoWay}"  TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="下发日期" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+
+                        <telerik:RadDatePicker SelectedValue="{Binding UseDate,Mode=TwoWay}"  Margin="0" Width="250"  FontSize="18.667"></telerik:RadDatePicker>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="使用年月" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        
+                        <telerik:RadDatePicker SelectedValue="{Binding StartDate,Mode=TwoWay}"  Margin="0" Width="250"  FontSize="18.667"></telerik:RadDatePicker>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="类型" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="SellOldID14" Text="{Binding UseType,Mode=TwoWay}"  TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="折旧周期" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="SellOldID15" Text="{Binding AssetPeriod,Mode=OneWay}"  TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="采购成本" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="ProPrice"  TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="月折旧率" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="SellOldID17" Text="{Binding AssetRate,Mode=OneWay}"  TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="月折旧额" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="AssetPrice"  TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="净值" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="AssetValue"   TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="净残值" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="AssetSalvageValue"  TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="是否已折旧完" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="AssetFinish" TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="状态" Width="120" FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+                        <TextBox x:Name="AssetStatus"  TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667" IsReadOnly="True"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+
+                        <!--                        <telerik:RadButton x:Name="SellOldID"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>-->
+
+                        <Label HorizontalAlignment="Left" Content="备注" Width="120" FontSize="18.667"/>
+                        <TextBox x:Name="SellOldID23" Text="{Binding Note,Mode=TwoWay}" TextWrapping="Wrap" Margin="0" Width="250"  FontSize="18.667"/>
+                        <!--                        <userMs:MyAutoTextBox x:Name="SellOldID" Width="250" FontSize="18.667"/>-->
+
+                    </StackPanel>
+                </WrapPanel>
+            </StackPanel>
+        </DockPanel>
+    </telerik:RadBusyIndicator>
+</userMs:BasePage>

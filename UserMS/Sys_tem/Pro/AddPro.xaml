@@ -1,0 +1,190 @@
+﻿<src:BasePage x:Class="UserMS.Sys_tem.Pro.AddPro"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           mc:Ignorable="d" 
+           xmlns:src="clr-namespace:UserMS" 
+           xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"   
+              d:DesignWidth="640" d:DesignHeight="480"
+           Title="新增商品">
+    <xctk:BusyIndicator  x:Name="isbusy" IsBusy="False" BusyContent="请稍后...">
+        <Grid x:Name="LayoutRoot">
+            <Grid.Resources>
+                <HierarchicalDataTemplate x:Key="ttreeTemplate" ItemsSource="{Binding Menu}" >
+                    <TextBlock Text="{Binding MenuText}" />
+                </HierarchicalDataTemplate>
+                <DataTemplate  x:Key="itemteplate">
+                    <TextBlock Text="{Binding MenuText}" />
+                </DataTemplate>
+            </Grid.Resources>
+
+            <toolkit:DockPanel>
+
+                <telerik:RadMenu toolkit:DockPanel.Dock="Top">
+                    <telerik:RadMenuItem Header="确定新增" x:Name="Sumbit" Click="Sumbit_Click"></telerik:RadMenuItem>
+                    <!--<telerik:RadMenuItem Header="取消"></telerik:RadMenuItem>-->
+                    <telerik:RadMenuItem Header="添加商品"  Click="AddProName_Click_1"></telerik:RadMenuItem>
+                    <telerik:RadMenuItem Header="删除商品" x:Name="DelPro" Click="DelPro_Click"></telerik:RadMenuItem>
+                    <!--<telerik:RadMenuItem Header="权限应用到所有" x:Name="Role_pro" Click="Role_pro_Click"></telerik:RadMenuItem>-->
+                </telerik:RadMenu>
+
+                
+
+
+                <toolkit:DockPanel toolkit:DockPanel.Dock="Top" >
+                    
+                    <telerik:RadGridView x:Name="ProNameDG"  SelectionChanged="ProNameDG_SelectionChanged"  CellValidated="ProGrid_CellValidated_1"
+                                         IsFilteringAllowed="False" toolkit:DockPanel.Dock="Top"  Height="250" AutoGenerateColumns="False" ShowGroupPanel="False"  SelectionMode="Single"   CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="False">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewSelectColumn/>
+                            <telerik:GridViewDataColumn Header="类别" DataMemberBinding="{Binding ProClassName}" IsReadOnly="True"/>
+                            <telerik:GridViewDataColumn Header="品牌" DataMemberBinding="{Binding ProTypeName}" IsReadOnly="True"/>
+                            <telerik:GridViewDataColumn Header="商品型号" DataMemberBinding="{Binding ProName}" IsReadOnly="True"/>
+                            <telerik:GridViewDataColumn Header="打印名称" DataMemberBinding="{Binding PrintName,Mode=TwoWay}" IsReadOnly="False"/>
+                            <telerik:GridViewComboBoxColumn  Header="属于仓库" x:Name="IsHall" DataMemberBinding="{Binding AirHallID,Mode=TwoWay}"   IsReadOnly="False" IsComboBoxEditable="True">
+                                <telerik:GridViewComboBoxColumn.EditorStyle>
+                                    <Style TargetType="telerik:RadComboBox" >
+                                        <Setter Property="TextSearchMode" Value="Contains">
+                                        </Setter>
+                                        <Setter Property="IsFilteringEnabled" Value="True">
+                                        </Setter> 
+                                    </Style>
+                                </telerik:GridViewComboBoxColumn.EditorStyle>
+                              
+                            </telerik:GridViewComboBoxColumn>
+
+                            <telerik:GridViewComboBoxColumn Header="需要串码"  IsReadOnly="False">
+
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <telerik:RadComboBox  x:Name="NeedIMEI"  Text="{Binding NeedIMEI,Mode=TwoWay}" >
+                                            <telerik:RadComboBoxItem Content="是" />
+                                            <telerik:RadComboBoxItem Content="否"/>
+                                        </telerik:RadComboBox>
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+
+                            </telerik:GridViewComboBoxColumn>
+
+                            <telerik:GridViewComboBoxColumn Header="属于服务"  IsReadOnly="False" >
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <telerik:RadComboBox x:Name="IsService" Text="{Binding IsService,Mode=TwoWay}" >
+                                            <telerik:RadComboBoxItem Content="是" />
+                                            <telerik:RadComboBoxItem Content="否"/>
+                                        </telerik:RadComboBox>
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+                            </telerik:GridViewComboBoxColumn>
+                            <telerik:GridViewComboBoxColumn Header="可输入小数"  IsReadOnly="False">
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <telerik:RadComboBox x:Name="Isdecimal" Text="{Binding Isdecimal,Mode=TwoWay}" >
+                                            <telerik:RadComboBoxItem Content="是" />
+                                            <telerik:RadComboBoxItem Content="否"/>
+                                        </telerik:RadComboBox>
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+                            </telerik:GridViewComboBoxColumn>
+                            <telerik:GridViewComboBoxColumn Header="需要补差"  IsReadOnly="False">
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <telerik:RadComboBox x:Name="IsNeedMoreorLess" Text="{Binding IsNeedMoreorLess,Mode=TwoWay}" >
+                                            <telerik:RadComboBoxItem Content="是" />
+                                            <telerik:RadComboBoxItem Content="否"/>
+                                        </telerik:RadComboBox>
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+                            </telerik:GridViewComboBoxColumn>
+
+                            <telerik:GridViewComboBoxColumn Header="代金券日期"  IsReadOnly="False">
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <telerik:RadDatePicker  x:Name="SepDate" SelectedValue="{Binding SepDate,Mode=TwoWay}" />                                
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+                            </telerik:GridViewComboBoxColumn>
+
+
+                            <telerik:GridViewComboBoxColumn Header="之前的券可用"  IsReadOnly="False">
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <telerik:RadComboBox x:Name="BeforeSep" Text="{Binding BeforeSep,Mode=TwoWay}" >
+                                            <telerik:RadComboBoxItem Content="是" />
+                                            <telerik:RadComboBoxItem Content="否"/>
+                                        </telerik:RadComboBox>
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+                            </telerik:GridViewComboBoxColumn>
+                            <telerik:GridViewDataColumn Header="加金额" DataMemberBinding="{Binding BeforeRate,Mode=TwoWay}" IsReadOnly="False"/>
+
+                            <telerik:GridViewComboBoxColumn Header="之后的券可用"  IsReadOnly="False">
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <telerik:RadComboBox x:Name="AfterSep" Text="{Binding AfterSep,Mode=TwoWay}" >
+                                            <telerik:RadComboBoxItem Content="是" />
+                                            <telerik:RadComboBoxItem Content="否"/>
+                                        </telerik:RadComboBox>
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+                            </telerik:GridViewComboBoxColumn>
+                            <telerik:GridViewDataColumn Header="加金额" DataMemberBinding="{Binding AfterRate,Mode=TwoWay}" IsReadOnly="False"/>
+
+                            <telerik:GridViewDataColumn Header="券临界值" DataMemberBinding="{Binding TicketLevel,Mode=TwoWay}" IsReadOnly="False"/>
+                            <telerik:GridViewDataColumn Header="小于券临界值" DataMemberBinding="{Binding BeforeTicket,Mode=TwoWay}" IsReadOnly="False"/>
+                            <telerik:GridViewDataColumn Header="大于券临界值" DataMemberBinding="{Binding AfterTicket,Mode=TwoWay}" IsReadOnly="False"/>
+                            <telerik:GridViewDataColumn Header="备注" DataMemberBinding="{Binding Note,Mode=TwoWay}" IsReadOnly="False"/>
+                            <telerik:GridViewDataColumn Header="供应商" DataMemberBinding="{Binding AssetFrom,Mode=TwoWay}" IsReadOnly="False"/>
+                            <telerik:GridViewDataColumn Header="折旧周期" DataMemberBinding="{Binding AssetPeriod,Mode=TwoWay}" IsReadOnly="False"/>
+                            <telerik:GridViewDataColumn Header="月折旧率" DataMemberBinding="{Binding AssetRate,Mode=TwoWay}" IsReadOnly="False"/>
+                           
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                    <Splitter:DockPanelSplitter DockPanel.Dock="Top"/>
+                    <toolkit:DockPanel toolkit:DockPanel.Dock="Top">
+
+
+                        <ScrollViewer  toolkit:DockPanel.Dock="Left" Padding="0" Width="150">
+                            <telerik:RadTreeView    SelectionMode="Single" IsLineEnabled="True" SelectionChanged="PropertyTV_SelectionChanged_1"
+				    ItemsOptionListType="CheckList" IsOptionElementsEnabled="False"  Checked="PropertyTV_Checked" Unchecked="PropertyTV_Unchecked"
+				    IsRootLinesEnabled="True" x:Name="PropertyTV"  IsTriStateMode="True"/>
+                        </ScrollViewer>
+                        <Splitter:DockPanelSplitter DockPanel.Dock="Left"/>
+                        <ScrollViewer  toolkit:DockPanel.Dock="Left" Padding="0" Width="150" >
+                            <telerik:RadTreeView      SelectionMode="Single" IsLineEnabled="True" 
+				    ItemsOptionListType="CheckList" IsOptionElementsEnabled="True"  Checked="PropertyValueDG_Checked"  Unchecked="PropertyValueDG_Unchecked" 
+				    IsRootLinesEnabled="True" x:Name="PropertyValueDG"  IsTriStateMode="True"/>
+                        </ScrollViewer>
+                        <Splitter:DockPanelSplitter DockPanel.Dock="Left"/>
+                        <telerik:RadGridView x:Name="VIPTypeDG"  SelectionChanged="VIPTypeDG_SelectionChanged" Width="120"
+                                    GridLinesVisibility="Both"     IsFilteringAllowed="False" 
+                                             toolkit:DockPanel.Dock="Left"  AutoGenerateColumns="False" ShowGroupPanel="False"  SelectionMode="Single"   CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="False">
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewSelectColumn/>
+                                <telerik:GridViewDataColumn Header="会员卡类别" DataMemberBinding="{Binding Name}" IsReadOnly="True"/>
+                            </telerik:RadGridView.Columns>
+                        </telerik:RadGridView>
+
+                        <Splitter:DockPanelSplitter DockPanel.Dock="Left"/>
+                        <telerik:RadGridView x:Name="DGYanBaoMode"  SelectionChanged="DGYanBaoMode_SelectionChanged"  
+                                    GridLinesVisibility="Both"     IsFilteringAllowed="False" 
+                                             toolkit:DockPanel.Dock="Left"  AutoGenerateColumns="False" ShowGroupPanel="False"  SelectionMode="Single"   CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="False">
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewSelectColumn/>
+                                <telerik:GridViewDataColumn Header="延保" DataMemberBinding="{Binding Name}" IsReadOnly="True"/>
+                                <telerik:GridViewDataColumn Header="价格" DataMemberBinding="{Binding ProPrice}" IsReadOnly="True"/>
+                                <telerik:GridViewDataColumn Header="价格区间" DataMemberBinding="{Binding StepPrice}" IsReadOnly="True"/>
+                            </telerik:RadGridView.Columns>
+                        </telerik:RadGridView>
+                    </toolkit:DockPanel>
+                </toolkit:DockPanel>
+
+
+            </toolkit:DockPanel>
+        </Grid>
+       
+    </xctk:BusyIndicator>
+</src:BasePage>

@@ -1,0 +1,63 @@
+﻿<src:BasePage xmlns:src="clr-namespace:UserMS"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+              x:Class="UserMS.Report.InOutSell.GridReportInOutSell"
+           mc:Ignorable="d"
+           d:DesignWidth="640" d:DesignHeight="480" Loaded="GridReportByDate_OnLoaded"
+           Title="ReportTest Page">
+    
+    <xctk:BusyIndicator x:Name="busy" >
+      
+        <DockPanel x:Name="LayoutRoot">
+            
+            <telerik:RadDataServiceDataSource  x:Name="datasource" Height="Auto" Width="Auto" d:LayoutOverrides="HorizontalAlignment"  >
+                
+            </telerik:RadDataServiceDataSource>
+            
+            <telerik:RadMenu VerticalAlignment="Top" DockPanel.Dock="Top" >
+                <telerik:RadMenuItem x:Name="Export" Header="导出" Click="Export_OnClick"/>
+
+            </telerik:RadMenu>
+            <WrapPanel DockPanel.Dock="Top">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="日期：" VerticalAlignment="Center"></TextBlock>
+                    <telerik:RadDatePicker Name="BeginTime" Width="120"  ></telerik:RadDatePicker>
+                    <TextBlock Text="至" VerticalAlignment="Center"></TextBlock>
+                    <telerik:RadDatePicker Name="EndTime" Width="120"   ></telerik:RadDatePicker>
+                </StackPanel>
+            </WrapPanel>
+            <ScrollViewer DockPanel.Dock="Top" MaxHeight="200">
+
+
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="筛选工具" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <telerik:RadDataFilter x:Name="radFilter" Source="{Binding DataView, ElementName=datasource}" VerticalAlignment="Top" Margin="0,0,-440,0" />
+                </StackPanel>
+            </ScrollViewer>
+            <DockPanel DockPanel.Dock="Bottom">
+                <telerik:RadNumericUpDown    x:Name="Txt_PageSize" DockPanel.Dock="Right" Value="20" Minimum="1" Maximum="100" 
+                                               IsInteger="True"/>
+
+                <TextBlock DockPanel.Dock="Right" Width="30"  Text="每页" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <telerik:RadDataPager x:Name="radDataPager"
+			Source="{Binding DataView, ElementName=datasource}"
+			DisplayMode="All"
+			IsTotalItemCountFixed="True" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment" DockPanel.Dock="Left" Height="Auto" />
+            </DockPanel>
+
+            <telerik:RadGridView x:Name="Grid"    AutoGenerateColumns="False" GridLinesVisibility="Both"   
+                                 SelectionUnit="Cell" SelectionMode="Extended"
+			ItemsSource="{Binding DataView, ElementName=datasource}"
+			IsBusy="{Binding IsBusy, ElementName=datasource}"
+			IsReadOnly="True"
+			RowIndicatorVisibility="Collapsed"
+			CanUserFreezeColumns="True" DockPanel.Dock="Top"
+                   />
+        </DockPanel>
+    </xctk:BusyIndicator>
+</src:BasePage>

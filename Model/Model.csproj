@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7716CE6F-26B2-41BB-B463-CEA37166784D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AduitListInfo.cs" />
+    <Compile Include="AduitModel.cs" />
+    <Compile Include="BAduitModel.cs" />
+    <Compile Include="BJModel.cs" />
+    <Compile Include="BorowListModel.cs" />
+    <Compile Include="BorowModel.cs" />
+    <Compile Include="CHKModel.cs" />
+    <Compile Include="CostBill.cs" />
+    <Compile Include="CostBillChild.cs" />
+    <Compile Include="GrounpInfo.cs" />
+    <Compile Include="HallModel.cs" />
+    <Compile Include="LocationInfo.cs" />
+    <Compile Include="LowPriceModel.cs" />
+    <Compile Include="LPMChildren.cs" />
+    <Compile Include="MenuIDListInfo.cs" />
+    <Compile Include="MethodIDListInfo.cs" />
+    <Compile Include="NoIMEIModel.cs" />
+    <Compile Include="IMEIModel.cs" />
+    <Compile Include="MenuInfo.cs" />
+    <Compile Include="OffModel.cs" />
+    <Compile Include="OutImportModel.cs" />
+    <Compile Include="OutImportModelList.cs" />
+    <Compile Include="PriceBill.cs" />
+    <Compile Include="PriceBillChild.cs" />
+    <Compile Include="ProClassModel.cs" />
+    <Compile Include="ProModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyModel.cs" />
+    <Compile Include="PropertyValueModel.cs" />
+    <Compile Include="Pro_SellInfo_Child.cs" />
+    <Compile Include="Pro_SellListInfo_Child.cs" />
+    <Compile Include="RenewModel.cs" />
+    <Compile Include="RepairListModel.cs" />
+    <Compile Include="RepairModel.cs" />
+    <Compile Include="ReportPagingParam.cs" />
+    <Compile Include="ReportSqlParams.cs" />
+    <Compile Include="ReportSqlParams_Bool.cs" />
+    <Compile Include="ReportSqlParams_String.cs" />
+    <Compile Include="CancelListModel.cs" />
+    <Compile Include="RoleMenuInfo.cs" />
+    <Compile Include="Role_Hall.cs" />
+    <Compile Include="Role_Pro_Property.cs" />
+    <Compile Include="RuleOffModel.cs" />
+    <Compile Include="RulesProMain.cs" />
+    <Compile Include="Rules_ImportModel.cs" />
+    <Compile Include="SalaryBill.cs" />
+    <Compile Include="SalaryBillChild.cs" />
+    <Compile Include="SalaryImportModel.cs" />
+    <Compile Include="SelecterIMEI.cs" />
+    <Compile Include="SeleterModel.cs" />
+    <Compile Include="SetSelection.cs" />
+    <Compile Include="Sys_InitDataStatus_Child.cs" />
+    <Compile Include="Sys_InitParentInfo.cs" />
+    <Compile Include="TreeModel.cs" />
+    <Compile Include="UMS.cs">
+      <DependentUpon>UMS.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="UMS.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UMS.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="UMSDB.cs" />
+    <Compile Include="UserInfo.cs" />
+    <Compile Include="VIPModel.cs" />
+    <Compile Include="VIPOffAduitHeader.cs" />
+    <Compile Include="VIPTypeModel.cs" />
+    <Compile Include="WebReturn.cs" />
+    <Compile Include="ReportSqlParams_ListString.cs" />
+    <Compile Include="ReportSqlParams_DataTime.cs" />
+    <Compile Include="Pro_SellListInfo.cs" />
+    <Compile Include="Pro_SellListInfo_SingleSell.cs" />
+    <Compile Include="Pro_SellListInfo_TicketSell.cs" />
+    <Compile Include="Pro_SellListInfo_YanBaoSell.cs" />
+    <Compile Include="Pro_SellListInfo_AirSell.cs" />
+    <Compile Include="Pro_SellListInfo_PhoneNumSell.cs" />
+    <Compile Include="Pro_SellListInfo_MemberSell.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="UMLCD_Model.cd" />
+    <None Include="gendbml.cmd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UMS.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>UMS.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UMS.dbml.layout">
+      <DependentUpon>UMS.dbml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

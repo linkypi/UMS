@@ -1,0 +1,4 @@
+D:\UMS\client\UserMS\APPUMS\bin\APPUMS.dll
+D:\UMS\client\UserMS\APPUMS\bin\APPUMS.pdb
+D:\UMS\client\UserMS\APPUMS\obj\Debug\APPUMS.dll
+D:\UMS\client\UserMS\APPUMS\obj\Debug\APPUMS.pdb

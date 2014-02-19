@@ -1,0 +1,49 @@
+﻿<Page xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="UserMS.Views.ProSell.Price.PriceBillReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+	Title="PriceBillReport">
+
+    <telerik:RadBusyIndicator x:Name="busy" BusyContent="请稍后..." >
+        <DockPanel FlowDirection="LeftToRight">
+
+            <WrapPanel  Orientation="Horizontal" DockPanel.Dock="Top" >
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <telerik:RadButton Content="导出当前页"  Width="80" Height="25" Click="Export_Click"/>
+                </StackPanel>
+
+            </WrapPanel>
+            <!--分页控件-->
+            <WrapPanel  x:Name="panel"  DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Orientation="Horizontal" >
+                <telerik:RadDataPager x:Name="page"  DockPanel.Dock="Top"  PageIndexChanged="page_PageIndexChanged" 
+                  PageSize="30" AutoEllipsisMode="Both"  DisplayMode="All" NumericButtonCount="10"  Height="30" Width="787" />
+                <telerik:RadNumericUpDown  x:Name="pagesize" Minimum="1" Value="30" ValueChanged="pagesize_ValueChanged" Width="50" NumberDecimalDigits="0"/>
+            </WrapPanel>
+
+            <telerik:RadGridView x:Name="GridPriceList"  DockPanel.Dock="Top"  ShowColumnHeaders="True" GridLinesVisibility="Both" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+                    CanUserFreezeColumns="False"  AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+    				    RowDetailsVisibilityMode="VisibleWhenSelected"  VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewSelectColumn />
+
+                    <telerik:GridViewBoundColumnBase  Header="商品类别" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ClassName}" IsFilterable="False" />
+                    <telerik:GridViewBoundColumnBase  Header="商品型号" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProName}" IsFilterable="False" />
+                    <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding TypeName}" IsFilterable="False" />
+                    <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProFormat}" IsFilterable="False"  HeaderTextAlignment="Center"/>
+                    <telerik:GridViewDataColumn  Header="销售类别" DataMemberBinding="{Binding SellTypeName, Mode=OneWay}" Width="auto" IsReadOnly="True" IsFilterable="False"/>
+                    <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding HasPrice, Mode=OneWay}"  Header="已定价" Width="auto" IsReadOnly="True" IsFilterable="False"  />-->
+                    <telerik:GridViewDataColumn  DataMemberBinding="{Binding IsTicketUseful,Mode=OneWay}"  IsReadOnly="True"  HeaderTextAlignment="Center"  Header="可兑卷" Width="auto" IsFilterable="False" />
+
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Price, Mode=OneWay}" Header="售价"  HeaderTextAlignment="Center"   Width="auto" IsReadOnly="True" IsFilterable="False"  />
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding LowPrice, Mode=OneWay}" Header="结算价"  HeaderTextAlignment="Center"   Width="auto" IsReadOnly="True" IsFilterable="False"  />
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding MinPrice, Mode=OneWay}" Header="最低价"  HeaderTextAlignment="Center"  Width="auto" IsReadOnly="True" IsFilterable="False"  />
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding MaxPrice, Mode=OneWay}" Header="最高价"  HeaderTextAlignment="Center"  Width="auto" IsReadOnly="True" IsFilterable="False"  />
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </DockPanel>
+    </telerik:RadBusyIndicator>
+</Page>

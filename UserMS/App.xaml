@@ -1,0 +1,79 @@
+﻿<Application x:Class="UserMS.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Navigation"
+             xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"
+             xmlns:editors="clr-namespace:Telerik.Windows.Controls.Filtering.Editors;assembly=Telerik.Windows.Controls"
+             ShutdownMode="OnMainWindowClose" 
+  >
+    <Application.Resources> 
+    
+ 
+        <telerik:Windows8Theme x:Key="Theme" />
+        <telerik:Windows7Theme x:Key="Theme7" />
+ 
+        <Style TargetType="Button">
+            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>
+        </Style>
+        <Style TargetType="ScrollViewer">
+            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>
+        </Style>
+        <Style TargetType="telerik:GridViewDataColumn">
+
+                        <Style.Triggers>
+                           
+                            <Trigger Property="IsReadOnly" Value="False">
+                                <Setter Property="Background" Value="LightGoldenrodYellow"/>
+                            </Trigger>
+                        </Style.Triggers>
+        </Style>
+        <Style TargetType="editors:StringFilterEditor">
+            <Setter Property="input:InputMethod.IsInputMethodEnabled" Value="True"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme7}"/>
+            <Setter Property="input:InputMethod.IsInputMethodEnabled" Value="True"></Setter>
+            <!--            <Style.Triggers>-->
+<!--                <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}" Value="True">-->
+<!--                    <Setter Property="Background" Value="LightGray" />-->
+<!--                </DataTrigger>-->
+<!--                <Trigger Property="IsReadOnly" Value="True">-->
+            <!--         StringFilterEditor           <Setter Property="Background" Value="LightGray"/>-->
+<!--                </Trigger>-->
+<!--            </Style.Triggers>-->
+          
+            
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>
+            
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>
+        </Style>
+        <Style TargetType="RepeatButton">
+            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>
+        </Style>
+<!--        <Style TargetType="Tooltip">-->
+<!--            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>-->
+<!--        </Style>-->
+        <Style TargetType="telerik:RadGridView">
+            <Setter Property="GridLinesVisibility" Value="Both"></Setter>
+           
+</Style>
+    </Application.Resources>
+<Application.MainWindow>
+        <NavigationWindow Name="MainWin" MinHeight="600" MinWidth="800" Source="Login.xaml"  Visibility="Visible"
+                          Title="广信中山分公司渠道运营部综合管理系统">
+            
+        </NavigationWindow>
+        
+</Application.MainWindow>
+</Application>

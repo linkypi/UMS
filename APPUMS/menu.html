@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    
+    <title></title>
+    <link href="styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="styles/kendo.default.min.css" rel="stylesheet"/>
+    <link href="styles/kendo.mobile.all.min.css" rel="stylesheet"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/kendo.mobile.min.js"></script>
+</head>
+<body>
+    <div id="menu2" data-role="view" class="km-insetcontent" data-title="²Ëµ¥" data-show="mainmenu_rebind">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a id="logoutbtn" class="nav-button" data-align="right" data-role="button">×¢Ïú</a>
+            <span data-role="view-title"></span>
+
+
+        </div>
+    </header>
+
+
+    <ul data-role="listview" data-style="inset" id="mainmenu" data-template="mainmenu-template">
+
+
+    </ul>
+
+    <script type="text/javascript">
+        function mainmenu_click(e) {
+            //            alert(e);
+            if (e.dataItem.hasChildren) {
+
+                var ds = new kendo.data.DataSource({
+                    data: e.dataItem.child,
+                    schema: {
+                        model: {
+                            id: "menuid",
+                            childres: "child",
+                            hasChildren: "child"
+                        }
+                    }
+                });
+                parent_menuds = ds;
+
+            }
+
+
+        }
+        $("#logoutbtn").bind(kendo.support.mouseup, function () {
+
+            app.navigate("#loading");
+        });
+
+    </script>
+</div>
+
+</body>
+</html>

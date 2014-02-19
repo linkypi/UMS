@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title></title>
+    <link href="../../styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="../../styles/kendo.default.min.css" rel="stylesheet"/>
+    <link href="../../styles/kendo.mobile.all.min.css" rel="stylesheet"/>
+   
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/kendo.all.min.js"></script>
+    <script src="../../gloabl.js"></script>
+     <script src="../../js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <style>
+
+</style>
+</head>
+
+<body>
+      
+    <div data-role="view" data-layout="default" data-init="onInit" >
+        <header data-role="header" id="header">
+            <div data-role="navbar">
+           <a class="nav-button" data-align="left" data-role="backbutton" id="cancel" href="#menu">首页</a>
+                <span data-role="view-title">图表查看</span>
+
+
+            </div>
+        </header>
+        <div id="filters">
+            由<input id="datePicker1" style="width: 120px"/>到<input id="datePicker2" style="width: 120px" /> <button type="button" data-click="dataClick" id="refreshButton" style="height: 40px;padding: 0 0.3em; font-size: 1em" data-role="button">确定</button>
+        </div>
+        <div id="chart"></div>
+    </div>
+
+
+    
+    
+    
+    <script type="text/javascript">
+        
+
+        if (typeof app == "undefined")
+            app = new kendo.mobile.Application(document.body, {
+                platform: "meego",
+                //init: pageinit
+                
+            });
+        
+        function dataClick() {
+            createSmallChart();
+           
+
+        }
+        function refresh_main(e) {
+            var aid = e.dataItem.AreaID;
+            chartsettings_area.title.text = e.dataItem.AreaName + "销售额";
+            var startdate = datefmt($("#datePicker1").data("kendoDatePicker").value());
+            var enddate = datefmt($("#datePicker2").data("kendoDatePicker").value());
+            var ds = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: hosturl+ "/Report_Sell/Report?sdate="+startdate+"&edate="+enddate+"&areaid=" + aid,
+                        dataType: "json"
+                    }
+                },
+                schema: {
+                    data: "response"
+                }
+            });
+            chartsettings_area.dataSource = ds;
+            $("#chart").kendoChart(chartsettings_area);
+          
+            
+            console.log(e.value);
+        }
+        function refresh_area(e) {
+            var aid = e.dataItem.AreaID;
+            chartsettings_hall.title.text = e.dataItem.AreaName + "销售额";
+            var startdate = datefmt($("#datePicker1").data("kendoDatePicker").value());
+            var enddate = datefmt($("#datePicker2").data("kendoDatePicker").value());
+            var ds = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: hosturl + "Report_Sell/Report?sdate=" + startdate + "&edate=" + enddate + "&hallid=" + aid,
+                        dataType: "json"
+                    }
+                },
+                schema: {
+                    data: "response"
+                }
+            });
+            chartsettings_hall.dataSource = ds;
+            $("#chart").kendoChart(chartsettings_hall);
+            
+            console.log(e.value);
+        }
+
+        
+        var ds = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: hosturl + "/Report_Sell/Report",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "response"
+            }
+        });
+        var chartsettings_main = {
+            chartArea:{height: 400,
+                width:100},
+            seriesClick: refresh_main,
+            dataSource: ds,
+            title: {
+                text: "销售额"
+            },
+            legend: {
+                position: "top"
+            },
+            seriesDefaults: {
+                type: "pie"
+            },
+            series: [{
+                field: "Sum",
+                categoryField: "AreaName",
+                padding: 0,
+                labels: {
+                    visible: true,
+                    align: "circle"
+                }
+            }],
+            tooltip: {
+                visible: true,
+                format: "N0",
+                template: "#= category # - #= kendo.format('{0:0.00}', value)#"
+            }
+        };
+        var chartsettings_area = {
+            chartArea: {
+                height: 400,
+                width: 100
+            },
+            seriesClick: refresh_area,
+            dataSource: ds,
+            title: {
+                text: "销售额"
+            },
+            legend: {
+                position: "top"
+            },
+            seriesDefaults: {
+                type: "pie"
+            },
+            series: [{
+                field: "Sum",
+                categoryField: "AreaName",
+                padding: 0,
+                labels: {
+                    visible: true,
+                    align: "circle"
+                }
+            }],
+            tooltip: {
+                visible: true,
+                format: "N0",
+                template: "#= category # - #= kendo.format('{0:0.00}', value)#"
+            }
+        };
+        var chartsettings_hall = {
+            chartArea: {
+                height: 400,
+                width: 100
+            },
+            dataSource: ds,
+            title: {
+                text: "a"
+            },
+            legend: {
+                position: "top"
+            },
+            seriesDefaults: {
+                type: "pie"
+            },
+            series: [{
+                field: "Sum",
+                categoryField: "AreaName",
+                padding: 0,
+                labels: {
+                    visible: true,
+                    align: "circle"
+                }
+            }],
+            tooltip: {
+                visible: true,
+                format: "N0",
+                template: "#= category # - #= kendo.format('{0:0.00}', value)#"
+            }
+        };
+        
+        function datefmt(d) {
+            return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+        }
+        function createSmallChart() {
+            chartsettings_main.chartArea.height = window.innerHeight - $("#filters").innerHeight()- $("#header").innerHeight();
+            chartsettings_main.chartArea.width = window.innerWidth;
+            chartsettings_area.chartArea.height = window.innerHeight - $("#filters").innerHeight() - $("#header").innerHeight();
+            chartsettings_area.chartArea.width = window.innerWidth;
+            chartsettings_hall.chartArea.height = window.innerHeight - $("#filters").innerHeight() - $("#header").innerHeight();
+            chartsettings_hall.chartArea.width = window.innerWidth;
+
+            var startdate = datefmt($("#datePicker1").data("kendoDatePicker").value());
+            var enddate = datefmt($("#datePicker2").data("kendoDatePicker").value());
+
+            var ds = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: hosturl + "/Report_Sell/Report?sdate=" + startdate + "&edate=" + enddate + "&",
+                        dataType: "json"
+                    }
+                },
+                schema: {
+                    data: "response"
+                }
+            });
+            chartsettings_main.dataSource = ds;
+
+
+            $("#chart").kendoChart(chartsettings_main);
+        }
+
+
+       
+
+        $(window).resize(function () {
+            chartsettings_main.chartArea.height = window.innerHeight - $("#filters").innerHeight() - $("#header").innerHeight();
+            chartsettings_main.chartArea.width = window.innerWidth;
+            chartsettings_area.chartArea.height = window.innerHeight - $("#filters").innerHeight() - $("#header").innerHeight();
+            chartsettings_area.chartArea.width = window.innerWidth;
+            chartsettings_hall.chartArea.height = window.innerHeight - $("#filters").innerHeight() - $("#header").innerHeight();
+            chartsettings_hall.chartArea.width = window.innerWidth;
+            $("#chart").data("kendoChart").options.chartArea.height = window.innerHeight - $("#filters").innerHeight() - $("#header").innerHeight();
+            $("#chart").data("kendoChart").options.chartArea.width = window.innerWidth;
+            $("#chart").data("kendoChart").refresh();
+        });
+       // $(document).ready(pageinit);
+        function onInit() {
+
+            var lastm = new Date();
+            lastm.setMonth(lastm.getMonth() - 1);
+            $("#datePicker1").kendoDatePicker({
+                value: lastm, culture: "zh-CN"
+            });
+            $("#datePicker2").kendoDatePicker({ value: new Date() ,culture: "zh-CN" });
+            //alert($("#datePicker2").data("kendoDatePicker"));
+            createSmallChart();
+            //app.showLoading();
+        }
+    </script>
+</body>
+</html>

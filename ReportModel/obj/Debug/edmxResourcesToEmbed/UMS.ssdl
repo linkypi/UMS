@@ -1,0 +1,3702 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReportModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ReportModelStoreContainer">
+    <EntitySet Name="Demo_ReportViewInfo" EntityType="ReportModel.Store.Demo_ReportViewInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Demo_提成报表" EntityType="ReportModel.Store.Demo_提成报表" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pro_ClassInfo" EntityType="ReportModel.Store.Pro_ClassInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pro_HallInfo" EntityType="ReportModel.Store.Pro_HallInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pro_ProInfo" EntityType="ReportModel.Store.Pro_ProInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_MenuInfo" EntityType="ReportModel.Store.Sys_MenuInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Option" EntityType="ReportModel.Store.Sys_Option" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Role_Menu_HallInfo" EntityType="ReportModel.Store.Sys_Role_Menu_HallInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Role_Menu_ProInfo" EntityType="ReportModel.Store.Sys_Role_Menu_ProInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Role_MenuInfo" EntityType="ReportModel.Store.Sys_Role_MenuInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Chart_MapReport" EntityType="ReportModel.Store.Chart_MapReport" store:Type="Views" store:Schema="dbo" store:Name="Chart_MapReport">
+      <DefiningQuery>SELECT 
+      [Chart_MapReport].[ID] AS [ID], 
+      [Chart_MapReport].[HallID] AS [HallID], 
+      [Chart_MapReport].[HallName] AS [HallName], 
+      [Chart_MapReport].[ProClass] AS [ProClass], 
+      [Chart_MapReport].[TypeName] AS [TypeName], 
+      [Chart_MapReport].[DATE] AS [DATE], 
+      [Chart_MapReport].[Sells] AS [Sells], 
+      [Chart_MapReport].[SellPrice] AS [SellPrice], 
+      [Chart_MapReport].[AreaName] AS [AreaName], 
+      [Chart_MapReport].[AreaID] AS [AreaID], 
+      [Chart_MapReport].[Profit] AS [Profit], 
+      [Chart_MapReport].[ClassTypeName] AS [ClassTypeName], 
+      [Chart_MapReport].[AsPrice] AS [AsPrice], 
+      [Chart_MapReport].[BigAreaID] AS [BigAreaID], 
+      [Chart_MapReport].[BigAreaName] AS [BigAreaName], 
+      [Chart_MapReport].[SellPrice2] AS [SellPrice2]
+      FROM [dbo].[Chart_MapReport] AS [Chart_MapReport]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Print_SellBackInfo" EntityType="ReportModel.Store.Print_SellBackInfo" store:Type="Views" store:Schema="dbo" store:Name="Print_SellBackInfo">
+      <DefiningQuery>SELECT 
+      [Print_SellBackInfo].[序号] AS [序号], 
+      [Print_SellBackInfo].[自增主键] AS [自增主键], 
+      [Print_SellBackInfo].[退货单号] AS [退货单号], 
+      [Print_SellBackInfo].[销售员] AS [销售员], 
+      [Print_SellBackInfo].[销售日期] AS [销售日期], 
+      [Print_SellBackInfo].[销售门店] AS [销售门店], 
+      [Print_SellBackInfo].[销售公司] AS [销售公司], 
+      [Print_SellBackInfo].[会员卡号] AS [会员卡号], 
+      [Print_SellBackInfo].[客户电姓名] AS [客户电姓名], 
+      [Print_SellBackInfo].[客户电话] AS [客户电话], 
+      [Print_SellBackInfo].[应收总额] AS [应收总额], 
+      [Print_SellBackInfo].[优惠券名称] AS [优惠券名称], 
+      [Print_SellBackInfo].[优惠券金额] AS [优惠券金额], 
+      [Print_SellBackInfo].[实收总额] AS [实收总额], 
+      [Print_SellBackInfo].[实收总额大写] AS [实收总额大写], 
+      [Print_SellBackInfo].[刷卡] AS [刷卡], 
+      [Print_SellBackInfo].[现金] AS [现金], 
+      [Print_SellBackInfo].[原始单号] AS [原始单号], 
+      [Print_SellBackInfo].[备注] AS [备注], 
+      [Print_SellBackInfo].[门店编码] AS [门店编码]
+      FROM [dbo].[Print_SellBackInfo] AS [Print_SellBackInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Print_SellBackListInfo" EntityType="ReportModel.Store.Print_SellBackListInfo" store:Type="Views" store:Schema="dbo" store:Name="Print_SellBackListInfo">
+      <DefiningQuery>SELECT 
+      [Print_SellBackListInfo].[自增主键编号] AS [自增主键编号], 
+      [Print_SellBackListInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Print_SellBackListInfo].[商品名称] AS [商品名称], 
+      [Print_SellBackListInfo].[串码/号码/合同号] AS [串码/号码/合同号], 
+      [Print_SellBackListInfo].[数量] AS [数量], 
+      [Print_SellBackListInfo].[单价] AS [单价], 
+      [Print_SellBackListInfo].[券面值] AS [券面值], 
+      [Print_SellBackListInfo].[券号/合约号] AS [券号/合约号], 
+      [Print_SellBackListInfo].[优惠] AS [优惠], 
+      [Print_SellBackListInfo].[备注] AS [备注], 
+      [Print_SellBackListInfo].[金额小计] AS [金额小计], 
+      [Print_SellBackListInfo].[退货单号] AS [退货单号], 
+      [Print_SellBackListInfo].[销售员] AS [销售员], 
+      [Print_SellBackListInfo].[销售日期] AS [销售日期], 
+      [Print_SellBackListInfo].[销售门店] AS [销售门店], 
+      [Print_SellBackListInfo].[销售公司] AS [销售公司], 
+      [Print_SellBackListInfo].[会员卡号] AS [会员卡号], 
+      [Print_SellBackListInfo].[客户电姓名] AS [客户电姓名], 
+      [Print_SellBackListInfo].[客户电话] AS [客户电话], 
+      [Print_SellBackListInfo].[应收总额] AS [应收总额], 
+      [Print_SellBackListInfo].[优惠券名称] AS [优惠券名称], 
+      [Print_SellBackListInfo].[优惠券金额] AS [优惠券金额], 
+      [Print_SellBackListInfo].[实收总额] AS [实收总额], 
+      [Print_SellBackListInfo].[实收总额大写] AS [实收总额大写], 
+      [Print_SellBackListInfo].[刷卡] AS [刷卡], 
+      [Print_SellBackListInfo].[现金] AS [现金], 
+      [Print_SellBackListInfo].[原始单号] AS [原始单号]
+      FROM [dbo].[Print_SellBackListInfo] AS [Print_SellBackListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Print_SellInfo" EntityType="ReportModel.Store.Print_SellInfo" store:Type="Views" store:Schema="dbo" store:Name="Print_SellInfo">
+      <DefiningQuery>SELECT 
+      [Print_SellInfo].[序号] AS [序号], 
+      [Print_SellInfo].[自增主键] AS [自增主键], 
+      [Print_SellInfo].[销售单号] AS [销售单号], 
+      [Print_SellInfo].[销售日期] AS [销售日期], 
+      [Print_SellInfo].[销售员] AS [销售员], 
+      [Print_SellInfo].[销售门店] AS [销售门店], 
+      [Print_SellInfo].[销售公司] AS [销售公司], 
+      [Print_SellInfo].[会员卡号] AS [会员卡号], 
+      [Print_SellInfo].[客户电姓名] AS [客户电姓名], 
+      [Print_SellInfo].[客户电话] AS [客户电话], 
+      [Print_SellInfo].[应收总额] AS [应收总额], 
+      [Print_SellInfo].[优惠券名称] AS [优惠券名称], 
+      [Print_SellInfo].[优惠券金额] AS [优惠券金额], 
+      [Print_SellInfo].[实收总额] AS [实收总额], 
+      [Print_SellInfo].[实收总额大写] AS [实收总额大写], 
+      [Print_SellInfo].[刷卡] AS [刷卡], 
+      [Print_SellInfo].[现金] AS [现金], 
+      [Print_SellInfo].[原始单号] AS [原始单号], 
+      [Print_SellInfo].[备注] AS [备注], 
+      [Print_SellInfo].[系统单号] AS [系统单号], 
+      [Print_SellInfo].[backid] AS [backid], 
+      [Print_SellInfo].[门店编码] AS [门店编码]
+      FROM [dbo].[Print_SellInfo] AS [Print_SellInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Print_SellListInfo" EntityType="ReportModel.Store.Print_SellListInfo" store:Type="Views" store:Schema="dbo" store:Name="Print_SellListInfo">
+      <DefiningQuery>SELECT 
+      [Print_SellListInfo].[自增主键编号] AS [自增主键编号], 
+      [Print_SellListInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Print_SellListInfo].[商品名称] AS [商品名称], 
+      [Print_SellListInfo].[串码/号码/合同号] AS [串码/号码/合同号], 
+      [Print_SellListInfo].[数量] AS [数量], 
+      [Print_SellListInfo].[单价] AS [单价], 
+      [Print_SellListInfo].[券面值] AS [券面值], 
+      [Print_SellListInfo].[券号/合约号] AS [券号/合约号], 
+      [Print_SellListInfo].[优惠] AS [优惠], 
+      [Print_SellListInfo].[备注] AS [备注], 
+      [Print_SellListInfo].[金额小计] AS [金额小计], 
+      [Print_SellListInfo].[backid] AS [backid], 
+      [Print_SellListInfo].[销售单号] AS [销售单号], 
+      [Print_SellListInfo].[销售员] AS [销售员], 
+      [Print_SellListInfo].[销售日期] AS [销售日期], 
+      [Print_SellListInfo].[销售门店] AS [销售门店], 
+      [Print_SellListInfo].[销售公司] AS [销售公司], 
+      [Print_SellListInfo].[会员卡号] AS [会员卡号], 
+      [Print_SellListInfo].[客户电姓名] AS [客户电姓名], 
+      [Print_SellListInfo].[客户电话] AS [客户电话], 
+      [Print_SellListInfo].[应收总额] AS [应收总额], 
+      [Print_SellListInfo].[优惠券名称] AS [优惠券名称], 
+      [Print_SellListInfo].[优惠券金额] AS [优惠券金额], 
+      [Print_SellListInfo].[实收总额] AS [实收总额], 
+      [Print_SellListInfo].[实收总额大写] AS [实收总额大写], 
+      [Print_SellListInfo].[刷卡] AS [刷卡], 
+      [Print_SellListInfo].[现金] AS [现金], 
+      [Print_SellListInfo].[原始单号] AS [原始单号], 
+      [Print_SellListInfo].[系统单号] AS [系统单号]
+      FROM [dbo].[Print_SellListInfo] AS [Print_SellListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_AirOutListInfo" EntityType="ReportModel.Store.Report_AirOutListInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_AirOutListInfo">
+      <DefiningQuery>SELECT 
+      [Report_AirOutListInfo].[序号] AS [序号], 
+      [Report_AirOutListInfo].[调拨单号] AS [调拨单号], 
+      [Report_AirOutListInfo].[原始单号] AS [原始单号], 
+      [Report_AirOutListInfo].[调出仓库] AS [调出仓库], 
+      [Report_AirOutListInfo].[调入仓库] AS [调入仓库], 
+      [Report_AirOutListInfo].[调拨日期] AS [调拨日期], 
+      [Report_AirOutListInfo].[调拨人] AS [调拨人], 
+      [Report_AirOutListInfo].[调拨备注] AS [调拨备注], 
+      [Report_AirOutListInfo].[批次号] AS [批次号], 
+      [Report_AirOutListInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_AirOutListInfo].[调出号码] AS [调出号码], 
+      [Report_AirOutListInfo].[调出号码属性] AS [调出号码属性], 
+      [Report_AirOutListInfo].[调拨金额] AS [调拨金额], 
+      [Report_AirOutListInfo].[调入号码] AS [调入号码], 
+      [Report_AirOutListInfo].[调入号码属性] AS [调入号码属性], 
+      [Report_AirOutListInfo].[已接收] AS [已接收], 
+      [Report_AirOutListInfo].[接收人] AS [接收人], 
+      [Report_AirOutListInfo].[接收日期] AS [接收日期], 
+      [Report_AirOutListInfo].[调出仓库编码] AS [调出仓库编码], 
+      [Report_AirOutListInfo].[调入仓库编码] AS [调入仓库编码], 
+      [Report_AirOutListInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_AirOutListInfo] AS [Report_AirOutListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_BackIMEIInfo" EntityType="ReportModel.Store.Report_BackIMEIInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_BackIMEIInfo">
+      <DefiningQuery>SELECT 
+      [Report_BackIMEIInfo].[序号] AS [序号], 
+      [Report_BackIMEIInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_BackIMEIInfo].[批次号] AS [批次号], 
+      [Report_BackIMEIInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_BackIMEIInfo].[自增外键退库单编号] AS [自增外键退库单编号], 
+      [Report_BackIMEIInfo].[类别] AS [类别], 
+      [Report_BackIMEIInfo].[品牌] AS [品牌], 
+      [Report_BackIMEIInfo].[商品名称] AS [商品名称], 
+      [Report_BackIMEIInfo].[商品属性] AS [商品属性], 
+      [Report_BackIMEIInfo].[数量] AS [数量], 
+      [Report_BackIMEIInfo].[单价] AS [单价], 
+      [Report_BackIMEIInfo].[串码] AS [串码], 
+      [Report_BackIMEIInfo].[退库单号] AS [退库单号], 
+      [Report_BackIMEIInfo].[原始单号] AS [原始单号], 
+      [Report_BackIMEIInfo].[退库仓库] AS [退库仓库], 
+      [Report_BackIMEIInfo].[退库日期] AS [退库日期], 
+      [Report_BackIMEIInfo].[操作人] AS [操作人], 
+      [Report_BackIMEIInfo].[退库仓库编码] AS [退库仓库编码], 
+      [Report_BackIMEIInfo].[备注] AS [备注], 
+      [Report_BackIMEIInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_BackIMEIInfo] AS [Report_BackIMEIInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_BackInfo" EntityType="ReportModel.Store.Report_BackInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_BackInfo">
+      <DefiningQuery>SELECT 
+      [Report_BackInfo].[序号] AS [序号], 
+      [Report_BackInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_BackInfo].[退库单号] AS [退库单号], 
+      [Report_BackInfo].[原始单号] AS [原始单号], 
+      [Report_BackInfo].[退库仓库] AS [退库仓库], 
+      [Report_BackInfo].[退库日期] AS [退库日期], 
+      [Report_BackInfo].[操作人] AS [操作人], 
+      [Report_BackInfo].[备注] AS [备注], 
+      [Report_BackInfo].[退库仓库编码] AS [退库仓库编码]
+      FROM [dbo].[Report_BackInfo] AS [Report_BackInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_BackListInfo" EntityType="ReportModel.Store.Report_BackListInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_BackListInfo">
+      <DefiningQuery>SELECT 
+      [Report_BackListInfo].[序号] AS [序号], 
+      [Report_BackListInfo].[批次号] AS [批次号], 
+      [Report_BackListInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_BackListInfo].[自增外键退库编号] AS [自增外键退库编号], 
+      [Report_BackListInfo].[类别] AS [类别], 
+      [Report_BackListInfo].[品牌] AS [品牌], 
+      [Report_BackListInfo].[商品名称] AS [商品名称], 
+      [Report_BackListInfo].[商品属性] AS [商品属性], 
+      [Report_BackListInfo].[数量] AS [数量], 
+      [Report_BackListInfo].[单价] AS [单价], 
+      [Report_BackListInfo].[退库单号] AS [退库单号], 
+      [Report_BackListInfo].[原始单号] AS [原始单号], 
+      [Report_BackListInfo].[退库仓库] AS [退库仓库], 
+      [Report_BackListInfo].[退库日期] AS [退库日期], 
+      [Report_BackListInfo].[操作人] AS [操作人], 
+      [Report_BackListInfo].[退库仓库编码] AS [退库仓库编码], 
+      [Report_BackListInfo].[类别编码] AS [类别编码], 
+      [Report_BackListInfo].[备注] AS [备注]
+      FROM [dbo].[Report_BackListInfo] AS [Report_BackListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_Borow" EntityType="ReportModel.Store.Report_Borow" store:Type="Views" store:Schema="dbo" store:Name="Report_Borow">
+      <DefiningQuery>SELECT 
+      [Report_Borow].[原始单号] AS [原始单号], 
+      [Report_Borow].[审批单] AS [审批单], 
+      [Report_Borow].[借贷人] AS [借贷人], 
+      [Report_Borow].[借贷日期] AS [借贷日期], 
+      [Report_Borow].[借贷部门] AS [借贷部门], 
+      [Report_Borow].[借贷方式] AS [借贷方式], 
+      [Report_Borow].[商品类别] AS [商品类别], 
+      [Report_Borow].[商品品牌] AS [商品品牌], 
+      [Report_Borow].[商品型号] AS [商品型号], 
+      [Report_Borow].[批次号] AS [批次号], 
+      [Report_Borow].[数量] AS [数量], 
+      [Report_Borow].[营业厅] AS [营业厅], 
+      [Report_Borow].[商品属性] AS [商品属性], 
+      [Report_Borow].[串码] AS [串码], 
+      [Report_Borow].[ID] AS [ID], 
+      [Report_Borow].[门店编码] AS [门店编码], 
+      [Report_Borow].[类别编码] AS [类别编码], 
+      [Report_Borow].[商品编码] AS [商品编码]
+      FROM [dbo].[Report_Borow] AS [Report_Borow]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_BorrowAduitInfo" EntityType="ReportModel.Store.Report_BorrowAduitInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_BorrowAduitInfo">
+      <DefiningQuery>SELECT 
+      [Report_BorrowAduitInfo].[序号] AS [序号], 
+      [Report_BorrowAduitInfo].[系统主键] AS [系统主键], 
+      [Report_BorrowAduitInfo].[申请单号] AS [申请单号], 
+      [Report_BorrowAduitInfo].[借贷总额] AS [借贷总额], 
+      [Report_BorrowAduitInfo].[已审批] AS [已审批], 
+      [Report_BorrowAduitInfo].[已通过] AS [已通过], 
+      [Report_BorrowAduitInfo].[已使用] AS [已使用], 
+      [Report_BorrowAduitInfo].[使用日期] AS [使用日期], 
+      [Report_BorrowAduitInfo].[申请人] AS [申请人], 
+      [Report_BorrowAduitInfo].[申请日期] AS [申请日期], 
+      [Report_BorrowAduitInfo].[系统日期] AS [系统日期], 
+      [Report_BorrowAduitInfo].[门店] AS [门店], 
+      [Report_BorrowAduitInfo].[内部借机] AS [内部借机], 
+      [Report_BorrowAduitInfo].[借贷人] AS [借贷人], 
+      [Report_BorrowAduitInfo].[借贷方式] AS [借贷方式], 
+      [Report_BorrowAduitInfo].[借贷部门] AS [借贷部门], 
+      [Report_BorrowAduitInfo].[借贷人电话] AS [借贷人电话], 
+      [Report_BorrowAduitInfo].[预计归还日期] AS [预计归还日期], 
+      [Report_BorrowAduitInfo].[申请备注] AS [申请备注], 
+      [Report_BorrowAduitInfo].[一级已审批] AS [一级已审批], 
+      [Report_BorrowAduitInfo].[一级已通过] AS [一级已通过], 
+      [Report_BorrowAduitInfo].[一级审批人] AS [一级审批人], 
+      [Report_BorrowAduitInfo].[一级审批日期] AS [一级审批日期], 
+      [Report_BorrowAduitInfo].[一级备注] AS [一级备注], 
+      [Report_BorrowAduitInfo].[二级已审批] AS [二级已审批], 
+      [Report_BorrowAduitInfo].[二级已通过] AS [二级已通过], 
+      [Report_BorrowAduitInfo].[二级审批人] AS [二级审批人], 
+      [Report_BorrowAduitInfo].[二级审批日期] AS [二级审批日期], 
+      [Report_BorrowAduitInfo].[二级备注] AS [二级备注], 
+      [Report_BorrowAduitInfo].[三级已审批] AS [三级已审批], 
+      [Report_BorrowAduitInfo].[三级已通过] AS [三级已通过], 
+      [Report_BorrowAduitInfo].[三级审批人] AS [三级审批人], 
+      [Report_BorrowAduitInfo].[三级审批日期] AS [三级审批日期], 
+      [Report_BorrowAduitInfo].[三级备注] AS [三级备注], 
+      [Report_BorrowAduitInfo].[四级已审批] AS [四级已审批], 
+      [Report_BorrowAduitInfo].[四级已通过] AS [四级已通过], 
+      [Report_BorrowAduitInfo].[四级审批人] AS [四级审批人], 
+      [Report_BorrowAduitInfo].[四级审批日期] AS [四级审批日期], 
+      [Report_BorrowAduitInfo].[四级备注] AS [四级备注], 
+      [Report_BorrowAduitInfo].[门店编码] AS [门店编码]
+      FROM [dbo].[Report_BorrowAduitInfo] AS [Report_BorrowAduitInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_BorrowAduitListInfo" EntityType="ReportModel.Store.Report_BorrowAduitListInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_BorrowAduitListInfo">
+      <DefiningQuery>SELECT 
+      [Report_BorrowAduitListInfo].[系统主键] AS [系统主键], 
+      [Report_BorrowAduitListInfo].[系统外键] AS [系统外键], 
+      [Report_BorrowAduitListInfo].[商品类别] AS [商品类别], 
+      [Report_BorrowAduitListInfo].[商品品牌] AS [商品品牌], 
+      [Report_BorrowAduitListInfo].[商品型号] AS [商品型号], 
+      [Report_BorrowAduitListInfo].[属性] AS [属性], 
+      [Report_BorrowAduitListInfo].[借贷数量] AS [借贷数量], 
+      [Report_BorrowAduitListInfo].[借贷单价] AS [借贷单价], 
+      [Report_BorrowAduitListInfo].[备注] AS [备注]
+      FROM [dbo].[Report_BorrowAduitListInfo] AS [Report_BorrowAduitListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_BorrowIMEIInfo" EntityType="ReportModel.Store.Report_BorrowIMEIInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_BorrowIMEIInfo">
+      <DefiningQuery>SELECT 
+      [Report_BorrowIMEIInfo].[序号] AS [序号], 
+      [Report_BorrowIMEIInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_BorrowIMEIInfo].[批次号] AS [批次号], 
+      [Report_BorrowIMEIInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_BorrowIMEIInfo].[自增外键借贷单编号] AS [自增外键借贷单编号], 
+      [Report_BorrowIMEIInfo].[借贷单号] AS [借贷单号], 
+      [Report_BorrowIMEIInfo].[审批单号] AS [审批单号], 
+      [Report_BorrowIMEIInfo].[原始单号] AS [原始单号], 
+      [Report_BorrowIMEIInfo].[借贷门店] AS [借贷门店], 
+      [Report_BorrowIMEIInfo].[借贷日期] AS [借贷日期], 
+      [Report_BorrowIMEIInfo].[借贷部门] AS [借贷部门], 
+      [Report_BorrowIMEIInfo].[借贷人] AS [借贷人], 
+      [Report_BorrowIMEIInfo].[联系电话] AS [联系电话], 
+      [Report_BorrowIMEIInfo].[借贷方式] AS [借贷方式], 
+      [Report_BorrowIMEIInfo].[预计归还日期] AS [预计归还日期], 
+      [Report_BorrowIMEIInfo].[类别] AS [类别], 
+      [Report_BorrowIMEIInfo].[品牌] AS [品牌], 
+      [Report_BorrowIMEIInfo].[商品名称] AS [商品名称], 
+      [Report_BorrowIMEIInfo].[商品属性] AS [商品属性], 
+      [Report_BorrowIMEIInfo].[数量] AS [数量], 
+      [Report_BorrowIMEIInfo].[单价] AS [单价], 
+      [Report_BorrowIMEIInfo].[串码] AS [串码], 
+      [Report_BorrowIMEIInfo].[已归还] AS [已归还], 
+      [Report_BorrowIMEIInfo].[操作人] AS [操作人], 
+      [Report_BorrowIMEIInfo].[备注] AS [备注], 
+      [Report_BorrowIMEIInfo].[借贷仓库编码] AS [借贷仓库编码], 
+      [Report_BorrowIMEIInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_BorrowIMEIInfo] AS [Report_BorrowIMEIInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_BorrowInfo" EntityType="ReportModel.Store.Report_BorrowInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_BorrowInfo">
+      <DefiningQuery>SELECT 
+      [Report_BorrowInfo].[序号] AS [序号], 
+      [Report_BorrowInfo].[批次号] AS [批次号], 
+      [Report_BorrowInfo].[系统自增主键] AS [系统自增主键], 
+      [Report_BorrowInfo].[自增外键编号] AS [自增外键编号], 
+      [Report_BorrowInfo].[借贷单号] AS [借贷单号], 
+      [Report_BorrowInfo].[审批单号] AS [审批单号], 
+      [Report_BorrowInfo].[原始单号] AS [原始单号], 
+      [Report_BorrowInfo].[借贷门店] AS [借贷门店], 
+      [Report_BorrowInfo].[借贷日期] AS [借贷日期], 
+      [Report_BorrowInfo].[借贷部门] AS [借贷部门], 
+      [Report_BorrowInfo].[借贷人] AS [借贷人], 
+      [Report_BorrowInfo].[联系电话] AS [联系电话], 
+      [Report_BorrowInfo].[借贷方式] AS [借贷方式], 
+      [Report_BorrowInfo].[预计归还日期] AS [预计归还日期], 
+      [Report_BorrowInfo].[类别] AS [类别], 
+      [Report_BorrowInfo].[品牌] AS [品牌], 
+      [Report_BorrowInfo].[商品名称] AS [商品名称], 
+      [Report_BorrowInfo].[商品属性] AS [商品属性], 
+      [Report_BorrowInfo].[借贷数量] AS [借贷数量], 
+      [Report_BorrowInfo].[未还数量] AS [未还数量], 
+      [Report_BorrowInfo].[单价] AS [单价], 
+      [Report_BorrowInfo].[操作人] AS [操作人], 
+      [Report_BorrowInfo].[备注] AS [备注], 
+      [Report_BorrowInfo].[借贷仓库编码] AS [借贷仓库编码], 
+      [Report_BorrowInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_BorrowInfo] AS [Report_BorrowInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_ChangeIMEIInfo" EntityType="ReportModel.Store.Report_ChangeIMEIInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_ChangeIMEIInfo">
+      <DefiningQuery>SELECT 
+      [Report_ChangeIMEIInfo].[序号] AS [序号], 
+      [Report_ChangeIMEIInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_ChangeIMEIInfo].[旧批次号] AS [旧批次号], 
+      [Report_ChangeIMEIInfo].[新批次号] AS [新批次号], 
+      [Report_ChangeIMEIInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_ChangeIMEIInfo].[自增外键转类别单编号] AS [自增外键转类别单编号], 
+      [Report_ChangeIMEIInfo].[原类别] AS [原类别], 
+      [Report_ChangeIMEIInfo].[原品牌] AS [原品牌], 
+      [Report_ChangeIMEIInfo].[原商品名称] AS [原商品名称], 
+      [Report_ChangeIMEIInfo].[原商品属性] AS [原商品属性], 
+      [Report_ChangeIMEIInfo].[现类别] AS [现类别], 
+      [Report_ChangeIMEIInfo].[现品牌] AS [现品牌], 
+      [Report_ChangeIMEIInfo].[现商品名称] AS [现商品名称], 
+      [Report_ChangeIMEIInfo].[现商品属性] AS [现商品属性], 
+      [Report_ChangeIMEIInfo].[数量] AS [数量], 
+      [Report_ChangeIMEIInfo].[单价] AS [单价], 
+      [Report_ChangeIMEIInfo].[串码] AS [串码], 
+      [Report_ChangeIMEIInfo].[原始单号] AS [原始单号], 
+      [Report_ChangeIMEIInfo].[转类别仓库] AS [转类别仓库], 
+      [Report_ChangeIMEIInfo].[转类别日期] AS [转类别日期], 
+      [Report_ChangeIMEIInfo].[操作人] AS [操作人], 
+      [Report_ChangeIMEIInfo].[转类别仓库编码] AS [转类别仓库编码], 
+      [Report_ChangeIMEIInfo].[备注] AS [备注], 
+      [Report_ChangeIMEIInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_ChangeIMEIInfo] AS [Report_ChangeIMEIInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_ChangeListInfo" EntityType="ReportModel.Store.Report_ChangeListInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_ChangeListInfo">
+      <DefiningQuery>SELECT 
+      [Report_ChangeListInfo].[序号] AS [序号], 
+      [Report_ChangeListInfo].[旧批次号] AS [旧批次号], 
+      [Report_ChangeListInfo].[新批次号] AS [新批次号], 
+      [Report_ChangeListInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_ChangeListInfo].[自增外键转类别编号] AS [自增外键转类别编号], 
+      [Report_ChangeListInfo].[原类别] AS [原类别], 
+      [Report_ChangeListInfo].[原品牌] AS [原品牌], 
+      [Report_ChangeListInfo].[原商品名称] AS [原商品名称], 
+      [Report_ChangeListInfo].[原商品属性] AS [原商品属性], 
+      [Report_ChangeListInfo].[现类别] AS [现类别], 
+      [Report_ChangeListInfo].[现品牌] AS [现品牌], 
+      [Report_ChangeListInfo].[现商品名称] AS [现商品名称], 
+      [Report_ChangeListInfo].[现商品属性] AS [现商品属性], 
+      [Report_ChangeListInfo].[数量] AS [数量], 
+      [Report_ChangeListInfo].[单价] AS [单价], 
+      [Report_ChangeListInfo].[原始单号] AS [原始单号], 
+      [Report_ChangeListInfo].[转类别仓库] AS [转类别仓库], 
+      [Report_ChangeListInfo].[转类别日期] AS [转类别日期], 
+      [Report_ChangeListInfo].[操作人] AS [操作人], 
+      [Report_ChangeListInfo].[转类别仓库编码] AS [转类别仓库编码], 
+      [Report_ChangeListInfo].[类别编码] AS [类别编码], 
+      [Report_ChangeListInfo].[备注] AS [备注]
+      FROM [dbo].[Report_ChangeListInfo] AS [Report_ChangeListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_ChangeProInfo" EntityType="ReportModel.Store.Report_ChangeProInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_ChangeProInfo">
+      <DefiningQuery>SELECT 
+      [Report_ChangeProInfo].[序号] AS [序号], 
+      [Report_ChangeProInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_ChangeProInfo].[原始单号] AS [原始单号], 
+      [Report_ChangeProInfo].[转类别仓库] AS [转类别仓库], 
+      [Report_ChangeProInfo].[转类别日期] AS [转类别日期], 
+      [Report_ChangeProInfo].[操作人] AS [操作人], 
+      [Report_ChangeProInfo].[备注] AS [备注], 
+      [Report_ChangeProInfo].[转类别仓库编码] AS [转类别仓库编码]
+      FROM [dbo].[Report_ChangeProInfo] AS [Report_ChangeProInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_CostPriceListInfo" EntityType="ReportModel.Store.Report_CostPriceListInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_CostPriceListInfo">
+      <DefiningQuery>SELECT 
+      [Report_CostPriceListInfo].[序号] AS [序号], 
+      [Report_CostPriceListInfo].[类别] AS [类别], 
+      [Report_CostPriceListInfo].[品牌] AS [品牌], 
+      [Report_CostPriceListInfo].[商品名称] AS [商品名称], 
+      [Report_CostPriceListInfo].[商品属性] AS [商品属性], 
+      [Report_CostPriceListInfo].[批次号] AS [批次号], 
+      [Report_CostPriceListInfo].[入库日期] AS [入库日期], 
+      [Report_CostPriceListInfo].[成本价] AS [成本价]
+      FROM [dbo].[Report_CostPriceListInfo] AS [Report_CostPriceListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_EveryHallStoreInfo" EntityType="ReportModel.Store.Report_EveryHallStoreInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_EveryHallStoreInfo">
+      <DefiningQuery>SELECT 
+      [Report_EveryHallStoreInfo].[序号] AS [序号], 
+      [Report_EveryHallStoreInfo].[ProID] AS [ProID], 
+      [Report_EveryHallStoreInfo].[类别] AS [类别], 
+      [Report_EveryHallStoreInfo].[品牌] AS [品牌], 
+      [Report_EveryHallStoreInfo].[商品名称] AS [商品名称], 
+      [Report_EveryHallStoreInfo].[商品属性] AS [商品属性], 
+      [Report_EveryHallStoreInfo].[制式] AS [制式], 
+      [Report_EveryHallStoreInfo].[单价] AS [单价], 
+      [Report_EveryHallStoreInfo].[门店等级] AS [门店等级], 
+      [Report_EveryHallStoreInfo].[门店] AS [门店], 
+      [Report_EveryHallStoreInfo].[等级排序] AS [等级排序], 
+      [Report_EveryHallStoreInfo].[门店排序] AS [门店排序], 
+      [Report_EveryHallStoreInfo].[数量] AS [数量], 
+      [Report_EveryHallStoreInfo].[在途] AS [在途], 
+      [Report_EveryHallStoreInfo].[类别编码] AS [类别编码], 
+      [Report_EveryHallStoreInfo].[类别排序] AS [类别排序], 
+      [Report_EveryHallStoreInfo].[门店编码] AS [门店编码], 
+      [Report_EveryHallStoreInfo].[属性排序] AS [属性排序]
+      FROM [dbo].[Report_EveryHallStoreInfo] AS [Report_EveryHallStoreInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_IMEIInfo" EntityType="ReportModel.Store.Report_IMEIInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_IMEIInfo">
+      <DefiningQuery>SELECT 
+      [Report_IMEIInfo].[序号] AS [序号], 
+      [Report_IMEIInfo].[串码] AS [串码], 
+      [Report_IMEIInfo].[类别] AS [类别], 
+      [Report_IMEIInfo].[品牌] AS [品牌], 
+      [Report_IMEIInfo].[商品名称] AS [商品名称], 
+      [Report_IMEIInfo].[商品属性] AS [商品属性], 
+      [Report_IMEIInfo].[门店] AS [门店], 
+      [Report_IMEIInfo].[区域] AS [区域], 
+      [Report_IMEIInfo].[状态] AS [状态], 
+      [Report_IMEIInfo].[备注] AS [备注], 
+      [Report_IMEIInfo].[库龄_天] AS [库龄_天], 
+      [Report_IMEIInfo].[门店编码] AS [门店编码], 
+      [Report_IMEIInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_IMEIInfo] AS [Report_IMEIInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_IMEITracksInfo" EntityType="ReportModel.Store.Report_IMEITracksInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_IMEITracksInfo">
+      <DefiningQuery>SELECT 
+      [Report_IMEITracksInfo].[序号] AS [序号], 
+      [Report_IMEITracksInfo].[串码] AS [串码], 
+      [Report_IMEITracksInfo].[类别] AS [类别], 
+      [Report_IMEITracksInfo].[品牌] AS [品牌], 
+      [Report_IMEITracksInfo].[商品名称] AS [商品名称], 
+      [Report_IMEITracksInfo].[商品属性] AS [商品属性], 
+      [Report_IMEITracksInfo].[跟踪] AS [跟踪], 
+      [Report_IMEITracksInfo].[日期] AS [日期], 
+      [Report_IMEITracksInfo].[操作人] AS [操作人], 
+      [Report_IMEITracksInfo].[系统平台] AS [系统平台], 
+      [Report_IMEITracksInfo].[类别编码] AS [类别编码], 
+      [Report_IMEITracksInfo].[门店编码] AS [门店编码]
+      FROM [dbo].[Report_IMEITracksInfo] AS [Report_IMEITracksInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_InOrderIMEIInfo" EntityType="ReportModel.Store.Report_InOrderIMEIInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_InOrderIMEIInfo">
+      <DefiningQuery>SELECT 
+      [Report_InOrderIMEIInfo].[序号] AS [序号], 
+      [Report_InOrderIMEIInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_InOrderIMEIInfo].[批次号] AS [批次号], 
+      [Report_InOrderIMEIInfo].[自增外键入库单编号] AS [自增外键入库单编号], 
+      [Report_InOrderIMEIInfo].[类别] AS [类别], 
+      [Report_InOrderIMEIInfo].[品牌] AS [品牌], 
+      [Report_InOrderIMEIInfo].[商品名称] AS [商品名称], 
+      [Report_InOrderIMEIInfo].[商品属性] AS [商品属性], 
+      [Report_InOrderIMEIInfo].[数量] AS [数量], 
+      [Report_InOrderIMEIInfo].[单价] AS [单价], 
+      [Report_InOrderIMEIInfo].[成本价] AS [成本价], 
+      [Report_InOrderIMEIInfo].[串码] AS [串码], 
+      [Report_InOrderIMEIInfo].[入库单号] AS [入库单号], 
+      [Report_InOrderIMEIInfo].[原始单号] AS [原始单号], 
+      [Report_InOrderIMEIInfo].[入库仓库] AS [入库仓库], 
+      [Report_InOrderIMEIInfo].[入库日期] AS [入库日期], 
+      [Report_InOrderIMEIInfo].[操作人] AS [操作人], 
+      [Report_InOrderIMEIInfo].[入库仓库编码] AS [入库仓库编码], 
+      [Report_InOrderIMEIInfo].[备注] AS [备注], 
+      [Report_InOrderIMEIInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_InOrderIMEIInfo] AS [Report_InOrderIMEIInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_InOrderInfo" EntityType="ReportModel.Store.Report_InOrderInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_InOrderInfo">
+      <DefiningQuery>SELECT 
+      [Report_InOrderInfo].[序号] AS [序号], 
+      [Report_InOrderInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_InOrderInfo].[入库单号] AS [入库单号], 
+      [Report_InOrderInfo].[原始单号] AS [原始单号], 
+      [Report_InOrderInfo].[入库仓库] AS [入库仓库], 
+      [Report_InOrderInfo].[入库日期] AS [入库日期], 
+      [Report_InOrderInfo].[操作人] AS [操作人], 
+      [Report_InOrderInfo].[备注] AS [备注], 
+      [Report_InOrderInfo].[入库仓库编码] AS [入库仓库编码]
+      FROM [dbo].[Report_InOrderInfo] AS [Report_InOrderInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_InOrderListInfo" EntityType="ReportModel.Store.Report_InOrderListInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_InOrderListInfo">
+      <DefiningQuery>SELECT 
+      [Report_InOrderListInfo].[序号] AS [序号], 
+      [Report_InOrderListInfo].[批次号] AS [批次号], 
+      [Report_InOrderListInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_InOrderListInfo].[类别] AS [类别], 
+      [Report_InOrderListInfo].[品牌] AS [品牌], 
+      [Report_InOrderListInfo].[商品名称] AS [商品名称], 
+      [Report_InOrderListInfo].[商品属性] AS [商品属性], 
+      [Report_InOrderListInfo].[数量] AS [数量], 
+      [Report_InOrderListInfo].[单价] AS [单价], 
+      [Report_InOrderListInfo].[成本价] AS [成本价], 
+      [Report_InOrderListInfo].[入库单号] AS [入库单号], 
+      [Report_InOrderListInfo].[原始单号] AS [原始单号], 
+      [Report_InOrderListInfo].[入库仓库] AS [入库仓库], 
+      [Report_InOrderListInfo].[入库日期] AS [入库日期], 
+      [Report_InOrderListInfo].[操作人] AS [操作人], 
+      [Report_InOrderListInfo].[入库仓库编码] AS [入库仓库编码], 
+      [Report_InOrderListInfo].[类别编码] AS [类别编码], 
+      [Report_InOrderListInfo].[商品备注] AS [商品备注], 
+      [Report_InOrderListInfo].[备注] AS [备注]
+      FROM [dbo].[Report_InOrderListInfo] AS [Report_InOrderListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_InOutSellInfo" EntityType="ReportModel.Store.Report_InOutSellInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_InOutSellInfo">
+      <DefiningQuery>SELECT 
+      [Report_InOutSellInfo].[序号] AS [序号], 
+      [Report_InOutSellInfo].[类别] AS [类别], 
+      [Report_InOutSellInfo].[品牌] AS [品牌], 
+      [Report_InOutSellInfo].[商品名称] AS [商品名称], 
+      [Report_InOutSellInfo].[商品属性] AS [商品属性], 
+      [Report_InOutSellInfo].[期初库存] AS [期初库存], 
+      [Report_InOutSellInfo].[本期初始入库] AS [本期初始入库], 
+      [Report_InOutSellInfo].[本期退库] AS [本期退库], 
+      [Report_InOutSellInfo].[本期类别转入] AS [本期类别转入], 
+      [Report_InOutSellInfo].[本期类别转出] AS [本期类别转出], 
+      [Report_InOutSellInfo].[本期调入] AS [本期调入], 
+      [Report_InOutSellInfo].[本期调出] AS [本期调出], 
+      [Report_InOutSellInfo].[本期销售审批_申请_] AS [本期销售审批_申请_], 
+      [Report_InOutSellInfo].[本期销售审批_已审批_] AS [本期销售审批_已审批_], 
+      [Report_InOutSellInfo].[本期销售] AS [本期销售], 
+      [Report_InOutSellInfo].[本期退货] AS [本期退货], 
+      [Report_InOutSellInfo].[本期送修] AS [本期送修], 
+      [Report_InOutSellInfo].[本期返库] AS [本期返库], 
+      [Report_InOutSellInfo].[本期借贷] AS [本期借贷], 
+      [Report_InOutSellInfo].[本期归还] AS [本期归还], 
+      [Report_InOutSellInfo].[期末库存] AS [期末库存], 
+      [Report_InOutSellInfo].[送修累计] AS [送修累计], 
+      [Report_InOutSellInfo].[借贷累计] AS [借贷累计], 
+      [Report_InOutSellInfo].[门店] AS [门店], 
+      [Report_InOutSellInfo].[区域] AS [区域], 
+      [Report_InOutSellInfo].[门店编码] AS [门店编码], 
+      [Report_InOutSellInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_InOutSellInfo] AS [Report_InOutSellInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_OutInfo" EntityType="ReportModel.Store.Report_OutInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_OutInfo">
+      <DefiningQuery>SELECT 
+      [Report_OutInfo].[序号] AS [序号], 
+      [Report_OutInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_OutInfo].[调拨单号] AS [调拨单号], 
+      [Report_OutInfo].[原始单号] AS [原始单号], 
+      [Report_OutInfo].[调出仓库] AS [调出仓库], 
+      [Report_OutInfo].[调入仓库] AS [调入仓库], 
+      [Report_OutInfo].[调拨日期] AS [调拨日期], 
+      [Report_OutInfo].[调拨人] AS [调拨人], 
+      [Report_OutInfo].[备注] AS [备注], 
+      [Report_OutInfo].[已接收] AS [已接收], 
+      [Report_OutInfo].[接收人] AS [接收人], 
+      [Report_OutInfo].[接收日期] AS [接收日期], 
+      [Report_OutInfo].[调出仓库编码] AS [调出仓库编码], 
+      [Report_OutInfo].[调入仓库编码] AS [调入仓库编码], 
+      [Report_OutInfo].[总高度] AS [总高度]
+      FROM [dbo].[Report_OutInfo] AS [Report_OutInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_OutOrderIMEIInfo" EntityType="ReportModel.Store.Report_OutOrderIMEIInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_OutOrderIMEIInfo">
+      <DefiningQuery>SELECT 
+      [Report_OutOrderIMEIInfo].[序号] AS [序号], 
+      [Report_OutOrderIMEIInfo].[调拨单号] AS [调拨单号], 
+      [Report_OutOrderIMEIInfo].[原始单号] AS [原始单号], 
+      [Report_OutOrderIMEIInfo].[调出仓库] AS [调出仓库], 
+      [Report_OutOrderIMEIInfo].[调入仓库] AS [调入仓库], 
+      [Report_OutOrderIMEIInfo].[调拨日期] AS [调拨日期], 
+      [Report_OutOrderIMEIInfo].[调拨人] AS [调拨人], 
+      [Report_OutOrderIMEIInfo].[调拨备注] AS [调拨备注], 
+      [Report_OutOrderIMEIInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_OutOrderIMEIInfo].[批次号] AS [批次号], 
+      [Report_OutOrderIMEIInfo].[自增外键调拨单编号] AS [自增外键调拨单编号], 
+      [Report_OutOrderIMEIInfo].[自增外键调拨明细编号] AS [自增外键调拨明细编号], 
+      [Report_OutOrderIMEIInfo].[类别] AS [类别], 
+      [Report_OutOrderIMEIInfo].[品牌] AS [品牌], 
+      [Report_OutOrderIMEIInfo].[商品名称] AS [商品名称], 
+      [Report_OutOrderIMEIInfo].[商品属性] AS [商品属性], 
+      [Report_OutOrderIMEIInfo].[数量] AS [数量], 
+      [Report_OutOrderIMEIInfo].[单价] AS [单价], 
+      [Report_OutOrderIMEIInfo].[串码] AS [串码], 
+      [Report_OutOrderIMEIInfo].[串码备注] AS [串码备注], 
+      [Report_OutOrderIMEIInfo].[已接收] AS [已接收], 
+      [Report_OutOrderIMEIInfo].[接收人] AS [接收人], 
+      [Report_OutOrderIMEIInfo].[接收日期] AS [接收日期], 
+      [Report_OutOrderIMEIInfo].[调出仓库编码] AS [调出仓库编码], 
+      [Report_OutOrderIMEIInfo].[调入仓库编码] AS [调入仓库编码], 
+      [Report_OutOrderIMEIInfo].[备注] AS [备注], 
+      [Report_OutOrderIMEIInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_OutOrderIMEIInfo] AS [Report_OutOrderIMEIInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_OutOrderListInfo" EntityType="ReportModel.Store.Report_OutOrderListInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_OutOrderListInfo">
+      <DefiningQuery>SELECT 
+      [Report_OutOrderListInfo].[序号] AS [序号], 
+      [Report_OutOrderListInfo].[调拨单号] AS [调拨单号], 
+      [Report_OutOrderListInfo].[原始单号] AS [原始单号], 
+      [Report_OutOrderListInfo].[调出仓库] AS [调出仓库], 
+      [Report_OutOrderListInfo].[调入仓库] AS [调入仓库], 
+      [Report_OutOrderListInfo].[调拨日期] AS [调拨日期], 
+      [Report_OutOrderListInfo].[调拨人] AS [调拨人], 
+      [Report_OutOrderListInfo].[调拨备注] AS [调拨备注], 
+      [Report_OutOrderListInfo].[批次号] AS [批次号], 
+      [Report_OutOrderListInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_OutOrderListInfo].[类别] AS [类别], 
+      [Report_OutOrderListInfo].[品牌] AS [品牌], 
+      [Report_OutOrderListInfo].[商品名称] AS [商品名称], 
+      [Report_OutOrderListInfo].[商品属性] AS [商品属性], 
+      [Report_OutOrderListInfo].[数量] AS [数量], 
+      [Report_OutOrderListInfo].[单价] AS [单价], 
+      [Report_OutOrderListInfo].[已接收] AS [已接收], 
+      [Report_OutOrderListInfo].[接收人] AS [接收人], 
+      [Report_OutOrderListInfo].[接收日期] AS [接收日期], 
+      [Report_OutOrderListInfo].[调出仓库编码] AS [调出仓库编码], 
+      [Report_OutOrderListInfo].[调入仓库编码] AS [调入仓库编码], 
+      [Report_OutOrderListInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_OutOrderListInfo] AS [Report_OutOrderListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_PriceInfo" EntityType="ReportModel.Store.Report_PriceInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_PriceInfo">
+      <DefiningQuery>SELECT 
+      [Report_PriceInfo].[序号] AS [序号], 
+      [Report_PriceInfo].[类别] AS [类别], 
+      [Report_PriceInfo].[品牌] AS [品牌], 
+      [Report_PriceInfo].[商品名称] AS [商品名称], 
+      [Report_PriceInfo].[商品属性] AS [商品属性], 
+      [Report_PriceInfo].[销售类别] AS [销售类别], 
+      [Report_PriceInfo].[价格] AS [价格], 
+      [Report_PriceInfo].[结算价] AS [结算价], 
+      [Report_PriceInfo].[最低价格] AS [最低价格], 
+      [Report_PriceInfo].[最高价格] AS [最高价格], 
+      [Report_PriceInfo].[可以兑券] AS [可以兑券], 
+      [Report_PriceInfo].[需要审批单] AS [需要审批单]
+      FROM [dbo].[Report_PriceInfo] AS [Report_PriceInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_ProductInfo" EntityType="ReportModel.Store.Report_ProductInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_ProductInfo">
+      <DefiningQuery>SELECT 
+      [Report_ProductInfo].[序号] AS [序号], 
+      [Report_ProductInfo].[商品编码] AS [商品编码], 
+      [Report_ProductInfo].[类别] AS [类别], 
+      [Report_ProductInfo].[品牌] AS [品牌], 
+      [Report_ProductInfo].[商品名称] AS [商品名称], 
+      [Report_ProductInfo].[商品属性] AS [商品属性], 
+      [Report_ProductInfo].[会员类别] AS [会员类别], 
+      [Report_ProductInfo].[有串码] AS [有串码], 
+      [Report_ProductInfo].[属于服务] AS [属于服务], 
+      [Report_ProductInfo].[兑券临界日期] AS [兑券临界日期], 
+      [Report_ProductInfo].[日期之前可用] AS [日期之前可用], 
+      [Report_ProductInfo].[日期之前加] AS [日期之前加], 
+      [Report_ProductInfo].[日期之后可用] AS [日期之后可用], 
+      [Report_ProductInfo].[日期之后加] AS [日期之后加], 
+      [Report_ProductInfo].[兑券临界值] AS [兑券临界值], 
+      [Report_ProductInfo].[小于临界值加] AS [小于临界值加], 
+      [Report_ProductInfo].[大于临界值加] AS [大于临界值加], 
+      [Report_ProductInfo].[需要补差] AS [需要补差], 
+      [Report_ProductInfo].[备注] AS [备注]
+      FROM [dbo].[Report_ProductInfo] AS [Report_ProductInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_Profit" EntityType="ReportModel.Store.Report_Profit" store:Type="Views" store:Schema="dbo" store:Name="Report_Profit">
+      <DefiningQuery>SELECT 
+      [Report_Profit].[序号] AS [序号], 
+      [Report_Profit].[销售单号] AS [销售单号], 
+      [Report_Profit].[类别] AS [类别], 
+      [Report_Profit].[品牌] AS [品牌], 
+      [Report_Profit].[商品名称] AS [商品名称], 
+      [Report_Profit].[商品属性] AS [商品属性], 
+      [Report_Profit].[销售方式] AS [销售方式], 
+      [Report_Profit].[数量] AS [数量], 
+      [Report_Profit].[门店] AS [门店], 
+      [Report_Profit].[销售日期] AS [销售日期], 
+      [Report_Profit].[兑换值] AS [兑换值], 
+      [Report_Profit].[商品大类] AS [商品大类], 
+      [Report_Profit].[门店编码] AS [门店编码], 
+      [Report_Profit].[片区编码] AS [片区编码], 
+      [Report_Profit].[大区编码] AS [大区编码], 
+      [Report_Profit].[商品编码] AS [商品编码], 
+      [Report_Profit].[类别编码] AS [类别编码], 
+      [Report_Profit].[商品大类编码] AS [商品大类编码], 
+      [Report_Profit].[批次号] AS [批次号], 
+      [Report_Profit].[结算价] AS [结算价], 
+      [Report_Profit].[入库成本价] AS [入库成本价], 
+      [Report_Profit].[销售时成本价] AS [销售时成本价], 
+      [Report_Profit].[计算成本价] AS [计算成本价], 
+      [Report_Profit].[实收单价] AS [实收单价], 
+      [Report_Profit].[退货审批利润] AS [退货审批利润], 
+      [Report_Profit].[利润] AS [利润], 
+      [Report_Profit].[片区] AS [片区], 
+      [Report_Profit].[大区] AS [大区], 
+      [Report_Profit].[销售时间] AS [销售时间], 
+      [Report_Profit].[串码] AS [串码]
+      FROM [dbo].[Report_Profit] AS [Report_Profit]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_Profit2" EntityType="ReportModel.Store.Report_Profit2" store:Type="Views" store:Schema="dbo" store:Name="Report_Profit2">
+      <DefiningQuery>SELECT 
+      [Report_Profit2].[序号] AS [序号], 
+      [Report_Profit2].[销售单号] AS [销售单号], 
+      [Report_Profit2].[类别] AS [类别], 
+      [Report_Profit2].[品牌] AS [品牌], 
+      [Report_Profit2].[商品名称] AS [商品名称], 
+      [Report_Profit2].[商品属性] AS [商品属性], 
+      [Report_Profit2].[销售方式] AS [销售方式], 
+      [Report_Profit2].[数量] AS [数量], 
+      [Report_Profit2].[门店] AS [门店], 
+      [Report_Profit2].[销售日期] AS [销售日期], 
+      [Report_Profit2].[兑换值] AS [兑换值], 
+      [Report_Profit2].[商品大类] AS [商品大类], 
+      [Report_Profit2].[门店编码] AS [门店编码], 
+      [Report_Profit2].[片区编码] AS [片区编码], 
+      [Report_Profit2].[大区编码] AS [大区编码], 
+      [Report_Profit2].[商品编码] AS [商品编码], 
+      [Report_Profit2].[类别编码] AS [类别编码], 
+      [Report_Profit2].[商品大类编码] AS [商品大类编码], 
+      [Report_Profit2].[批次号] AS [批次号], 
+      [Report_Profit2].[结算价] AS [结算价], 
+      [Report_Profit2].[入库成本价] AS [入库成本价], 
+      [Report_Profit2].[销售时成本价] AS [销售时成本价], 
+      [Report_Profit2].[计算成本价] AS [计算成本价], 
+      [Report_Profit2].[实收单价] AS [实收单价], 
+      [Report_Profit2].[退货审批利润] AS [退货审批利润], 
+      [Report_Profit2].[利润] AS [利润], 
+      [Report_Profit2].[片区] AS [片区], 
+      [Report_Profit2].[大区] AS [大区], 
+      [Report_Profit2].[销售时间] AS [销售时间], 
+      [Report_Profit2].[串码] AS [串码]
+      FROM [dbo].[Report_Profit2] AS [Report_Profit2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_ReNewInfo" EntityType="ReportModel.Store.Report_ReNewInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_ReNewInfo">
+      <DefiningQuery>SELECT 
+      [Report_ReNewInfo].[序号] AS [序号], 
+      [Report_ReNewInfo].[原始单号] AS [原始单号], 
+      [Report_ReNewInfo].[续期方式] AS [续期方式], 
+      [Report_ReNewInfo].[续期比列] AS [续期比列], 
+      [Report_ReNewInfo].[续期金额] AS [续期金额], 
+      [Report_ReNewInfo].[续期积分] AS [续期积分], 
+      [Report_ReNewInfo].[续期天数] AS [续期天数], 
+      [Report_ReNewInfo].[备注] AS [备注], 
+      [Report_ReNewInfo].[续期日期] AS [续期日期], 
+      [Report_ReNewInfo].[会员姓名] AS [会员姓名], 
+      [Report_ReNewInfo].[会员电话] AS [会员电话], 
+      [Report_ReNewInfo].[门店] AS [门店], 
+      [Report_ReNewInfo].[拦装人] AS [拦装人], 
+      [Report_ReNewInfo].[门店编码] AS [门店编码]
+      FROM [dbo].[Report_ReNewInfo] AS [Report_ReNewInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_RepairInfo" EntityType="ReportModel.Store.Report_RepairInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_RepairInfo">
+      <DefiningQuery>SELECT 
+      [Report_RepairInfo].[序号] AS [序号], 
+      [Report_RepairInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_RepairInfo].[批次号] AS [批次号], 
+      [Report_RepairInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_RepairInfo].[送修单号] AS [送修单号], 
+      [Report_RepairInfo].[原始单号] AS [原始单号], 
+      [Report_RepairInfo].[门店] AS [门店], 
+      [Report_RepairInfo].[送修日期] AS [送修日期], 
+      [Report_RepairInfo].[类别] AS [类别], 
+      [Report_RepairInfo].[品牌] AS [品牌], 
+      [Report_RepairInfo].[商品名称] AS [商品名称], 
+      [Report_RepairInfo].[商品属性] AS [商品属性], 
+      [Report_RepairInfo].[数量] AS [数量], 
+      [Report_RepairInfo].[单价] AS [单价], 
+      [Report_RepairInfo].[串码] AS [串码], 
+      [Report_RepairInfo].[操作人] AS [操作人], 
+      [Report_RepairInfo].[备注] AS [备注], 
+      [Report_RepairInfo].[已返库] AS [已返库], 
+      [Report_RepairInfo].[仓库编码] AS [仓库编码], 
+      [Report_RepairInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_RepairInfo] AS [Report_RepairInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_RepairReturnInfo" EntityType="ReportModel.Store.Report_RepairReturnInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_RepairReturnInfo">
+      <DefiningQuery>SELECT 
+      [Report_RepairReturnInfo].[序号] AS [序号], 
+      [Report_RepairReturnInfo].[系统自增编号] AS [系统自增编号], 
+      [Report_RepairReturnInfo].[批次号] AS [批次号], 
+      [Report_RepairReturnInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_RepairReturnInfo].[送修单号] AS [送修单号], 
+      [Report_RepairReturnInfo].[返库单号] AS [返库单号], 
+      [Report_RepairReturnInfo].[原始返库单号] AS [原始返库单号], 
+      [Report_RepairReturnInfo].[门店] AS [门店], 
+      [Report_RepairReturnInfo].[返库日期] AS [返库日期], 
+      [Report_RepairReturnInfo].[类别] AS [类别], 
+      [Report_RepairReturnInfo].[品牌] AS [品牌], 
+      [Report_RepairReturnInfo].[商品名称] AS [商品名称], 
+      [Report_RepairReturnInfo].[商品属性] AS [商品属性], 
+      [Report_RepairReturnInfo].[数量] AS [数量], 
+      [Report_RepairReturnInfo].[单价] AS [单价], 
+      [Report_RepairReturnInfo].[串码] AS [串码], 
+      [Report_RepairReturnInfo].[返修串码] AS [返修串码], 
+      [Report_RepairReturnInfo].[操作人] AS [操作人], 
+      [Report_RepairReturnInfo].[备注] AS [备注], 
+      [Report_RepairReturnInfo].[仓库编码] AS [仓库编码], 
+      [Report_RepairReturnInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_RepairReturnInfo] AS [Report_RepairReturnInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_Return" EntityType="ReportModel.Store.Report_Return" store:Type="Views" store:Schema="dbo" store:Name="Report_Return">
+      <DefiningQuery>SELECT 
+      [Report_Return].[原始单号] AS [原始单号], 
+      [Report_Return].[SysDate] AS [SysDate], 
+      [Report_Return].[借贷单号] AS [借贷单号], 
+      [Report_Return].[商品类别] AS [商品类别], 
+      [Report_Return].[商品品牌] AS [商品品牌], 
+      [Report_Return].[商品型号] AS [商品型号], 
+      [Report_Return].[商品属性] AS [商品属性], 
+      [Report_Return].[批次号] AS [批次号], 
+      [Report_Return].[数量] AS [数量], 
+      [Report_Return].[串码] AS [串码], 
+      [Report_Return].[归还日期] AS [归还日期], 
+      [Report_Return].[备注] AS [备注], 
+      [Report_Return].[ID] AS [ID], 
+      [Report_Return].[类别编码] AS [类别编码], 
+      [Report_Return].[门店编码] AS [门店编码]
+      FROM [dbo].[Report_Return] AS [Report_Return]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_ReturnIMEIInfo" EntityType="ReportModel.Store.Report_ReturnIMEIInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_ReturnIMEIInfo">
+      <DefiningQuery>SELECT 
+      [Report_ReturnIMEIInfo].[序号] AS [序号], 
+      [Report_ReturnIMEIInfo].[自主主键编号] AS [自主主键编号], 
+      [Report_ReturnIMEIInfo].[归还明细外键编号] AS [归还明细外键编号], 
+      [Report_ReturnIMEIInfo].[归还外键编号] AS [归还外键编号], 
+      [Report_ReturnIMEIInfo].[借贷单号] AS [借贷单号], 
+      [Report_ReturnIMEIInfo].[审批单号] AS [审批单号], 
+      [Report_ReturnIMEIInfo].[原始单号] AS [原始单号], 
+      [Report_ReturnIMEIInfo].[借贷门店] AS [借贷门店], 
+      [Report_ReturnIMEIInfo].[借贷日期] AS [借贷日期], 
+      [Report_ReturnIMEIInfo].[借贷部门] AS [借贷部门], 
+      [Report_ReturnIMEIInfo].[借贷人] AS [借贷人], 
+      [Report_ReturnIMEIInfo].[联系电话] AS [联系电话], 
+      [Report_ReturnIMEIInfo].[借贷方式] AS [借贷方式], 
+      [Report_ReturnIMEIInfo].[预计归还日期] AS [预计归还日期], 
+      [Report_ReturnIMEIInfo].[归还日期] AS [归还日期], 
+      [Report_ReturnIMEIInfo].[类别] AS [类别], 
+      [Report_ReturnIMEIInfo].[品牌] AS [品牌], 
+      [Report_ReturnIMEIInfo].[商品名称] AS [商品名称], 
+      [Report_ReturnIMEIInfo].[商品属性] AS [商品属性], 
+      [Report_ReturnIMEIInfo].[数量] AS [数量], 
+      [Report_ReturnIMEIInfo].[串码] AS [串码], 
+      [Report_ReturnIMEIInfo].[单价] AS [单价], 
+      [Report_ReturnIMEIInfo].[操作人] AS [操作人], 
+      [Report_ReturnIMEIInfo].[备注] AS [备注], 
+      [Report_ReturnIMEIInfo].[借贷仓库编码] AS [借贷仓库编码], 
+      [Report_ReturnIMEIInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_ReturnIMEIInfo] AS [Report_ReturnIMEIInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_ReturnListInfo" EntityType="ReportModel.Store.Report_ReturnListInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_ReturnListInfo">
+      <DefiningQuery>SELECT 
+      [Report_ReturnListInfo].[序号] AS [序号], 
+      [Report_ReturnListInfo].[系统自增主键编码] AS [系统自增主键编码], 
+      [Report_ReturnListInfo].[系统自增外键编号] AS [系统自增外键编号], 
+      [Report_ReturnListInfo].[借贷单号] AS [借贷单号], 
+      [Report_ReturnListInfo].[审批单号] AS [审批单号], 
+      [Report_ReturnListInfo].[原始单号] AS [原始单号], 
+      [Report_ReturnListInfo].[借贷门店] AS [借贷门店], 
+      [Report_ReturnListInfo].[借贷日期] AS [借贷日期], 
+      [Report_ReturnListInfo].[借贷部门] AS [借贷部门], 
+      [Report_ReturnListInfo].[借贷人] AS [借贷人], 
+      [Report_ReturnListInfo].[联系电话] AS [联系电话], 
+      [Report_ReturnListInfo].[借贷方式] AS [借贷方式], 
+      [Report_ReturnListInfo].[预计归还日期] AS [预计归还日期], 
+      [Report_ReturnListInfo].[归还日期] AS [归还日期], 
+      [Report_ReturnListInfo].[类别] AS [类别], 
+      [Report_ReturnListInfo].[品牌] AS [品牌], 
+      [Report_ReturnListInfo].[商品名称] AS [商品名称], 
+      [Report_ReturnListInfo].[商品属性] AS [商品属性], 
+      [Report_ReturnListInfo].[数量] AS [数量], 
+      [Report_ReturnListInfo].[单价] AS [单价], 
+      [Report_ReturnListInfo].[操作人] AS [操作人], 
+      [Report_ReturnListInfo].[备注] AS [备注], 
+      [Report_ReturnListInfo].[借贷仓库编码] AS [借贷仓库编码], 
+      [Report_ReturnListInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_ReturnListInfo] AS [Report_ReturnListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_SellAduitInfo" EntityType="ReportModel.Store.Report_SellAduitInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_SellAduitInfo">
+      <DefiningQuery>SELECT 
+      [Report_SellAduitInfo].[序号] AS [序号], 
+      [Report_SellAduitInfo].[系统主键] AS [系统主键], 
+      [Report_SellAduitInfo].[申请单号] AS [申请单号], 
+      [Report_SellAduitInfo].[批发总额] AS [批发总额], 
+      [Report_SellAduitInfo].[已审批] AS [已审批], 
+      [Report_SellAduitInfo].[已通过] AS [已通过], 
+      [Report_SellAduitInfo].[已使用] AS [已使用], 
+      [Report_SellAduitInfo].[使用日期] AS [使用日期], 
+      [Report_SellAduitInfo].[申请人] AS [申请人], 
+      [Report_SellAduitInfo].[申请日期] AS [申请日期], 
+      [Report_SellAduitInfo].[系统日期] AS [系统日期], 
+      [Report_SellAduitInfo].[门店] AS [门店], 
+      [Report_SellAduitInfo].[客户姓名] AS [客户姓名], 
+      [Report_SellAduitInfo].[客户电话] AS [客户电话], 
+      [Report_SellAduitInfo].[申请备注] AS [申请备注], 
+      [Report_SellAduitInfo].[一级已审批] AS [一级已审批], 
+      [Report_SellAduitInfo].[一级已通过] AS [一级已通过], 
+      [Report_SellAduitInfo].[一级审批人] AS [一级审批人], 
+      [Report_SellAduitInfo].[一级审批日期] AS [一级审批日期], 
+      [Report_SellAduitInfo].[一级备注] AS [一级备注], 
+      [Report_SellAduitInfo].[二级已审批] AS [二级已审批], 
+      [Report_SellAduitInfo].[二级已通过] AS [二级已通过], 
+      [Report_SellAduitInfo].[二级审批人] AS [二级审批人], 
+      [Report_SellAduitInfo].[二级审批日期] AS [二级审批日期], 
+      [Report_SellAduitInfo].[二级备注] AS [二级备注], 
+      [Report_SellAduitInfo].[三级已审批] AS [三级已审批], 
+      [Report_SellAduitInfo].[三级已通过] AS [三级已通过], 
+      [Report_SellAduitInfo].[三级审批人] AS [三级审批人], 
+      [Report_SellAduitInfo].[三级审批日期] AS [三级审批日期], 
+      [Report_SellAduitInfo].[三级备注] AS [三级备注], 
+      [Report_SellAduitInfo].[门店编码] AS [门店编码]
+      FROM [dbo].[Report_SellAduitInfo] AS [Report_SellAduitInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_SellAduitListInfo" EntityType="ReportModel.Store.Report_SellAduitListInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_SellAduitListInfo">
+      <DefiningQuery>SELECT 
+      [Report_SellAduitListInfo].[系统主键] AS [系统主键], 
+      [Report_SellAduitListInfo].[系统外键] AS [系统外键], 
+      [Report_SellAduitListInfo].[商品类别] AS [商品类别], 
+      [Report_SellAduitListInfo].[商品品牌] AS [商品品牌], 
+      [Report_SellAduitListInfo].[商品型号] AS [商品型号], 
+      [Report_SellAduitListInfo].[属性] AS [属性], 
+      [Report_SellAduitListInfo].[批发数量] AS [批发数量], 
+      [Report_SellAduitListInfo].[批发单价] AS [批发单价], 
+      [Report_SellAduitListInfo].[备注] AS [备注]
+      FROM [dbo].[Report_SellAduitListInfo] AS [Report_SellAduitListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_SellListInfo" EntityType="ReportModel.Store.Report_SellListInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_SellListInfo">
+      <DefiningQuery>SELECT 
+      [Report_SellListInfo].[序号] AS [序号], 
+      [Report_SellListInfo].[销售单号] AS [销售单号], 
+      [Report_SellListInfo].[原始单号] AS [原始单号], 
+      [Report_SellListInfo].[类别] AS [类别], 
+      [Report_SellListInfo].[品牌] AS [品牌], 
+      [Report_SellListInfo].[商品名称] AS [商品名称], 
+      [Report_SellListInfo].[商品属性] AS [商品属性], 
+      [Report_SellListInfo].[数量] AS [数量], 
+      [Report_SellListInfo].[销售方式] AS [销售方式], 
+      [Report_SellListInfo].[单价] AS [单价], 
+      [Report_SellListInfo].[实际单价] AS [实际单价], 
+      [Report_SellListInfo].[实收金额] AS [实收金额], 
+      [Report_SellListInfo].[门店] AS [门店], 
+      [Report_SellListInfo].[销售日期] AS [销售日期], 
+      [Report_SellListInfo].[代金券编码] AS [代金券编码], 
+      [Report_SellListInfo].[代金券面值] AS [代金券面值], 
+      [Report_SellListInfo].[兑换值] AS [兑换值], 
+      [Report_SellListInfo].[串码] AS [串码], 
+      [Report_SellListInfo].[单品优惠名称] AS [单品优惠名称], 
+      [Report_SellListInfo].[单品优惠金额] AS [单品优惠金额], 
+      [Report_SellListInfo].[组合优惠名称] AS [组合优惠名称], 
+      [Report_SellListInfo].[组合优惠金额] AS [组合优惠金额], 
+      [Report_SellListInfo].[批发优惠金额] AS [批发优惠金额], 
+      [Report_SellListInfo].[多收单价] AS [多收单价], 
+      [Report_SellListInfo].[暗补] AS [暗补], 
+      [Report_SellListInfo].[列收] AS [列收], 
+      [Report_SellListInfo].[终端代销费] AS [终端代销费], 
+      [Report_SellListInfo].[是否免费服务] AS [是否免费服务], 
+      [Report_SellListInfo].[销售员] AS [销售员], 
+      [Report_SellListInfo].[会员卡号] AS [会员卡号], 
+      [Report_SellListInfo].[客户姓名] AS [客户姓名], 
+      [Report_SellListInfo].[客户电话] AS [客户电话], 
+      [Report_SellListInfo].[备注] AS [备注], 
+      [Report_SellListInfo].[门店优惠] AS [门店优惠], 
+      [Report_SellListInfo].[销售时间] AS [销售时间], 
+      [Report_SellListInfo].[片区] AS [片区], 
+      [Report_SellListInfo].[商品大类] AS [商品大类], 
+      [Report_SellListInfo].[单头备注] AS [单头备注], 
+      [Report_SellListInfo].[大区] AS [大区], 
+      [Report_SellListInfo].[终端制式] AS [终端制式], 
+      [Report_SellListInfo].[门店编码] AS [门店编码], 
+      [Report_SellListInfo].[片区编码] AS [片区编码], 
+      [Report_SellListInfo].[大区编码] AS [大区编码], 
+      [Report_SellListInfo].[商品编码] AS [商品编码], 
+      [Report_SellListInfo].[类别编码] AS [类别编码], 
+      [Report_SellListInfo].[商品大类编码] AS [商品大类编码], 
+      [Report_SellListInfo].[批次号] AS [批次号], 
+      [Report_SellListInfo].[销售时成本价] AS [销售时成本价], 
+      [Report_SellListInfo].[入库成本价] AS [入库成本价], 
+      [Report_SellListInfo].[规则毛利可拿回] AS [规则毛利可拿回], 
+      [Report_SellListInfo].[规则毛利不可拿回] AS [规则毛利不可拿回], 
+      [Report_SellListInfo].[结算价] AS [结算价], 
+      [Report_SellListInfo].[仓属性] AS [仓属性], 
+      [Report_SellListInfo].[录入人] AS [录入人]
+      FROM [dbo].[Report_SellListInfo] AS [Report_SellListInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_SellListInfo2" EntityType="ReportModel.Store.Report_SellListInfo2" store:Type="Views" store:Schema="dbo" store:Name="Report_SellListInfo2">
+      <DefiningQuery>SELECT 
+      [Report_SellListInfo2].[序号] AS [序号], 
+      [Report_SellListInfo2].[销售单号] AS [销售单号], 
+      [Report_SellListInfo2].[原始单号] AS [原始单号], 
+      [Report_SellListInfo2].[类别] AS [类别], 
+      [Report_SellListInfo2].[品牌] AS [品牌], 
+      [Report_SellListInfo2].[商品名称] AS [商品名称], 
+      [Report_SellListInfo2].[商品属性] AS [商品属性], 
+      [Report_SellListInfo2].[数量] AS [数量], 
+      [Report_SellListInfo2].[销售方式] AS [销售方式], 
+      [Report_SellListInfo2].[单价] AS [单价], 
+      [Report_SellListInfo2].[实际单价] AS [实际单价], 
+      [Report_SellListInfo2].[实收金额] AS [实收金额], 
+      [Report_SellListInfo2].[门店] AS [门店], 
+      [Report_SellListInfo2].[销售日期] AS [销售日期], 
+      [Report_SellListInfo2].[代金券编码] AS [代金券编码], 
+      [Report_SellListInfo2].[代金券面值] AS [代金券面值], 
+      [Report_SellListInfo2].[兑换值] AS [兑换值], 
+      [Report_SellListInfo2].[串码] AS [串码], 
+      [Report_SellListInfo2].[单品优惠名称] AS [单品优惠名称], 
+      [Report_SellListInfo2].[单品优惠金额] AS [单品优惠金额], 
+      [Report_SellListInfo2].[组合优惠名称] AS [组合优惠名称], 
+      [Report_SellListInfo2].[组合优惠金额] AS [组合优惠金额], 
+      [Report_SellListInfo2].[批发优惠金额] AS [批发优惠金额], 
+      [Report_SellListInfo2].[多收单价] AS [多收单价], 
+      [Report_SellListInfo2].[暗补] AS [暗补], 
+      [Report_SellListInfo2].[列收] AS [列收], 
+      [Report_SellListInfo2].[终端代销费] AS [终端代销费], 
+      [Report_SellListInfo2].[是否免费服务] AS [是否免费服务], 
+      [Report_SellListInfo2].[销售员] AS [销售员], 
+      [Report_SellListInfo2].[会员卡号] AS [会员卡号], 
+      [Report_SellListInfo2].[客户姓名] AS [客户姓名], 
+      [Report_SellListInfo2].[客户电话] AS [客户电话], 
+      [Report_SellListInfo2].[备注] AS [备注], 
+      [Report_SellListInfo2].[门店优惠] AS [门店优惠], 
+      [Report_SellListInfo2].[销售时间] AS [销售时间], 
+      [Report_SellListInfo2].[片区] AS [片区], 
+      [Report_SellListInfo2].[商品大类] AS [商品大类], 
+      [Report_SellListInfo2].[单头备注] AS [单头备注], 
+      [Report_SellListInfo2].[大区] AS [大区], 
+      [Report_SellListInfo2].[终端制式] AS [终端制式], 
+      [Report_SellListInfo2].[门店编码] AS [门店编码], 
+      [Report_SellListInfo2].[片区编码] AS [片区编码], 
+      [Report_SellListInfo2].[大区编码] AS [大区编码], 
+      [Report_SellListInfo2].[商品编码] AS [商品编码], 
+      [Report_SellListInfo2].[类别编码] AS [类别编码], 
+      [Report_SellListInfo2].[商品大类编码] AS [商品大类编码], 
+      [Report_SellListInfo2].[批次号] AS [批次号], 
+      [Report_SellListInfo2].[销售时成本价] AS [销售时成本价], 
+      [Report_SellListInfo2].[入库成本价] AS [入库成本价], 
+      [Report_SellListInfo2].[规则毛利可拿回] AS [规则毛利可拿回], 
+      [Report_SellListInfo2].[规则毛利不可拿回] AS [规则毛利不可拿回], 
+      [Report_SellListInfo2].[结算价] AS [结算价]
+      FROM [dbo].[Report_SellListInfo2] AS [Report_SellListInfo2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_SellReport" EntityType="ReportModel.Store.Report_SellReport" store:Type="Views" store:Schema="dbo" store:Name="Report_SellReport">
+      <DefiningQuery>SELECT 
+      [Report_SellReport].[序号] AS [序号], 
+      [Report_SellReport].[销售单号] AS [销售单号], 
+      [Report_SellReport].[原始单号] AS [原始单号], 
+      [Report_SellReport].[类别] AS [类别], 
+      [Report_SellReport].[品牌] AS [品牌], 
+      [Report_SellReport].[商品名称] AS [商品名称], 
+      [Report_SellReport].[商品属性] AS [商品属性], 
+      [Report_SellReport].[数量] AS [数量], 
+      [Report_SellReport].[销售方式] AS [销售方式], 
+      [Report_SellReport].[单价] AS [单价], 
+      [Report_SellReport].[实际单价] AS [实际单价], 
+      [Report_SellReport].[实收金额] AS [实收金额], 
+      [Report_SellReport].[门店] AS [门店], 
+      [Report_SellReport].[销售日期] AS [销售日期], 
+      [Report_SellReport].[代金券编码] AS [代金券编码], 
+      [Report_SellReport].[代金券面值] AS [代金券面值], 
+      [Report_SellReport].[兑换值] AS [兑换值], 
+      [Report_SellReport].[串码] AS [串码], 
+      [Report_SellReport].[单品优惠名称] AS [单品优惠名称], 
+      [Report_SellReport].[单品优惠金额] AS [单品优惠金额], 
+      [Report_SellReport].[组合优惠名称] AS [组合优惠名称], 
+      [Report_SellReport].[组合优惠金额] AS [组合优惠金额], 
+      [Report_SellReport].[批发优惠金额] AS [批发优惠金额], 
+      [Report_SellReport].[多收单价] AS [多收单价], 
+      [Report_SellReport].[暗补] AS [暗补], 
+      [Report_SellReport].[列收] AS [列收], 
+      [Report_SellReport].[终端代销费] AS [终端代销费], 
+      [Report_SellReport].[是否免费服务] AS [是否免费服务], 
+      [Report_SellReport].[销售员] AS [销售员], 
+      [Report_SellReport].[会员卡号] AS [会员卡号], 
+      [Report_SellReport].[客户姓名] AS [客户姓名], 
+      [Report_SellReport].[客户电话] AS [客户电话], 
+      [Report_SellReport].[备注] AS [备注], 
+      [Report_SellReport].[门店优惠] AS [门店优惠], 
+      [Report_SellReport].[销售时间] AS [销售时间], 
+      [Report_SellReport].[片区] AS [片区], 
+      [Report_SellReport].[商品大类] AS [商品大类], 
+      [Report_SellReport].[单头备注] AS [单头备注], 
+      [Report_SellReport].[大区] AS [大区], 
+      [Report_SellReport].[终端制式] AS [终端制式], 
+      [Report_SellReport].[门店编码] AS [门店编码], 
+      [Report_SellReport].[片区编码] AS [片区编码], 
+      [Report_SellReport].[大区编码] AS [大区编码], 
+      [Report_SellReport].[商品编码] AS [商品编码], 
+      [Report_SellReport].[类别编码] AS [类别编码], 
+      [Report_SellReport].[商品大类编码] AS [商品大类编码], 
+      [Report_SellReport].[批次号] AS [批次号], 
+      [Report_SellReport].[销售时成本价] AS [销售时成本价], 
+      [Report_SellReport].[入库成本价] AS [入库成本价], 
+      [Report_SellReport].[规则毛利可拿回] AS [规则毛利可拿回], 
+      [Report_SellReport].[规则毛利不可拿回] AS [规则毛利不可拿回], 
+      [Report_SellReport].[结算价] AS [结算价], 
+      [Report_SellReport].[ProMainID] AS [ProMainID], 
+      [Report_SellReport].[price] AS [price]
+      FROM [dbo].[Report_SellReport] AS [Report_SellReport]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_SellReport2" EntityType="ReportModel.Store.Report_SellReport2" store:Type="Views" store:Schema="dbo" store:Name="Report_SellReport2">
+      <DefiningQuery>SELECT 
+      [Report_SellReport2].[序号] AS [序号], 
+      [Report_SellReport2].[销售单号] AS [销售单号], 
+      [Report_SellReport2].[原始单号] AS [原始单号], 
+      [Report_SellReport2].[类别] AS [类别], 
+      [Report_SellReport2].[品牌] AS [品牌], 
+      [Report_SellReport2].[商品名称] AS [商品名称], 
+      [Report_SellReport2].[商品属性] AS [商品属性], 
+      [Report_SellReport2].[数量] AS [数量], 
+      [Report_SellReport2].[销售方式] AS [销售方式], 
+      [Report_SellReport2].[单价] AS [单价], 
+      [Report_SellReport2].[实际单价] AS [实际单价], 
+      [Report_SellReport2].[实收金额] AS [实收金额], 
+      [Report_SellReport2].[门店] AS [门店], 
+      [Report_SellReport2].[销售日期] AS [销售日期], 
+      [Report_SellReport2].[代金券编码] AS [代金券编码], 
+      [Report_SellReport2].[代金券面值] AS [代金券面值], 
+      [Report_SellReport2].[兑换值] AS [兑换值], 
+      [Report_SellReport2].[串码] AS [串码], 
+      [Report_SellReport2].[单品优惠名称] AS [单品优惠名称], 
+      [Report_SellReport2].[单品优惠金额] AS [单品优惠金额], 
+      [Report_SellReport2].[组合优惠名称] AS [组合优惠名称], 
+      [Report_SellReport2].[组合优惠金额] AS [组合优惠金额], 
+      [Report_SellReport2].[批发优惠金额] AS [批发优惠金额], 
+      [Report_SellReport2].[多收单价] AS [多收单价], 
+      [Report_SellReport2].[暗补] AS [暗补], 
+      [Report_SellReport2].[列收] AS [列收], 
+      [Report_SellReport2].[终端代销费] AS [终端代销费], 
+      [Report_SellReport2].[是否免费服务] AS [是否免费服务], 
+      [Report_SellReport2].[销售员] AS [销售员], 
+      [Report_SellReport2].[会员卡号] AS [会员卡号], 
+      [Report_SellReport2].[客户姓名] AS [客户姓名], 
+      [Report_SellReport2].[客户电话] AS [客户电话], 
+      [Report_SellReport2].[备注] AS [备注], 
+      [Report_SellReport2].[门店优惠] AS [门店优惠], 
+      [Report_SellReport2].[销售时间] AS [销售时间], 
+      [Report_SellReport2].[片区] AS [片区], 
+      [Report_SellReport2].[商品大类] AS [商品大类], 
+      [Report_SellReport2].[单头备注] AS [单头备注], 
+      [Report_SellReport2].[大区] AS [大区], 
+      [Report_SellReport2].[终端制式] AS [终端制式], 
+      [Report_SellReport2].[门店编码] AS [门店编码], 
+      [Report_SellReport2].[片区编码] AS [片区编码], 
+      [Report_SellReport2].[大区编码] AS [大区编码], 
+      [Report_SellReport2].[商品编码] AS [商品编码], 
+      [Report_SellReport2].[类别编码] AS [类别编码], 
+      [Report_SellReport2].[商品大类编码] AS [商品大类编码], 
+      [Report_SellReport2].[批次号] AS [批次号], 
+      [Report_SellReport2].[销售时成本价] AS [销售时成本价], 
+      [Report_SellReport2].[入库成本价] AS [入库成本价], 
+      [Report_SellReport2].[规则毛利可拿回] AS [规则毛利可拿回], 
+      [Report_SellReport2].[规则毛利不可拿回] AS [规则毛利不可拿回], 
+      [Report_SellReport2].[结算价] AS [结算价], 
+      [Report_SellReport2].[ProMainID] AS [ProMainID], 
+      [Report_SellReport2].[price] AS [price]
+      FROM [dbo].[Report_SellReport2] AS [Report_SellReport2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_SellReport3" EntityType="ReportModel.Store.Report_SellReport3" store:Type="Views" store:Schema="dbo" store:Name="Report_SellReport3">
+      <DefiningQuery>SELECT 
+      [Report_SellReport3].[序号] AS [序号], 
+      [Report_SellReport3].[销售单号] AS [销售单号], 
+      [Report_SellReport3].[原始单号] AS [原始单号], 
+      [Report_SellReport3].[类别] AS [类别], 
+      [Report_SellReport3].[品牌] AS [品牌], 
+      [Report_SellReport3].[商品名称] AS [商品名称], 
+      [Report_SellReport3].[商品属性] AS [商品属性], 
+      [Report_SellReport3].[数量] AS [数量], 
+      [Report_SellReport3].[销售方式] AS [销售方式], 
+      [Report_SellReport3].[单价] AS [单价], 
+      [Report_SellReport3].[实际单价] AS [实际单价], 
+      [Report_SellReport3].[实收金额] AS [实收金额], 
+      [Report_SellReport3].[门店] AS [门店], 
+      [Report_SellReport3].[销售日期] AS [销售日期], 
+      [Report_SellReport3].[代金券编码] AS [代金券编码], 
+      [Report_SellReport3].[代金券面值] AS [代金券面值], 
+      [Report_SellReport3].[兑换值] AS [兑换值], 
+      [Report_SellReport3].[串码] AS [串码], 
+      [Report_SellReport3].[单品优惠名称] AS [单品优惠名称], 
+      [Report_SellReport3].[单品优惠金额] AS [单品优惠金额], 
+      [Report_SellReport3].[组合优惠名称] AS [组合优惠名称], 
+      [Report_SellReport3].[组合优惠金额] AS [组合优惠金额], 
+      [Report_SellReport3].[批发优惠金额] AS [批发优惠金额], 
+      [Report_SellReport3].[多收单价] AS [多收单价], 
+      [Report_SellReport3].[暗补] AS [暗补], 
+      [Report_SellReport3].[列收] AS [列收], 
+      [Report_SellReport3].[终端代销费] AS [终端代销费], 
+      [Report_SellReport3].[是否免费服务] AS [是否免费服务], 
+      [Report_SellReport3].[销售员] AS [销售员], 
+      [Report_SellReport3].[会员卡号] AS [会员卡号], 
+      [Report_SellReport3].[客户姓名] AS [客户姓名], 
+      [Report_SellReport3].[客户电话] AS [客户电话], 
+      [Report_SellReport3].[备注] AS [备注], 
+      [Report_SellReport3].[门店优惠] AS [门店优惠], 
+      [Report_SellReport3].[销售时间] AS [销售时间], 
+      [Report_SellReport3].[片区] AS [片区], 
+      [Report_SellReport3].[商品大类] AS [商品大类], 
+      [Report_SellReport3].[单头备注] AS [单头备注], 
+      [Report_SellReport3].[大区] AS [大区], 
+      [Report_SellReport3].[终端制式] AS [终端制式], 
+      [Report_SellReport3].[门店编码] AS [门店编码], 
+      [Report_SellReport3].[片区编码] AS [片区编码], 
+      [Report_SellReport3].[大区编码] AS [大区编码], 
+      [Report_SellReport3].[商品编码] AS [商品编码], 
+      [Report_SellReport3].[类别编码] AS [类别编码], 
+      [Report_SellReport3].[商品大类编码] AS [商品大类编码], 
+      [Report_SellReport3].[批次号] AS [批次号], 
+      [Report_SellReport3].[销售时成本价] AS [销售时成本价], 
+      [Report_SellReport3].[入库成本价] AS [入库成本价], 
+      [Report_SellReport3].[规则毛利可拿回] AS [规则毛利可拿回], 
+      [Report_SellReport3].[规则毛利不可拿回] AS [规则毛利不可拿回], 
+      [Report_SellReport3].[结算价] AS [结算价], 
+      [Report_SellReport3].[ProMainID] AS [ProMainID], 
+      [Report_SellReport3].[price] AS [price]
+      FROM [dbo].[Report_SellReport3] AS [Report_SellReport3]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_SMSSign" EntityType="ReportModel.Store.Report_SMSSign" store:Type="Views" store:Schema="dbo" store:Name="Report_SMSSign">
+      <DefiningQuery>SELECT 
+      [Report_SMSSign].[序号] AS [序号], 
+      [Report_SMSSign].[销售单号] AS [销售单号], 
+      [Report_SMSSign].[系统时间] AS [系统时间], 
+      [Report_SMSSign].[行业] AS [行业], 
+      [Report_SMSSign].[合同日期] AS [合同日期], 
+      [Report_SMSSign].[单位名称] AS [单位名称], 
+      [Report_SMSSign].[单位地址] AS [单位地址], 
+      [Report_SMSSign].[业务内容] AS [业务内容], 
+      [Report_SMSSign].[合同金额] AS [合同金额], 
+      [Report_SMSSign].[合同发送数量] AS [合同发送数量], 
+      [Report_SMSSign].[实收金额] AS [实收金额], 
+      [Report_SMSSign].[实际发送数量] AS [实际发送数量], 
+      [Report_SMSSign].[合同结清日期] AS [合同结清日期], 
+      [Report_SMSSign].[实际结清日期] AS [实际结清日期], 
+      [Report_SMSSign].[佣金] AS [佣金], 
+      [Report_SMSSign].[联系人] AS [联系人], 
+      [Report_SMSSign].[联系电话] AS [联系电话], 
+      [Report_SMSSign].[发票抬头] AS [发票抬头], 
+      [Report_SMSSign].[发票代码] AS [发票代码], 
+      [Report_SMSSign].[发票日期] AS [发票日期], 
+      [Report_SMSSign].[税率] AS [税率], 
+      [Report_SMSSign].[备注] AS [备注], 
+      [Report_SMSSign].[已结清] AS [已结清], 
+      [Report_SMSSign].[原始单号] AS [原始单号], 
+      [Report_SMSSign].[录单员] AS [录单员], 
+      [Report_SMSSign].[销售员] AS [销售员], 
+      [Report_SMSSign].[仓库] AS [仓库]
+      FROM [dbo].[Report_SMSSign] AS [Report_SMSSign]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_StoreInfo" EntityType="ReportModel.Store.Report_StoreInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_StoreInfo">
+      <DefiningQuery>SELECT 
+      [Report_StoreInfo].[序号] AS [序号], 
+      [Report_StoreInfo].[类别] AS [类别], 
+      [Report_StoreInfo].[品牌] AS [品牌], 
+      [Report_StoreInfo].[商品名称] AS [商品名称], 
+      [Report_StoreInfo].[商品属性] AS [商品属性], 
+      [Report_StoreInfo].[零售价格] AS [零售价格], 
+      [Report_StoreInfo].[在库数量] AS [在库数量], 
+      [Report_StoreInfo].[门店优惠审批中] AS [门店优惠审批中], 
+      [Report_StoreInfo].[调拨中数量] AS [调拨中数量], 
+      [Report_StoreInfo].[送修中数量] AS [送修中数量], 
+      [Report_StoreInfo].[借贷中数量] AS [借贷中数量], 
+      [Report_StoreInfo].[小计] AS [小计], 
+      [Report_StoreInfo].[门店] AS [门店], 
+      [Report_StoreInfo].[区域] AS [区域], 
+      [Report_StoreInfo].[商品编码] AS [商品编码], 
+      [Report_StoreInfo].[门店编码] AS [门店编码], 
+      [Report_StoreInfo].[类别编码] AS [类别编码]
+      FROM [dbo].[Report_StoreInfo] AS [Report_StoreInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_VipBuyTimeInfo" EntityType="ReportModel.Store.Report_VipBuyTimeInfo" store:Type="Views" store:Schema="dbo" store:Name="Report_VipBuyTimeInfo">
+      <DefiningQuery>SELECT 
+      [Report_VipBuyTimeInfo].[序号] AS [序号], 
+      [Report_VipBuyTimeInfo].[注册时间] AS [注册时间], 
+      [Report_VipBuyTimeInfo].[大区] AS [大区], 
+      [Report_VipBuyTimeInfo].[区域] AS [区域], 
+      [Report_VipBuyTimeInfo].[店名] AS [店名], 
+      [Report_VipBuyTimeInfo].[网店属性] AS [网店属性], 
+      [Report_VipBuyTimeInfo].[销售员] AS [销售员], 
+      [Report_VipBuyTimeInfo].[仓管员] AS [仓管员], 
+      [Report_VipBuyTimeInfo].[卡号] AS [卡号], 
+      [Report_VipBuyTimeInfo].[卡类] AS [卡类], 
+      [Report_VipBuyTimeInfo].[销售金额] AS [销售金额], 
+      [Report_VipBuyTimeInfo].[客户名称] AS [客户名称], 
+      [Report_VipBuyTimeInfo].[性别] AS [性别], 
+      [Report_VipBuyTimeInfo].[生日日期] AS [生日日期], 
+      [Report_VipBuyTimeInfo].[联系号码] AS [联系号码], 
+      [Report_VipBuyTimeInfo].[备用号码] AS [备用号码], 
+      [Report_VipBuyTimeInfo].[身份证] AS [身份证], 
+      [Report_VipBuyTimeInfo].[详细地址] AS [详细地址], 
+      [Report_VipBuyTimeInfo].[QQ号_微信_微博] AS [QQ号_微信_微博], 
+      [Report_VipBuyTimeInfo].[累计积分] AS [累计积分], 
+      [Report_VipBuyTimeInfo].[消费次数] AS [消费次数], 
+      [Report_VipBuyTimeInfo].[累计消费总额] AS [累计消费总额], 
+      [Report_VipBuyTimeInfo].[平均消费水平] AS [平均消费水平], 
+      [Report_VipBuyTimeInfo].[会员贴膜次数] AS [会员贴膜次数], 
+      [Report_VipBuyTimeInfo].[备注] AS [备注], 
+      [Report_VipBuyTimeInfo].[状态] AS [状态], 
+      [Report_VipBuyTimeInfo].[门店编码] AS [门店编码]
+      FROM [dbo].[Report_VipBuyTimeInfo] AS [Report_VipBuyTimeInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_VipBuyTimeInfo2" EntityType="ReportModel.Store.Report_VipBuyTimeInfo2" store:Type="Views" store:Schema="dbo" store:Name="Report_VipBuyTimeInfo2">
+      <DefiningQuery>SELECT 
+      [Report_VipBuyTimeInfo2].[序号] AS [序号], 
+      [Report_VipBuyTimeInfo2].[注册时间] AS [注册时间], 
+      [Report_VipBuyTimeInfo2].[大区] AS [大区], 
+      [Report_VipBuyTimeInfo2].[区域] AS [区域], 
+      [Report_VipBuyTimeInfo2].[店名] AS [店名], 
+      [Report_VipBuyTimeInfo2].[网店属性] AS [网店属性], 
+      [Report_VipBuyTimeInfo2].[销售员] AS [销售员], 
+      [Report_VipBuyTimeInfo2].[仓管员] AS [仓管员], 
+      [Report_VipBuyTimeInfo2].[卡号] AS [卡号], 
+      [Report_VipBuyTimeInfo2].[卡类] AS [卡类], 
+      [Report_VipBuyTimeInfo2].[销售金额] AS [销售金额], 
+      [Report_VipBuyTimeInfo2].[客户名称] AS [客户名称], 
+      [Report_VipBuyTimeInfo2].[性别] AS [性别], 
+      [Report_VipBuyTimeInfo2].[生日日期] AS [生日日期], 
+      [Report_VipBuyTimeInfo2].[联系号码] AS [联系号码], 
+      [Report_VipBuyTimeInfo2].[备用号码] AS [备用号码], 
+      [Report_VipBuyTimeInfo2].[身份证] AS [身份证], 
+      [Report_VipBuyTimeInfo2].[详细地址] AS [详细地址], 
+      [Report_VipBuyTimeInfo2].[QQ号_微信_微博] AS [QQ号_微信_微博], 
+      [Report_VipBuyTimeInfo2].[累计积分] AS [累计积分], 
+      [Report_VipBuyTimeInfo2].[消费次数] AS [消费次数], 
+      [Report_VipBuyTimeInfo2].[会员贴膜次数] AS [会员贴膜次数], 
+      [Report_VipBuyTimeInfo2].[备注] AS [备注], 
+      [Report_VipBuyTimeInfo2].[状态] AS [状态], 
+      [Report_VipBuyTimeInfo2].[门店编码] AS [门店编码]
+      FROM [dbo].[Report_VipBuyTimeInfo2] AS [Report_VipBuyTimeInfo2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_YANBAO" EntityType="ReportModel.Store.Report_YANBAO" store:Type="Views" store:Schema="dbo" store:Name="Report_YANBAO">
+      <DefiningQuery>SELECT 
+      [Report_YANBAO].[序号] AS [序号], 
+      [Report_YANBAO].[录入时间] AS [录入时间], 
+      [Report_YANBAO].[大区] AS [大区], 
+      [Report_YANBAO].[区域] AS [区域], 
+      [Report_YANBAO].[店名] AS [店名], 
+      [Report_YANBAO].[网店属性] AS [网店属性], 
+      [Report_YANBAO].[销售员] AS [销售员], 
+      [Report_YANBAO].[仓管员] AS [仓管员], 
+      [Report_YANBAO].[客户姓名] AS [客户姓名], 
+      [Report_YANBAO].[联系方式] AS [联系方式], 
+      [Report_YANBAO].[延保购买日期] AS [延保购买日期], 
+      [Report_YANBAO].[合同编号] AS [合同编号], 
+      [Report_YANBAO].[销售数量] AS [销售数量], 
+      [Report_YANBAO].[延保价格] AS [延保价格], 
+      [Report_YANBAO].[手机型号] AS [手机型号], 
+      [Report_YANBAO].[手机价格] AS [手机价格], 
+      [Report_YANBAO].[手机串号] AS [手机串号], 
+      [Report_YANBAO].[手机购买方式] AS [手机购买方式], 
+      [Report_YANBAO].[发票号码] AS [发票号码], 
+      [Report_YANBAO].[电池编码] AS [电池编码], 
+      [Report_YANBAO].[充电器编码] AS [充电器编码], 
+      [Report_YANBAO].[耳机编码] AS [耳机编码], 
+      [Report_YANBAO].[备注] AS [备注], 
+      [Report_YANBAO].[状态] AS [状态], 
+      [Report_YANBAO].[门店编码] AS [门店编码]
+      FROM [dbo].[Report_YANBAO] AS [Report_YANBAO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Report_YANBAO2" EntityType="ReportModel.Store.Report_YANBAO2" store:Type="Views" store:Schema="dbo" store:Name="Report_YANBAO2">
+      <DefiningQuery>SELECT 
+      [Report_YANBAO2].[序号] AS [序号], 
+      [Report_YANBAO2].[录入时间] AS [录入时间], 
+      [Report_YANBAO2].[大区] AS [大区], 
+      [Report_YANBAO2].[区域] AS [区域], 
+      [Report_YANBAO2].[店名] AS [店名], 
+      [Report_YANBAO2].[网店属性] AS [网店属性], 
+      [Report_YANBAO2].[销售员] AS [销售员], 
+      [Report_YANBAO2].[仓管员] AS [仓管员], 
+      [Report_YANBAO2].[客户姓名] AS [客户姓名], 
+      [Report_YANBAO2].[联系方式] AS [联系方式], 
+      [Report_YANBAO2].[延保购买日期] AS [延保购买日期], 
+      [Report_YANBAO2].[合同编号] AS [合同编号], 
+      [Report_YANBAO2].[销售数量] AS [销售数量], 
+      [Report_YANBAO2].[延保价格] AS [延保价格], 
+      [Report_YANBAO2].[手机型号] AS [手机型号], 
+      [Report_YANBAO2].[手机价格] AS [手机价格], 
+      [Report_YANBAO2].[手机串号] AS [手机串号], 
+      [Report_YANBAO2].[手机购买方式] AS [手机购买方式], 
+      [Report_YANBAO2].[发票号码] AS [发票号码], 
+      [Report_YANBAO2].[电池编码] AS [电池编码], 
+      [Report_YANBAO2].[充电器编码] AS [充电器编码], 
+      [Report_YANBAO2].[耳机编码] AS [耳机编码], 
+      [Report_YANBAO2].[备注] AS [备注], 
+      [Report_YANBAO2].[状态] AS [状态], 
+      [Report_YANBAO2].[门店编码] AS [门店编码]
+      FROM [dbo].[Report_YANBAO2] AS [Report_YANBAO2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_BorowAduit" EntityType="ReportModel.Store.View_BorowAduit" store:Type="Views" store:Schema="dbo" store:Name="View_BorowAduit">
+      <DefiningQuery>SELECT 
+      [View_BorowAduit].[AduitID] AS [AduitID], 
+      [View_BorowAduit].[ID] AS [ID], 
+      [View_BorowAduit].[AduitUser] AS [AduitUser], 
+      [View_BorowAduit].[AduitUser2] AS [AduitUser2], 
+      [View_BorowAduit].[AduitUser3] AS [AduitUser3], 
+      [View_BorowAduit].[ApplyUser] AS [ApplyUser], 
+      [View_BorowAduit].[ApplyDate] AS [ApplyDate], 
+      [View_BorowAduit].[Note] AS [Note], 
+      [View_BorowAduit].[HallID] AS [HallID], 
+      [View_BorowAduit].[HallName] AS [HallName], 
+      [View_BorowAduit].[Aduited1] AS [Aduited1], 
+      [View_BorowAduit].[Passed1] AS [Passed1], 
+      [View_BorowAduit].[Aduited2] AS [Aduited2], 
+      [View_BorowAduit].[Passed2] AS [Passed2], 
+      [View_BorowAduit].[Aduited3] AS [Aduited3], 
+      [View_BorowAduit].[Passed3] AS [Passed3], 
+      [View_BorowAduit].[Aduited] AS [Aduited], 
+      [View_BorowAduit].[Passed] AS [Passed], 
+      [View_BorowAduit].[Aduited4] AS [Aduited4], 
+      [View_BorowAduit].[Passed4] AS [Passed4], 
+      [View_BorowAduit].[AduitDate4] AS [AduitDate4], 
+      [View_BorowAduit].[AduitUser4] AS [AduitUser4], 
+      [View_BorowAduit].[Used] AS [Used], 
+      [View_BorowAduit].[SysDate] AS [SysDate], 
+      [View_BorowAduit].[UseDate] AS [UseDate], 
+      [View_BorowAduit].[AduitDate] AS [AduitDate], 
+      [View_BorowAduit].[Dept] AS [Dept], 
+      [View_BorowAduit].[AduitDate2] AS [AduitDate2], 
+      [View_BorowAduit].[AduitDate3] AS [AduitDate3], 
+      [View_BorowAduit].[BorrowType] AS [BorrowType], 
+      [View_BorowAduit].[Borrower] AS [Borrower], 
+      [View_BorowAduit].[InternalBorow] AS [InternalBorow], 
+      [View_BorowAduit].[Note1] AS [Note1], 
+      [View_BorowAduit].[Note2] AS [Note2], 
+      [View_BorowAduit].[Note3] AS [Note3], 
+      [View_BorowAduit].[Note4] AS [Note4], 
+      [View_BorowAduit].[MobilPhone] AS [MobilPhone], 
+      [View_BorowAduit].[EstimateReturnTime] AS [EstimateReturnTime], 
+      [View_BorowAduit].[TotalMoney] AS [TotalMoney], 
+      [View_BorowAduit].[Used1] AS [Used1], 
+      [View_BorowAduit].[hasAduited1] AS [hasAduited1], 
+      [View_BorowAduit].[HasAduited] AS [HasAduited], 
+      [View_BorowAduit].[HasPassed] AS [HasPassed], 
+      [View_BorowAduit].[Expr1] AS [Expr1], 
+      [View_BorowAduit].[HasPassed1] AS [HasPassed1], 
+      [View_BorowAduit].[HasAduited2] AS [HasAduited2], 
+      [View_BorowAduit].[HasPassed2] AS [HasPassed2], 
+      [View_BorowAduit].[HasAduited3] AS [HasAduited3], 
+      [View_BorowAduit].[HasPassed3] AS [HasPassed3], 
+      [View_BorowAduit].[HasAduited4] AS [HasAduited4], 
+      [View_BorowAduit].[HasPassed4] AS [HasPassed4], 
+      [View_BorowAduit].[HasUsed] AS [HasUsed]
+      FROM [dbo].[View_BorowAduit] AS [View_BorowAduit]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_Package_GroupInfo" EntityType="ReportModel.Store.View_Package_GroupInfo" store:Type="Views" store:Schema="dbo" store:Name="View_Package_GroupInfo">
+      <DefiningQuery>SELECT 
+      [View_Package_GroupInfo].[SellTypeID] AS [SellTypeID], 
+      [View_Package_GroupInfo].[IsMust] AS [IsMust], 
+      [View_Package_GroupInfo].[Note] AS [Note], 
+      [View_Package_GroupInfo].[GroupName] AS [GroupName], 
+      [View_Package_GroupInfo].[ID] AS [ID], 
+      [View_Package_GroupInfo].[TempOffID] AS [TempOffID], 
+      [View_Package_GroupInfo].[SellTypeName] AS [SellTypeName], 
+      [View_Package_GroupInfo].[SubNote] AS [SubNote]
+      FROM [dbo].[View_Package_GroupInfo] AS [View_Package_GroupInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_VIPOffListAduit" EntityType="ReportModel.Store.View_VIPOffListAduit" store:Type="Views" store:Schema="dbo" store:Name="View_VIPOffListAduit">
+      <DefiningQuery>SELECT 
+      [View_VIPOffListAduit].[Name] AS [Name], 
+      [View_VIPOffListAduit].[ID] AS [ID], 
+      [View_VIPOffListAduit].[Type] AS [Type], 
+      [View_VIPOffListAduit].[ArriveMoney] AS [ArriveMoney], 
+      [View_VIPOffListAduit].[Note] AS [Note], 
+      [View_VIPOffListAduit].[VIPTicketMaxCount] AS [VIPTicketMaxCount], 
+      [View_VIPOffListAduit].[SalesName] AS [SalesName], 
+      [View_VIPOffListAduit].[HeadID] AS [HeadID]
+      FROM [dbo].[View_VIPOffListAduit] AS [View_VIPOffListAduit]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_VIPOffListAduitHeader" EntityType="ReportModel.Store.View_VIPOffListAduitHeader" store:Type="Views" store:Schema="dbo" store:Name="View_VIPOffListAduitHeader">
+      <DefiningQuery>SELECT 
+      [View_VIPOffListAduitHeader].[ID] AS [ID], 
+      [View_VIPOffListAduitHeader].[Destination] AS [Destination], 
+      [View_VIPOffListAduitHeader].[SaleTarget] AS [SaleTarget], 
+      [View_VIPOffListAduitHeader].[StartDate] AS [StartDate], 
+      [View_VIPOffListAduitHeader].[SysDate] AS [SysDate], 
+      [View_VIPOffListAduitHeader].[Applyer] AS [Applyer], 
+      [View_VIPOffListAduitHeader].[ApplyDate] AS [ApplyDate], 
+      [View_VIPOffListAduitHeader].[Aduited] AS [Aduited], 
+      [View_VIPOffListAduitHeader].[Passed] AS [Passed], 
+      [View_VIPOffListAduitHeader].[Aduited2] AS [Aduited2], 
+      [View_VIPOffListAduitHeader].[Passed2] AS [Passed2], 
+      [View_VIPOffListAduitHeader].[Aduited3] AS [Aduited3], 
+      [View_VIPOffListAduitHeader].[Passed3] AS [Passed3], 
+      [View_VIPOffListAduitHeader].[Aduited1] AS [Aduited1], 
+      [View_VIPOffListAduitHeader].[Passed1] AS [Passed1], 
+      [View_VIPOffListAduitHeader].[AduitNote1] AS [AduitNote1], 
+      [View_VIPOffListAduitHeader].[AduitDate1] AS [AduitDate1], 
+      [View_VIPOffListAduitHeader].[AduitNote2] AS [AduitNote2], 
+      [View_VIPOffListAduitHeader].[AduitDate2] AS [AduitDate2], 
+      [View_VIPOffListAduitHeader].[ApplyNote] AS [ApplyNote], 
+      [View_VIPOffListAduitHeader].[EndDate] AS [EndDate], 
+      [View_VIPOffListAduitHeader].[Creater] AS [Creater], 
+      [View_VIPOffListAduitHeader].[DeadLine] AS [DeadLine], 
+      [View_VIPOffListAduitHeader].[Scope] AS [Scope], 
+      [View_VIPOffListAduitHeader].[ExtNote] AS [ExtNote], 
+      [View_VIPOffListAduitHeader].[AduitNote3] AS [AduitNote3], 
+      [View_VIPOffListAduitHeader].[AduitDate3] AS [AduitDate3], 
+      [View_VIPOffListAduitHeader].[AduitUser3] AS [AduitUser3], 
+      [View_VIPOffListAduitHeader].[HasAduited] AS [HasAduited], 
+      [View_VIPOffListAduitHeader].[HasPassed] AS [HasPassed], 
+      [View_VIPOffListAduitHeader].[HasAduited1] AS [HasAduited1], 
+      [View_VIPOffListAduitHeader].[HasPassed1] AS [HasPassed1], 
+      [View_VIPOffListAduitHeader].[HasAduited2] AS [HasAduited2], 
+      [View_VIPOffListAduitHeader].[HasPassed2] AS [HasPassed2], 
+      [View_VIPOffListAduitHeader].[HasAduited3] AS [HasAduited3], 
+      [View_VIPOffListAduitHeader].[HasPassed3] AS [HasPassed3]
+      FROM [dbo].[View_VIPOffListAduitHeader] AS [View_VIPOffListAduitHeader]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Demo_ReportViewInfo_Sys_MenuInfo" Association="ReportModel.Store.FK_Demo_ReportViewInfo_Sys_MenuInfo">
+      <End Role="Sys_MenuInfo" EntitySet="Sys_MenuInfo" />
+      <End Role="Demo_ReportViewInfo" EntitySet="Demo_ReportViewInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRO_PROI_REFERENCE_PRO_CLAS" Association="ReportModel.Store.FK_PRO_PROI_REFERENCE_PRO_CLAS">
+      <End Role="Pro_ClassInfo" EntitySet="Pro_ClassInfo" />
+      <End Role="Pro_ProInfo" EntitySet="Pro_ProInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_MenuInfo_Sys_MenuInfo" Association="ReportModel.Store.FK_Sys_MenuInfo_Sys_MenuInfo">
+      <End Role="Sys_MenuInfo" EntitySet="Sys_MenuInfo" />
+      <End Role="Sys_MenuInfo1" EntitySet="Sys_MenuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Role_Menu_HallInfo_Pro_HallInfo" Association="ReportModel.Store.FK_Sys_Role_Menu_HallInfo_Pro_HallInfo">
+      <End Role="Pro_HallInfo" EntitySet="Pro_HallInfo" />
+      <End Role="Sys_Role_Menu_HallInfo" EntitySet="Sys_Role_Menu_HallInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Role_Menu_HallInfo_Sys_MenuInfo" Association="ReportModel.Store.FK_Sys_Role_Menu_HallInfo_Sys_MenuInfo">
+      <End Role="Sys_MenuInfo" EntitySet="Sys_MenuInfo" />
+      <End Role="Sys_Role_Menu_HallInfo" EntitySet="Sys_Role_Menu_HallInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Role_Menu_ProInfo_Pro_ClassInfo" Association="ReportModel.Store.FK_Sys_Role_Menu_ProInfo_Pro_ClassInfo">
+      <End Role="Pro_ClassInfo" EntitySet="Pro_ClassInfo" />
+      <End Role="Sys_Role_Menu_ProInfo" EntitySet="Sys_Role_Menu_ProInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Role_MenuInfo_Sys_MenuInfo" Association="ReportModel.Store.FK_Sys_Role_MenuInfo_Sys_MenuInfo">
+      <End Role="Sys_MenuInfo" EntitySet="Sys_MenuInfo" />
+      <End Role="Sys_Role_MenuInfo" EntitySet="Sys_Role_MenuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Role_ProInfo_Sys_MenuInfo" Association="ReportModel.Store.FK_Sys_Role_ProInfo_Sys_MenuInfo">
+      <End Role="Sys_MenuInfo" EntitySet="Sys_MenuInfo" />
+      <End Role="Sys_Role_Menu_ProInfo" EntitySet="Sys_Role_Menu_ProInfo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Demo_ReportViewInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ReportViewName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MenuID" Type="int" />
+  </EntityType>
+  <EntityType Name="Demo_提成报表">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="日期" Type="datetime" />
+    <Property Name="营销员" Type="nvarchar" MaxLength="500" />
+    <Property Name="职位" Type="nvarchar" MaxLength="500" />
+    <Property Name="仓库" Type="nvarchar" MaxLength="500" />
+    <Property Name="片区" Type="nvarchar" MaxLength="500" />
+    <Property Name="广信延保销售数量" Type="decimal" Scale="4" />
+    <Property Name="广信延保提成" Type="decimal" Scale="4" />
+    <Property Name="本人销售数量" Type="decimal" Scale="4" />
+    <Property Name="本人销售提成" Type="decimal" Scale="4" />
+    <Property Name="本人销售退机" Type="decimal" Scale="4" />
+    <Property Name="本人销售退机金额" Type="decimal" Scale="4" />
+    <Property Name="非本人销售数量" Type="decimal" Scale="4" />
+    <Property Name="非本人销售提成" Type="decimal" Scale="4" />
+    <Property Name="非本人销售退机" Type="decimal" Scale="4" />
+    <Property Name="非本人销售退机金额" Type="decimal" Scale="4" />
+    <Property Name="终端提成总额" Type="decimal" Scale="4" />
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Pro_ClassInfo">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="ClassID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClassName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Order" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="HasSalary" Type="bit" />
+    <Property Name="ClassTypeID" Type="int" />
+  </EntityType>
+  <EntityType Name="Pro_HallInfo">
+    <Key>
+      <PropertyRef Name="HallID" />
+    </Key>
+    <Property Name="HallID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="HallName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Flag" Type="bit" />
+    <Property Name="Order" Type="int" />
+    <Property Name="AreaID" Type="int" />
+    <Property Name="LevelID" Type="int" />
+    <Property Name="CanIn" Type="bit" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="CanBack" Type="bit" />
+    <Property Name="Longitude" Type="decimal" />
+    <Property Name="Latitude" Type="decimal" />
+    <Property Name="DisPlayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SellNum" Type="int" Nullable="false" />
+    <Property Name="PrintName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Pro_ProInfo">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Pro_TypeID" Type="int" />
+    <Property Name="Pro_ClassID" Type="int" />
+    <Property Name="VIP_TypeID" Type="int" Nullable="false" />
+    <Property Name="ProName" Type="nvarchar" MaxLength="50" />
+    <Property Name="NeedIMEI" Type="bit" Nullable="false" />
+    <Property Name="SepDate" Type="datetime" />
+    <Property Name="BeforeSep" Type="bit" Nullable="false" />
+    <Property Name="BeforeRate" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="AfterSep" Type="bit" Nullable="false" />
+    <Property Name="AfterRate" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="TicketLevel" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="BeforeTicket" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="AfterTicket" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="ValueIDList" Type="text" />
+    <Property Name="IsService" Type="bit" Nullable="false" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="NeedMoreorLess" Type="bit" />
+    <Property Name="ProFormat" Type="nvarchar" MaxLength="100" />
+    <Property Name="ProMainID" Type="int" />
+    <Property Name="PrintName" Type="nvarchar" MaxLength="8" />
+    <Property Name="ISdecimals" Type="bit" Nullable="false" />
+    <Property Name="YanBaoModelID" Type="int" />
+    <Property Name="AirHallID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pro_ClassTypeID" Type="int" />
+    <Property Name="AssetFrom" Type="nvarchar" MaxLength="50" />
+    <Property Name="AssetPeriod" Type="int" />
+    <Property Name="AssetRate" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="AssetPrice" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="AssetValue" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="AssetSalvageValue" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="AssetFinish" Type="bit" />
+    <Property Name="AssetStatus" Type="nvarchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="Sys_MenuInfo">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MenuText" Type="nvarchar" MaxLength="50" />
+    <Property Name="MenuValue" Type="nvarchar" MaxLength="100" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="Parent" Type="int" />
+    <Property Name="MenuImg" Type="nvarchar" MaxLength="50" />
+    <Property Name="Flag" Type="bit" />
+    <Property Name="Order" Type="decimal" />
+    <Property Name="HasHallRole" Type="bit" />
+    <Property Name="HasProRole" Type="bit" />
+    <Property Name="DisplayMobile" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sys_Option">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Value" Type="nvarchar" MaxLength="50" />
+    <Property Name="Value2" Type="nvarchar" MaxLength="50" />
+    <Property Name="ClassName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sys_Role_Menu_HallInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MenuID" Type="int" />
+    <Property Name="HallID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Note" Type="nvarchar" MaxLength="500" />
+    <Property Name="RoleID" Type="int" />
+  </EntityType>
+  <EntityType Name="Sys_Role_Menu_ProInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MenuID" Type="int" />
+    <Property Name="ClassID" Type="int" />
+    <Property Name="Note" Type="nvarchar" MaxLength="500" />
+    <Property Name="RoleID" Type="int" />
+  </EntityType>
+  <EntityType Name="Sys_Role_MenuInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="MenuID" Type="int" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsChecked" Type="bit" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Chart_MapReport”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Chart_MapReport">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="HallID" />
+      <PropertyRef Name="ProClass" />
+      <PropertyRef Name="DATE" />
+      <PropertyRef Name="AreaID" />
+      <PropertyRef Name="Profit" />
+      <PropertyRef Name="ClassTypeName" />
+      <PropertyRef Name="AsPrice" />
+    </Key>
+    <Property Name="ID" Type="bigint" Nullable="false" />
+    <Property Name="HallID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="HallName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProClass" Type="int" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DATE" Type="datetime" Nullable="false" />
+    <Property Name="Sells" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="SellPrice" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="AreaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AreaID" Type="int" Nullable="false" />
+    <Property Name="Profit" Type="int" Nullable="false" />
+    <Property Name="ClassTypeName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="AsPrice" Type="bit" Nullable="false" />
+    <Property Name="BigAreaID" Type="int" />
+    <Property Name="BigAreaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SellPrice2" Type="decimal" Precision="38" Scale="6" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Print_SellBackInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Print_SellBackInfo">
+    <Key>
+      <PropertyRef Name="自增主键" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="自增主键" Type="int" Nullable="false" />
+    <Property Name="退货单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="销售门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售公司" Type="nvarchar" MaxLength="50" />
+    <Property Name="会员卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="应收总额" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="优惠券名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="优惠券金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收总额" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="实收总额大写" Type="varchar" MaxLength="200" />
+    <Property Name="刷卡" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="现金" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Print_SellBackListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Print_SellBackListInfo">
+    <Key>
+      <PropertyRef Name="自增主键编号" />
+      <PropertyRef Name="备注" />
+    </Key>
+    <Property Name="自增主键编号" Type="bigint" Nullable="false" />
+    <Property Name="系统自增外键编号" Type="int" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="100" />
+    <Property Name="串码/号码/合同号" Type="nvarchar" MaxLength="50" />
+    <Property Name="数量" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="券面值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="券号/合约号" Type="nvarchar" MaxLength="50" />
+    <Property Name="优惠" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="备注" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="金额小计" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="退货单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="销售门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售公司" Type="nvarchar" MaxLength="50" />
+    <Property Name="会员卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="应收总额" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="优惠券名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="优惠券金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收总额" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="实收总额大写" Type="varchar" MaxLength="200" />
+    <Property Name="刷卡" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="现金" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Print_SellInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Print_SellInfo">
+    <Key>
+      <PropertyRef Name="自增主键" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="自增主键" Type="int" Nullable="false" />
+    <Property Name="销售单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售公司" Type="nvarchar" MaxLength="50" />
+    <Property Name="会员卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="应收总额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="优惠券名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="优惠券金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收总额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收总额大写" Type="varchar" MaxLength="200" />
+    <Property Name="刷卡" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="现金" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="backid" Type="int" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Print_SellListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Print_SellListInfo">
+    <Key>
+      <PropertyRef Name="自增主键编号" />
+      <PropertyRef Name="备注" />
+    </Key>
+    <Property Name="自增主键编号" Type="bigint" Nullable="false" />
+    <Property Name="系统自增外键编号" Type="int" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="100" />
+    <Property Name="串码/号码/合同号" Type="nvarchar" MaxLength="50" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="券面值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="券号/合约号" Type="nvarchar" MaxLength="50" />
+    <Property Name="优惠" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="备注" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="金额小计" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="backid" Type="int" />
+    <Property Name="销售单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="销售门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售公司" Type="nvarchar" MaxLength="50" />
+    <Property Name="会员卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="应收总额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="优惠券名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="优惠券金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收总额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收总额大写" Type="varchar" MaxLength="200" />
+    <Property Name="刷卡" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="现金" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统单号" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_AirOutListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_AirOutListInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="批次号" />
+      <PropertyRef Name="系统自增外键编号" />
+      <PropertyRef Name="调拨金额" />
+      <PropertyRef Name="已接收" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="调拨单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="调出仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="调入仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="调拨日期" Type="datetime" />
+    <Property Name="调拨人" Type="nvarchar" MaxLength="50" />
+    <Property Name="调拨备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="批次号" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="系统自增外键编号" Type="int" Nullable="false" />
+    <Property Name="调出号码" Type="nvarchar" MaxLength="50" />
+    <Property Name="调出号码属性" Type="nvarchar(max)" />
+    <Property Name="调拨金额" Type="decimal" Nullable="false" Precision="20" Scale="2" />
+    <Property Name="调入号码" Type="nvarchar" MaxLength="50" />
+    <Property Name="调入号码属性" Type="nvarchar(max)" />
+    <Property Name="已接收" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="接收人" Type="nvarchar" MaxLength="50" />
+    <Property Name="接收日期" Type="datetime" />
+    <Property Name="调出仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="调入仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_BackIMEIInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_BackIMEIInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="系统自增外键编号" />
+      <PropertyRef Name="数量" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统自增外键编号" Type="int" Nullable="false" />
+    <Property Name="自增外键退库单编号" Type="int" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="numeric" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="退库单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="退库仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="退库日期" Type="datetime" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="退库仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_BackInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_BackInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="退库单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="退库仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="退库日期" Type="datetime" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="退库仓库编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_BackListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_BackListInfo">
+    <Key>
+      <PropertyRef Name="系统自增外键编号" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统自增外键编号" Type="int" Nullable="false" />
+    <Property Name="自增外键退库编号" Type="int" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="decimal" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="退库单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="退库仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="退库日期" Type="datetime" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="退库仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_Borow”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_Borow">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="审批单" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷人" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷日期" Type="nvarchar" MaxLength="100" />
+    <Property Name="借贷部门" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品型号" Type="nvarchar" MaxLength="50" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="数量" Type="decimal" />
+    <Property Name="营业厅" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="商品编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_BorrowAduitInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_BorrowAduitInfo">
+    <Key>
+      <PropertyRef Name="系统主键" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="系统主键" Type="int" Nullable="false" />
+    <Property Name="申请单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷总额" Type="decimal" Scale="2" />
+    <Property Name="已审批" Type="varchar" MaxLength="1" />
+    <Property Name="已通过" Type="varchar" MaxLength="1" />
+    <Property Name="已使用" Type="varchar" MaxLength="1" />
+    <Property Name="使用日期" Type="datetime" />
+    <Property Name="申请人" Type="nvarchar" MaxLength="50" />
+    <Property Name="申请日期" Type="datetime" />
+    <Property Name="系统日期" Type="datetime" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="内部借机" Type="varchar" MaxLength="1" />
+    <Property Name="借贷人" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷部门" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷人电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="预计归还日期" Type="datetime" />
+    <Property Name="申请备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="一级已审批" Type="varchar" MaxLength="1" />
+    <Property Name="一级已通过" Type="varchar" MaxLength="1" />
+    <Property Name="一级审批人" Type="nvarchar" MaxLength="50" />
+    <Property Name="一级审批日期" Type="datetime" />
+    <Property Name="一级备注" Type="nvarchar" MaxLength="100" />
+    <Property Name="二级已审批" Type="varchar" MaxLength="1" />
+    <Property Name="二级已通过" Type="varchar" MaxLength="1" />
+    <Property Name="二级审批人" Type="nvarchar" MaxLength="50" />
+    <Property Name="二级审批日期" Type="datetime" />
+    <Property Name="二级备注" Type="nvarchar" MaxLength="100" />
+    <Property Name="三级已审批" Type="varchar" MaxLength="1" />
+    <Property Name="三级已通过" Type="varchar" MaxLength="1" />
+    <Property Name="三级审批人" Type="nvarchar" MaxLength="50" />
+    <Property Name="三级审批日期" Type="datetime" />
+    <Property Name="三级备注" Type="nvarchar" MaxLength="100" />
+    <Property Name="四级已审批" Type="varchar" MaxLength="1" />
+    <Property Name="四级已通过" Type="varchar" MaxLength="1" />
+    <Property Name="四级审批人" Type="nvarchar" MaxLength="50" />
+    <Property Name="四级审批日期" Type="datetime" />
+    <Property Name="四级备注" Type="nvarchar" MaxLength="100" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_BorrowAduitListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_BorrowAduitListInfo">
+    <Key>
+      <PropertyRef Name="系统主键" />
+    </Key>
+    <Property Name="系统主键" Type="int" Nullable="false" />
+    <Property Name="系统外键" Type="int" />
+    <Property Name="商品类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品型号" Type="nvarchar" MaxLength="50" />
+    <Property Name="属性" Type="nvarchar(max)" />
+    <Property Name="借贷数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="借贷单价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_BorrowIMEIInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_BorrowIMEIInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="系统自增外键编号" />
+      <PropertyRef Name="数量" />
+      <PropertyRef Name="已归还" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统自增外键编号" Type="int" Nullable="false" />
+    <Property Name="自增外键借贷单编号" Type="int" />
+    <Property Name="借贷单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="审批单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷日期" Type="datetime" />
+    <Property Name="借贷部门" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷人" Type="nvarchar" MaxLength="50" />
+    <Property Name="联系电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="预计归还日期" Type="datetime" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar" MaxLength="100" />
+    <Property Name="数量" Type="numeric" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="已归还" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_BorrowInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_BorrowInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增主键" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统自增主键" Type="int" Nullable="false" />
+    <Property Name="自增外键编号" Type="int" />
+    <Property Name="借贷单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="审批单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷日期" Type="datetime" />
+    <Property Name="借贷部门" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷人" Type="nvarchar" MaxLength="50" />
+    <Property Name="联系电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="预计归还日期" Type="datetime" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="借贷数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="未还数量" Type="decimal" Precision="21" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_ChangeIMEIInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_ChangeIMEIInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="系统自增外键编号" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="旧批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="新批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统自增外键编号" Type="int" Nullable="false" />
+    <Property Name="自增外键转类别单编号" Type="int" />
+    <Property Name="原类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="原品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="原商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="原商品属性" Type="nvarchar(max)" />
+    <Property Name="现类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="现品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="现商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="现商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="numeric" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="转类别仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="转类别日期" Type="datetime" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="转类别仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_ChangeListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_ChangeListInfo">
+    <Key>
+      <PropertyRef Name="系统自增外键编号" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="旧批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="新批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统自增外键编号" Type="int" Nullable="false" />
+    <Property Name="自增外键转类别编号" Type="int" />
+    <Property Name="原类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="原品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="原商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="原商品属性" Type="nvarchar(max)" />
+    <Property Name="现类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="现品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="现商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="现商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="decimal" Nullable="false" Precision="20" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="转类别仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="转类别日期" Type="datetime" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="转类别仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_ChangeProInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_ChangeProInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="转类别仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="转类别日期" Type="datetime" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="转类别仓库编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_CostPriceListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_CostPriceListInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="批次号" />
+      <PropertyRef Name="成本价" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="批次号" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="入库日期" Type="datetime" />
+    <Property Name="成本价" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_EveryHallStoreInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_EveryHallStoreInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="ProID" />
+      <PropertyRef Name="门店编码" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="ProID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar" MaxLength="100" />
+    <Property Name="制式" Type="nvarchar" MaxLength="50" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="门店等级" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="等级排序" Type="decimal" />
+    <Property Name="门店排序" Type="int" />
+    <Property Name="数量" Type="decimal" Precision="38" Scale="8" />
+    <Property Name="在途" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="类别排序" Type="int" />
+    <Property Name="门店编码" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="属性排序" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_IMEIInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_IMEIInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="区域" Type="nvarchar" MaxLength="50" />
+    <Property Name="状态" Type="varchar" Nullable="false" MaxLength="12" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="库龄_天" Type="int" Nullable="false" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_IMEITracksInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_IMEITracksInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统平台" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar" MaxLength="100" />
+    <Property Name="跟踪" Type="nvarchar" MaxLength="129" />
+    <Property Name="日期" Type="datetime" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统平台" Type="varchar" Nullable="false" MaxLength="6" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_InOrderIMEIInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_InOrderIMEIInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="批次号" />
+      <PropertyRef Name="数量" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="批次号" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="自增外键入库单编号" Type="int" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="numeric" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="成本价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="入库单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="入库仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="入库日期" Type="datetime" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="入库仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_InOrderInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_InOrderInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="入库单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="入库仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="入库日期" Type="datetime" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="入库仓库编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_InOrderListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_InOrderListInfo">
+    <Key>
+      <PropertyRef Name="批次号" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="批次号" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="系统自增外键编号" Type="int" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar" MaxLength="100" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="成本价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="入库单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="入库仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="入库日期" Type="datetime" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="入库仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="商品备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_InOutSellInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_InOutSellInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="期初库存" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期初始入库" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期退库" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期类别转入" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期类别转出" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期调入" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期调出" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期销售审批_申请_" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期销售审批_已审批_" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期销售" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期退货" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期送修" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期返库" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期借贷" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="本期归还" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="期末库存" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="送修累计" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="借贷累计" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="区域" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_OutInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_OutInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="调拨单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="调出仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="调入仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="调拨日期" Type="datetime" />
+    <Property Name="调拨人" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="已接收" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="接收人" Type="nvarchar" MaxLength="50" />
+    <Property Name="接收日期" Type="datetime" />
+    <Property Name="调出仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="调入仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="总高度" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_OutOrderIMEIInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_OutOrderIMEIInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="自增外键调拨明细编号" />
+      <PropertyRef Name="已接收" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="调拨单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="调出仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="调入仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="调拨日期" Type="datetime" />
+    <Property Name="调拨人" Type="nvarchar" MaxLength="50" />
+    <Property Name="调拨备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="自增外键调拨单编号" Type="int" />
+    <Property Name="自增外键调拨明细编号" Type="int" Nullable="false" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="串码备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="已接收" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="接收人" Type="nvarchar" MaxLength="50" />
+    <Property Name="接收日期" Type="datetime" />
+    <Property Name="调出仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="调入仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_OutOrderListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_OutOrderListInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="调拨单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="调出仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="调入仓库" Type="nvarchar" MaxLength="50" />
+    <Property Name="调拨日期" Type="datetime" />
+    <Property Name="调拨人" Type="nvarchar" MaxLength="50" />
+    <Property Name="调拨备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="批次号" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="系统自增外键编号" Type="int" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="decimal" Nullable="false" Precision="20" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="已接收" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="接收人" Type="nvarchar" MaxLength="50" />
+    <Property Name="接收日期" Type="datetime" />
+    <Property Name="调出仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="调入仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_PriceInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_PriceInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="价格" />
+      <PropertyRef Name="结算价" />
+      <PropertyRef Name="最低价格" />
+      <PropertyRef Name="最高价格" />
+      <PropertyRef Name="可以兑券" />
+      <PropertyRef Name="需要审批单" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="销售类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="价格" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="结算价" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="最低价格" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="最高价格" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="可以兑券" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="需要审批单" Type="varchar" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_ProductInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_ProductInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="商品编码" />
+      <PropertyRef Name="有串码" />
+      <PropertyRef Name="属于服务" />
+      <PropertyRef Name="日期之前可用" />
+      <PropertyRef Name="日期之前加" />
+      <PropertyRef Name="日期之后可用" />
+      <PropertyRef Name="日期之后加" />
+      <PropertyRef Name="兑券临界值" />
+      <PropertyRef Name="小于临界值加" />
+      <PropertyRef Name="大于临界值加" />
+      <PropertyRef Name="需要补差" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="商品编码" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="会员类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="有串码" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="属于服务" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="兑券临界日期" Type="datetime" />
+    <Property Name="日期之前可用" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="日期之前加" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="日期之后可用" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="日期之后加" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="兑券临界值" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="小于临界值加" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="大于临界值加" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="需要补差" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_Profit”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_Profit">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="计算成本价" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="销售单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="销售方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="兑换值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="商品大类" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="片区编码" Type="int" />
+    <Property Name="大区编码" Type="int" />
+    <Property Name="商品编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="商品大类编码" Type="int" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="结算价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="入库成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="销售时成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="计算成本价" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="实收单价" Type="decimal" Precision="33" Scale="8" />
+    <Property Name="退货审批利润" Type="decimal" Precision="21" Scale="2" />
+    <Property Name="利润" Type="decimal" Precision="36" Scale="8" />
+    <Property Name="片区" Type="nvarchar" MaxLength="50" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售时间" Type="varchar" MaxLength="12" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_Profit2”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_Profit2">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="计算成本价" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="销售单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="销售方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="兑换值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="商品大类" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="片区编码" Type="int" />
+    <Property Name="大区编码" Type="int" />
+    <Property Name="商品编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="商品大类编码" Type="int" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="结算价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="入库成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="销售时成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="计算成本价" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="实收单价" Type="decimal" Precision="33" Scale="8" />
+    <Property Name="退货审批利润" Type="decimal" Precision="21" Scale="2" />
+    <Property Name="利润" Type="decimal" Precision="36" Scale="8" />
+    <Property Name="片区" Type="nvarchar" MaxLength="50" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售时间" Type="varchar" MaxLength="12" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_ReNewInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_ReNewInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="续期方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="续期比列" Type="varchar" MaxLength="101" />
+    <Property Name="续期金额" Type="decimal" Precision="24" Scale="8" />
+    <Property Name="续期积分" Type="decimal" Precision="21" Scale="2" />
+    <Property Name="续期天数" Type="int" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="续期日期" Type="datetime" />
+    <Property Name="会员姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="会员电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="拦装人" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_RepairInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_RepairInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="系统自增外键编号" />
+      <PropertyRef Name="已返库" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统自增外键编号" Type="int" Nullable="false" />
+    <Property Name="送修单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="送修日期" Type="datetime" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar" MaxLength="100" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="已返库" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_RepairReturnInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_RepairReturnInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="系统自增外键编号" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="系统自增编号" Type="int" Nullable="false" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统自增外键编号" Type="int" Nullable="false" />
+    <Property Name="送修单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="返库单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始返库单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="返库日期" Type="datetime" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="返修串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_Return”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_Return">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="SysDate" Type="datetime" />
+    <Property Name="借贷单号" Type="int" />
+    <Property Name="商品类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品型号" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="数量" Type="decimal" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="归还日期" Type="nvarchar" MaxLength="100" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_ReturnIMEIInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_ReturnIMEIInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="自主主键编号" />
+      <PropertyRef Name="归还明细外键编号" />
+      <PropertyRef Name="归还外键编号" />
+      <PropertyRef Name="数量" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="自主主键编号" Type="int" Nullable="false" />
+    <Property Name="归还明细外键编号" Type="int" Nullable="false" />
+    <Property Name="归还外键编号" Type="int" Nullable="false" />
+    <Property Name="借贷单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="审批单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷日期" Type="datetime" />
+    <Property Name="借贷部门" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷人" Type="nvarchar" MaxLength="50" />
+    <Property Name="联系电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="预计归还日期" Type="datetime" />
+    <Property Name="归还日期" Type="datetime" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="numeric" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_ReturnListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_ReturnListInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增主键编码" />
+      <PropertyRef Name="系统自增外键编号" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="系统自增主键编码" Type="int" Nullable="false" />
+    <Property Name="系统自增外键编号" Type="int" Nullable="false" />
+    <Property Name="借贷单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="审批单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷日期" Type="datetime" />
+    <Property Name="借贷部门" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷人" Type="nvarchar" MaxLength="50" />
+    <Property Name="联系电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="预计归还日期" Type="datetime" />
+    <Property Name="归还日期" Type="datetime" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="操作人" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="借贷仓库编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_SellAduitInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_SellAduitInfo">
+    <Key>
+      <PropertyRef Name="系统主键" />
+    </Key>
+    <Property Name="序号" Type="bigint" />
+    <Property Name="系统主键" Type="int" Nullable="false" />
+    <Property Name="申请单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="批发总额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="已审批" Type="varchar" MaxLength="1" />
+    <Property Name="已通过" Type="varchar" MaxLength="1" />
+    <Property Name="已使用" Type="varchar" MaxLength="1" />
+    <Property Name="使用日期" Type="datetime" />
+    <Property Name="申请人" Type="nvarchar" MaxLength="50" />
+    <Property Name="申请日期" Type="datetime" />
+    <Property Name="系统日期" Type="datetime" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="申请备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="一级已审批" Type="varchar" MaxLength="1" />
+    <Property Name="一级已通过" Type="varchar" MaxLength="1" />
+    <Property Name="一级审批人" Type="nvarchar" MaxLength="50" />
+    <Property Name="一级审批日期" Type="datetime" />
+    <Property Name="一级备注" Type="nvarchar" MaxLength="250" />
+    <Property Name="二级已审批" Type="varchar" MaxLength="1" />
+    <Property Name="二级已通过" Type="varchar" MaxLength="1" />
+    <Property Name="二级审批人" Type="nvarchar" MaxLength="50" />
+    <Property Name="二级审批日期" Type="datetime" />
+    <Property Name="二级备注" Type="nvarchar" MaxLength="250" />
+    <Property Name="三级已审批" Type="varchar" MaxLength="1" />
+    <Property Name="三级已通过" Type="varchar" MaxLength="1" />
+    <Property Name="三级审批人" Type="nvarchar" MaxLength="50" />
+    <Property Name="三级审批日期" Type="datetime" />
+    <Property Name="三级备注" Type="nvarchar" MaxLength="250" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_SellAduitListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_SellAduitListInfo">
+    <Key>
+      <PropertyRef Name="系统主键" />
+      <PropertyRef Name="批发数量" />
+      <PropertyRef Name="批发单价" />
+    </Key>
+    <Property Name="系统主键" Type="int" Nullable="false" />
+    <Property Name="系统外键" Type="int" />
+    <Property Name="商品类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品型号" Type="nvarchar" MaxLength="50" />
+    <Property Name="属性" Type="nvarchar(max)" />
+    <Property Name="批发数量" Type="decimal" Nullable="false" Precision="20" Scale="4" />
+    <Property Name="批发单价" Type="decimal" Nullable="false" Precision="20" Scale="4" />
+    <Property Name="备注" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_SellListInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_SellListInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="组合优惠名称" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="销售单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar" MaxLength="100" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="销售方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实际单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收金额" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="代金券编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="代金券面值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="兑换值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="单品优惠名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="单品优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="组合优惠名称" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="组合优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="批发优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="多收单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="暗补" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="列收" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="终端代销费" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="是否免费服务" Type="varchar" MaxLength="2" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="会员卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店优惠" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="销售时间" Type="varchar" MaxLength="12" />
+    <Property Name="片区" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品大类" Type="nvarchar" MaxLength="50" />
+    <Property Name="单头备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="终端制式" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="片区编码" Type="int" />
+    <Property Name="大区编码" Type="int" />
+    <Property Name="商品编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="商品大类编码" Type="int" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售时成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="入库成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="规则毛利可拿回" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="规则毛利不可拿回" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="结算价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="仓属性" Type="nvarchar" MaxLength="50" />
+    <Property Name="录入人" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_SellListInfo2”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_SellListInfo2">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="组合优惠名称" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="销售单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="销售方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实际单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收金额" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="代金券编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="代金券面值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="兑换值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="单品优惠名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="单品优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="组合优惠名称" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="组合优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="批发优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="多收单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="暗补" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="列收" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="终端代销费" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="是否免费服务" Type="varchar" MaxLength="2" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="会员卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店优惠" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="销售时间" Type="varchar" MaxLength="12" />
+    <Property Name="片区" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品大类" Type="nvarchar" MaxLength="50" />
+    <Property Name="单头备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="终端制式" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="片区编码" Type="int" />
+    <Property Name="大区编码" Type="int" />
+    <Property Name="商品编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="商品大类编码" Type="int" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售时成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="入库成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="规则毛利可拿回" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="规则毛利不可拿回" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="结算价" Type="decimal" Precision="20" Scale="8" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_SellReport”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_SellReport">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="组合优惠名称" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="销售单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="销售方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实际单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收金额" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="代金券编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="代金券面值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="兑换值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="单品优惠名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="单品优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="组合优惠名称" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="组合优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="批发优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="多收单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="暗补" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="列收" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="终端代销费" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="是否免费服务" Type="varchar" MaxLength="2" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="会员卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店优惠" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="销售时间" Type="varchar" MaxLength="12" />
+    <Property Name="片区" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品大类" Type="nvarchar" MaxLength="50" />
+    <Property Name="单头备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="终端制式" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="片区编码" Type="int" />
+    <Property Name="大区编码" Type="int" />
+    <Property Name="商品编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="商品大类编码" Type="int" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售时成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="入库成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="规则毛利可拿回" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="规则毛利不可拿回" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="结算价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="ProMainID" Type="nvarchar" MaxLength="30" />
+    <Property Name="price" Type="decimal" Precision="20" Scale="8" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_SellReport2”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_SellReport2">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="组合优惠名称" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="销售单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="销售方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实际单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收金额" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="代金券编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="代金券面值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="兑换值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="单品优惠名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="单品优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="组合优惠名称" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="组合优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="批发优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="多收单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="暗补" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="列收" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="终端代销费" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="是否免费服务" Type="varchar" MaxLength="2" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="会员卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店优惠" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="销售时间" Type="varchar" MaxLength="12" />
+    <Property Name="片区" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品大类" Type="nvarchar" MaxLength="50" />
+    <Property Name="单头备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="终端制式" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="片区编码" Type="int" />
+    <Property Name="大区编码" Type="int" />
+    <Property Name="商品编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="商品大类编码" Type="int" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售时成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="入库成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="规则毛利可拿回" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="规则毛利不可拿回" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="结算价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="ProMainID" Type="nvarchar" MaxLength="30" />
+    <Property Name="price" Type="decimal" Precision="20" Scale="8" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_SellReport3”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_SellReport3">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="组合优惠名称" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="销售单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="数量" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="销售方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实际单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="实收金额" Type="decimal" Precision="20" Scale="4" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售日期" Type="datetime" />
+    <Property Name="代金券编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="代金券面值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="兑换值" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="串码" Type="nvarchar" MaxLength="50" />
+    <Property Name="单品优惠名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="单品优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="组合优惠名称" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="组合优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="批发优惠金额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="多收单价" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="暗补" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="列收" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="终端代销费" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="是否免费服务" Type="varchar" MaxLength="2" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="会员卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店优惠" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="销售时间" Type="varchar" MaxLength="12" />
+    <Property Name="片区" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品大类" Type="nvarchar" MaxLength="50" />
+    <Property Name="单头备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="终端制式" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="片区编码" Type="int" />
+    <Property Name="大区编码" Type="int" />
+    <Property Name="商品编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+    <Property Name="商品大类编码" Type="int" />
+    <Property Name="批次号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售时成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="入库成本价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="规则毛利可拿回" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="规则毛利不可拿回" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="结算价" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="ProMainID" Type="nvarchar" MaxLength="30" />
+    <Property Name="price" Type="decimal" Precision="20" Scale="8" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_SMSSign”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_SMSSign">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="合同金额" />
+      <PropertyRef Name="合同发送数量" />
+      <PropertyRef Name="实收金额" />
+      <PropertyRef Name="实际发送数量" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="销售单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="系统时间" Type="datetime" />
+    <Property Name="行业" Type="nvarchar" MaxLength="50" />
+    <Property Name="合同日期" Type="datetime" />
+    <Property Name="单位名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="单位地址" Type="nvarchar" MaxLength="500" />
+    <Property Name="业务内容" Type="nvarchar" MaxLength="50" />
+    <Property Name="合同金额" Type="decimal" Nullable="false" Precision="20" Scale="2" />
+    <Property Name="合同发送数量" Type="decimal" Nullable="false" Precision="20" Scale="2" />
+    <Property Name="实收金额" Type="decimal" Nullable="false" Precision="20" Scale="2" />
+    <Property Name="实际发送数量" Type="decimal" Nullable="false" Precision="20" Scale="2" />
+    <Property Name="合同结清日期" Type="datetime" />
+    <Property Name="实际结清日期" Type="datetime" />
+    <Property Name="佣金" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="联系人" Type="nvarchar" MaxLength="50" />
+    <Property Name="联系电话" Type="nvarchar" MaxLength="50" />
+    <Property Name="发票抬头" Type="nvarchar" MaxLength="50" />
+    <Property Name="发票代码" Type="nvarchar" MaxLength="50" />
+    <Property Name="发票日期" Type="datetime" />
+    <Property Name="税率" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="已结清" Type="bit" />
+    <Property Name="原始单号" Type="nvarchar" MaxLength="50" />
+    <Property Name="录单员" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="仓库" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_StoreInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_StoreInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="在库数量" />
+      <PropertyRef Name="送修中数量" />
+      <PropertyRef Name="借贷中数量" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="类别" Type="nvarchar" MaxLength="50" />
+    <Property Name="品牌" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品属性" Type="nvarchar(max)" />
+    <Property Name="零售价格" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="在库数量" Type="decimal" Nullable="false" Precision="20" Scale="2" />
+    <Property Name="门店优惠审批中" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="调拨中数量" Type="decimal" Precision="21" Scale="2" />
+    <Property Name="送修中数量" Type="decimal" Nullable="false" Precision="38" Scale="2" />
+    <Property Name="借贷中数量" Type="decimal" Nullable="false" Precision="38" Scale="2" />
+    <Property Name="小计" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="门店" Type="nvarchar" MaxLength="50" />
+    <Property Name="区域" Type="nvarchar" MaxLength="50" />
+    <Property Name="商品编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="类别编码" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_VipBuyTimeInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_VipBuyTimeInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="会员贴膜次数" />
+      <PropertyRef Name="状态" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="注册时间" Type="datetime" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="区域" Type="nvarchar" MaxLength="50" />
+    <Property Name="店名" Type="nvarchar" MaxLength="50" />
+    <Property Name="网店属性" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="仓管员" Type="nvarchar" MaxLength="50" />
+    <Property Name="卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="卡类" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售金额" Type="decimal" Precision="29" />
+    <Property Name="客户名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="性别" Type="nvarchar" MaxLength="10" />
+    <Property Name="生日日期" Type="datetime" />
+    <Property Name="联系号码" Type="nvarchar" MaxLength="50" />
+    <Property Name="备用号码" Type="nvarchar" MaxLength="50" />
+    <Property Name="身份证" Type="nvarchar" MaxLength="50" />
+    <Property Name="详细地址" Type="nvarchar" MaxLength="150" />
+    <Property Name="QQ号_微信_微博" Type="nvarchar" MaxLength="50" />
+    <Property Name="累计积分" Type="decimal" />
+    <Property Name="消费次数" Type="int" />
+    <Property Name="累计消费总额" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="平均消费水平" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="会员贴膜次数" Type="int" Nullable="false" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="状态" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_VipBuyTimeInfo2”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_VipBuyTimeInfo2">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="会员贴膜次数" />
+      <PropertyRef Name="状态" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="注册时间" Type="datetime" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="区域" Type="nvarchar" MaxLength="50" />
+    <Property Name="店名" Type="nvarchar" MaxLength="50" />
+    <Property Name="网店属性" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="仓管员" Type="nvarchar" MaxLength="50" />
+    <Property Name="卡号" Type="nvarchar" MaxLength="50" />
+    <Property Name="卡类" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售金额" Type="decimal" Precision="29" />
+    <Property Name="客户名称" Type="nvarchar" MaxLength="50" />
+    <Property Name="性别" Type="nvarchar" MaxLength="10" />
+    <Property Name="生日日期" Type="datetime" />
+    <Property Name="联系号码" Type="nvarchar" MaxLength="50" />
+    <Property Name="备用号码" Type="nvarchar" MaxLength="50" />
+    <Property Name="身份证" Type="nvarchar" MaxLength="50" />
+    <Property Name="详细地址" Type="nvarchar" MaxLength="150" />
+    <Property Name="QQ号_微信_微博" Type="nvarchar" MaxLength="50" />
+    <Property Name="累计积分" Type="decimal" />
+    <Property Name="消费次数" Type="int" />
+    <Property Name="会员贴膜次数" Type="int" Nullable="false" />
+    <Property Name="备注" Type="nvarchar" MaxLength="50" />
+    <Property Name="状态" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_YANBAO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_YANBAO">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="备注" />
+      <PropertyRef Name="状态" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="录入时间" Type="datetime" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="区域" Type="nvarchar" MaxLength="50" />
+    <Property Name="店名" Type="nvarchar" MaxLength="50" />
+    <Property Name="网店属性" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="仓管员" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="联系方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="延保购买日期" Type="datetime" />
+    <Property Name="合同编号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售数量" Type="decimal" Precision="26" Scale="8" />
+    <Property Name="延保价格" Type="decimal" Precision="38" Scale="6" />
+    <Property Name="手机型号" Type="nvarchar" MaxLength="50" />
+    <Property Name="手机价格" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="手机串号" Type="nvarchar" MaxLength="50" />
+    <Property Name="手机购买方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="发票号码" Type="nvarchar" MaxLength="50" />
+    <Property Name="电池编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="充电器编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="耳机编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" Nullable="false" MaxLength="550" />
+    <Property Name="状态" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.Report_YANBAO2”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="Report_YANBAO2">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="备注" />
+      <PropertyRef Name="状态" />
+    </Key>
+    <Property Name="序号" Type="bigint" Nullable="false" />
+    <Property Name="录入时间" Type="datetime" />
+    <Property Name="大区" Type="nvarchar" MaxLength="50" />
+    <Property Name="区域" Type="nvarchar" MaxLength="50" />
+    <Property Name="店名" Type="nvarchar" MaxLength="50" />
+    <Property Name="网店属性" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售员" Type="nvarchar" MaxLength="50" />
+    <Property Name="仓管员" Type="nvarchar" MaxLength="50" />
+    <Property Name="客户姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="联系方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="延保购买日期" Type="datetime" />
+    <Property Name="合同编号" Type="nvarchar" MaxLength="50" />
+    <Property Name="销售数量" Type="decimal" Precision="26" Scale="8" />
+    <Property Name="延保价格" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="手机型号" Type="nvarchar" MaxLength="50" />
+    <Property Name="手机价格" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="手机串号" Type="nvarchar" MaxLength="50" />
+    <Property Name="手机购买方式" Type="nvarchar" MaxLength="50" />
+    <Property Name="发票号码" Type="nvarchar" MaxLength="50" />
+    <Property Name="电池编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="充电器编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="耳机编码" Type="nvarchar" MaxLength="50" />
+    <Property Name="备注" Type="nvarchar" Nullable="false" MaxLength="550" />
+    <Property Name="状态" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="门店编码" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.View_BorowAduit”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="View_BorowAduit">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="HallID" />
+      <PropertyRef Name="Aduited1" />
+      <PropertyRef Name="Passed1" />
+      <PropertyRef Name="Aduited2" />
+      <PropertyRef Name="Passed2" />
+      <PropertyRef Name="Aduited3" />
+      <PropertyRef Name="Passed3" />
+      <PropertyRef Name="Aduited" />
+      <PropertyRef Name="Passed" />
+      <PropertyRef Name="Aduited4" />
+      <PropertyRef Name="Passed4" />
+      <PropertyRef Name="Used" />
+      <PropertyRef Name="InternalBorow" />
+      <PropertyRef Name="TotalMoney" />
+      <PropertyRef Name="HasAduited" />
+      <PropertyRef Name="HasPassed" />
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="HasPassed1" />
+      <PropertyRef Name="HasAduited2" />
+      <PropertyRef Name="HasPassed2" />
+      <PropertyRef Name="HasAduited3" />
+      <PropertyRef Name="HasPassed3" />
+      <PropertyRef Name="HasAduited4" />
+      <PropertyRef Name="HasPassed4" />
+      <PropertyRef Name="HasUsed" />
+    </Key>
+    <Property Name="AduitID" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="AduitUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="AduitUser2" Type="nvarchar" MaxLength="50" />
+    <Property Name="AduitUser3" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplyUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplyDate" Type="varchar" MaxLength="100" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="HallID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="HallName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aduited1" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Passed1" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Aduited2" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Passed2" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Aduited3" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Passed3" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Aduited" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Passed" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Aduited4" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Passed4" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="AduitDate4" Type="varchar" MaxLength="100" />
+    <Property Name="AduitUser4" Type="nvarchar" MaxLength="50" />
+    <Property Name="Used" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="SysDate" Type="datetime" />
+    <Property Name="UseDate" Type="varchar" MaxLength="100" />
+    <Property Name="AduitDate" Type="varchar" MaxLength="100" />
+    <Property Name="Dept" Type="nvarchar" MaxLength="50" />
+    <Property Name="AduitDate2" Type="varchar" MaxLength="100" />
+    <Property Name="AduitDate3" Type="varchar" MaxLength="100" />
+    <Property Name="BorrowType" Type="nvarchar" MaxLength="50" />
+    <Property Name="Borrower" Type="nvarchar" MaxLength="50" />
+    <Property Name="InternalBorow" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Note1" Type="nvarchar" MaxLength="100" />
+    <Property Name="Note2" Type="nvarchar" MaxLength="100" />
+    <Property Name="Note3" Type="nvarchar" MaxLength="100" />
+    <Property Name="Note4" Type="nvarchar" MaxLength="100" />
+    <Property Name="MobilPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="EstimateReturnTime" Type="datetime" />
+    <Property Name="TotalMoney" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="Used1" Type="bit" />
+    <Property Name="hasAduited1" Type="bit" />
+    <Property Name="HasAduited" Type="bit" Nullable="false" />
+    <Property Name="HasPassed" Type="bit" Nullable="false" />
+    <Property Name="Expr1" Type="bit" Nullable="false" />
+    <Property Name="HasPassed1" Type="bit" Nullable="false" />
+    <Property Name="HasAduited2" Type="bit" Nullable="false" />
+    <Property Name="HasPassed2" Type="bit" Nullable="false" />
+    <Property Name="HasAduited3" Type="bit" Nullable="false" />
+    <Property Name="HasPassed3" Type="bit" Nullable="false" />
+    <Property Name="HasAduited4" Type="bit" Nullable="false" />
+    <Property Name="HasPassed4" Type="bit" Nullable="false" />
+    <Property Name="HasUsed" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.View_Package_GroupInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="View_Package_GroupInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="SellTypeID" Type="int" />
+    <Property Name="IsMust" Type="bit" />
+    <Property Name="Note" Type="nvarchar" MaxLength="500" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="TempOffID" Type="int" />
+    <Property Name="SellTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SubNote" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.View_VIPOffListAduit”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="View_VIPOffListAduit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="ArriveMoney" Type="decimal" Nullable="false" Precision="20" Scale="8" />
+    <Property Name="Note" Type="nvarchar" MaxLength="500" />
+    <Property Name="VIPTicketMaxCount" Type="int" />
+    <Property Name="SalesName" Type="nvarchar" MaxLength="50" />
+    <Property Name="HeadID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“UMS.dbo.View_VIPOffListAduitHeader”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="View_VIPOffListAduitHeader">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Destination" Type="nvarchar" MaxLength="500" />
+    <Property Name="SaleTarget" Type="nvarchar" MaxLength="500" />
+    <Property Name="StartDate" Type="varchar" MaxLength="100" />
+    <Property Name="SysDate" Type="datetime" />
+    <Property Name="Applyer" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplyDate" Type="varchar" MaxLength="100" />
+    <Property Name="Aduited" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Passed" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Aduited2" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Passed2" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Aduited3" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Passed3" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Aduited1" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Passed1" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="AduitNote1" Type="nvarchar" MaxLength="100" />
+    <Property Name="AduitDate1" Type="varchar" MaxLength="100" />
+    <Property Name="AduitNote2" Type="nvarchar" MaxLength="50" />
+    <Property Name="AduitDate2" Type="varchar" MaxLength="100" />
+    <Property Name="ApplyNote" Type="nvarchar" MaxLength="50" />
+    <Property Name="EndDate" Type="varchar" MaxLength="100" />
+    <Property Name="Creater" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeadLine" Type="varchar" MaxLength="206" />
+    <Property Name="Scope" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ExtNote" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="AduitNote3" Type="nvarchar" MaxLength="150" />
+    <Property Name="AduitDate3" Type="varchar" MaxLength="100" />
+    <Property Name="AduitUser3" Type="nvarchar" MaxLength="50" />
+    <Property Name="HasAduited" Type="bit" Nullable="false" />
+    <Property Name="HasPassed" Type="bit" Nullable="false" />
+    <Property Name="HasAduited1" Type="bit" Nullable="false" />
+    <Property Name="HasPassed1" Type="bit" Nullable="false" />
+    <Property Name="HasAduited2" Type="bit" Nullable="false" />
+    <Property Name="HasPassed2" Type="bit" Nullable="false" />
+    <Property Name="HasAduited3" Type="bit" Nullable="false" />
+    <Property Name="HasPassed3" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Demo_ReportViewInfo_Sys_MenuInfo">
+    <End Role="Sys_MenuInfo" Type="ReportModel.Store.Sys_MenuInfo" Multiplicity="0..1" />
+    <End Role="Demo_ReportViewInfo" Type="ReportModel.Store.Demo_ReportViewInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Demo_ReportViewInfo">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRO_PROI_REFERENCE_PRO_CLAS">
+    <End Role="Pro_ClassInfo" Type="ReportModel.Store.Pro_ClassInfo" Multiplicity="0..1" />
+    <End Role="Pro_ProInfo" Type="ReportModel.Store.Pro_ProInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pro_ClassInfo">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="Pro_ProInfo">
+        <PropertyRef Name="Pro_ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_MenuInfo_Sys_MenuInfo">
+    <End Role="Sys_MenuInfo" Type="ReportModel.Store.Sys_MenuInfo" Multiplicity="0..1" />
+    <End Role="Sys_MenuInfo1" Type="ReportModel.Store.Sys_MenuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Sys_MenuInfo1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Role_Menu_HallInfo_Pro_HallInfo">
+    <End Role="Pro_HallInfo" Type="ReportModel.Store.Pro_HallInfo" Multiplicity="0..1" />
+    <End Role="Sys_Role_Menu_HallInfo" Type="ReportModel.Store.Sys_Role_Menu_HallInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pro_HallInfo">
+        <PropertyRef Name="HallID" />
+      </Principal>
+      <Dependent Role="Sys_Role_Menu_HallInfo">
+        <PropertyRef Name="HallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Role_Menu_HallInfo_Sys_MenuInfo">
+    <End Role="Sys_MenuInfo" Type="ReportModel.Store.Sys_MenuInfo" Multiplicity="0..1" />
+    <End Role="Sys_Role_Menu_HallInfo" Type="ReportModel.Store.Sys_Role_Menu_HallInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Sys_Role_Menu_HallInfo">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Role_Menu_ProInfo_Pro_ClassInfo">
+    <End Role="Pro_ClassInfo" Type="ReportModel.Store.Pro_ClassInfo" Multiplicity="0..1" />
+    <End Role="Sys_Role_Menu_ProInfo" Type="ReportModel.Store.Sys_Role_Menu_ProInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pro_ClassInfo">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="Sys_Role_Menu_ProInfo">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Role_MenuInfo_Sys_MenuInfo">
+    <End Role="Sys_MenuInfo" Type="ReportModel.Store.Sys_MenuInfo" Multiplicity="0..1" />
+    <End Role="Sys_Role_MenuInfo" Type="ReportModel.Store.Sys_Role_MenuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Sys_Role_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Role_ProInfo_Sys_MenuInfo">
+    <End Role="Sys_MenuInfo" Type="ReportModel.Store.Sys_MenuInfo" Multiplicity="0..1" />
+    <End Role="Sys_Role_Menu_ProInfo" Type="ReportModel.Store.Sys_Role_Menu_ProInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Sys_Role_Menu_ProInfo">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetInOutSellInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="t1" Type="datetime" Mode="In" />
+    <Parameter Name="t2" Type="datetime" Mode="In" />
+    <Parameter Name="ReportName" Type="nvarchar" Mode="In" />
+    <Parameter Name="RoleID" Type="int" Mode="In" />
+  </Function>
+</Schema>

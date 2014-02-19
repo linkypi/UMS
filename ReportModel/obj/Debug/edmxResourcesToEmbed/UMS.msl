@@ -1,0 +1,1817 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ReportModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Demo_提成报表">
+      <EntityTypeMapping TypeName="ReportModel.Demo_提成报表">
+        <MappingFragment StoreEntitySet="Demo_提成报表">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="终端提成总额" ColumnName="终端提成总额" />
+          <ScalarProperty Name="非本人销售退机金额" ColumnName="非本人销售退机金额" />
+          <ScalarProperty Name="非本人销售退机" ColumnName="非本人销售退机" />
+          <ScalarProperty Name="非本人销售提成" ColumnName="非本人销售提成" />
+          <ScalarProperty Name="非本人销售数量" ColumnName="非本人销售数量" />
+          <ScalarProperty Name="本人销售退机金额" ColumnName="本人销售退机金额" />
+          <ScalarProperty Name="本人销售退机" ColumnName="本人销售退机" />
+          <ScalarProperty Name="本人销售提成" ColumnName="本人销售提成" />
+          <ScalarProperty Name="本人销售数量" ColumnName="本人销售数量" />
+          <ScalarProperty Name="广信延保提成" ColumnName="广信延保提成" />
+          <ScalarProperty Name="广信延保销售数量" ColumnName="广信延保销售数量" />
+          <ScalarProperty Name="片区" ColumnName="片区" />
+          <ScalarProperty Name="仓库" ColumnName="仓库" />
+          <ScalarProperty Name="职位" ColumnName="职位" />
+          <ScalarProperty Name="营销员" ColumnName="营销员" />
+          <ScalarProperty Name="日期" ColumnName="日期" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pro_HallInfo">
+      <EntityTypeMapping TypeName="ReportModel.Pro_HallInfo">
+        <MappingFragment StoreEntitySet="Pro_HallInfo">
+          <ScalarProperty Name="PrintName" ColumnName="PrintName" />
+          <ScalarProperty Name="SellNum" ColumnName="SellNum" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisPlayName" ColumnName="DisPlayName" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="CanBack" ColumnName="CanBack" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="CanIn" ColumnName="CanIn" />
+          <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+          <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="HallID" ColumnName="HallID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pro_ProInfo">
+      <EntityTypeMapping TypeName="ReportModel.Pro_ProInfo">
+        <MappingFragment StoreEntitySet="Pro_ProInfo">
+          <ScalarProperty Name="AssetStatus" ColumnName="AssetStatus" />
+          <ScalarProperty Name="AssetFinish" ColumnName="AssetFinish" />
+          <ScalarProperty Name="AssetSalvageValue" ColumnName="AssetSalvageValue" />
+          <ScalarProperty Name="AssetValue" ColumnName="AssetValue" />
+          <ScalarProperty Name="AssetPrice" ColumnName="AssetPrice" />
+          <ScalarProperty Name="AssetRate" ColumnName="AssetRate" />
+          <ScalarProperty Name="AssetPeriod" ColumnName="AssetPeriod" />
+          <ScalarProperty Name="AssetFrom" ColumnName="AssetFrom" />
+          <ScalarProperty Name="Pro_ClassTypeID" ColumnName="Pro_ClassTypeID" />
+          <ScalarProperty Name="AirHallID" ColumnName="AirHallID" />
+          <ScalarProperty Name="YanBaoModelID" ColumnName="YanBaoModelID" />
+          <ScalarProperty Name="ISdecimals" ColumnName="ISdecimals" />
+          <ScalarProperty Name="PrintName" ColumnName="PrintName" />
+          <ScalarProperty Name="ProMainID" ColumnName="ProMainID" />
+          <ScalarProperty Name="ProFormat" ColumnName="ProFormat" />
+          <ScalarProperty Name="NeedMoreorLess" ColumnName="NeedMoreorLess" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsService" ColumnName="IsService" />
+          <ScalarProperty Name="ValueIDList" ColumnName="ValueIDList" />
+          <ScalarProperty Name="AfterTicket" ColumnName="AfterTicket" />
+          <ScalarProperty Name="BeforeTicket" ColumnName="BeforeTicket" />
+          <ScalarProperty Name="TicketLevel" ColumnName="TicketLevel" />
+          <ScalarProperty Name="AfterRate" ColumnName="AfterRate" />
+          <ScalarProperty Name="AfterSep" ColumnName="AfterSep" />
+          <ScalarProperty Name="BeforeRate" ColumnName="BeforeRate" />
+          <ScalarProperty Name="BeforeSep" ColumnName="BeforeSep" />
+          <ScalarProperty Name="SepDate" ColumnName="SepDate" />
+          <ScalarProperty Name="NeedIMEI" ColumnName="NeedIMEI" />
+          <ScalarProperty Name="ProName" ColumnName="ProName" />
+          <ScalarProperty Name="VIP_TypeID" ColumnName="VIP_TypeID" />
+          <ScalarProperty Name="Pro_ClassID" ColumnName="Pro_ClassID" />
+          <ScalarProperty Name="Pro_TypeID" ColumnName="Pro_TypeID" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Role_Menu_HallInfo">
+      <EntityTypeMapping TypeName="ReportModel.Sys_Role_Menu_HallInfo">
+        <MappingFragment StoreEntitySet="Sys_Role_Menu_HallInfo">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="HallID" ColumnName="HallID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Role_MenuInfo">
+      <EntityTypeMapping TypeName="ReportModel.Sys_Role_MenuInfo">
+        <MappingFragment StoreEntitySet="Sys_Role_MenuInfo">
+          <ScalarProperty Name="IsChecked" ColumnName="IsChecked" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_MenuInfo">
+      <EntityTypeMapping TypeName="ReportModel.Sys_MenuInfo">
+        <MappingFragment StoreEntitySet="Sys_MenuInfo">
+          <ScalarProperty Name="DisplayMobile" ColumnName="DisplayMobile" />
+          <ScalarProperty Name="HasProRole" ColumnName="HasProRole" />
+          <ScalarProperty Name="HasHallRole" ColumnName="HasHallRole" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="MenuImg" ColumnName="MenuImg" />
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="MenuValue" ColumnName="MenuValue" />
+          <ScalarProperty Name="MenuText" ColumnName="MenuText" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_Borow">
+      <EntityTypeMapping TypeName="ReportModel.Report_Borow">
+        <MappingFragment StoreEntitySet="Report_Borow">
+          <ScalarProperty Name="商品编码" ColumnName="商品编码" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="营业厅" ColumnName="营业厅" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="商品型号" ColumnName="商品型号" />
+          <ScalarProperty Name="商品品牌" ColumnName="商品品牌" />
+          <ScalarProperty Name="商品类别" ColumnName="商品类别" />
+          <ScalarProperty Name="借贷方式" ColumnName="借贷方式" />
+          <ScalarProperty Name="借贷部门" ColumnName="借贷部门" />
+          <ScalarProperty Name="借贷日期" ColumnName="借贷日期" />
+          <ScalarProperty Name="借贷人" ColumnName="借贷人" />
+          <ScalarProperty Name="审批单" ColumnName="审批单" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_Return">
+      <EntityTypeMapping TypeName="ReportModel.Report_Return">
+        <MappingFragment StoreEntitySet="Report_Return">
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="归还日期" ColumnName="归还日期" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品型号" ColumnName="商品型号" />
+          <ScalarProperty Name="商品品牌" ColumnName="商品品牌" />
+          <ScalarProperty Name="商品类别" ColumnName="商品类别" />
+          <ScalarProperty Name="借贷单号" ColumnName="借贷单号" />
+          <ScalarProperty Name="SysDate" ColumnName="SysDate" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_IMEIInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_IMEIInfo">
+        <MappingFragment StoreEntitySet="Report_IMEIInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="库龄_天" ColumnName="库龄_天" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="状态" ColumnName="状态" />
+          <ScalarProperty Name="区域" ColumnName="区域" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_IMEITracksInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_IMEITracksInfo">
+        <MappingFragment StoreEntitySet="Report_IMEITracksInfo">
+          <ScalarProperty Name="系统平台" ColumnName="系统平台" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="日期" ColumnName="日期" />
+          <ScalarProperty Name="跟踪" ColumnName="跟踪" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pro_ClassInfo">
+      <EntityTypeMapping TypeName="ReportModel.Pro_ClassInfo">
+        <MappingFragment StoreEntitySet="Pro_ClassInfo">
+          <ScalarProperty Name="ClassTypeID" ColumnName="ClassTypeID" />
+          <ScalarProperty Name="HasSalary" ColumnName="HasSalary" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Role_Menu_ProInfo">
+      <EntityTypeMapping TypeName="ReportModel.Sys_Role_Menu_ProInfo">
+        <MappingFragment StoreEntitySet="Sys_Role_Menu_ProInfo">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_OutInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_OutInfo">
+        <MappingFragment StoreEntitySet="Report_OutInfo">
+          <ScalarProperty Name="总高度" ColumnName="总高度" />
+          <ScalarProperty Name="调入仓库编码" ColumnName="调入仓库编码" />
+          <ScalarProperty Name="调出仓库编码" ColumnName="调出仓库编码" />
+          <ScalarProperty Name="接收日期" ColumnName="接收日期" />
+          <ScalarProperty Name="接收人" ColumnName="接收人" />
+          <ScalarProperty Name="已接收" ColumnName="已接收" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="调拨人" ColumnName="调拨人" />
+          <ScalarProperty Name="调拨日期" ColumnName="调拨日期" />
+          <ScalarProperty Name="调入仓库" ColumnName="调入仓库" />
+          <ScalarProperty Name="调出仓库" ColumnName="调出仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="调拨单号" ColumnName="调拨单号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_InOrderInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_InOrderInfo">
+        <MappingFragment StoreEntitySet="Report_InOrderInfo">
+          <ScalarProperty Name="入库仓库编码" ColumnName="入库仓库编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="入库日期" ColumnName="入库日期" />
+          <ScalarProperty Name="入库仓库" ColumnName="入库仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="入库单号" ColumnName="入库单号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_BackIMEIInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_BackIMEIInfo">
+        <MappingFragment StoreEntitySet="Report_BackIMEIInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="退库仓库编码" ColumnName="退库仓库编码" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="退库日期" ColumnName="退库日期" />
+          <ScalarProperty Name="退库仓库" ColumnName="退库仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="退库单号" ColumnName="退库单号" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="自增外键退库单编号" ColumnName="自增外键退库单编号" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_BackInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_BackInfo">
+        <MappingFragment StoreEntitySet="Report_BackInfo">
+          <ScalarProperty Name="退库仓库编码" ColumnName="退库仓库编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="退库日期" ColumnName="退库日期" />
+          <ScalarProperty Name="退库仓库" ColumnName="退库仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="退库单号" ColumnName="退库单号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_BackListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_BackListInfo">
+        <MappingFragment StoreEntitySet="Report_BackListInfo">
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="退库仓库编码" ColumnName="退库仓库编码" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="退库日期" ColumnName="退库日期" />
+          <ScalarProperty Name="退库仓库" ColumnName="退库仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="退库单号" ColumnName="退库单号" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="自增外键退库编号" ColumnName="自增外键退库编号" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_ChangeIMEIInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_ChangeIMEIInfo">
+        <MappingFragment StoreEntitySet="Report_ChangeIMEIInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="转类别仓库编码" ColumnName="转类别仓库编码" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="转类别日期" ColumnName="转类别日期" />
+          <ScalarProperty Name="转类别仓库" ColumnName="转类别仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="现商品属性" ColumnName="现商品属性" />
+          <ScalarProperty Name="现商品名称" ColumnName="现商品名称" />
+          <ScalarProperty Name="现品牌" ColumnName="现品牌" />
+          <ScalarProperty Name="现类别" ColumnName="现类别" />
+          <ScalarProperty Name="原商品属性" ColumnName="原商品属性" />
+          <ScalarProperty Name="原商品名称" ColumnName="原商品名称" />
+          <ScalarProperty Name="原品牌" ColumnName="原品牌" />
+          <ScalarProperty Name="原类别" ColumnName="原类别" />
+          <ScalarProperty Name="自增外键转类别单编号" ColumnName="自增外键转类别单编号" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="新批次号" ColumnName="新批次号" />
+          <ScalarProperty Name="旧批次号" ColumnName="旧批次号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_ChangeListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_ChangeListInfo">
+        <MappingFragment StoreEntitySet="Report_ChangeListInfo">
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="转类别仓库编码" ColumnName="转类别仓库编码" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="转类别日期" ColumnName="转类别日期" />
+          <ScalarProperty Name="转类别仓库" ColumnName="转类别仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="现商品属性" ColumnName="现商品属性" />
+          <ScalarProperty Name="现商品名称" ColumnName="现商品名称" />
+          <ScalarProperty Name="现品牌" ColumnName="现品牌" />
+          <ScalarProperty Name="现类别" ColumnName="现类别" />
+          <ScalarProperty Name="原商品属性" ColumnName="原商品属性" />
+          <ScalarProperty Name="原商品名称" ColumnName="原商品名称" />
+          <ScalarProperty Name="原品牌" ColumnName="原品牌" />
+          <ScalarProperty Name="原类别" ColumnName="原类别" />
+          <ScalarProperty Name="自增外键转类别编号" ColumnName="自增外键转类别编号" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="新批次号" ColumnName="新批次号" />
+          <ScalarProperty Name="旧批次号" ColumnName="旧批次号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_ChangeProInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_ChangeProInfo">
+        <MappingFragment StoreEntitySet="Report_ChangeProInfo">
+          <ScalarProperty Name="转类别仓库编码" ColumnName="转类别仓库编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="转类别日期" ColumnName="转类别日期" />
+          <ScalarProperty Name="转类别仓库" ColumnName="转类别仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_EveryHallStoreInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_EveryHallStoreInfo">
+        <MappingFragment StoreEntitySet="Report_EveryHallStoreInfo">
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="属性排序" ColumnName="属性排序" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="类别排序" ColumnName="类别排序" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="在途" ColumnName="在途" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="门店排序" ColumnName="门店排序" />
+          <ScalarProperty Name="等级排序" ColumnName="等级排序" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="门店等级" ColumnName="门店等级" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="制式" ColumnName="制式" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetInOutSellInfo" FunctionName="ReportModel.Store.GetInOutSellInfo" />
+    <EntitySetMapping Name="Report_PriceInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_PriceInfo">
+        <MappingFragment StoreEntitySet="Report_PriceInfo">
+          <ScalarProperty Name="需要审批单" ColumnName="需要审批单" />
+          <ScalarProperty Name="可以兑券" ColumnName="可以兑券" />
+          <ScalarProperty Name="最高价格" ColumnName="最高价格" />
+          <ScalarProperty Name="最低价格" ColumnName="最低价格" />
+          <ScalarProperty Name="结算价" ColumnName="结算价" />
+          <ScalarProperty Name="价格" ColumnName="价格" />
+          <ScalarProperty Name="销售类别" ColumnName="销售类别" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_OutOrderIMEIInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_OutOrderIMEIInfo">
+        <MappingFragment StoreEntitySet="Report_OutOrderIMEIInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="调入仓库编码" ColumnName="调入仓库编码" />
+          <ScalarProperty Name="调出仓库编码" ColumnName="调出仓库编码" />
+          <ScalarProperty Name="接收日期" ColumnName="接收日期" />
+          <ScalarProperty Name="接收人" ColumnName="接收人" />
+          <ScalarProperty Name="已接收" ColumnName="已接收" />
+          <ScalarProperty Name="串码备注" ColumnName="串码备注" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="自增外键调拨明细编号" ColumnName="自增外键调拨明细编号" />
+          <ScalarProperty Name="自增外键调拨单编号" ColumnName="自增外键调拨单编号" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="调拨备注" ColumnName="调拨备注" />
+          <ScalarProperty Name="调拨人" ColumnName="调拨人" />
+          <ScalarProperty Name="调拨日期" ColumnName="调拨日期" />
+          <ScalarProperty Name="调入仓库" ColumnName="调入仓库" />
+          <ScalarProperty Name="调出仓库" ColumnName="调出仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="调拨单号" ColumnName="调拨单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_OutOrderListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_OutOrderListInfo">
+        <MappingFragment StoreEntitySet="Report_OutOrderListInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="调入仓库编码" ColumnName="调入仓库编码" />
+          <ScalarProperty Name="调出仓库编码" ColumnName="调出仓库编码" />
+          <ScalarProperty Name="接收日期" ColumnName="接收日期" />
+          <ScalarProperty Name="接收人" ColumnName="接收人" />
+          <ScalarProperty Name="已接收" ColumnName="已接收" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="调拨备注" ColumnName="调拨备注" />
+          <ScalarProperty Name="调拨人" ColumnName="调拨人" />
+          <ScalarProperty Name="调拨日期" ColumnName="调拨日期" />
+          <ScalarProperty Name="调入仓库" ColumnName="调入仓库" />
+          <ScalarProperty Name="调出仓库" ColumnName="调出仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="调拨单号" ColumnName="调拨单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_ReturnIMEIInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_ReturnIMEIInfo">
+        <MappingFragment StoreEntitySet="Report_ReturnIMEIInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="借贷仓库编码" ColumnName="借贷仓库编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="归还日期" ColumnName="归还日期" />
+          <ScalarProperty Name="预计归还日期" ColumnName="预计归还日期" />
+          <ScalarProperty Name="借贷方式" ColumnName="借贷方式" />
+          <ScalarProperty Name="联系电话" ColumnName="联系电话" />
+          <ScalarProperty Name="借贷人" ColumnName="借贷人" />
+          <ScalarProperty Name="借贷部门" ColumnName="借贷部门" />
+          <ScalarProperty Name="借贷日期" ColumnName="借贷日期" />
+          <ScalarProperty Name="借贷门店" ColumnName="借贷门店" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="审批单号" ColumnName="审批单号" />
+          <ScalarProperty Name="借贷单号" ColumnName="借贷单号" />
+          <ScalarProperty Name="归还外键编号" ColumnName="归还外键编号" />
+          <ScalarProperty Name="归还明细外键编号" ColumnName="归还明细外键编号" />
+          <ScalarProperty Name="自主主键编号" ColumnName="自主主键编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_ReturnListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_ReturnListInfo">
+        <MappingFragment StoreEntitySet="Report_ReturnListInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="借贷仓库编码" ColumnName="借贷仓库编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="归还日期" ColumnName="归还日期" />
+          <ScalarProperty Name="预计归还日期" ColumnName="预计归还日期" />
+          <ScalarProperty Name="借贷方式" ColumnName="借贷方式" />
+          <ScalarProperty Name="联系电话" ColumnName="联系电话" />
+          <ScalarProperty Name="借贷人" ColumnName="借贷人" />
+          <ScalarProperty Name="借贷部门" ColumnName="借贷部门" />
+          <ScalarProperty Name="借贷日期" ColumnName="借贷日期" />
+          <ScalarProperty Name="借贷门店" ColumnName="借贷门店" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="审批单号" ColumnName="审批单号" />
+          <ScalarProperty Name="借贷单号" ColumnName="借贷单号" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="系统自增主键编码" ColumnName="系统自增主键编码" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_ReNewInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_ReNewInfo">
+        <MappingFragment StoreEntitySet="Report_ReNewInfo">
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="拦装人" ColumnName="拦装人" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="会员电话" ColumnName="会员电话" />
+          <ScalarProperty Name="会员姓名" ColumnName="会员姓名" />
+          <ScalarProperty Name="续期日期" ColumnName="续期日期" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="续期天数" ColumnName="续期天数" />
+          <ScalarProperty Name="续期积分" ColumnName="续期积分" />
+          <ScalarProperty Name="续期金额" ColumnName="续期金额" />
+          <ScalarProperty Name="续期比列" ColumnName="续期比列" />
+          <ScalarProperty Name="续期方式" ColumnName="续期方式" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_RepairReturnInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_RepairReturnInfo">
+        <MappingFragment StoreEntitySet="Report_RepairReturnInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="仓库编码" ColumnName="仓库编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="返修串码" ColumnName="返修串码" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="返库日期" ColumnName="返库日期" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="原始返库单号" ColumnName="原始返库单号" />
+          <ScalarProperty Name="返库单号" ColumnName="返库单号" />
+          <ScalarProperty Name="送修单号" ColumnName="送修单号" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Print_SellListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Print_SellListInfo">
+        <MappingFragment StoreEntitySet="Print_SellListInfo">
+          <ScalarProperty Name="backid" ColumnName="backid" />
+          <ScalarProperty Name="系统单号" ColumnName="系统单号" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="现金" ColumnName="现金" />
+          <ScalarProperty Name="刷卡" ColumnName="刷卡" />
+          <ScalarProperty Name="实收总额大写" ColumnName="实收总额大写" />
+          <ScalarProperty Name="实收总额" ColumnName="实收总额" />
+          <ScalarProperty Name="优惠券金额" ColumnName="优惠券金额" />
+          <ScalarProperty Name="优惠券名称" ColumnName="优惠券名称" />
+          <ScalarProperty Name="应收总额" ColumnName="应收总额" />
+          <ScalarProperty Name="客户电话" ColumnName="客户电话" />
+          <ScalarProperty Name="客户电姓名" ColumnName="客户电姓名" />
+          <ScalarProperty Name="会员卡号" ColumnName="会员卡号" />
+          <ScalarProperty Name="销售公司" ColumnName="销售公司" />
+          <ScalarProperty Name="销售门店" ColumnName="销售门店" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="销售单号" ColumnName="销售单号" />
+          <ScalarProperty Name="金额小计" ColumnName="金额小计" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="优惠" ColumnName="优惠" />
+          <ScalarProperty Name="券号_合约号" ColumnName="券号/合约号" />
+          <ScalarProperty Name="券面值" ColumnName="券面值" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="串码_号码_合同号" ColumnName="串码/号码/合同号" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="自增主键编号" ColumnName="自增主键编号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Print_SellInfo">
+      <EntityTypeMapping TypeName="ReportModel.Print_SellInfo">
+        <MappingFragment StoreEntitySet="Print_SellInfo">
+          <ScalarProperty Name="backid" ColumnName="backid" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="系统单号" ColumnName="系统单号" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="现金" ColumnName="现金" />
+          <ScalarProperty Name="刷卡" ColumnName="刷卡" />
+          <ScalarProperty Name="实收总额大写" ColumnName="实收总额大写" />
+          <ScalarProperty Name="实收总额" ColumnName="实收总额" />
+          <ScalarProperty Name="优惠券金额" ColumnName="优惠券金额" />
+          <ScalarProperty Name="优惠券名称" ColumnName="优惠券名称" />
+          <ScalarProperty Name="应收总额" ColumnName="应收总额" />
+          <ScalarProperty Name="客户电话" ColumnName="客户电话" />
+          <ScalarProperty Name="客户电姓名" ColumnName="客户电姓名" />
+          <ScalarProperty Name="会员卡号" ColumnName="会员卡号" />
+          <ScalarProperty Name="销售公司" ColumnName="销售公司" />
+          <ScalarProperty Name="销售门店" ColumnName="销售门店" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="销售单号" ColumnName="销售单号" />
+          <ScalarProperty Name="自增主键" ColumnName="自增主键" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Demo_ReportViewInfo">
+      <EntityTypeMapping TypeName="ReportModel.Demo_ReportViewInfo">
+        <MappingFragment StoreEntitySet="Demo_ReportViewInfo">
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="ReportViewName" ColumnName="ReportViewName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Print_SellBackInfo">
+      <EntityTypeMapping TypeName="ReportModel.Print_SellBackInfo">
+        <MappingFragment StoreEntitySet="Print_SellBackInfo">
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="现金" ColumnName="现金" />
+          <ScalarProperty Name="刷卡" ColumnName="刷卡" />
+          <ScalarProperty Name="实收总额大写" ColumnName="实收总额大写" />
+          <ScalarProperty Name="实收总额" ColumnName="实收总额" />
+          <ScalarProperty Name="优惠券金额" ColumnName="优惠券金额" />
+          <ScalarProperty Name="优惠券名称" ColumnName="优惠券名称" />
+          <ScalarProperty Name="应收总额" ColumnName="应收总额" />
+          <ScalarProperty Name="客户电话" ColumnName="客户电话" />
+          <ScalarProperty Name="客户电姓名" ColumnName="客户电姓名" />
+          <ScalarProperty Name="会员卡号" ColumnName="会员卡号" />
+          <ScalarProperty Name="销售公司" ColumnName="销售公司" />
+          <ScalarProperty Name="销售门店" ColumnName="销售门店" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="退货单号" ColumnName="退货单号" />
+          <ScalarProperty Name="自增主键" ColumnName="自增主键" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Print_SellBackListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Print_SellBackListInfo">
+        <MappingFragment StoreEntitySet="Print_SellBackListInfo">
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="现金" ColumnName="现金" />
+          <ScalarProperty Name="刷卡" ColumnName="刷卡" />
+          <ScalarProperty Name="实收总额大写" ColumnName="实收总额大写" />
+          <ScalarProperty Name="实收总额" ColumnName="实收总额" />
+          <ScalarProperty Name="优惠券金额" ColumnName="优惠券金额" />
+          <ScalarProperty Name="优惠券名称" ColumnName="优惠券名称" />
+          <ScalarProperty Name="应收总额" ColumnName="应收总额" />
+          <ScalarProperty Name="客户电话" ColumnName="客户电话" />
+          <ScalarProperty Name="客户电姓名" ColumnName="客户电姓名" />
+          <ScalarProperty Name="会员卡号" ColumnName="会员卡号" />
+          <ScalarProperty Name="销售公司" ColumnName="销售公司" />
+          <ScalarProperty Name="销售门店" ColumnName="销售门店" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="退货单号" ColumnName="退货单号" />
+          <ScalarProperty Name="金额小计" ColumnName="金额小计" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="优惠" ColumnName="优惠" />
+          <ScalarProperty Name="券号_合约号" ColumnName="券号/合约号" />
+          <ScalarProperty Name="券面值" ColumnName="券面值" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="串码_号码_合同号" ColumnName="串码/号码/合同号" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="自增主键编号" ColumnName="自增主键编号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_ProductInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_ProductInfo">
+        <MappingFragment StoreEntitySet="Report_ProductInfo">
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="需要补差" ColumnName="需要补差" />
+          <ScalarProperty Name="大于临界值加" ColumnName="大于临界值加" />
+          <ScalarProperty Name="小于临界值加" ColumnName="小于临界值加" />
+          <ScalarProperty Name="兑券临界值" ColumnName="兑券临界值" />
+          <ScalarProperty Name="日期之后加" ColumnName="日期之后加" />
+          <ScalarProperty Name="日期之后可用" ColumnName="日期之后可用" />
+          <ScalarProperty Name="日期之前加" ColumnName="日期之前加" />
+          <ScalarProperty Name="日期之前可用" ColumnName="日期之前可用" />
+          <ScalarProperty Name="兑券临界日期" ColumnName="兑券临界日期" />
+          <ScalarProperty Name="属于服务" ColumnName="属于服务" />
+          <ScalarProperty Name="有串码" ColumnName="有串码" />
+          <ScalarProperty Name="会员类别" ColumnName="会员类别" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="商品编码" ColumnName="商品编码" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_AirOutListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_AirOutListInfo">
+        <MappingFragment StoreEntitySet="Report_AirOutListInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="调入仓库编码" ColumnName="调入仓库编码" />
+          <ScalarProperty Name="调出仓库编码" ColumnName="调出仓库编码" />
+          <ScalarProperty Name="接收日期" ColumnName="接收日期" />
+          <ScalarProperty Name="接收人" ColumnName="接收人" />
+          <ScalarProperty Name="已接收" ColumnName="已接收" />
+          <ScalarProperty Name="调入号码属性" ColumnName="调入号码属性" />
+          <ScalarProperty Name="调入号码" ColumnName="调入号码" />
+          <ScalarProperty Name="调拨金额" ColumnName="调拨金额" />
+          <ScalarProperty Name="调出号码属性" ColumnName="调出号码属性" />
+          <ScalarProperty Name="调出号码" ColumnName="调出号码" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="调拨备注" ColumnName="调拨备注" />
+          <ScalarProperty Name="调拨人" ColumnName="调拨人" />
+          <ScalarProperty Name="调拨日期" ColumnName="调拨日期" />
+          <ScalarProperty Name="调入仓库" ColumnName="调入仓库" />
+          <ScalarProperty Name="调出仓库" ColumnName="调出仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="调拨单号" ColumnName="调拨单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_StoreInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_StoreInfo">
+        <MappingFragment StoreEntitySet="Report_StoreInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="商品编码" ColumnName="商品编码" />
+          <ScalarProperty Name="区域" ColumnName="区域" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="小计" ColumnName="小计" />
+          <ScalarProperty Name="借贷中数量" ColumnName="借贷中数量" />
+          <ScalarProperty Name="送修中数量" ColumnName="送修中数量" />
+          <ScalarProperty Name="调拨中数量" ColumnName="调拨中数量" />
+          <ScalarProperty Name="门店优惠审批中" ColumnName="门店优惠审批中" />
+          <ScalarProperty Name="在库数量" ColumnName="在库数量" />
+          <ScalarProperty Name="零售价格" ColumnName="零售价格" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_CostPriceListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_CostPriceListInfo">
+        <MappingFragment StoreEntitySet="Report_CostPriceListInfo">
+          <ScalarProperty Name="成本价" ColumnName="成本价" />
+          <ScalarProperty Name="入库日期" ColumnName="入库日期" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_YANBAO">
+      <EntityTypeMapping TypeName="ReportModel.Report_YANBAO">
+        <MappingFragment StoreEntitySet="Report_YANBAO">
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="状态" ColumnName="状态" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="耳机编码" ColumnName="耳机编码" />
+          <ScalarProperty Name="充电器编码" ColumnName="充电器编码" />
+          <ScalarProperty Name="电池编码" ColumnName="电池编码" />
+          <ScalarProperty Name="发票号码" ColumnName="发票号码" />
+          <ScalarProperty Name="手机购买方式" ColumnName="手机购买方式" />
+          <ScalarProperty Name="手机串号" ColumnName="手机串号" />
+          <ScalarProperty Name="手机价格" ColumnName="手机价格" />
+          <ScalarProperty Name="手机型号" ColumnName="手机型号" />
+          <ScalarProperty Name="延保价格" ColumnName="延保价格" />
+          <ScalarProperty Name="销售数量" ColumnName="销售数量" />
+          <ScalarProperty Name="合同编号" ColumnName="合同编号" />
+          <ScalarProperty Name="延保购买日期" ColumnName="延保购买日期" />
+          <ScalarProperty Name="联系方式" ColumnName="联系方式" />
+          <ScalarProperty Name="客户姓名" ColumnName="客户姓名" />
+          <ScalarProperty Name="仓管员" ColumnName="仓管员" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="网店属性" ColumnName="网店属性" />
+          <ScalarProperty Name="店名" ColumnName="店名" />
+          <ScalarProperty Name="区域" ColumnName="区域" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="录入时间" ColumnName="录入时间" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_InOutSellInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_InOutSellInfo">
+        <MappingFragment StoreEntitySet="Report_InOutSellInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="区域" ColumnName="区域" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="借贷累计" ColumnName="借贷累计" />
+          <ScalarProperty Name="送修累计" ColumnName="送修累计" />
+          <ScalarProperty Name="期末库存" ColumnName="期末库存" />
+          <ScalarProperty Name="本期归还" ColumnName="本期归还" />
+          <ScalarProperty Name="本期借贷" ColumnName="本期借贷" />
+          <ScalarProperty Name="本期返库" ColumnName="本期返库" />
+          <ScalarProperty Name="本期送修" ColumnName="本期送修" />
+          <ScalarProperty Name="本期退货" ColumnName="本期退货" />
+          <ScalarProperty Name="本期销售" ColumnName="本期销售" />
+          <ScalarProperty Name="本期销售审批_已审批_" ColumnName="本期销售审批_已审批_" />
+          <ScalarProperty Name="本期销售审批_申请_" ColumnName="本期销售审批_申请_" />
+          <ScalarProperty Name="本期调出" ColumnName="本期调出" />
+          <ScalarProperty Name="本期调入" ColumnName="本期调入" />
+          <ScalarProperty Name="本期类别转出" ColumnName="本期类别转出" />
+          <ScalarProperty Name="本期类别转入" ColumnName="本期类别转入" />
+          <ScalarProperty Name="本期退库" ColumnName="本期退库" />
+          <ScalarProperty Name="本期初始入库" ColumnName="本期初始入库" />
+          <ScalarProperty Name="期初库存" ColumnName="期初库存" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_InOrderIMEIInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_InOrderIMEIInfo">
+        <MappingFragment StoreEntitySet="Report_InOrderIMEIInfo">
+          <ScalarProperty Name="成本价" ColumnName="成本价" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="入库仓库编码" ColumnName="入库仓库编码" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="入库日期" ColumnName="入库日期" />
+          <ScalarProperty Name="入库仓库" ColumnName="入库仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="入库单号" ColumnName="入库单号" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="自增外键入库单编号" ColumnName="自增外键入库单编号" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_SellListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_SellListInfo">
+        <MappingFragment StoreEntitySet="Report_SellListInfo">
+          <ScalarProperty Name="录入人" ColumnName="录入人" />
+          <ScalarProperty Name="仓属性" ColumnName="仓属性" />
+          <ScalarProperty Name="结算价" ColumnName="结算价" />
+          <ScalarProperty Name="规则毛利不可拿回" ColumnName="规则毛利不可拿回" />
+          <ScalarProperty Name="规则毛利可拿回" ColumnName="规则毛利可拿回" />
+          <ScalarProperty Name="入库成本价" ColumnName="入库成本价" />
+          <ScalarProperty Name="销售时成本价" ColumnName="销售时成本价" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="商品大类编码" ColumnName="商品大类编码" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="商品编码" ColumnName="商品编码" />
+          <ScalarProperty Name="大区编码" ColumnName="大区编码" />
+          <ScalarProperty Name="片区编码" ColumnName="片区编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="终端制式" ColumnName="终端制式" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="单头备注" ColumnName="单头备注" />
+          <ScalarProperty Name="商品大类" ColumnName="商品大类" />
+          <ScalarProperty Name="片区" ColumnName="片区" />
+          <ScalarProperty Name="销售时间" ColumnName="销售时间" />
+          <ScalarProperty Name="门店优惠" ColumnName="门店优惠" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="客户电话" ColumnName="客户电话" />
+          <ScalarProperty Name="客户姓名" ColumnName="客户姓名" />
+          <ScalarProperty Name="会员卡号" ColumnName="会员卡号" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="是否免费服务" ColumnName="是否免费服务" />
+          <ScalarProperty Name="终端代销费" ColumnName="终端代销费" />
+          <ScalarProperty Name="列收" ColumnName="列收" />
+          <ScalarProperty Name="暗补" ColumnName="暗补" />
+          <ScalarProperty Name="多收单价" ColumnName="多收单价" />
+          <ScalarProperty Name="批发优惠金额" ColumnName="批发优惠金额" />
+          <ScalarProperty Name="组合优惠金额" ColumnName="组合优惠金额" />
+          <ScalarProperty Name="组合优惠名称" ColumnName="组合优惠名称" />
+          <ScalarProperty Name="单品优惠金额" ColumnName="单品优惠金额" />
+          <ScalarProperty Name="单品优惠名称" ColumnName="单品优惠名称" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="兑换值" ColumnName="兑换值" />
+          <ScalarProperty Name="代金券面值" ColumnName="代金券面值" />
+          <ScalarProperty Name="代金券编码" ColumnName="代金券编码" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="实收金额" ColumnName="实收金额" />
+          <ScalarProperty Name="实际单价" ColumnName="实际单价" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="销售方式" ColumnName="销售方式" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="销售单号" ColumnName="销售单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_BorrowAduitInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_BorrowAduitInfo">
+        <MappingFragment StoreEntitySet="Report_BorrowAduitInfo">
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="四级备注" ColumnName="四级备注" />
+          <ScalarProperty Name="四级审批日期" ColumnName="四级审批日期" />
+          <ScalarProperty Name="四级审批人" ColumnName="四级审批人" />
+          <ScalarProperty Name="四级已通过" ColumnName="四级已通过" />
+          <ScalarProperty Name="四级已审批" ColumnName="四级已审批" />
+          <ScalarProperty Name="三级备注" ColumnName="三级备注" />
+          <ScalarProperty Name="三级审批日期" ColumnName="三级审批日期" />
+          <ScalarProperty Name="三级审批人" ColumnName="三级审批人" />
+          <ScalarProperty Name="三级已通过" ColumnName="三级已通过" />
+          <ScalarProperty Name="三级已审批" ColumnName="三级已审批" />
+          <ScalarProperty Name="二级备注" ColumnName="二级备注" />
+          <ScalarProperty Name="二级审批日期" ColumnName="二级审批日期" />
+          <ScalarProperty Name="二级审批人" ColumnName="二级审批人" />
+          <ScalarProperty Name="二级已通过" ColumnName="二级已通过" />
+          <ScalarProperty Name="二级已审批" ColumnName="二级已审批" />
+          <ScalarProperty Name="一级备注" ColumnName="一级备注" />
+          <ScalarProperty Name="一级审批日期" ColumnName="一级审批日期" />
+          <ScalarProperty Name="一级审批人" ColumnName="一级审批人" />
+          <ScalarProperty Name="一级已通过" ColumnName="一级已通过" />
+          <ScalarProperty Name="一级已审批" ColumnName="一级已审批" />
+          <ScalarProperty Name="申请备注" ColumnName="申请备注" />
+          <ScalarProperty Name="预计归还日期" ColumnName="预计归还日期" />
+          <ScalarProperty Name="借贷人电话" ColumnName="借贷人电话" />
+          <ScalarProperty Name="借贷部门" ColumnName="借贷部门" />
+          <ScalarProperty Name="借贷方式" ColumnName="借贷方式" />
+          <ScalarProperty Name="借贷人" ColumnName="借贷人" />
+          <ScalarProperty Name="内部借机" ColumnName="内部借机" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="系统日期" ColumnName="系统日期" />
+          <ScalarProperty Name="申请日期" ColumnName="申请日期" />
+          <ScalarProperty Name="申请人" ColumnName="申请人" />
+          <ScalarProperty Name="使用日期" ColumnName="使用日期" />
+          <ScalarProperty Name="已使用" ColumnName="已使用" />
+          <ScalarProperty Name="已通过" ColumnName="已通过" />
+          <ScalarProperty Name="已审批" ColumnName="已审批" />
+          <ScalarProperty Name="借贷总额" ColumnName="借贷总额" />
+          <ScalarProperty Name="申请单号" ColumnName="申请单号" />
+          <ScalarProperty Name="系统主键" ColumnName="系统主键" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_BorrowAduitListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_BorrowAduitListInfo">
+        <MappingFragment StoreEntitySet="Report_BorrowAduitListInfo">
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="借贷单价" ColumnName="借贷单价" />
+          <ScalarProperty Name="借贷数量" ColumnName="借贷数量" />
+          <ScalarProperty Name="属性" ColumnName="属性" />
+          <ScalarProperty Name="商品型号" ColumnName="商品型号" />
+          <ScalarProperty Name="商品品牌" ColumnName="商品品牌" />
+          <ScalarProperty Name="商品类别" ColumnName="商品类别" />
+          <ScalarProperty Name="系统外键" ColumnName="系统外键" />
+          <ScalarProperty Name="系统主键" ColumnName="系统主键" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_Profit">
+      <EntityTypeMapping TypeName="ReportModel.Report_Profit">
+        <MappingFragment StoreEntitySet="Report_Profit">
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="销售时间" ColumnName="销售时间" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="片区" ColumnName="片区" />
+          <ScalarProperty Name="销售单号" ColumnName="销售单号" />
+          <ScalarProperty Name="利润" ColumnName="利润" />
+          <ScalarProperty Name="退货审批利润" ColumnName="退货审批利润" />
+          <ScalarProperty Name="实收单价" ColumnName="实收单价" />
+          <ScalarProperty Name="计算成本价" ColumnName="计算成本价" />
+          <ScalarProperty Name="销售时成本价" ColumnName="销售时成本价" />
+          <ScalarProperty Name="入库成本价" ColumnName="入库成本价" />
+          <ScalarProperty Name="结算价" ColumnName="结算价" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="商品大类编码" ColumnName="商品大类编码" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="商品编码" ColumnName="商品编码" />
+          <ScalarProperty Name="大区编码" ColumnName="大区编码" />
+          <ScalarProperty Name="片区编码" ColumnName="片区编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="商品大类" ColumnName="商品大类" />
+          <ScalarProperty Name="兑换值" ColumnName="兑换值" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="销售方式" ColumnName="销售方式" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_SellReport">
+      <EntityTypeMapping TypeName="ReportModel.Report_SellReport">
+        <MappingFragment StoreEntitySet="Report_SellReport">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="ProMainID" ColumnName="ProMainID" />
+          <ScalarProperty Name="结算价" ColumnName="结算价" />
+          <ScalarProperty Name="规则毛利不可拿回" ColumnName="规则毛利不可拿回" />
+          <ScalarProperty Name="规则毛利可拿回" ColumnName="规则毛利可拿回" />
+          <ScalarProperty Name="入库成本价" ColumnName="入库成本价" />
+          <ScalarProperty Name="销售时成本价" ColumnName="销售时成本价" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="商品大类编码" ColumnName="商品大类编码" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="商品编码" ColumnName="商品编码" />
+          <ScalarProperty Name="大区编码" ColumnName="大区编码" />
+          <ScalarProperty Name="片区编码" ColumnName="片区编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="终端制式" ColumnName="终端制式" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="单头备注" ColumnName="单头备注" />
+          <ScalarProperty Name="商品大类" ColumnName="商品大类" />
+          <ScalarProperty Name="片区" ColumnName="片区" />
+          <ScalarProperty Name="销售时间" ColumnName="销售时间" />
+          <ScalarProperty Name="门店优惠" ColumnName="门店优惠" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="客户电话" ColumnName="客户电话" />
+          <ScalarProperty Name="客户姓名" ColumnName="客户姓名" />
+          <ScalarProperty Name="会员卡号" ColumnName="会员卡号" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="是否免费服务" ColumnName="是否免费服务" />
+          <ScalarProperty Name="终端代销费" ColumnName="终端代销费" />
+          <ScalarProperty Name="列收" ColumnName="列收" />
+          <ScalarProperty Name="暗补" ColumnName="暗补" />
+          <ScalarProperty Name="多收单价" ColumnName="多收单价" />
+          <ScalarProperty Name="批发优惠金额" ColumnName="批发优惠金额" />
+          <ScalarProperty Name="组合优惠金额" ColumnName="组合优惠金额" />
+          <ScalarProperty Name="组合优惠名称" ColumnName="组合优惠名称" />
+          <ScalarProperty Name="单品优惠金额" ColumnName="单品优惠金额" />
+          <ScalarProperty Name="单品优惠名称" ColumnName="单品优惠名称" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="兑换值" ColumnName="兑换值" />
+          <ScalarProperty Name="代金券面值" ColumnName="代金券面值" />
+          <ScalarProperty Name="代金券编码" ColumnName="代金券编码" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="实收金额" ColumnName="实收金额" />
+          <ScalarProperty Name="实际单价" ColumnName="实际单价" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="销售方式" ColumnName="销售方式" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="销售单号" ColumnName="销售单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_SellReport2">
+      <EntityTypeMapping TypeName="ReportModel.Report_SellReport2">
+        <MappingFragment StoreEntitySet="Report_SellReport2">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="ProMainID" ColumnName="ProMainID" />
+          <ScalarProperty Name="结算价" ColumnName="结算价" />
+          <ScalarProperty Name="规则毛利不可拿回" ColumnName="规则毛利不可拿回" />
+          <ScalarProperty Name="规则毛利可拿回" ColumnName="规则毛利可拿回" />
+          <ScalarProperty Name="入库成本价" ColumnName="入库成本价" />
+          <ScalarProperty Name="销售时成本价" ColumnName="销售时成本价" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="商品大类编码" ColumnName="商品大类编码" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="商品编码" ColumnName="商品编码" />
+          <ScalarProperty Name="大区编码" ColumnName="大区编码" />
+          <ScalarProperty Name="片区编码" ColumnName="片区编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="终端制式" ColumnName="终端制式" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="单头备注" ColumnName="单头备注" />
+          <ScalarProperty Name="商品大类" ColumnName="商品大类" />
+          <ScalarProperty Name="片区" ColumnName="片区" />
+          <ScalarProperty Name="销售时间" ColumnName="销售时间" />
+          <ScalarProperty Name="门店优惠" ColumnName="门店优惠" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="客户电话" ColumnName="客户电话" />
+          <ScalarProperty Name="客户姓名" ColumnName="客户姓名" />
+          <ScalarProperty Name="会员卡号" ColumnName="会员卡号" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="是否免费服务" ColumnName="是否免费服务" />
+          <ScalarProperty Name="终端代销费" ColumnName="终端代销费" />
+          <ScalarProperty Name="列收" ColumnName="列收" />
+          <ScalarProperty Name="暗补" ColumnName="暗补" />
+          <ScalarProperty Name="多收单价" ColumnName="多收单价" />
+          <ScalarProperty Name="批发优惠金额" ColumnName="批发优惠金额" />
+          <ScalarProperty Name="组合优惠金额" ColumnName="组合优惠金额" />
+          <ScalarProperty Name="组合优惠名称" ColumnName="组合优惠名称" />
+          <ScalarProperty Name="单品优惠金额" ColumnName="单品优惠金额" />
+          <ScalarProperty Name="单品优惠名称" ColumnName="单品优惠名称" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="兑换值" ColumnName="兑换值" />
+          <ScalarProperty Name="代金券面值" ColumnName="代金券面值" />
+          <ScalarProperty Name="代金券编码" ColumnName="代金券编码" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="实收金额" ColumnName="实收金额" />
+          <ScalarProperty Name="实际单价" ColumnName="实际单价" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="销售方式" ColumnName="销售方式" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="销售单号" ColumnName="销售单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_Profit2">
+      <EntityTypeMapping TypeName="ReportModel.Report_Profit2">
+        <MappingFragment StoreEntitySet="Report_Profit2">
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="销售时间" ColumnName="销售时间" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="片区" ColumnName="片区" />
+          <ScalarProperty Name="利润" ColumnName="利润" />
+          <ScalarProperty Name="退货审批利润" ColumnName="退货审批利润" />
+          <ScalarProperty Name="实收单价" ColumnName="实收单价" />
+          <ScalarProperty Name="计算成本价" ColumnName="计算成本价" />
+          <ScalarProperty Name="销售时成本价" ColumnName="销售时成本价" />
+          <ScalarProperty Name="入库成本价" ColumnName="入库成本价" />
+          <ScalarProperty Name="结算价" ColumnName="结算价" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="商品大类编码" ColumnName="商品大类编码" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="商品编码" ColumnName="商品编码" />
+          <ScalarProperty Name="大区编码" ColumnName="大区编码" />
+          <ScalarProperty Name="片区编码" ColumnName="片区编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="商品大类" ColumnName="商品大类" />
+          <ScalarProperty Name="兑换值" ColumnName="兑换值" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="销售方式" ColumnName="销售方式" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="销售单号" ColumnName="销售单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_BorrowInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_BorrowInfo">
+        <MappingFragment StoreEntitySet="Report_BorrowInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="借贷仓库编码" ColumnName="借贷仓库编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="未还数量" ColumnName="未还数量" />
+          <ScalarProperty Name="借贷数量" ColumnName="借贷数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="预计归还日期" ColumnName="预计归还日期" />
+          <ScalarProperty Name="借贷方式" ColumnName="借贷方式" />
+          <ScalarProperty Name="联系电话" ColumnName="联系电话" />
+          <ScalarProperty Name="借贷人" ColumnName="借贷人" />
+          <ScalarProperty Name="借贷部门" ColumnName="借贷部门" />
+          <ScalarProperty Name="借贷日期" ColumnName="借贷日期" />
+          <ScalarProperty Name="借贷门店" ColumnName="借贷门店" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="审批单号" ColumnName="审批单号" />
+          <ScalarProperty Name="借贷单号" ColumnName="借贷单号" />
+          <ScalarProperty Name="自增外键编号" ColumnName="自增外键编号" />
+          <ScalarProperty Name="系统自增主键" ColumnName="系统自增主键" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_SellAduitInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_SellAduitInfo">
+        <MappingFragment StoreEntitySet="Report_SellAduitInfo">
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="三级备注" ColumnName="三级备注" />
+          <ScalarProperty Name="三级审批日期" ColumnName="三级审批日期" />
+          <ScalarProperty Name="三级审批人" ColumnName="三级审批人" />
+          <ScalarProperty Name="三级已通过" ColumnName="三级已通过" />
+          <ScalarProperty Name="三级已审批" ColumnName="三级已审批" />
+          <ScalarProperty Name="二级备注" ColumnName="二级备注" />
+          <ScalarProperty Name="二级审批日期" ColumnName="二级审批日期" />
+          <ScalarProperty Name="二级审批人" ColumnName="二级审批人" />
+          <ScalarProperty Name="二级已通过" ColumnName="二级已通过" />
+          <ScalarProperty Name="二级已审批" ColumnName="二级已审批" />
+          <ScalarProperty Name="一级备注" ColumnName="一级备注" />
+          <ScalarProperty Name="一级审批日期" ColumnName="一级审批日期" />
+          <ScalarProperty Name="一级审批人" ColumnName="一级审批人" />
+          <ScalarProperty Name="一级已通过" ColumnName="一级已通过" />
+          <ScalarProperty Name="一级已审批" ColumnName="一级已审批" />
+          <ScalarProperty Name="申请备注" ColumnName="申请备注" />
+          <ScalarProperty Name="客户电话" ColumnName="客户电话" />
+          <ScalarProperty Name="客户姓名" ColumnName="客户姓名" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="系统日期" ColumnName="系统日期" />
+          <ScalarProperty Name="申请日期" ColumnName="申请日期" />
+          <ScalarProperty Name="申请人" ColumnName="申请人" />
+          <ScalarProperty Name="使用日期" ColumnName="使用日期" />
+          <ScalarProperty Name="已使用" ColumnName="已使用" />
+          <ScalarProperty Name="已通过" ColumnName="已通过" />
+          <ScalarProperty Name="已审批" ColumnName="已审批" />
+          <ScalarProperty Name="批发总额" ColumnName="批发总额" />
+          <ScalarProperty Name="申请单号" ColumnName="申请单号" />
+          <ScalarProperty Name="系统主键" ColumnName="系统主键" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_SellAduitListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_SellAduitListInfo">
+        <MappingFragment StoreEntitySet="Report_SellAduitListInfo">
+          <ScalarProperty Name="批发数量" ColumnName="批发数量" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="批发单价" ColumnName="批发单价" />
+          <ScalarProperty Name="属性" ColumnName="属性" />
+          <ScalarProperty Name="商品型号" ColumnName="商品型号" />
+          <ScalarProperty Name="商品品牌" ColumnName="商品品牌" />
+          <ScalarProperty Name="商品类别" ColumnName="商品类别" />
+          <ScalarProperty Name="系统外键" ColumnName="系统外键" />
+          <ScalarProperty Name="系统主键" ColumnName="系统主键" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_SellReport3">
+      <EntityTypeMapping TypeName="ReportModel.Report_SellReport3">
+        <MappingFragment StoreEntitySet="Report_SellReport3">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="ProMainID" ColumnName="ProMainID" />
+          <ScalarProperty Name="结算价" ColumnName="结算价" />
+          <ScalarProperty Name="规则毛利不可拿回" ColumnName="规则毛利不可拿回" />
+          <ScalarProperty Name="规则毛利可拿回" ColumnName="规则毛利可拿回" />
+          <ScalarProperty Name="入库成本价" ColumnName="入库成本价" />
+          <ScalarProperty Name="销售时成本价" ColumnName="销售时成本价" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="商品大类编码" ColumnName="商品大类编码" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="商品编码" ColumnName="商品编码" />
+          <ScalarProperty Name="大区编码" ColumnName="大区编码" />
+          <ScalarProperty Name="片区编码" ColumnName="片区编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="终端制式" ColumnName="终端制式" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="单头备注" ColumnName="单头备注" />
+          <ScalarProperty Name="商品大类" ColumnName="商品大类" />
+          <ScalarProperty Name="片区" ColumnName="片区" />
+          <ScalarProperty Name="销售时间" ColumnName="销售时间" />
+          <ScalarProperty Name="门店优惠" ColumnName="门店优惠" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="客户电话" ColumnName="客户电话" />
+          <ScalarProperty Name="客户姓名" ColumnName="客户姓名" />
+          <ScalarProperty Name="会员卡号" ColumnName="会员卡号" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="是否免费服务" ColumnName="是否免费服务" />
+          <ScalarProperty Name="终端代销费" ColumnName="终端代销费" />
+          <ScalarProperty Name="列收" ColumnName="列收" />
+          <ScalarProperty Name="暗补" ColumnName="暗补" />
+          <ScalarProperty Name="多收单价" ColumnName="多收单价" />
+          <ScalarProperty Name="批发优惠金额" ColumnName="批发优惠金额" />
+          <ScalarProperty Name="组合优惠金额" ColumnName="组合优惠金额" />
+          <ScalarProperty Name="组合优惠名称" ColumnName="组合优惠名称" />
+          <ScalarProperty Name="单品优惠金额" ColumnName="单品优惠金额" />
+          <ScalarProperty Name="单品优惠名称" ColumnName="单品优惠名称" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="兑换值" ColumnName="兑换值" />
+          <ScalarProperty Name="代金券面值" ColumnName="代金券面值" />
+          <ScalarProperty Name="代金券编码" ColumnName="代金券编码" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="实收金额" ColumnName="实收金额" />
+          <ScalarProperty Name="实际单价" ColumnName="实际单价" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="销售方式" ColumnName="销售方式" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="销售单号" ColumnName="销售单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_VipBuyTimeInfo2">
+      <EntityTypeMapping TypeName="ReportModel.Report_VipBuyTimeInfo2">
+        <MappingFragment StoreEntitySet="Report_VipBuyTimeInfo2">
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="状态" ColumnName="状态" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="会员贴膜次数" ColumnName="会员贴膜次数" />
+          <ScalarProperty Name="消费次数" ColumnName="消费次数" />
+          <ScalarProperty Name="累计积分" ColumnName="累计积分" />
+          <ScalarProperty Name="QQ号_微信_微博" ColumnName="QQ号_微信_微博" />
+          <ScalarProperty Name="详细地址" ColumnName="详细地址" />
+          <ScalarProperty Name="身份证" ColumnName="身份证" />
+          <ScalarProperty Name="备用号码" ColumnName="备用号码" />
+          <ScalarProperty Name="联系号码" ColumnName="联系号码" />
+          <ScalarProperty Name="生日日期" ColumnName="生日日期" />
+          <ScalarProperty Name="性别" ColumnName="性别" />
+          <ScalarProperty Name="客户名称" ColumnName="客户名称" />
+          <ScalarProperty Name="销售金额" ColumnName="销售金额" />
+          <ScalarProperty Name="卡类" ColumnName="卡类" />
+          <ScalarProperty Name="卡号" ColumnName="卡号" />
+          <ScalarProperty Name="仓管员" ColumnName="仓管员" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="网店属性" ColumnName="网店属性" />
+          <ScalarProperty Name="店名" ColumnName="店名" />
+          <ScalarProperty Name="区域" ColumnName="区域" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="注册时间" ColumnName="注册时间" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_YANBAO2">
+      <EntityTypeMapping TypeName="ReportModel.Report_YANBAO2">
+        <MappingFragment StoreEntitySet="Report_YANBAO2">
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="状态" ColumnName="状态" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="耳机编码" ColumnName="耳机编码" />
+          <ScalarProperty Name="充电器编码" ColumnName="充电器编码" />
+          <ScalarProperty Name="电池编码" ColumnName="电池编码" />
+          <ScalarProperty Name="发票号码" ColumnName="发票号码" />
+          <ScalarProperty Name="手机购买方式" ColumnName="手机购买方式" />
+          <ScalarProperty Name="手机串号" ColumnName="手机串号" />
+          <ScalarProperty Name="手机价格" ColumnName="手机价格" />
+          <ScalarProperty Name="手机型号" ColumnName="手机型号" />
+          <ScalarProperty Name="延保价格" ColumnName="延保价格" />
+          <ScalarProperty Name="销售数量" ColumnName="销售数量" />
+          <ScalarProperty Name="合同编号" ColumnName="合同编号" />
+          <ScalarProperty Name="延保购买日期" ColumnName="延保购买日期" />
+          <ScalarProperty Name="联系方式" ColumnName="联系方式" />
+          <ScalarProperty Name="客户姓名" ColumnName="客户姓名" />
+          <ScalarProperty Name="仓管员" ColumnName="仓管员" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="网店属性" ColumnName="网店属性" />
+          <ScalarProperty Name="店名" ColumnName="店名" />
+          <ScalarProperty Name="区域" ColumnName="区域" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="录入时间" ColumnName="录入时间" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_SellListInfo2">
+      <EntityTypeMapping TypeName="ReportModel.Report_SellListInfo2">
+        <MappingFragment StoreEntitySet="Report_SellListInfo2">
+          <ScalarProperty Name="结算价" ColumnName="结算价" />
+          <ScalarProperty Name="规则毛利不可拿回" ColumnName="规则毛利不可拿回" />
+          <ScalarProperty Name="规则毛利可拿回" ColumnName="规则毛利可拿回" />
+          <ScalarProperty Name="入库成本价" ColumnName="入库成本价" />
+          <ScalarProperty Name="销售时成本价" ColumnName="销售时成本价" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="商品大类编码" ColumnName="商品大类编码" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="商品编码" ColumnName="商品编码" />
+          <ScalarProperty Name="大区编码" ColumnName="大区编码" />
+          <ScalarProperty Name="片区编码" ColumnName="片区编码" />
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="终端制式" ColumnName="终端制式" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="单头备注" ColumnName="单头备注" />
+          <ScalarProperty Name="商品大类" ColumnName="商品大类" />
+          <ScalarProperty Name="片区" ColumnName="片区" />
+          <ScalarProperty Name="销售时间" ColumnName="销售时间" />
+          <ScalarProperty Name="门店优惠" ColumnName="门店优惠" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="客户电话" ColumnName="客户电话" />
+          <ScalarProperty Name="客户姓名" ColumnName="客户姓名" />
+          <ScalarProperty Name="会员卡号" ColumnName="会员卡号" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="是否免费服务" ColumnName="是否免费服务" />
+          <ScalarProperty Name="终端代销费" ColumnName="终端代销费" />
+          <ScalarProperty Name="列收" ColumnName="列收" />
+          <ScalarProperty Name="暗补" ColumnName="暗补" />
+          <ScalarProperty Name="多收单价" ColumnName="多收单价" />
+          <ScalarProperty Name="批发优惠金额" ColumnName="批发优惠金额" />
+          <ScalarProperty Name="组合优惠金额" ColumnName="组合优惠金额" />
+          <ScalarProperty Name="组合优惠名称" ColumnName="组合优惠名称" />
+          <ScalarProperty Name="单品优惠金额" ColumnName="单品优惠金额" />
+          <ScalarProperty Name="单品优惠名称" ColumnName="单品优惠名称" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="兑换值" ColumnName="兑换值" />
+          <ScalarProperty Name="代金券面值" ColumnName="代金券面值" />
+          <ScalarProperty Name="代金券编码" ColumnName="代金券编码" />
+          <ScalarProperty Name="销售日期" ColumnName="销售日期" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="实收金额" ColumnName="实收金额" />
+          <ScalarProperty Name="实际单价" ColumnName="实际单价" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="销售方式" ColumnName="销售方式" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="销售单号" ColumnName="销售单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_BorrowIMEIInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_BorrowIMEIInfo">
+        <MappingFragment StoreEntitySet="Report_BorrowIMEIInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="借贷仓库编码" ColumnName="借贷仓库编码" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="已归还" ColumnName="已归还" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="预计归还日期" ColumnName="预计归还日期" />
+          <ScalarProperty Name="借贷方式" ColumnName="借贷方式" />
+          <ScalarProperty Name="联系电话" ColumnName="联系电话" />
+          <ScalarProperty Name="借贷人" ColumnName="借贷人" />
+          <ScalarProperty Name="借贷部门" ColumnName="借贷部门" />
+          <ScalarProperty Name="借贷日期" ColumnName="借贷日期" />
+          <ScalarProperty Name="借贷门店" ColumnName="借贷门店" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="审批单号" ColumnName="审批单号" />
+          <ScalarProperty Name="借贷单号" ColumnName="借贷单号" />
+          <ScalarProperty Name="自增外键借贷单编号" ColumnName="自增外键借贷单编号" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_RepairInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_RepairInfo">
+        <MappingFragment StoreEntitySet="Report_RepairInfo">
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="仓库编码" ColumnName="仓库编码" />
+          <ScalarProperty Name="已返库" ColumnName="已返库" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="串码" ColumnName="串码" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="送修日期" ColumnName="送修日期" />
+          <ScalarProperty Name="门店" ColumnName="门店" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="送修单号" ColumnName="送修单号" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="系统自增编号" ColumnName="系统自增编号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_SMSSign">
+      <EntityTypeMapping TypeName="ReportModel.Report_SMSSign">
+        <MappingFragment StoreEntitySet="Report_SMSSign">
+          <ScalarProperty Name="仓库" ColumnName="仓库" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="录单员" ColumnName="录单员" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="已结清" ColumnName="已结清" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="税率" ColumnName="税率" />
+          <ScalarProperty Name="发票日期" ColumnName="发票日期" />
+          <ScalarProperty Name="发票代码" ColumnName="发票代码" />
+          <ScalarProperty Name="发票抬头" ColumnName="发票抬头" />
+          <ScalarProperty Name="联系电话" ColumnName="联系电话" />
+          <ScalarProperty Name="联系人" ColumnName="联系人" />
+          <ScalarProperty Name="佣金" ColumnName="佣金" />
+          <ScalarProperty Name="实际结清日期" ColumnName="实际结清日期" />
+          <ScalarProperty Name="合同结清日期" ColumnName="合同结清日期" />
+          <ScalarProperty Name="实际发送数量" ColumnName="实际发送数量" />
+          <ScalarProperty Name="实收金额" ColumnName="实收金额" />
+          <ScalarProperty Name="合同发送数量" ColumnName="合同发送数量" />
+          <ScalarProperty Name="合同金额" ColumnName="合同金额" />
+          <ScalarProperty Name="业务内容" ColumnName="业务内容" />
+          <ScalarProperty Name="单位地址" ColumnName="单位地址" />
+          <ScalarProperty Name="单位名称" ColumnName="单位名称" />
+          <ScalarProperty Name="合同日期" ColumnName="合同日期" />
+          <ScalarProperty Name="行业" ColumnName="行业" />
+          <ScalarProperty Name="系统时间" ColumnName="系统时间" />
+          <ScalarProperty Name="销售单号" ColumnName="销售单号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_BorowAduit">
+      <EntityTypeMapping TypeName="ReportModel.View_BorowAduit">
+        <MappingFragment StoreEntitySet="View_BorowAduit">
+          <ScalarProperty Name="HasUsed" ColumnName="HasUsed" />
+          <ScalarProperty Name="HasPassed4" ColumnName="HasPassed4" />
+          <ScalarProperty Name="HasAduited4" ColumnName="HasAduited4" />
+          <ScalarProperty Name="HasPassed3" ColumnName="HasPassed3" />
+          <ScalarProperty Name="HasAduited3" ColumnName="HasAduited3" />
+          <ScalarProperty Name="HasPassed2" ColumnName="HasPassed2" />
+          <ScalarProperty Name="HasAduited2" ColumnName="HasAduited2" />
+          <ScalarProperty Name="HasPassed1" ColumnName="HasPassed1" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="HasPassed" ColumnName="HasPassed" />
+          <ScalarProperty Name="HasAduited" ColumnName="HasAduited" />
+          <ScalarProperty Name="hasAduited1" ColumnName="hasAduited1" />
+          <ScalarProperty Name="Used1" ColumnName="Used1" />
+          <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+          <ScalarProperty Name="EstimateReturnTime" ColumnName="EstimateReturnTime" />
+          <ScalarProperty Name="MobilPhone" ColumnName="MobilPhone" />
+          <ScalarProperty Name="Note4" ColumnName="Note4" />
+          <ScalarProperty Name="Note3" ColumnName="Note3" />
+          <ScalarProperty Name="Note2" ColumnName="Note2" />
+          <ScalarProperty Name="Note1" ColumnName="Note1" />
+          <ScalarProperty Name="InternalBorow" ColumnName="InternalBorow" />
+          <ScalarProperty Name="Borrower" ColumnName="Borrower" />
+          <ScalarProperty Name="BorrowType" ColumnName="BorrowType" />
+          <ScalarProperty Name="AduitDate3" ColumnName="AduitDate3" />
+          <ScalarProperty Name="AduitDate2" ColumnName="AduitDate2" />
+          <ScalarProperty Name="Dept" ColumnName="Dept" />
+          <ScalarProperty Name="AduitDate" ColumnName="AduitDate" />
+          <ScalarProperty Name="UseDate" ColumnName="UseDate" />
+          <ScalarProperty Name="SysDate" ColumnName="SysDate" />
+          <ScalarProperty Name="Used" ColumnName="Used" />
+          <ScalarProperty Name="AduitUser4" ColumnName="AduitUser4" />
+          <ScalarProperty Name="AduitDate4" ColumnName="AduitDate4" />
+          <ScalarProperty Name="Passed4" ColumnName="Passed4" />
+          <ScalarProperty Name="Aduited4" ColumnName="Aduited4" />
+          <ScalarProperty Name="Passed" ColumnName="Passed" />
+          <ScalarProperty Name="Aduited" ColumnName="Aduited" />
+          <ScalarProperty Name="Passed3" ColumnName="Passed3" />
+          <ScalarProperty Name="Aduited3" ColumnName="Aduited3" />
+          <ScalarProperty Name="Passed2" ColumnName="Passed2" />
+          <ScalarProperty Name="Aduited2" ColumnName="Aduited2" />
+          <ScalarProperty Name="Passed1" ColumnName="Passed1" />
+          <ScalarProperty Name="Aduited1" ColumnName="Aduited1" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="HallID" ColumnName="HallID" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
+          <ScalarProperty Name="ApplyUser" ColumnName="ApplyUser" />
+          <ScalarProperty Name="AduitUser3" ColumnName="AduitUser3" />
+          <ScalarProperty Name="AduitUser2" ColumnName="AduitUser2" />
+          <ScalarProperty Name="AduitUser" ColumnName="AduitUser" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AduitID" ColumnName="AduitID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_VipBuyTimeInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_VipBuyTimeInfo">
+        <MappingFragment StoreEntitySet="Report_VipBuyTimeInfo">
+          <ScalarProperty Name="门店编码" ColumnName="门店编码" />
+          <ScalarProperty Name="状态" ColumnName="状态" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="会员贴膜次数" ColumnName="会员贴膜次数" />
+          <ScalarProperty Name="平均消费水平" ColumnName="平均消费水平" />
+          <ScalarProperty Name="累计消费总额" ColumnName="累计消费总额" />
+          <ScalarProperty Name="消费次数" ColumnName="消费次数" />
+          <ScalarProperty Name="累计积分" ColumnName="累计积分" />
+          <ScalarProperty Name="QQ号_微信_微博" ColumnName="QQ号_微信_微博" />
+          <ScalarProperty Name="详细地址" ColumnName="详细地址" />
+          <ScalarProperty Name="身份证" ColumnName="身份证" />
+          <ScalarProperty Name="备用号码" ColumnName="备用号码" />
+          <ScalarProperty Name="联系号码" ColumnName="联系号码" />
+          <ScalarProperty Name="生日日期" ColumnName="生日日期" />
+          <ScalarProperty Name="性别" ColumnName="性别" />
+          <ScalarProperty Name="客户名称" ColumnName="客户名称" />
+          <ScalarProperty Name="销售金额" ColumnName="销售金额" />
+          <ScalarProperty Name="卡类" ColumnName="卡类" />
+          <ScalarProperty Name="卡号" ColumnName="卡号" />
+          <ScalarProperty Name="仓管员" ColumnName="仓管员" />
+          <ScalarProperty Name="销售员" ColumnName="销售员" />
+          <ScalarProperty Name="网店属性" ColumnName="网店属性" />
+          <ScalarProperty Name="店名" ColumnName="店名" />
+          <ScalarProperty Name="区域" ColumnName="区域" />
+          <ScalarProperty Name="大区" ColumnName="大区" />
+          <ScalarProperty Name="注册时间" ColumnName="注册时间" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Package_GroupInfo">
+      <EntityTypeMapping TypeName="ReportModel.View_Package_GroupInfo">
+        <MappingFragment StoreEntitySet="View_Package_GroupInfo">
+          <ScalarProperty Name="SubNote" ColumnName="SubNote" />
+          <ScalarProperty Name="SellTypeName" ColumnName="SellTypeName" />
+          <ScalarProperty Name="TempOffID" ColumnName="TempOffID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsMust" ColumnName="IsMust" />
+          <ScalarProperty Name="SellTypeID" ColumnName="SellTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_VIPOffListAduit">
+      <EntityTypeMapping TypeName="ReportModel.View_VIPOffListAduit">
+        <MappingFragment StoreEntitySet="View_VIPOffListAduit">
+          <ScalarProperty Name="HeadID" ColumnName="HeadID" />
+          <ScalarProperty Name="SalesName" ColumnName="SalesName" />
+          <ScalarProperty Name="VIPTicketMaxCount" ColumnName="VIPTicketMaxCount" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ArriveMoney" ColumnName="ArriveMoney" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_VIPOffListAduitHeader">
+      <EntityTypeMapping TypeName="ReportModel.View_VIPOffListAduitHeader">
+        <MappingFragment StoreEntitySet="View_VIPOffListAduitHeader">
+          <ScalarProperty Name="HasPassed3" ColumnName="HasPassed3" />
+          <ScalarProperty Name="HasAduited3" ColumnName="HasAduited3" />
+          <ScalarProperty Name="HasPassed2" ColumnName="HasPassed2" />
+          <ScalarProperty Name="HasAduited2" ColumnName="HasAduited2" />
+          <ScalarProperty Name="HasPassed1" ColumnName="HasPassed1" />
+          <ScalarProperty Name="HasAduited1" ColumnName="HasAduited1" />
+          <ScalarProperty Name="HasPassed" ColumnName="HasPassed" />
+          <ScalarProperty Name="HasAduited" ColumnName="HasAduited" />
+          <ScalarProperty Name="AduitUser3" ColumnName="AduitUser3" />
+          <ScalarProperty Name="AduitDate3" ColumnName="AduitDate3" />
+          <ScalarProperty Name="AduitNote3" ColumnName="AduitNote3" />
+          <ScalarProperty Name="ExtNote" ColumnName="ExtNote" />
+          <ScalarProperty Name="Scope" ColumnName="Scope" />
+          <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+          <ScalarProperty Name="Creater" ColumnName="Creater" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="ApplyNote" ColumnName="ApplyNote" />
+          <ScalarProperty Name="AduitDate2" ColumnName="AduitDate2" />
+          <ScalarProperty Name="AduitNote2" ColumnName="AduitNote2" />
+          <ScalarProperty Name="AduitDate1" ColumnName="AduitDate1" />
+          <ScalarProperty Name="AduitNote1" ColumnName="AduitNote1" />
+          <ScalarProperty Name="Passed1" ColumnName="Passed1" />
+          <ScalarProperty Name="Aduited1" ColumnName="Aduited1" />
+          <ScalarProperty Name="Passed3" ColumnName="Passed3" />
+          <ScalarProperty Name="Aduited3" ColumnName="Aduited3" />
+          <ScalarProperty Name="Passed2" ColumnName="Passed2" />
+          <ScalarProperty Name="Aduited2" ColumnName="Aduited2" />
+          <ScalarProperty Name="Passed" ColumnName="Passed" />
+          <ScalarProperty Name="Aduited" ColumnName="Aduited" />
+          <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
+          <ScalarProperty Name="Applyer" ColumnName="Applyer" />
+          <ScalarProperty Name="SysDate" ColumnName="SysDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="SaleTarget" ColumnName="SaleTarget" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report_InOrderListInfo">
+      <EntityTypeMapping TypeName="ReportModel.Report_InOrderListInfo">
+        <MappingFragment StoreEntitySet="Report_InOrderListInfo">
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="商品备注" ColumnName="商品备注" />
+          <ScalarProperty Name="类别编码" ColumnName="类别编码" />
+          <ScalarProperty Name="入库仓库编码" ColumnName="入库仓库编码" />
+          <ScalarProperty Name="操作人" ColumnName="操作人" />
+          <ScalarProperty Name="入库日期" ColumnName="入库日期" />
+          <ScalarProperty Name="入库仓库" ColumnName="入库仓库" />
+          <ScalarProperty Name="原始单号" ColumnName="原始单号" />
+          <ScalarProperty Name="入库单号" ColumnName="入库单号" />
+          <ScalarProperty Name="成本价" ColumnName="成本价" />
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="商品属性" ColumnName="商品属性" />
+          <ScalarProperty Name="商品名称" ColumnName="商品名称" />
+          <ScalarProperty Name="品牌" ColumnName="品牌" />
+          <ScalarProperty Name="类别" ColumnName="类别" />
+          <ScalarProperty Name="系统自增外键编号" ColumnName="系统自增外键编号" />
+          <ScalarProperty Name="批次号" ColumnName="批次号" />
+          <ScalarProperty Name="序号" ColumnName="序号" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chart_MapReport">
+      <EntityTypeMapping TypeName="ReportModel.Chart_MapReport">
+        <MappingFragment StoreEntitySet="Chart_MapReport">
+          <ScalarProperty Name="SellPrice2" ColumnName="SellPrice2" />
+          <ScalarProperty Name="BigAreaName" ColumnName="BigAreaName" />
+          <ScalarProperty Name="BigAreaID" ColumnName="BigAreaID" />
+          <ScalarProperty Name="AsPrice" ColumnName="AsPrice" />
+          <ScalarProperty Name="ClassTypeName" ColumnName="ClassTypeName" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+          <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+          <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+          <ScalarProperty Name="Sells" ColumnName="Sells" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="ProClass" ColumnName="ProClass" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="HallID" ColumnName="HallID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Option">
+      <EntityTypeMapping TypeName="ReportModel.Sys_Option">
+        <MappingFragment StoreEntitySet="Sys_Option">
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="Value2" ColumnName="Value2" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

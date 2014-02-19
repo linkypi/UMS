@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title></title>
+    <link href="styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="styles/kendo.default.min.css" rel="stylesheet"/>
+    <link href="styles/kendo.mobile.all.min.css" rel="stylesheet"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+    <script src="js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script src="cordova.js"></script>
+    <style type="text/css">
+        .logo {
+            display: block;
+            margin: 1em;
+            height: 200px;
+            background: url(img/GXLOGO2.png) no-repeat center center;
+            /*-webkit-background-size: 100% auto;*/
+            /*background-size: 100% auto;*/
+        }
+    </style>
+    <style type="text/css">
+        .km-ios .km-view .km-navbar {
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #dc303d), color-stop(1, #d01022));
+            background-image: -moz-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-image: -ms-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-repeat: repeat;
+            background-position: 0 0;
+            background-color: rgb(80, 109, 147);
+        }
+
+        .km-button {
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #dc303d), color-stop(1, #d01022));
+            background-image: -moz-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-image: -ms-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-color: #d01022;
+        }
+
+        .km-ios .km-view .km-navbar .km-button {
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #dc303d), color-stop(1, #d01022));
+            background-image: -moz-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-image: -ms-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-repeat: repeat;
+            background-position: 0 0;
+            background-color: rgb(68, 100, 143);
+        }
+
+        .km-ios .km-view .km-content .km-list .km-state-active .km-listview-link {
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #dc303d), color-stop(1, #d01022));
+            background-image: -moz-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-image: -ms-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-repeat: repeat;
+            background-position: 0 0;
+            background-color: rgb(2, 96, 232);
+        }
+
+        .km-ios .km-view .km-content {
+            background-color: rgb(246, 242, 237);
+        }
+
+        .km-ios .km-view .km-content .km-button. km-state-active {
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #e73939), color-stop(1, #a81010));
+            background-image: -moz-linear-gradient(50% 0, 50% 100%, #e73939, #a81010);
+            background-image: -ms-linear-gradient(50% 0, 50% 100%, #e73939, #a81010);
+            background-repeat: repeat;
+            background-position: 0 0;
+            background-color: rgb(61, 126, 235);
+        }
+
+        .km-ios .km-loader {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .km-meego {
+            border-radius: 0;
+            -webkit-border-radius: 0;
+        }
+
+        .km-meego .km-view {
+            border-radius: 0;
+            -webkit-border-radius: 0;
+        }
+
+        .km-meego .km-view .km-button {
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #dc303d), color-stop(1, #d01022));
+            background-image: -moz-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-image: -ms-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-repeat: repeat;
+            background-position: 0 0;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .km-meego .km-view .km-navbar {
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #dc303d), color-stop(1, #d01022));
+            background-image: -moz-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-image: -ms-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-repeat: repeat;
+            background-position: 0 0;
+            background-color: rgb(255, 255, 255);
+            border-radius: 0;
+            -webkit-border-radius: 0;
+        }
+
+        .km-meego .km-view .km-content .km-list .km-state-active .km-listview-link {
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #dc303d), color-stop(1, #d01022));
+            background-image: -moz-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-image: -ms-linear-gradient(50% 0, 50% 100%, #dc303d, #d01022);
+            background-repeat: repeat;
+            background-position: 0 0;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .km-meego .km-view .km-content {
+            background-color: rgb(246, 242, 237);
+        }
+
+        .km-meego .km-view .km-navbar .km-button .km-text {
+            color: rgb(255, 255, 255);
+        }
+
+        .km-meego .km-view .km-navbar .km-view-title > * {
+            color: rgb(255, 255, 255);
+        }
+
+        .km-meego .km-view  .km-button .km-text {
+            color: rgb(255, 255, 255);
+        }
+
+    </style>
+    <style>
+        #mainmenu li {
+            display: block;
+            float: left;
+            width: 33%;
+            height: 0;
+            padding-bottom: 33%;
+            border: 1px !important;
+            -webkit-border-radius: 0;
+            border-radius: 0;
+            box-shadow: 0 0 0 0;
+            -webkit-webkit-box-shadow: 0 0 0 0;
+        }
+    </style>
+</head>
+<body>
+<div id="loading" data-role="view" class="km-insetcontent" data-init="viewInit" data-hide="viewHide" data-title="登录">
+    <header data-role="header">
+        <div data-role="navbar">
+            <!--<a id="back-button" class="nav-button" data-align="left" data-role="backbutton">返回</a>-->
+            <span data-role="view-title"></span>
+
+
+        </div>
+    </header>
+
+
+    <div class="logo">        &nbsp;
+
+    </div>
+
+
+    <ul data-role="listview" data-style="inset">
+
+        <li>
+            <label>用户名
+                <input id="username" type="text"/>
+            </label>
+        </li>
+        <li>
+            <label>密码
+                <input type="password" id="password" value=""/>
+            </label>
+        </li>
+    </ul>
+    <div>
+        <a id="loginbtn" data-role="button"
+           style="display:block ;margin:1em; background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0, #dc303d),color-stop(1, #d01022));">登录</a>
+         <a id="QRLOGINBTN" data-role="button"
+           style="display:block ;margin:1em; background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0, #dc303d),color-stop(1, #d01022));">二维码登录</a>
+    </div>
+</div>
+
+
+<div id="menu" data-role="view" class="km-insetcontent" data-title="菜单" data-show="mainmenu_rebind">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a id="logoutbtn" class="nav-button" data-align="right" data-role="button">注销</a>
+            <span data-role="view-title"></span>
+
+
+        </div>
+    </header>
+
+
+    <ul data-role="listview" data-style="inset" id="mainmenu" data-template="mainmenu-template">
+
+
+    </ul>
+
+    <script type="text/javascript">
+        function mainmenu_click(e) {
+//            alert(e);
+            if (e.dataItem.hasChildren) {
+
+                var ds = new kendo.data.DataSource({
+                    data: e.dataItem.child,
+                    schema: {
+                        model: {
+                            id: "menuid",
+                            childres: "child",
+                            hasChildren: "child"
+                        }
+                    }
+                });
+                parent_menuds = ds;
+
+            }
+
+
+        }
+        $("#logoutbtn").bind(kendo.support.mouseup, function () {
+
+            app.navigate("#loading");
+        });
+        
+
+    </script>
+</div>
+
+
+<div id="child-menu" data-role="view" data-show="childmenu_rebind">
+    <header data-role="header">
+        <div data-role="navbar" id="childmenu_navbar">
+            <a id="backbtn_child" class="nav-button" data-align="left" data-role="backbutton">返回</a>
+            <span data-role="view-title"></span>
+
+
+        </div>
+    </header>
+
+
+    <ul data-role="listview" data-style="inset" id="childmenu" data-click="childmenu_click"
+        data-template="childmenu_template">
+
+
+    </ul>
+    <script type="text/x-kendo-template" id="childmenu_template">
+        # if (data.child.length) {#
+        <a href="\#child-menu?pid=#: menuid #" class="childparent">#: title #</a>
+        #}else{#
+        <a href="#: menuname #">#: title #</a>
+        #}#
+    </script>
+    <script>
+        var parent_menuds;
+        function childmenu_rebind(e) {
+
+            var parentID = e.view.params.pid,
+                    fromtop = e.view.params.fromtop,
+                    element = e.view.element,
+                    backButton = element.find('#backbtn_child'),
+                    listView = element.find("#childmenu").data('kendoMobileListView'),
+                    navBar = element.find('#childmenu_navbar').data('kendoMobileNavBar');
+            if (typeof mainmenuDS == "undefined") {
+                app.navigate("#loading");
+                return;
+            }
+            if (parentID) {
+                if (listView.dataSource.data().length) {
+                    var menuds = listView.dataSource;
+                }
+                else {
+                    var menuds = mainmenuDS;
+                }
+                if (fromtop) {
+                    menuds = mainmenuDS;
+                }
+                var item = menuds.get(parentID);
+
+                if (item) {
+                    parent_menuds = menuds;
+                    backButton.show();
+                    navBar.title(item.title);
+                    var tempds = new kendo.data.DataSource({
+                        data: item.child,
+                        schema: {
+                            model: {
+                                id: "menuid",
+                                childres: "child",
+                                hasChildren: "child"
+                            }
+                        }
+                    });
+                    listView.setDataSource(tempds);
+                } else {
+                    listView.setDataSource(parent_menuds);
+                }
+
+            } else {
+                backButton.hide();
+                navBar.title('菜单');
+                listView.setDataSource(mainmenuDS);
+            }
+
+            e.view.scroller.scrollTo(0, 0);
+        }
+        function childmenu_click(e) {
+
+
+        }
+    </script>
+</div>
+
+<script>
+
+    var hosturl = "http://192.168.0.185/UMSMVC/";
+    var showButton, interval, loaderElement;
+
+    function QRScan() {
+        cordova.plugins.barcodeScanner.scan(
+   function (result) {
+       var r = result.text.split("|");
+       if (r.length != 2) {
+           alert("登陆失败: QR码错误");
+           return;
+       }
+       $("#username").val(r[0]);
+       $("#password").val(r[1]);
+       
+       
+       startLoading();
+   },
+   function (error) {
+       alert("扫描失败: " + error);
+   }
+);
+    }
+
+    function viewInit(e) {
+        showButton = $("#loginbtn").bind(kendo.support.mouseup, function () {
+
+            startLoading();
+        });
+        showButton = $("#QRLOGINBTN").bind(kendo.support.mouseup, QRScan);
+        loaderElement = app.pane.loader.element.find("h1");
+    }
+
+
+    function hideLoader() {
+
+        app.hideLoading(); //hide loading popup
+        loaderElement.removeClass("loaderHeading").text("Loading...");
+    }
+
+    function viewHide(e) {
+
+        hideLoader();
+    }
+    var mainmenuDS;
+    function startLoading() {
+        hideLoader();
+//        var seconds = 5;
+
+        loaderElement.text("请稍后").addClass("loaderHeading");
+        $(".km-loader").addClass("km-android");
+        app.showLoading(); //show loading popup
+        $.post(hosturl + "Session/login/?callback=?", {username: $("#username").val(), password: $("#password").val()}, function (data) {
+            hideLoader();
+            if (!data.error) {
+                app.navigate("#menu");
+                mainmenuDS = new kendo.data.DataSource({
+                    data: data.response.menu,
+                    schema: {
+                        model: {
+                            id: "menuid",
+                            childres: "child",
+                            hasChildren: "child"
+                        }
+                    }
+                });
+                $("#mainmenu").data("kendoMobileListView").setDataSource(mainmenuDS);
+                parent_menuds = mainmenuDS;
+
+
+            }
+            else {
+                navigator.notification.alert(data.msg, null, "注意");
+            }
+
+        }, "json");
+//        interval = setInterval(function() {
+////            loaderElement.text(--seconds + " seconds left!"); //update text of the loading popup
+//
+//            if (seconds == 0) {
+//                showButton.stop(true,true).fadeIn();
+//                hideLoader();
+//            }
+//        }, 1000);
+    }
+    function mainmenu_rebind(e) {
+        //alert(1);
+        parent_menuds = mainmenuDS;
+    }
+</script>
+<script type="text/x-kendo-template" id="mainmenu-template">
+
+
+    <div style="background: url(#: image #) center center no-repeat;-webkit-background-size:100%;background-size:100%;width:100%">
+        # if (data.child.length) {#
+        <a href="\#child-menu?pid=#: menuid #&fromtop=1" style="text-decoration:none;display:block;padding-bottom:100%">
+
+        </a>
+        # }else{ #
+        <span style="text-decoration:none;display:block;padding-bottom:100%"></span>
+        # } #
+    </div>
+</script>
+
+<script>
+    if (typeof app == "undefined")
+        app = new kendo.mobile.Application(document.body, {
+            platform: "meego"
+        });
+    $(window).resize(function () {
+        app.scroller().reset();
+    });
+    //    $("#loginbtn").click(function(){
+    //        $.ajax()
+    //        kendoMobileApplication.navigate("menu.html");
+    //
+    //
+    //    })  ;
+</script>
+</body>
+</html>

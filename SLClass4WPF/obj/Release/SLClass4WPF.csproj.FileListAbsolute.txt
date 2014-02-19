@@ -1,0 +1,7 @@
+D:\UMS\client\UserMS\SLClass4WPF\bin\Release\SLClass4WPF.dll
+D:\UMS\client\UserMS\SLClass4WPF\bin\Release\SLClass4WPF.pdb
+D:\UMS\client\UserMS\SLClass4WPF\obj\Release\SLClass4WPF.PagedCollectionView.PagedCollectionViewResources.resources
+D:\UMS\client\UserMS\SLClass4WPF\obj\Release\SLClass4WPF.csproj.GenerateResource.Cache
+D:\UMS\client\UserMS\SLClass4WPF\obj\Release\SLClass4WPF.dll
+D:\UMS\client\UserMS\SLClass4WPF\obj\Release\SLClass4WPF.pdb
+D:\UMS\client\UserMS\SLClass4WPF\obj\Release\SLClass4WPF.csprojResolveAssemblyReference.cache

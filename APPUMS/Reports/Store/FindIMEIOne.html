@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title></title>
+    <link href="../../styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="../../styles/kendo.default.min.css" rel="stylesheet"/>
+    <link href="../../styles/kendo.mobile.all.min.css" rel="stylesheet"/>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/kendo.all.min.js"></script>
+    <script src="../../global.js"></script>
+    <style>
+
+</style>
+</head>
+
+<body>
+
+
+<div data-role="view" data-layout="default" >
+   <ul id="listView" data-role="listview"    data-fixed-headers="true"   data-header-template="header-template"></ul>
+</div>
+
+ 
+
+    <div data-role="layout" data-id="default"  >
+   
+        <header data-role="header" >
+             <div data-role="navbar">
+           <a class="nav-button" data-align="left" data-role="backbutton" id="cancel" href="#menu">首页</a>
+                <span data-role="view-title">串码查询</span>
+
+
+            </div>
+            <input id="IMEI" type="text"/>
+            <a data-role="button"   id="searchbtn" onClick="startSearch()">查询</a>
+        </header>
+
+  
+    </div> 
+<!--    <div data-role="view" data-init="listViewInit" data-layout="default">
+     
+
+    <ul id="listview"></ul>
+
+</div>
+    <div data-role="layout" data-id="default"  >
+      <header data-role="header" >
+          <input id="IMEI" type="text"/>
+          <a data-role="button"   id="searchbtn" onclick="startSearch()">查询</a>
+      </header>
+
+  
+      </div>-->
+<script type="text/x-kendo-template" id="my-template">
+    <p class="item-info">串码：#: 串码 #</p>
+    <p class="item-info">类别：#: 类别 #</p>
+    <p class="item-info">品牌：#: 品牌 #</p>
+    <p class="item-info">型号：#: 商品名称 #</p>
+    <p class="item-info">属性：#: 商品属性 #</p>
+    <p class="item-info">状态：#: 状态 #</p>
+    <p class="item-info">门店：#: 门店 #</p>
+    <p class="item-info">库龄：#: 库龄_天 # 天</p>
+</script>
+
+<script type="text/x-kendo-template" id="header-template">
+   #: value #
+</script>
+
+ <script>
+    
+     
+     function listViewInit() {
+          
+
+         $("#listView").kendoMobileListView({
+             dataSource: dataSource,
+             template: $("#my-template").text(),
+           
+         });
+         
+     }
+     function startSearch() {
+         
+         var str = $("#IMEI").val();
+         if (str == "")
+         {
+             alert("请输入查询串码");
+             return;
+         }
+         
+         var dataSource = new kendo.data.DataSource({
+
+             transport: {
+                 read: {
+                     url: hosturl + "/Report_IMEIInfo/FindIMEIOne/0/" + $("#IMEI").val(),
+                     dataType: "jsonp",
+                      
+                 }
+             },
+             requestEnd: function (e) {
+                 if (e.response.response.length == 0)
+                 {
+                     alert("串码不存在");
+                 }
+             }
+             ,
+             schema: {
+                 data: "response",
+             }
+         });
+       
+         $("#listView").kendoMobileListView({
+             dataSource: dataSource,
+             template: $("#my-template").text(),
+         });
+
+
+
+
+
+
+
+         //$.post(hosturl + "Reports/Store/FindIMEIOne.aspx?callback=?", { username: "", password: "", IMEI: $("#IMEI").val() }, (function (data) {
+
+         //    if (!data.error) {
+         //        var json = [];
+         //        //json.push(data.xx);
+
+         //        $("#listView").data("kendoMobileListView").setDataSource(data.xx);
+
+
+         //    }
+         //    else {
+         //        alert("请求出错啦，再试一次");
+         //    }
+
+         //}), "json");
+     }
+
+     
+     if (typeof app == "undefined")
+         app = new kendo.mobile.Application(document.body, {
+             platform: "meego"
+         });
+</script>
+
+</body>
+</html>

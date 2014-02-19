@@ -1,0 +1,158 @@
+﻿<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        x:Name="parentCanvas" HorizontalAlignment="Stretch">
+
+    <Grid.Triggers>
+        <EventTrigger RoutedEvent="Canvas.Loaded">
+            <BeginStoryboard >
+                <Storyboard RepeatBehavior="Forever">
+                    
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.OpacityMask).(GradientBrush.GradientStops)[1].(GradientStop.Offset)" Storyboard.TargetName="path1">
+                        <SplineDoubleKeyFrame KeyTime="0" Value="0.115"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:0.8" Value="1" KeySpline="0,0,0,1" />
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:4.4" Value="0"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:5" Value="0.897" KeySpline="0,0,0,1" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.OpacityMask).(GradientBrush.GradientStops)[1].(GradientStop.Offset)" Storyboard.TargetName="path2">
+                        <SplineDoubleKeyFrame KeyTime="0:0:4.4" Value="0.115"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:5.2" Value="1" KeySpline="0,0,0,1" />
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:8.8" Value="0"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:9.4" Value="0.897" KeySpline="0,0,0,1" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.OpacityMask).(GradientBrush.GradientStops)[0].(GradientStop.Offset)" Storyboard.TargetName="path1">
+                        <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:0.8" Value="0.956" KeySpline="0,0,0,1" />
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:4.4" Value="0.044"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:5" Value="1" KeySpline="0,0,0,1" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.OpacityMask).(GradientBrush.GradientStops)[0].(GradientStop.Offset)" Storyboard.TargetName="path2">
+                        <SplineDoubleKeyFrame KeyTime="0:0:4.4" Value="0"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:5.2" Value="0.956" KeySpline="0,0,0,1" />
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:8.8" Value="0.044"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:9.4" Value="1" KeySpline="0,0,0,1" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="grid">
+                        <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                        <SplineDoubleKeyFrame KeyTime="0:0:9.4" Value="219.997"/>
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Grid.Triggers>
+
+    <Grid.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFF8F8F8" Offset="0.15"/>
+            <GradientStop Color="#FFE9E9E9" Offset="0.75"/>
+        </LinearGradientBrush>
+    </Grid.Background>
+
+        <Image x:Name="logo2" Height="70" Source="/images/logo2.png"  VerticalAlignment="Top" Margin="0"  HorizontalAlignment="Left"/>
+    <Path Data="M53.90625,8.5962524 C57.291664,12.502502 60.15625,16.408752 62.5,20.315002 L57.03125,23.830627 L97.265625,23.830627 L97.265625,31.643127 L23.828125,31.643127 L23.828125,55.861877 C24.088541,76.174377 18.880207,92.450417 8.203125,104.69 C6.640625,103.1275 4.296875,101.04417 1.171875,98.440002 C10.546874,88.023338 15.234374,73.440002 15.234374,54.690002 L15.234374,23.830627 L54.296875,23.830627 C52.473953,20.705627 49.999996,16.929588 46.875,12.502503 z M143.35938,76.565002 L143.35938,92.971252 L183.98438,92.971252 L183.98438,76.565002 z M135.9375,69.924377 L191.40625,69.924377 L191.40625,105.47125 L183.98438,105.47125 L183.98438,99.611877 L143.35938,99.611877 L143.35938,105.47125 L135.9375,105.47125 z M134.76563,53.908752 L192.57813,53.908752 L192.57813,60.549377 L134.76563,60.549377 z M134.76563,38.283752 L192.57813,38.283752 L192.57813,44.924377 L134.76563,44.924377 z M161.71875,8.9868784 C164.0625,12.372299 166.40625,16.018127 168.75,19.924377 L164.45313,22.268127 L198.4375,22.268127 L198.4375,29.299377 L129.6875,29.299377 L129.6875,22.268127 L161.32813,22.268127 C159.5052,18.882713 157.55208,15.627502 155.46875,12.502502 z M123.04688,8.9868784 L130.46875,11.330628 C127.60416,19.924377 124.47916,27.997299 121.09375,35.549377 L121.09375,105.47125 L114.0625,105.47125 L114.0625,49.611877 C110.9375,55.080627 107.8125,59.898338 104.6875,64.065002 C103.64584,61.460838 102.47396,58.85667 101.17188,56.252502 C110.80729,41.929588 118.09895,26.174377 123.04688,8.9868784 z M254.29688,37.502502 L254.29688,62.111877 L284.375,62.111877 L284.375,37.502502 z M216.40625,37.502502 L216.40625,62.111877 L245.70313,62.111877 L245.70313,37.502502 z M245.70313,8.9868774 L254.29688,8.9868774 L254.29688,30.080627 L292.1875,30.080627 L292.1875,74.611877 L284.375,74.611877 L284.375,69.533752 L254.29688,69.533752 L254.29688,105.86188 L245.70313,105.86188 L245.70313,69.533752 L216.40625,69.533752 L216.40625,74.611877 L208.20313,74.611877 L208.20313,30.080627 L245.70313,30.080627 z M345.70313,10.158752 L354.29688,10.158752 L354.29688,91.018127 L382.03125,91.018127 L382.03125,28.518127 L390.23438,28.518127 L390.23438,104.69 L382.03125,104.69 L382.03125,98.440002 L310.15625,98.440002 L310.15625,28.518127 L318.35938,28.518127 L318.35938,91.018127 L345.70313,91.018127 z M414.0625,52.346252 L478.90625,52.346252 C478.64581,63.283752 478.25519,74.091049 477.73438,84.768127 C476.95313,96.747292 471.09375,102.73688 460.15625,102.73688 C454.94791,102.73688 449.47916,102.60667 443.75,102.34625 C443.22916,99.481667 442.70834,96.747292 442.1875,94.143127 C447.13541,94.663963 452.73438,95.054588 458.98438,95.315002 C465.49478,95.315002 469.14063,91.408752 469.92188,83.596252 C470.44269,76.565002 470.83331,68.492088 471.09375,59.377502 L441.01563,59.377502 C440.23438,70.315002 437.89063,79.038963 433.98438,85.549377 C429.03647,94.403542 420.83334,101.17438 409.375,105.86188 C407.55209,103.77854 405.59897,101.565 403.51563,99.221252 C414.45313,95.315002 422.26563,89.455627 426.95313,81.643127 C430.33853,75.913963 432.29166,68.492088 432.8125,59.377502 L414.0625,59.377502 z M435.15625,10.158753 L442.1875,14.065002 C432.29166,31.252502 420.44272,45.054588 406.64063,55.471252 C405.07813,53.648338 403.125,51.434795 400.78125,48.830627 C414.32291,39.455627 425.78125,26.565002 435.15625,10.158753 z M461.71875,8.5962534 C468.75,26.044174 481.25,39.065002 499.21875,47.658752 C496.35416,50.783752 494.27081,53.257713 492.96875,55.080627 C475,44.663963 462.23959,30.210838 454.6875,11.721253 z M542.57813,48.440002 L550.78125,51.955627 C542.70831,66.018127 534.11456,79.038963 525,91.018127 C538.54169,90.497292 553.77606,89.846252 570.70313,89.065002 C567.05731,83.596252 563.02081,77.736877 558.59375,71.486877 L564.84375,67.190002 C574.21875,79.429588 582.16144,90.497292 588.67188,100.39313 L581.25,105.47125 C579.42706,102.34625 577.47394,99.221252 575.39063,96.096252 C553.77606,97.137917 536.32813,98.179588 523.04688,99.221252 C520.44269,99.481667 517.44794,100.0025 514.0625,100.78375 L509.76563,92.580627 C512.63019,91.538963 515.23438,89.716042 517.57813,87.111877 C525.39063,78.518127 533.72394,65.627502 542.57813,48.440002 z M533.59375,13.283751 L541.40625,16.408752 C532.55206,34.898338 521.22394,49.872295 507.42188,61.330627 C505.85938,59.247295 503.77603,57.163963 501.17188,55.080627 C515.75519,43.361877 526.5625,29.429588 533.59375,13.283751 z M563.67188,12.111877 C569.92188,29.038963 581.64063,42.45042 598.82813,52.346252 C597.00519,54.16917 595.05206,56.773338 592.96875,60.158752 C575,47.658756 562.76044,32.554588 556.25,14.846252 z M620.3125,58.986877 L620.3125,79.690002 L656.25,79.690002 L656.25,58.986877 z M612.5,51.955627 L663.67188,51.955627 L663.67188,86.721252 L620.3125,86.721252 L620.3125,93.752502 L612.5,93.752502 z M602.73438,33.205627 L677.34375,33.205627 L677.34375,40.627502 L602.73438,40.627502 z M608.59375,14.065002 L692.96875,14.065002 L692.96875,90.236877 C692.96875,99.351463 688.80206,103.90875 680.46875,103.90875 C675.78125,103.90875 669.27081,103.90875 660.9375,103.90875 C660.9375,101.82542 660.41669,99.091042 659.375,95.705627 C667.44794,95.966042 673.69794,96.096252 678.125,96.096252 C682.55206,96.096252 684.76563,93.492088 684.76563,88.283752 L684.76563,21.486877 L608.59375,21.486877 z" Height="97.266" Margin="0,0,-20,-20" RenderTransformOrigin="0.5,0.5" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="690">
+        <Path.Fill>
+            <SolidColorBrush Color="#26000000">
+                <SolidColorBrush.RelativeTransform>
+                    <MatrixTransform Matrix="Identity"/>
+                </SolidColorBrush.RelativeTransform>
+                <SolidColorBrush.Transform>
+                    <MatrixTransform Matrix="Identity"/>
+                </SolidColorBrush.Transform>
+            </SolidColorBrush>
+        </Path.Fill>
+        <Path.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Path.RenderTransform>
+    </Path>
+
+    <TextBlock x:Name="progressText" IsHitTestVisible="False" FontSize="400" FontFamily="Arial" Margin="0,99,-41,-18" Foreground="#0F000000" Text="0" HorizontalAlignment="Right" />
+    <Grid MinHeight="562" MaxHeight="750" HorizontalAlignment="Stretch"/>
+    <Grid MinWidth="1005" MinHeight="562" MaxWidth="1380" MaxHeight="750" VerticalAlignment="Top">
+
+
+        <Grid x:Name="grid" Margin="112,112,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="430" Height="208" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <CompositeTransform/>
+            </Grid.RenderTransform>
+            
+            <Path x:Name="path1" Data="M41.5,18.75 L41.5,54.75 L55.5,54.75 L55.5,18.75 z M36.75,14.25 L60.5,14.25 L60.5,65.75 L55.5,65.75 L55.5,59.25 L41.5,59.25 L41.5,65.75 L36.75,65.75 z M11,6 L16,6 C16,10.1667 16,13.9167 16,17.25 L30.5,17.25 C30.3333,33.25 30.0833,45.833302 29.75,55 C29.5833,62.5 26.75,66.083298 21.25,65.75 C19.5833,65.75 17.1667,65.666702 14,65.5 C13.6667,63.833302 13.3333,62 13,60 C16,60.5 18.4167,60.75 20.25,60.75 C22.9167,60.75 24.4167,58.75 24.75,54.75 C25.25,44.916698 25.5,34 25.5,22 L16,22 C15.8333,25.1667 15.75,27.8333 15.75,30 C15.5833,46.333302 11.6667,58.916698 4,67.75 C3,66.416702 1.75,65 0.25,63.5 C7.25,56 10.75,44.666698 10.75,29.5 C10.9167,27.3333 11,24.8333 11,22 L2.25,22 L2.25,17.25 L11,17.25 C11,13.9167 11,10.1667 11,6 z M79.25,27 L83.75,28.5 C82.916702,30 82.083298,31.5 81.25,33 L99.5,33 L99.5,36.75 L79,36.75 C77.166702,39.583302 75.5,42.083302 74,44.25 L82.75,44.25 L82.75,38.5 L87,38.5 L87,44.25 L99,44.25 L99,48.25 L87,48.25 L87,54 C90.833298,53.666698 94.916702,53.333302 99.25,53 C99.083298,54.333302 99,55.666698 99,57 C95.166702,57.333302 91.166702,57.666698 87,58 L87,67.25 L82.75,67.25 L82.75,58.5 C77.75,58.833302 72.583298,59.333302 67.25,60 L66.25,55.5 C71.083298,55.166698 76.583298,54.75 82.75,54.25 L82.75,48.25 L69,48.25 L69,44.25 C70.666702,41.916698 72.25,39.416698 73.75,36.75 L66.75,36.75 L66.75,33 L76.25,33 C77.25,31 78.25,29 79.25,27 z M113.25,7.5 C117.417,10.6667 120.833,13.5 123.5,16 L120,19.5 C117.167,16.5 113.917,13.5 110.25,10.5 z M101.25,6 L106,6 C106,11.8333 106.167,17.3333 106.5,22.5 L127.25,22.5 L127.25,26.75 L106.75,26.75 C107.083,34.416698 108.083,40.916698 109.75,46.25 C112.75,41.75 115.5,36.75 118,31.25 L122.25,33.25 C119.083,40.25 115.5,46.333302 111.5,51.5 C112.833,54.666698 114.333,57.25 116,59.25 C117.167,60.583302 118.167,61.25 119,61.25 C120.167,61.25 120.917,60.416698 121.25,58.75 C121.75,56.416698 122.25,53.583302 122.75,50.25 C124.417,50.916698 125.917,51.5 127.25,52 C126.75,55.5 126.167,58.583302 125.5,61.25 C124.333,65.083298 122.417,67 119.75,67 C116.75,67 113.917,65 111.25,61 C110.083,59.5 109,57.75 108,55.75 C104.5,59.916698 100.667,63.5 96.5,66.5 C95.333298,65 94.083298,63.916698 92.75,63.25 C97.75,59.75 102.25,55.666698 106.25,51 C104.083,44.5 102.667,36.416698 102,26.75 L65.25,26.75 L65.25,22.5 L80.75,22.5 L80.75,16.75 L67.75,16.75 L67.75,12.75 L80.75,12.75 L80.75,6.25 L85.5,6.25 L85.5,12.75 L97.75,12.75 L97.75,16.75 L85.5,16.75 L85.5,22.5 L101.75,22.5 C101.583,17.5 101.417,12 101.25,6 z M162.75,24 L162.75,39.75 L182,39.75 L182,24 z M138.5,24 L138.5,39.75 L157.25,39.75 L157.25,24 z M157.25,5.75 L162.75,5.75 L162.75,19.25 L187,19.25 L187,47.75 L182,47.75 L182,44.5 L162.75,44.5 L162.75,67.75 L157.25,67.75 L157.25,44.5 L138.5,44.5 L138.5,47.75 L133.25,47.75 L133.25,19.25 L157.25,19.25 z" Margin="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" UseLayoutRounding="False" Height="92" VerticalAlignment="Top" HorizontalAlignment="Left" Width="280">
+                <Path.OpacityMask>
+                    <LinearGradientBrush EndPoint="1.24199998378754,0.5" StartPoint="-0.211999997496605,0.5">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.115"/>
+                    </LinearGradientBrush>
+                </Path.OpacityMask>
+                <Path.Fill>
+                    <SolidColorBrush Color="#FF25AAF4">
+                        <SolidColorBrush.RelativeTransform>
+                            <MatrixTransform Matrix="Identity"/>
+                        </SolidColorBrush.RelativeTransform>
+                        <SolidColorBrush.Transform>
+                            <MatrixTransform Matrix="Identity"/>
+                        </SolidColorBrush.Transform>
+                    </SolidColorBrush>
+                </Path.Fill>
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <Path x:Name="path2" Data="M28,47.5 L28,51.75 L53,51.75 L53,47.5 z M28,39.25 L28,43.5 L53,43.5 L53,39.25 z M23,35.25 L57.75,35.25 L57.75,59.5 C57.75,64 55.416698,66.25 50.75,66.25 C48.416698,66.416702 45.333302,66.5 41.5,66.5 C41.166698,65.166702 40.833302,63.5 40.5,61.5 C44.166698,61.833302 47.083302,62 49.25,62 C51.75,62 53,60.916698 53,58.75 L53,55.5 L28,55.5 L28,67 L23,67 z M1.25,27.25 L13.5,27.25 L13.5,56.5 C15.8333,54.833302 18.1667,53.166698 20.5,51.5 C20.6667,53.5 20.8333,55.333302 21,57 C16.5,60 12.6667,62.666698 9.5,65 L6.75,61 C8.0833302,59.666698 8.75,57.833302 8.75,55.5 L8.75,31.75 L1.25,31.75 z M8.25,7.5 C11.75,11 14.75,14.1667 17.25,17 L13,20.75 C10.1667,16.9167 7.3333302,13.5833 4.5,10.75 z M37.75,5.5 L42.75,5.5 L42.75,11 L61.75,11 L61.75,15 L42.75,15 L42.75,19.25 L60.25,19.25 L60.25,23.25 L42.75,23.25 L42.75,27.5 L63,27.5 L63,31.5 L17.5,31.5 L17.5,27.5 L37.75,27.5 L37.75,23.25 L21.75,23.25 L21.75,19.25 L37.75,19.25 L37.75,15 L19.5,15 L19.5,11 L37.75,11 z M95,40.25 L95,48 L119.25,48 L119.25,40.25 z M95,28 L95,35.75 L119.25,35.75 L119.25,28 z M87,9 L88,13.5 C85.5,13.8333 82.666702,14.1667 79.5,14.5 L79.5,24.75 L88.25,24.75 L88.25,29.25 L79.5,29.25 L79.5,38 L82.25,35.75 C84.416702,38.083302 86.833298,41 89.5,44.5 L85.75,47.5 C83.583298,44.666698 81.5,41.916698 79.5,39.25 L79.5,67.25 L75,67.25 L75,40 C72.833298,46.166698 70.083298,51.333302 66.75,55.5 C66.083298,53.833302 65.416702,52.083302 64.75,50.25 C68.583298,44.75 71.833298,37.75 74.5,29.25 L65,29.25 L65,24.75 L75,24.75 L75,14.75 C72.333298,15.0833 69.583298,15.3333 66.75,15.5 C66.416702,14.1667 66.083298,12.6667 65.75,11 C73.416702,10.6667 80.5,10 87,9 z M122.25,7.75 L126.5,10.5 C124.167,13.8333 121.333,17.5 118,21.5 L114.5,18.5 C117.167,15.1667 119.75,11.5833 122.25,7.75 z M92.25,7.75 C95.25,11.0833 98.083298,14.5 100.75,18 L96.5,21 C94.166702,17.3333 91.583298,13.75 88.75,10.25 z M104.75,5.75 L109.75,5.75 L109.75,23.5 L124,23.5 L124,59.25 C124,64.25 121.667,66.75 117,66.75 C114.333,66.75 111.25,66.666702 107.75,66.5 C107.417,65 107.083,63.333302 106.75,61.5 C110.25,61.666698 113.167,61.833302 115.5,62 C118,61.833302 119.25,60.583302 119.25,58.25 L119.25,52.5 L95,52.5 L95,67 L90.25,67 L90.25,23.5 L104.75,23.5 z M160.25,25.75 L165,26.75 C164.33299,28.5833 163.66701,30.25 163,31.75 L188,31.75 L188,36.25 L174,36.25 C174,39.416698 173.91701,42.166698 173.75,44.5 L191,44.5 L191,48.75 L174.25,48.75 C178.08299,56.416698 184,60.916698 192,62.25 C190.83299,63.916698 189.66701,65.583298 188.5,67.25 C181,65.083298 175.33299,60.166698 171.5,52.5 C169,58.833302 162.33299,63.916698 151.5,67.75 C150.5,66.416702 149.41701,64.916702 148.25,63.25 C159.25,60.25 165.83299,55.416698 168,48.75 L152.5,48.75 L152.5,44.5 L169,44.5 C169.16701,42.333302 169.25,39.583302 169.25,36.25 L161.25,36.25 C159.91701,38.916698 158.58299,41.333302 157.25,43.5 C155.91701,42.666698 154.5,41.833302 153,41 C156.16701,36.5 158.58299,31.4167 160.25,25.75 z M145.75,14.75 L150.25,14.75 L150.25,54 L145.75,54 z M156.25,8.75 L184,8.75 L182.5,21 L190.5,21 L190.5,25.25 L152.75,25.25 L152.75,21 L177.75,21 L178.75,13 L156.25,13 z M139.75,5.75 L144.5,6.75 C143.33299,11.4167 142,15.8333 140.5,20 L140.5,67.5 L136,67.5 L136,31 C134.33299,34.5 132.5,37.75 130.5,40.75 C129.83299,39.25 129.16701,37.583302 128.5,35.75 C134,26.25 137.75,16.25 139.75,5.75 z" Margin="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" UseLayoutRounding="False" Height="92" VerticalAlignment="Top" HorizontalAlignment="Left" Width="280">
+                <Path.OpacityMask>
+                    <LinearGradientBrush EndPoint="1.24199998378754,0.5" StartPoint="-0.211999997496605,0.5">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.115"/>
+                    </LinearGradientBrush>
+                </Path.OpacityMask>
+                <Path.Fill>
+                    <SolidColorBrush Color="#FF25AAF4">
+                        <SolidColorBrush.RelativeTransform>
+                            <MatrixTransform Matrix="Identity"/>
+                        </SolidColorBrush.RelativeTransform>
+                        <SolidColorBrush.Transform>
+                            <MatrixTransform Matrix="Identity"/>
+                        </SolidColorBrush.Transform>
+                    </SolidColorBrush>
+                </Path.Fill>
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+           
+        </Grid>
+
+
+
+    </Grid>
+    <Grid Background="Transparent" HorizontalAlignment="Stretch" Height="44" VerticalAlignment="Top" Margin="0,45,0,0">
+        <Rectangle x:Name="ProgressBar" Stretch="Fill" Height="5" HorizontalAlignment="Stretch" Margin="0,0,0,14" VerticalAlignment="Bottom" StrokeThickness="0" RenderTransformOrigin="0,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="ProgressBarTransform" ScaleY="1" ScaleX="0"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform />
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF137CB5" Offset="0"/>
+                    <GradientStop Color="#FF2CB2FB" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+    </Grid>
+</Grid>

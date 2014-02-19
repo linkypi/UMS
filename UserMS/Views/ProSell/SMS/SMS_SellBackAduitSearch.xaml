@@ -1,0 +1,91 @@
+﻿<Page x:Class="UserMS.Views.ProSell.SMS.SMS_SellBackAduitSearch"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+   
+       xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"      
+           xmlns:src="clr-namespace:UserMS"         xmlns:MyControl="clr-namespace:UserMS.MyControl"   
+           xmlns:LMS="clr-namespace:UserMS.Views.LMS"
+          xmlns:model="clr-namespace:UserMS.Model"
+	Title="SMS_SellBackAduitSearch">
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        <toolkit:DockPanel>
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  toolkit:DockPanel.Dock="Top"
+                VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="27" Grid.Row="0">
+                <telerik:RadMenuItem x:Name="delete" FontSize="13" Click="delete_Click" Header="删除申请"/>
+                
+            </telerik:RadMenu>
+
+            <toolkit:WrapPanel x:Name="opPanal" toolkit:DockPanel.Dock="Top" MaxHeight="150">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label  Content="已审批："  Width="80"/>
+                    <ComboBox x:Name="ckbAduit" Height="25" DisplayMemberPath="Text" SelectedValuePath="Flag" Width="80" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label  Content="已通过：" Width="80"/>
+                    <ComboBox x:Name="ckbPassed" DisplayMemberPath="Text" SelectedValuePath="Flag" Height="25" Width="80" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label  Content="客户：" Width="80"/>
+                    <TextBox x:Name="txtCus"   Height="25" Width="120" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label  Content="营业厅："  Width="80"/>
+                    <MyControl:MyMulSelect  Height="25" x:Name="hall" Width="150"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <!--<UserMS:MyAutoTextBox  x:Name="hallid" Width="120"  Height="25"/>-->
+                    <Label Width="80" Content="申请日期：" />
+                    <telerik:RadDatePicker  Height="25" x:Name="sysDate" Width="120"/>
+                    <telerik:RadButton x:Name="search" Width="80" Height="25" Margin="20 0 0 0"  Content="查询" Click="search_Click" />
+                </StackPanel>
+            </toolkit:WrapPanel>
+
+            <DockPanel DockPanel.Dock="Top" >
+
+                <!--分页控件-->
+                <DockPanel  x:Name="panel"  toolkit:DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" >
+                    <telerik:RadNumericUpDown  x:Name="pagesize" DockPanel.Dock="Right"  Minimum="1" Value="30" ValueChanged="pagesize_ValueChanged" Width="50" NumberDecimalDigits="0"/>
+                    <telerik:RadDataPager x:Name="page"  HorizontalAlignment="Stretch" toolkit:DockPanel.Dock="Left"  PageIndexChanged="page_PageIndexChanged" 
+                      PageSize="30" AutoEllipsisMode="Both"  DisplayMode="All" NumericButtonCount="10"  Height="30" />
+
+                </DockPanel>
+
+                <telerik:RadGridView  x:Name="GridAuitList"    GridLinesVisibility="Both"  toolkit:DockPanel.Dock="Top" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+                SelectionUnit="Cell"   MinHeight="100"   CanUserFreezeColumns="False" IsReadOnly="True"
+                 AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding AduitID}"  Header="审批单" Width="auto" IsReadOnly="True" TextAlignment="Center"  HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Aduited, Mode=OneWay}"  Header="已审批" Width="auto" IsReadOnly="True" TextAlignment="Center"  HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Passed, Mode=OneWay}"  Header="已通过" Width="auto" IsReadOnly="True"  TextAlignment="Center" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding ApplyMoney}"  Header="退货金额" DataFormatString="{}{0:0.00}" IsReadOnly="True" Width="auto"   TextAlignment="Center" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding ApplyCount}"  Header="短信数量" DataFormatString="{}{0:0.00}" IsReadOnly="True" Width="auto"  HeaderTextAlignment="Center"  TextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding  CusName}"  Header="联系人 " IsReadOnly="True" Width="auto"  HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"  TextAlignment="Center" />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding  CusPhone}"   Header="联系电话" IsReadOnly="True" Width="auto"  HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"  TextAlignment="Center" />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding HallName}"  Header="营业厅" IsReadOnly="True" Width="auto"  HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"  TextAlignment="Center" />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding ApplyUser}"  Header="录单人" Width="auto" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False" TextAlignment="Center" />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding ApplyDate}"  Header="申请日期" Width="auto" DataFormatString="{}{0:yyyy-MM-dd hh:MM:ss}" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False"  TextAlignment="Center" IsFilterable="False"/>
+
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Used, Mode=OneWay}"  Header="已使用" Width="auto" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False" TextAlignment="Center" />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding UseDate, Mode=OneWay}"  Header="使用日期" Width="auto" DataFormatString="{}{0:yyyy-MM-dd hh:MM:ss}"  IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False"  TextAlignment="Center" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Note}"  Header="备注" IsReadOnly="True" Width="auto"  HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False" TextAlignment="Center" />
+
+
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+            </DockPanel>
+
+
+        </toolkit:DockPanel>
+    </xctk:BusyIndicator>
+</Page>

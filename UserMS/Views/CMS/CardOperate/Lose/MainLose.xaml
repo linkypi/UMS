@@ -1,0 +1,177 @@
+﻿<UserControl xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="UserMS.Views.CMS.CardOperate.Lose.MainLose"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" >
+
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.Resources>
+            <Style x:Key="myTextBox" TargetType="TextBox">
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="Margin" Value="0 0 0 0"/>
+            </Style>
+
+            <Style x:Key="myTextBlock" TargetType="TextBlock">
+                <Setter Property="Margin" Value="10 0 0 0"/>
+
+            </Style>
+            <Style x:Key="mycheck" TargetType="CheckBox">
+                <Setter Property="Margin" Value="125 8 0 0" />
+                <Setter Property="Height"  Value="25" />
+            </Style>
+
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6*"/>
+
+        </Grid.RowDefinitions >
+
+        <Border  BorderBrush="#99bbe8" BorderThickness="1" Margin="4" >
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#dae6f4" Offset="0"/>
+                    <GradientStop Color="#cfdeef" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+           
+            <StackPanel x:Name="opPanal" Orientation="Horizontal">
+                <telerik:RadButton Command="{Binding ItemAdd}" CommandParameter="{Binding ElementName=df}" Margin="3" >
+                    <!--IsEnabled="{Binding CurrentPowers[ResumeAdd], Source={StaticResource LoginViewModel}}">-->
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../../../../images/do_add.png" Stretch="None" Margin="3"/>
+                            <TextBlock Text="添加" VerticalAlignment="Center" Margin="3"/>
+                        </StackPanel>
+                    </Button.Content>
+                </telerik:RadButton>
+
+                <telerik:RadButton  Command="{Binding ItemEdit}" Margin="3" >
+                    <!--IsEnabled="{Binding CurrentPowers[ResumeEdit], Source={StaticResource LoginViewModel}}">-->
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../../../../images/do_modify.png" Stretch="None" Margin="3"/>
+
+                            <TextBlock Text="编辑" VerticalAlignment="Center" Margin="3"/>
+                        </StackPanel>
+                    </Button.Content>
+                </telerik:RadButton>
+
+
+                <telerik:RadButton Command="{Binding ItemDelete}" CommandParameter="{Binding ElementName=df}" Margin="3">
+                    <!--IsEnabled="{Binding CurrentPowers[ResumeDel], Source={StaticResource LoginViewModel}}">-->
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../../../../images/do_delete.png" Stretch="None" Margin="3"/>
+                            <TextBlock Text="删除" VerticalAlignment="Center" Margin="3"/>
+                        </StackPanel>
+                    </Button.Content>
+                </telerik:RadButton>
+
+                <telerik:RadButton Command="{Binding ItemDelete}" CommandParameter="{Binding ElementName=df}" Margin="3" Width="60">
+                    <!--IsEnabled="{Binding CurrentPowers[ResumeDel], Source={StaticResource LoginViewModel}}">-->
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="确定" VerticalAlignment="Center" Margin="3"/>
+                        </StackPanel>
+                    </Button.Content>
+                </telerik:RadButton>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <telerik:RadPanelBar Width="760"  HorizontalAlignment="Left"  Background="White"  Grid.RowSpan="2" ExpandMode="Multiple" >
+                <telerik:RadPanelBarItem IsExpanded="True" >
+                    <telerik:RadPanelBarItem.Header>
+                        <TextBlock Text="基本信息" Height="25"  VerticalAlignment="Center" FontSize="13"/>
+                    </telerik:RadPanelBarItem.Header>
+                    <Border   BorderBrush="#99bbe8" BorderThickness="1" Width="754" HorizontalAlignment="Left" Height="50">
+                        <Grid>
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="50" />
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="55"/>
+                                <ColumnDefinition Width="195"/>
+                                <ColumnDefinition Width="55"/>
+                                <ColumnDefinition Width="165"/>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="195"/>
+
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Style="{StaticResource myTextBlock}" Text="卡号:" FontSize="13"  VerticalAlignment="Center"/>
+                            <telerik:RadButton x:Name="btsearchcardID" Content="查询" Height="25" Width="35" Grid.Column="1" HorizontalAlignment="Right" Margin="10" />
+                            <TextBox Style="{StaticResource myTextBox}" x:Name="tbcardid" FontSize="13"  VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left"/>
+                            <TextBlock Style="{StaticResource myTextBlock}" Text="时间：" FontSize="13"  VerticalAlignment="Center" Grid.Column="2"/>
+                            <telerik:RadDatePicker  x:Name="tbtime" FontSize="13" Width="150" Grid.Row="1" VerticalAlignment="Center" Grid.Column="3" HorizontalAlignment="Left"/>
+                            <TextBlock Style="{StaticResource myTextBlock}" Text="业务员：" FontSize="13"  VerticalAlignment="Center" Grid.Column="4"/>
+                            <TextBox Style="{StaticResource myTextBox}" x:Name="tbrecharge" FontSize="13" VerticalAlignment="Center" Grid.Column="5" HorizontalAlignment="Left"/>
+                            <telerik:RadButton x:Name="btsearchuser" Content="查询" Height="25" Width="35" Grid.Column="5" HorizontalAlignment="Right" Margin="10" />
+                        </Grid>
+                    </Border>
+                </telerik:RadPanelBarItem>
+
+                <telerik:RadPanelBarItem IsExpanded="True" >
+                    <telerik:RadPanelBarItem.Header>
+                        <TextBlock Text="卡信息" Height="25"  VerticalAlignment="Center" FontSize="13"/>
+                    </telerik:RadPanelBarItem.Header>
+                    <Border   BorderBrush="#99bbe8" BorderThickness="1" Width="754" HorizontalAlignment="Left" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition  Height="250" />
+                            </Grid.RowDefinitions>
+                            <ScrollViewer>
+                                <telerik:RadGridView  x:Name="DGCardType" Margin="0 0 0 0" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" CanUserFreezeColumns="False" IsReadOnly="True" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Single"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+                      RowDetailsVisibilityMode="VisibleWhenSelected"  >
+                                    <telerik:RadGridView.Columns>
+                                        <telerik:GridViewColumn  Header="卡号" Width="SizeToHeader"  IsReadOnly="True"/>
+                                        <telerik:GridViewColumn  Header="会员姓名" Width="SizeToHeader"  IsReadOnly="True"/>
+                                        <telerik:GridViewColumn  Header="初始状态" Width="SizeToHeader"  IsReadOnly="True"/>
+                                        <telerik:GridViewColumn  Header="调整方式" Width="SizeToHeader"  IsReadOnly="True"/>
+                                        <telerik:GridViewColumn  Header="挂失/锁定时间" Width="SizeToHeader"  IsReadOnly="True"/>
+                                        <telerik:GridViewColumn  Header="结束时间" Width="SizeToHeader"  IsReadOnly="True"/>
+                                        <telerik:GridViewColumn  Header="调整后状态" Width="SizeToHeader"  IsReadOnly="True"/>
+                                        <telerik:GridViewColumn  Header="业务员" Width="SizeToHeader"  IsReadOnly="True"/>
+                                        <telerik:GridViewColumn  Header="办理时间" Width="SizeToHeader"  IsReadOnly="True"/>
+
+                                    </telerik:RadGridView.Columns>
+                                </telerik:RadGridView>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </telerik:RadPanelBarItem>
+                <telerik:RadPanelBarItem IsExpanded="True" >
+                    <telerik:RadPanelBarItem.Header>
+                        <TextBlock Text="备注" Height="25"  VerticalAlignment="Center" FontSize="13"/>
+                    </telerik:RadPanelBarItem.Header>
+                    <Border  BorderBrush="#99bbe8" BorderThickness="1" Width="754" HorizontalAlignment="Left" Height="80">
+                        <Grid x:Name="renewaldate">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="188"/>
+                                <ColumnDefinition Width="188"/>
+                                <ColumnDefinition Width="188"/>
+                                <ColumnDefinition Width="190"/>
+
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </Border>
+                </telerik:RadPanelBarItem>
+            </telerik:RadPanelBar>
+        </Grid>
+
+    </Grid>
+</UserControl>

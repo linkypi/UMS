@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1" />-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="../styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="../styles/kendo.default.min.css" rel="stylesheet"/>
+   <link href="../styles/kendo.mobile.all.min.css" rel="stylesheet"/>
+
+    <link href="../styles/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="../styles/kendo.dataviz.default.min.css" rel="stylesheet" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/kendo.all.min.js"></script>
+   <script src="../js/jquery.json-2.4.js"></script>
+  
+    <script src="../global.js"></script>
+       <style scoped>
+            #example h2 {
+                font-weight: normal;
+            }
+            #email-settings {
+                height: 135px;
+                width: 395px;
+                margin: 30px auto;
+                padding: 110px 0 0 30px;
+            }
+          
+            .button {
+                margin-left: .5em;
+                text-align: center;
+            }
+        </style>
+</head>
+<body>
+     <div id="loading" data-role="view" class="km-insetcontent" data-init="Init" >
+       <header data-role="header" id="header">
+            <div data-role="navbar">
+           <a class="nav-button" data-align="left" data-role="backbutton" id="cancel" href="#menu">首页</a>
+                <span data-role="view-title">图表查看</span>
+            </div>
+        </header>
+          <div id="salarychart" style="margin-top:5px;height:50%;width:2000px; 
+                  background: center no-repeat url('../img/world-map.png');"></div>
+         
+    </div>
+    <script>
+
+        var sd = "", ed = "";
+        var app;//= new kendo.mobile.Application();
+        if (typeof app == "undefined")
+            app = new kendo.mobile.Application(document.body, {
+                platform: "android" //android
+            });
+
+
+        function Init(e) {
+            sd  = e.view.params.sdate  ;
+            ed = e.view.params.edate;
+            document.title = e.view.params.sdate + " 至 " + e.view.params.edate + "各营业厅提成统计";
+            createChart();
+            app.pane.loader.hide();
+
+            app.pane.loader.show();
+            search();
+
+        }
+
+        $(window).resize(function () {
+            /*if (window.innerWidth)
+            var winWidth = window.innerWidth;
+            else if ((document.body) && (document.body.clientWidth))
+             winWidth = document.body.clientWidth;
+            // 获取窗口高度
+            if (window.innerHeight)
+            var winHeight = window.innerHeight;
+            else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;*/
+
+            $("#salarychart").data("kendoChart").options.chartArea.height = window.innerHeight;
+            $("#salarychart").data("kendoChart").refresh();
+        });
+
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        function createChart() {
+            $("#salarychart").kendoChart({
+                dataSource: {
+                    data: []
+                },
+                title: {
+                    text: sd + " 至 " + ed + " 各营业厅总提成"
+                },
+                legend: {
+                    visible: false
+                },
+                seriesDefaults: {
+                    type: "column",
+                    color: "#97C93E",
+                    labels: {
+                        visible: true,
+                        background: "transparent"
+                    }
+                },
+                series: [{
+                    field: "TotalSalary",
+                    name: "totalSalary"
+                }],
+                valueAxis: {
+                    line: {
+                        visible: false
+                    },
+                    minorGridLines: {
+                        visible: true
+                    }
+                },
+                categoryAxis: {
+                    field: "Hallname",
+                    majorGridLines: {
+                        visible: false
+                    }
+                },
+                seriesClick: function (e) {
+
+                    app.pane.loader.hide();
+
+                    //请求数据
+                    $.ajax({
+                        type: "GET",
+                        url: hosturl + "Salary/GetEverySalary",
+                        data: {
+                            "sdate": sd,
+                            "edate": ed,
+                            "hid": e.dataItem["Hallid"]
+                        },
+                        dataType: "jsonp",
+                        success: function (data) {
+                            showEverySalary(e, data);
+                        }
+                    });
+
+                },
+                tooltip: {
+                    visible: true,
+                    background: "transparent",
+                    template: "#= category  #: #= value #"
+                }
+            });
+        }
+
+        //查询
+        function search() {
+
+            //请求数据
+            $.ajax({
+                type: "GET",
+                url: hosturl + "Salary/GetEveryHallSalary",
+                data: {
+                    "sdate": sd,
+                    "edate": ed
+                },
+                dataType: "jsonp",
+                success: function (data) {
+                    var chart = $("#salarychart").data("kendoChart");
+                    var dataSource = new kendo.data.DataSource({
+                        data: data["response"]
+                    });
+                    chart.setDataSource(dataSource);
+                    chart.options.chartArea.height = window.innerHeight;
+                    chart.refresh();
+                    app.pane.loader.hide();
+                }
+            });
+        }
+
+        //显示营业厅所有销售员提成
+        function showEverySalary(e, data) {
+            $("#salarychart").kendoChart({
+                categoryAxis: {
+                    field: "Seller",
+                    majorGridLines: {
+                        visible: false
+                    }
+                },
+                legend: {
+                    visible: false
+                },
+                title: {
+                    text: sd + " 至 " + ed + e.dataItem["Hallname"] + " 各销售员总提成"
+                },
+                series: [{
+                    field: "TotalSalary",
+                    name: "totalSalary"
+                }],
+                seriesDefaults: {
+                    type: "column",
+                    color: "#97C93E",
+                    labels: {
+                        visible: true,
+                        background: "transparent"
+                    }
+                },
+                valueAxis: {
+                    line: {
+                        visible: false
+                    },
+                    minorGridLines: {
+                        visible: true
+                    }
+                },
+                tooltip: {
+                    visible: true,
+                    background: "transparent",
+                    template: "#= category  #: #= value #"
+                }
+            });
+            var chart = $("#salarychart").data("kendoChart");
+            var dataSource = new kendo.data.DataSource({
+                data: data["response"]
+            });
+            chart.setDataSource(dataSource);
+            chart.options.chartArea.height = window.innerHeight;
+            chart.refresh();
+            app.pane.loader.hide();
+        }
+
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,11 @@
+<configuration>
+  <system.serviceModel>
+    <domainServices>
+      <endpoints>
+        <add name="soap" type="Microsoft.ServiceModel.DomainServices.Hosting.SoapXmlEndpointFactory, Microsoft.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />    
+        <add name="json" type="Microsoft.ServiceModel.DomainServices.Hosting.JsonEndpointFactory, Microsoft.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />  
+      </endpoints>
+    </domainServices>
+  </system.serviceModel>
+</configuration>
+   

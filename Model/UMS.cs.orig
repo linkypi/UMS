@@ -1,0 +1,280 @@
+using System;
+using System.Collections.Generic;
+using System.Data.Services;
+using System.Data.Services.Common;
+namespace Model
+{
+    partial class Sys_Option
+    {
+<<<<<<< HEAD
+    }
+
+
+    public partial  class Pro_SellListInfo
+    {
+        //ï¿½ï¿½ï¿½ï¿½Ø›ï¿½Ä•rï¿½ï¿½Ç°ï¿½_ï¿½ï¿½Òªï¿½Rï¿½rï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½SellID
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public int? SellID_Temp { get; set; }
+
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public string OffName
+        {
+            get
+            {
+                if (this.VIP_OffList != null)
+                {
+                    return VIP_OffList.Name;
+                }
+                else
+                {
+                     return null;
+                }
+            }
+        set{}
+        }
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public string SpecalOffName
+        {
+            get
+            {
+                if (this.Pro_SellSpecalOffList != null)
+                {
+                    return this.Pro_SellSpecalOffList.VIP_OffList.Name;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set { }
+        }
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public int? SpecalOffId
+        {
+            get{
+                if (this.Pro_SellSpecalOffList != null)
+                {
+                    return this.Pro_SellSpecalOffList.SpecalOffID;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set { }
+=======
+    }
+
+
+    public partial  class Pro_SellListInfo
+    {
+        //ÔÚÍËØ›µÄ•rºòÇ°Å_ÐèÒªÅR•r´æ·ÅÒ»‚€SellID
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public int? SellID_Temp { get; set; }
+
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public string OffName
+        {
+            get
+            {
+                if (this.VIP_OffList != null)
+                {
+                    return VIP_OffList.Name;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        set{}
+        }
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public string SpecalOffName
+        {
+            get
+            {
+                if (this.Pro_SellSpecalOffList != null)
+                {
+                    return this.Pro_SellSpecalOffList.VIP_OffList.Name;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set { }
+        }
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public int? SpecalOffId
+        {
+            get{
+                if (this.Pro_SellSpecalOffList != null)
+                {
+                    return this.Pro_SellSpecalOffList.SpecalOffID;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set { }
+>>>>>>> 1
+        }
+
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public Model.Pro_SellSpecalOffList SpecalOff
+        {
+            get { return this.Pro_SellSpecalOffList; }
+            set { }
+        }
+<<<<<<< HEAD
+    }
+
+    public partial  class Pro_SellListInfo_Temp
+    {
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public Pro_Sell_Yanbao_temp YanBaoModel
+        {
+            get { return this._Pro_Sell_Yanbao_temp.Entity; }
+            set { }
+        }
+    }
+    public partial  class Pro_SellListInfo
+    {
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public Pro_Sell_Yanbao YanBaoModel
+        {
+            get { return this._Pro_Sell_Yanbao.Entity; }
+            set {  }
+        }
+    }
+    public partial  class Pro_AreaInfo
+    {
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public List<LocationInfo> PointList
+        {
+            set {  }
+            get
+            {
+                if (Points == null)
+                    return null;
+                try
+                {
+                    var result = new List<LocationInfo>();
+                    foreach (string s in Points.Trim().Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        var temp = s.Trim().Split(new char[] {','});
+                        var l = new LocationInfo
+                            {
+                                Longitude = float.Parse(temp[0]),
+                                Latitude = float.Parse(temp[1])
+                            };
+                        result.Add(l);
+
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
+       
+//        [global::System.Runtime.Serialization.DataMemberAttribute]
+//        public float[][] Test
+//        {
+//            get
+//            {
+//                var result = new List<float[]>();
+//                foreach (string s in Points.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+//                {
+//                    var temp = s.Split(new char[] { ',' });
+//                    var l = new float[]{
+//                        float.Parse(temp[0]),
+//                        float.Parse(temp[1])
+//                    };
+//                    result.Add(l);
+//
+//                }
+//                return result.ToArray();
+//            }
+//        }
+    }
+}
+=======
+    }
+
+    public partial  class Pro_SellListInfo_Temp
+    {
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public Pro_Sell_Yanbao_temp YanBaoModel
+        {
+            get { return this._Pro_Sell_Yanbao_temp.Entity; }
+            set { }
+        }
+    }
+    public partial  class Pro_SellListInfo
+    {
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public Pro_Sell_Yanbao YanBaoModel
+        {
+            get { return this._Pro_Sell_Yanbao.Entity; }
+            set {  }
+        }
+    }
+    public partial  class Pro_AreaInfo
+    {
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public List<LocationInfo> PointList
+        {
+            set {  }
+            get
+            {
+                if (Points == null)
+                    return null;
+                try
+                {
+                    var result = new List<LocationInfo>();
+                    foreach (string s in Points.Trim().Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        var temp = s.Trim().Split(new char[] {','});
+                        var l = new LocationInfo
+                            {
+                                Longitude = float.Parse(temp[0]),
+                                Latitude = float.Parse(temp[1])
+                            };
+                        result.Add(l);
+
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
+       
+//        [global::System.Runtime.Serialization.DataMemberAttribute]
+//        public float[][] Test
+//        {
+//            get
+//            {
+//                var result = new List<float[]>();
+//                foreach (string s in Points.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+//                {
+//                    var temp = s.Split(new char[] { ',' });
+//                    var l = new float[]{
+//                        float.Parse(temp[0]),
+//                        float.Parse(temp[1])
+//                    };
+//                    result.Add(l);
+//
+//                }
+//                return result.ToArray();
+//            }
+//        }
+    }
+}
+>>>>>>> 1

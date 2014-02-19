@@ -1,0 +1,1125 @@
+﻿<Page x:Class="UserMS.Views.AfterSale.AfterSale"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+     
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+    xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter" 
+    mc:Ignorable="d" Loaded="Page_Loaded"   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:MyControl="clr-namespace:UserMS.MyControl" 
+	Title="AfterSale">
+    <telerik:RadBusyIndicator x:Name="isbusy">
+
+        <telerik:RadTabControl  Foreground="Black">
+            <telerik:RadTabItem Header="受理">
+         
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="top">
+                        <DockPanel DockPanel.Dock="Left" Width="520">
+                           
+                            <DockPanel DockPanel.Dock="Top" >
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F">
+                                    <TextBlock Foreground="Black" Text="产品信息" FontWeight="Bold"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="top" >
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                                            <TextBlock Height="25" Width="80" Text="*IMEI:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="SN:"  Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="*产品名称:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品编码:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品颜色:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品类别:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品系列:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品品牌:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="生产周期:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="保修卡号:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="购机日期:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="购机发票:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="出厂日期:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="购机地点:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="收货日期:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="*随机附件:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="附件SN:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="内存容量:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="送修批号:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="手工单号:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="送修备注:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="300" ></TextBox>
+                                            </StackPanel>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="外观描述:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="300" ></TextBox>
+                                            </StackPanel>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="详细故障描述:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="300" ></TextBox>
+                                            </StackPanel>
+                                        </WrapPanel>
+                                    </WrapPanel>
+                                 
+                                </DockPanel>
+                            </DockPanel>
+                            <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                    <TextBlock Text="初检信息"  Foreground="Black" FontWeight="Bold"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="*初检状态编码:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="初检状态名称:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="*保内/保外:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="原软件版本:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="客户限价:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="*维修方式:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="工程师:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="部门:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="受理人:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="原网点 :" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="300" ></TextBox>
+                                            </StackPanel>
+                                        </WrapPanel>
+                                    </WrapPanel>
+                                   
+                                </DockPanel>
+                            </DockPanel>
+         
+                        </DockPanel>
+                        <Splitter:DockPanelSplitter DockPanel.Dock="Left" Background="Silver"></Splitter:DockPanelSplitter>
+
+                        <DockPanel DockPanel.Dock="Right">
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                    <TextBlock Text="客户信息" Foreground="Black" FontWeight="Bold" ></TextBlock>
+                                    <CheckBox Content="多次返修" Foreground="Black" HorizontalAlignment="Right"></CheckBox>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Bottom">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="会员卡号:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="*客户姓名:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="手机号码:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="其他电话:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="客户邮箱:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="送修单位:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="送修人及电话:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="销售店面:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="客户类别:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <CheckBox Content="特殊处理"  Width="80" Foreground="Red"  Padding="0 0 0 10"></CheckBox>
+                                           
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="业务员:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                    </WrapPanel>
+                                  
+                                </DockPanel>
+                            </DockPanel>
+                            <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F">
+                                    <TextBlock Text="备机信息" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="备机仓库:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="备机名称:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="备机IMEI:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="备机SN:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="备机附件:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="备机押金:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="提供日期:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="经手人:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                    </WrapPanel>
+
+                                </DockPanel>
+                            </DockPanel>
+                          
+                         
+                        </DockPanel>
+                    </DockPanel>
+                    <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+
+                    <DockPanel DockPanel.Dock="Top">
+                        <WrapPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注1:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注2:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注3:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注4:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                        </WrapPanel>
+                    </DockPanel>
+                </DockPanel>
+               
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="维修">
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="top">
+                        <DockPanel DockPanel.Dock="Top" >
+
+                            <DockPanel DockPanel.Dock="Left" Width="650">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F">
+                                    <TextBlock Foreground="Black" Text="维修信息" FontWeight="Bold"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="top" >
+                                    <telerik:RadGridView   DockPanel.Dock="Bottom"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                             SelectionMode="Multiple" MinHeight="100" AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                                        <telerik:RadGridView.Columns>
+                                            <telerik:GridViewSelectColumn />
+                                            <telerik:GridViewBoundColumnBase  Header="编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding IMEI}"  />
+                                            <telerik:GridViewBoundColumnBase  Header="配件名称" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding MemberName}"  />
+                                            <telerik:GridViewBoundColumnBase  Header="类别" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding IMEI}"  />
+                                            <telerik:GridViewBoundColumnBase  Header="数量" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding MemberName}"  />
+                                        </telerik:RadGridView.Columns>
+                                    </telerik:RadGridView>
+                                    <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                                            <TextBlock Height="25" Width="80" Text="*工程师:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="原工程师:"  Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="*状态编码:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="二次返修原工程师:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="*保内/保外:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="状态名称:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="新软件版本:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="维修级别:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="维修装机人:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="维修备注:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="待修原因:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="换件仓库:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="圆标号:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="新圆标号:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                     
+                                    </WrapPanel>
+                                    <DockPanel DockPanel.Dock="Top" VerticalAlignment="Stretch" MinHeight="100" HorizontalAlignment="Stretch">
+                                        <telerik:RadGridView x:Name="dataGridVip2"  MinWidth="300"  DockPanel.Dock="Left"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                             SelectionMode="Multiple"  AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                                            <telerik:RadGridView.Columns>
+                                                <telerik:GridViewSelectColumn />
+                                                <telerik:GridViewBoundColumnBase  Header="*故障编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding IMEI}"  />
+                                                <telerik:GridViewBoundColumnBase  Header="*故障现象" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding MemberName}"  />
+                                            </telerik:RadGridView.Columns>
+                                        </telerik:RadGridView>
+                                        <telerik:RadGridView    DockPanel.Dock="Right"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                             SelectionMode="Multiple"  AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                                            <telerik:RadGridView.Columns>
+                                                <telerik:GridViewSelectColumn />
+                                                <telerik:GridViewBoundColumnBase  Header="编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding IMEI}"  />
+                                                <telerik:GridViewBoundColumnBase  Header="处理单号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding MemberName}"  />
+                                            </telerik:RadGridView.Columns>
+                                        </telerik:RadGridView>
+                                       
+                                    </DockPanel>
+                                   
+                                </DockPanel>
+                            </DockPanel>
+                            <Splitter:DockPanelSplitter DockPanel.Dock="Left" Background="Silver"></Splitter:DockPanelSplitter>
+
+                            <DockPanel DockPanel.Dock="Right">
+                                <DockPanel DockPanel.Dock="Top">
+                                    <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                        <TextBlock Text="换机/换板信息"  Foreground="Black" FontWeight="Bold"></TextBlock>
+                                    </DockPanel>
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <WrapPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="换新仓库:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="新产品名称:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="新产品编码:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="新IMEI:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="新SN:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+
+                                        </WrapPanel>
+
+                                    </DockPanel>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                        <TextBlock Text="保外费用信息"  Foreground="Black" FontWeight="Bold"></TextBlock>
+                                    </DockPanel>
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <WrapPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="人工费用:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="配件费用:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="合计费用:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="报价金额:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                          
+                                        </WrapPanel>
+
+                                    </DockPanel>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                        <TextBlock Text="保内费用信息"  Foreground="Black" FontWeight="Bold"></TextBlock>
+                                    </DockPanel>
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <WrapPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="劳务费用:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                        </WrapPanel>
+
+                                    </DockPanel>
+                                </DockPanel>
+                            </DockPanel>
+
+                        </DockPanel>
+                    </DockPanel>
+                    <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+                    <DockPanel DockPanel.Dock="Top">
+                        <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注1:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注2:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注3:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注4:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                        </WrapPanel>
+                    </DockPanel>
+
+                </DockPanel>
+
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="质检">
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="top">
+                        <DockPanel DockPanel.Dock="Top" >
+                           
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                    <TextBlock Text="送修信息"  Foreground="Black" FontWeight="Bold"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="初始状态:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="故障现象:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="原软件版本:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="送修备注:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                    </WrapPanel>
+
+                                </DockPanel>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                    <TextBlock Text="维修信息"  Foreground="Black" FontWeight="Bold"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="工程师:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="确认故障:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="新软件版本:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="处理方法:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="新IMEI:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150" ></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="更换配件:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150" ></TextBox>
+                                    </StackPanel>
+
+
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="新SN:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150" ></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="维修级别:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150" ></TextBox>
+                                    </StackPanel>
+
+
+                                </WrapPanel>
+
+                                </DockPanel>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                    <TextBlock Text="质检信息"  Foreground="Black" FontWeight="Bold"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <WrapPanel  DockPanel.Dock="Top">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <CheckBox Content="合格" Foreground="Black"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <CheckBox Content="不合格" Foreground="Black"></CheckBox>
+                                        </StackPanel>
+                                    </WrapPanel>
+                                    <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="最终状态:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="300" ></TextBox>
+                                            </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="质检备注:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="300" ></TextBox>
+                                        </StackPanel>
+                                    </WrapPanel>
+
+                                </DockPanel>
+                        </DockPanel>
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                    <TextBlock Text="故障信息"  Foreground="Black" FontWeight="Bold"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top" MinHeight="100">
+                                    <telerik:RadGridView   DockPanel.Dock="Left" MinWidth="300"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                             SelectionMode="Multiple"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                                        <telerik:RadGridView.Columns>
+                                            <telerik:GridViewSelectColumn />
+                                            <telerik:GridViewBoundColumnBase  Header="故障编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding IMEI}"  />
+                                            <telerik:GridViewBoundColumnBase  Header="故障现象" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding MemberName}"  />
+                                          
+                                        </telerik:RadGridView.Columns>
+                                    </telerik:RadGridView>
+                                    <telerik:RadGridView   DockPanel.Dock="Right"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                             SelectionMode="Multiple"  AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                                        <telerik:RadGridView.Columns>
+                                            <telerik:GridViewSelectColumn />
+                                            <telerik:GridViewBoundColumnBase  Header="编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding IMEI}"  />
+                                            <telerik:GridViewBoundColumnBase  Header="处理方法" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding MemberName}"  />
+
+                                        </telerik:RadGridView.Columns>
+                                    </telerik:RadGridView>
+
+                                </DockPanel>
+                            </DockPanel>
+                        </DockPanel>
+                    </DockPanel>
+                    <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+                    <DockPanel DockPanel.Dock="Top">
+                        <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注1:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注2:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注3:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注4:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                        </WrapPanel>
+                    </DockPanel>
+
+                </DockPanel>
+                
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="取机">
+
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="top">
+                        <DockPanel DockPanel.Dock="Left" Width="520">
+
+                            <DockPanel DockPanel.Dock="Top" >
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F">
+                                    <TextBlock Foreground="Black" Text="产品及客户信息" FontWeight="Bold"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="top" >
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                                            <TextBlock Height="25" Width="80" Text="IMEI:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="SN:"  Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品名称:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品编码:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品颜色:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品类别:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品系列:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="产品品牌:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="随机附件:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="客户姓名:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                      
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="送修单位:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="送修备注:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="300" ></TextBox>
+                                            </StackPanel>
+                                        </WrapPanel>
+                                  
+                                    </WrapPanel>
+
+                                </DockPanel>
+                            </DockPanel>
+                            <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Left">
+                                    <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                        <TextBlock Text="备机信息"  Foreground="Black" FontWeight="Bold"></TextBlock>
+                                    </DockPanel>
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <WrapPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="备机型号:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="备机IMEI:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="备件SN:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="备机附件:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="备机押金:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <CheckBox Content="不归还押金" Foreground="Red" Padding="0 -10 0 0" Width="80"></CheckBox>
+                                              
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="预收金额:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="预收日期:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="押金金额:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="押金日期:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="押金进度:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <WrapPanel Orientation="Horizontal">
+                                                <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                    <TextBlock Height="25" Width="80" Text="取机备注 :" Foreground="Black"></TextBlock>
+                                                    <TextBox Height="25" Width="300" ></TextBox>
+                                                </StackPanel>
+                                            </WrapPanel>
+                                        </WrapPanel>
+
+                                    </DockPanel>
+                                </DockPanel>
+                                <Splitter:DockPanelSplitter DockPanel.Dock="Left" Background="Silver"></Splitter:DockPanelSplitter>
+                                <DockPanel DockPanel.Dock="Right">
+                                    <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                        <TextBlock Text="取机信息"  Foreground="Black" FontWeight="Bold"></TextBlock>
+                                    </DockPanel>
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <WrapPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="新IMEI:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="新SN:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="*实收费用:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="取机批号:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="服务时间:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="80" Text="发票号码:" Foreground="Black"></TextBlock>
+                                                <TextBox Height="25" Width="150" ></TextBox>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <Button Content="获取发票号"  Margin="5 5 0 5"></Button>
+                                                <Button Content="选择发票号"  Margin="5 5 0 5"></Button>
+                                                <Button Content="发票作废" Margin="5 5 0 5"></Button>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                                <TextBlock Height="25" Width="120" Text="发票已打印次数: 0" Foreground="#2E8B89"></TextBlock>
+
+                                            </StackPanel>
+
+
+                                        </WrapPanel>
+
+                                    </DockPanel>
+                                </DockPanel>
+                            </DockPanel>
+
+                        </DockPanel>
+                        <Splitter:DockPanelSplitter DockPanel.Dock="Left" Background="Silver"></Splitter:DockPanelSplitter>
+
+                        <DockPanel DockPanel.Dock="Right">
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F" >
+                                    <TextBlock Text="非保费用信息" Foreground="Black" FontWeight="Bold" ></TextBlock>
+                                  
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Bottom">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="最终状态:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="人工费用:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" >0.00</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="限价:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="配件费用:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" >0.00</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="合计费用:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="保外报价费用:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                     
+                                    </WrapPanel>
+
+                                </DockPanel>
+                            </DockPanel>
+                            <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F">
+                                    <TextBlock Text="保修费用信息" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="劳务费用:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="付款方式:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                    </WrapPanel>
+
+                                </DockPanel>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="Top">
+                                <DockPanel DockPanel.Dock="Top" Background="#B1D56F">
+                                    <TextBlock Text="挂账信息" FontWeight="Bold" Foreground="Black"></TextBlock>
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <Button Content="添加" Margin="10 5 0 5"></Button>
+                                            <Button Content="删除" Margin="10 5 0 5"></Button>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="挂账客户:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="挂账额度:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="150" ></TextBox>
+
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                            <TextBlock Height="25" Width="80" Text="挂账金额:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Width="130" ></TextBox>
+                                            <CheckBox Content="已审批" Foreground="Red" Padding="0 0 0 10" Margin="0 5 0 0"></CheckBox>
+                                        </StackPanel>
+                                    </WrapPanel>
+
+                                </DockPanel>
+                            </DockPanel>
+                        </DockPanel>
+                    </DockPanel>
+                    <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+                    <DockPanel DockPanel.Dock="Top">
+                        <WrapPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注1:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注2:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注3:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="备注4:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="300" ></TextBox>
+                            </StackPanel>
+                        </WrapPanel>
+                    </DockPanel>
+                </DockPanel>
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="回访">
+                <DockPanel  >
+                    <DockPanel DockPanel.Dock="Top" Background="#B1D56F">
+                        <TextBlock Foreground="Black" Text="回访信息" FontWeight="Bold"></TextBlock>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="top" >
+                        <WrapPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                                <TextBlock Height="25" Width="80" Text="应答情况:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="150" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical"  Margin="50 5 0 5">
+                                <CheckBox Content="客户姓名相符" Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="送修日期相符 2013-12-5 16：00"  Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="产品名称相符" Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="故障现象相符" Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="处理方法相符" Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="最终状态相符" Margin="10 5 0 5" ></CheckBox>
+                                <CheckBox Content="收费情况相符  人工费：0.00  备件费：0.00  合计费：0.00  实收费0.00"  Margin="10 5 0 5"></CheckBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="结算金额:"  Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="150" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="服务评价:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="150" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="总体评分:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="150" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="顾客建议:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="150" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                <TextBlock Height="25" Width="80" Text="真实性:" Foreground="Black"></TextBlock>
+                                <TextBox Height="25" Width="150" ></TextBox>
+                            </StackPanel>
+                        
+                            <WrapPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                    <TextBlock Height="25" Width="80" Text="回访备注:" Foreground="Black"></TextBlock>
+                                    <TextBox Height="25" Width="300" ></TextBox>
+                                </StackPanel>
+                            </WrapPanel>
+
+                        </WrapPanel>
+
+                    </DockPanel>
+                </DockPanel>
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="审计">
+                <DockPanel  >
+                    <DockPanel DockPanel.Dock="Top">
+                        <DockPanel DockPanel.Dock="Top" Background="#B1D56F">
+                            <TextBlock Foreground="Black" Text="审计信息" FontWeight="Bold"></TextBlock>
+                        </DockPanel>
+                        <DockPanel DockPanel.Dock="top" >
+                            <WrapPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                                    <TextBlock Height="25" Width="80" Text="可结算:" Foreground="Black"></TextBlock>
+                                    <TextBox Height="25" Width="150" ></TextBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                    <CheckBox Width="230" Content="多次返修"></CheckBox>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                    <TextBlock Height="25" Width="80" Text="审计备注:"  Foreground="Black"></TextBlock>
+                                    <TextBox Height="25" Width="300" ></TextBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                    <TextBlock Height="25" Width="80" Text="原维修点:" Foreground="Black"></TextBlock>
+                                    <TextBox Height="25" Width="150" ></TextBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                    <TextBlock Height="25" Width="80" Text="原工程师:" Foreground="Black"></TextBlock>
+                                    <TextBox Height="25" Width="150" ></TextBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                    <CheckBox Content="是否录入厂家系统"></CheckBox>
+                                    <TextBlock Height="25" Width="80" Text="未录入原因:" Foreground="Black"></TextBlock>
+                                    <TextBox Height="25" Width="300" ></TextBox>
+                                </StackPanel>
+                            </WrapPanel>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top">
+                        <DockPanel DockPanel.Dock="Left" >
+                            <DockPanel DockPanel.Dock="Top" Background="#B1D56F">
+                                <TextBlock Foreground="Black" Text="费用信息" FontWeight="Bold"></TextBlock>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="top" >
+                                <WrapPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                                        <TextBlock Height="25" Width="80" Text="最终状态:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150" ></TextBox>
+                                    </StackPanel>
+                                 
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="限价:"  Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="300" ></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="人工费用:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150" ></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="配件费用:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150" ></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="合计费用:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="300" ></TextBox>
+                                    </StackPanel>
+                                </WrapPanel>
+                            </DockPanel>
+                        </DockPanel>
+                        <Splitter:DockPanelSplitter DockPanel.Dock="Left" Background="Silver"></Splitter:DockPanelSplitter>
+                        <DockPanel DockPanel.Dock="Right">
+                            <DockPanel DockPanel.Dock="Top" Background="#B1D56F">
+                                <TextBlock Foreground="Black" Text="审计金额" FontWeight="Bold"></TextBlock>
+                            </DockPanel>
+                            <DockPanel DockPanel.Dock="top" >
+                                <WrapPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                                        <TextBlock Height="25" Width="80" Text="审计金额:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150" ></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="结算金额:"  Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="300" ></TextBox>
+                                    </StackPanel>
+                                 
+                                </WrapPanel>
+                            </DockPanel>
+                        </DockPanel>
+
+                    </DockPanel>
+                </DockPanel>
+              
+            </telerik:RadTabItem>
+        </telerik:RadTabControl>
+
+
+    </telerik:RadBusyIndicator>
+
+</Page>

@@ -1,0 +1,763 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Century" xml:space="preserve">
+    <value>世纪</value>
+  </data>
+  <data name="DecadeEnding" xml:space="preserve">
+    <value>DecadeEnding</value>
+  </data>
+  <data name="FilterAnd" xml:space="preserve">
+    <value>与</value>
+  </data>
+  <data name="FilterContains" xml:space="preserve">
+    <value>包含</value>
+  </data>
+  <data name="FilterDoesNotContain" xml:space="preserve">
+    <value>不包括</value>
+  </data>
+  <data name="FilterEndsWith" xml:space="preserve">
+    <value>结尾是</value>
+  </data>
+  <data name="FilterIsContainedIn" xml:space="preserve">
+    <value>包含在</value>
+  </data>
+  <data name="FilterIsEmpty" xml:space="preserve">
+    <value>是空</value>
+  </data>
+  <data name="FilterIsEqualTo" xml:space="preserve">
+    <value>相等</value>
+  </data>
+  <data name="FilterIsGreaterThan" xml:space="preserve">
+    <value>大于</value>
+  </data>
+  <data name="FilterIsGreaterThanOrEqualTo" xml:space="preserve">
+    <value>大于等于</value>
+  </data>
+  <data name="FilterIsLessThan" xml:space="preserve">
+    <value>小于</value>
+  </data>
+  <data name="FilterIsLessThanOrEqualTo" xml:space="preserve">
+    <value>小于等于</value>
+  </data>
+  <data name="FilterIsNotContainedIn" xml:space="preserve">
+    <value>不包含在</value>
+  </data>
+  <data name="FilterIsNotEmpty" xml:space="preserve">
+    <value>不为空</value>
+  </data>
+  <data name="FilterIsNotEqualTo" xml:space="preserve">
+    <value>不等于</value>
+  </data>
+  <data name="FilterIsNotNull" xml:space="preserve">
+    <value>不为 Null</value>
+  </data>
+  <data name="FilterIsNull" xml:space="preserve">
+    <value>为 Null</value>
+  </data>
+  <data name="FilterMatchCase" xml:space="preserve">
+    <value>区分大小写</value>
+  </data>
+  <data name="FilterOr" xml:space="preserve">
+    <value>或</value>
+  </data>
+  <data name="FilterStartsWith" xml:space="preserve">
+    <value>开头是</value>
+  </data>
+  <data name="GridViewAlwaysVisibleNewRow" xml:space="preserve">
+    <value>点击新增</value>
+  </data>
+  <data name="GridViewClearFilter" xml:space="preserve">
+    <value>清空筛选</value>
+  </data>
+  <data name="GridViewFilter" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+  <data name="GridViewFilterAnd" xml:space="preserve">
+    <value>与</value>
+  </data>
+  <data name="GridViewFilterContains" xml:space="preserve">
+    <value>包含</value>
+  </data>
+  <data name="GridViewFilterDoesNotContain" xml:space="preserve">
+    <value>不包含</value>
+  </data>
+  <data name="GridViewFilterEndsWith" xml:space="preserve">
+    <value>结尾是</value>
+  </data>
+  <data name="GridViewFilterIsContainedIn" xml:space="preserve">
+    <value>包含在</value>
+  </data>
+  <data name="GridViewFilterIsEmpty" xml:space="preserve">
+    <value>是空</value>
+  </data>
+  <data name="GridViewFilterIsEqualTo" xml:space="preserve">
+    <value>相等</value>
+  </data>
+  <data name="GridViewFilterIsGreaterThan" xml:space="preserve">
+    <value>大于</value>
+  </data>
+  <data name="GridViewFilterIsGreaterThanOrEqualTo" xml:space="preserve">
+    <value>大于等于</value>
+  </data>
+  <data name="GridViewFilterIsLessThan" xml:space="preserve">
+    <value>小于</value>
+  </data>
+  <data name="GridViewFilterIsLessThanOrEqualTo" xml:space="preserve">
+    <value>小于等于</value>
+  </data>
+  <data name="GridViewFilterIsNotContainedIn" xml:space="preserve">
+    <value>不包含在</value>
+  </data>
+  <data name="GridViewFilterIsNotEmpty" xml:space="preserve">
+    <value>不为空</value>
+  </data>
+  <data name="GridViewFilterIsNotEqualTo" xml:space="preserve">
+    <value>不等于</value>
+  </data>
+  <data name="GridViewFilterIsNotNull" xml:space="preserve">
+    <value>不为空值</value>
+  </data>
+  <data name="GridViewFilterIsNull" xml:space="preserve">
+    <value>为空值</value>
+  </data>
+  <data name="GridViewFilterMatchCase" xml:space="preserve">
+    <value>区分大小写</value>
+  </data>
+  <data name="GridViewFilterOr" xml:space="preserve">
+    <value>或</value>
+  </data>
+  <data name="GridViewFilterSelectAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="GridViewFilterShowRowsWithValueThat" xml:space="preserve">
+    <value>按以下条件筛选</value>
+  </data>
+  <data name="GridViewFilterStartsWith" xml:space="preserve">
+    <value>开头是</value>
+  </data>
+  <data name="GridViewFilterStartsWith1" xml:space="preserve">
+    <value>开头是</value>
+  </data>
+  <data name="GridViewFilterStartsWith2" xml:space="preserve">
+    <value>开头是</value>
+  </data>
+  <data name="GridViewGroupPanelText" xml:space="preserve">
+    <value>拖动标题到此处分组</value>
+  </data>
+  <data name="GridViewGroupPanelTopText" xml:space="preserve">
+    <value>分组</value>
+  </data>
+  <data name="GridViewGroupPanelTopTextGrouped" xml:space="preserve">
+    <value>分组方式: </value>
+  </data>
+  <data name="PivotFieldList_And" xml:space="preserve">
+    <value>与</value>
+    <comment>Used in RadPivotFieldList dialogs. Example: between 10 and 20 </comment>
+  </data>
+  <data name="PivotFieldList_AscendingBy" xml:space="preserve">
+    <value>升序排序</value>
+    <comment>Used in RadPivotFieldList buttons and dialogs for ascending sorting. Example: Sort Ascending (A to Z) by</comment>
+  </data>
+  <data name="PivotFieldList_BaseField" xml:space="preserve">
+    <value>基于字段:</value>
+    <comment>Used in the calculations dialog of RadPivotFieldList. It stays as a Label of the ListBox in which you are able to select the group description by which the calculation will be applied.</comment>
+  </data>
+  <data name="PivotFieldList_BaseItem" xml:space="preserve">
+    <value>基于项:</value>
+    <comment>Used in the calculations dialog of RadPivotFieldList. It stays as a Label of the ListBox in which you are able to select the group by which the calculation will be applied.</comment>
+  </data>
+  <data name="PivotFieldList_BeginsWith" xml:space="preserve">
+    <value>开头是</value>
+    <comment>Used in the label filter dialog of RadPivotFieldList. It indicates that only groups that "begins with" string that is typed in the nearby TextBox will be displayed.</comment>
+  </data>
+  <data name="PivotFieldList_BottomItems" xml:space="preserve">
+    <value>最后</value>
+    <comment>Used in the Top 10 Filter dialog of RadPivotFieldList. It indicates that the "last" items matching specified conditions, will be displayed.</comment>
+  </data>
+  <data name="PivotFieldList_By" xml:space="preserve">
+    <value> : </value>
+    <comment>Used in Top 10 Filter dialog of RadPivotFieldList. In this dialog there are several options to choose how to apply the filter and this key provides value for a TextBlock, that will display by which aggregate the filter will be applied. Example: Top 10 items by Sum of Quantity </comment>
+  </data>
+  <data name="PivotFieldList_ChooseAggregateFunction" xml:space="preserve">
+    <value>选定要汇总的字段.</value>
+    <comment>Used in RadPivotFieldList calculations dialog. It explains the function of the dialog.</comment>
+  </data>
+  <data name="PivotFieldList_ChooseFieldsToAddToReport" xml:space="preserve">
+    <value>选择字段进行数据透视:</value>
+    <comment>Used at the top part of RadPivotFieldList as a Header describing what to do with below fields.</comment>
+  </data>
+  <data name="PivotFieldList_ClearCalculations" xml:space="preserve">
+    <value>清空计算</value>
+    <comment>Used in drop-down menus of the buttons in RadPivotFieldList. It is shown only after calculation is applied and when you click it, the calculation is cleared.</comment>
+  </data>
+  <data name="PivotFieldList_ClearFilter" xml:space="preserve">
+    <value>清空筛选</value>
+    <comment>Used in drop-down menus of the buttons in RadPivotFieldList. It is shown only after group filter is applied and when you click it, the filter is cleared.</comment>
+  </data>
+  <data name="PivotFieldList_ColumnLabels" xml:space="preserve">
+    <value>表头</value>
+    <comment>Used in RadPivotFieldList as a header of the box, showing ColumnGroupDescriptions.</comment>
+  </data>
+  <data name="PivotFieldList_ConditionEquals" xml:space="preserve">
+    <value>相等</value>
+    <comment>Used in RadPivotFieldList filter dialogs to mark that only items, that have equal value with the one entered in the TextBox nearby, will be shown.</comment>
+  </data>
+  <data name="PivotFieldList_Contains" xml:space="preserve">
+    <value>包含</value>
+    <comment>Used in RadPivotFieldList filter dialogs to mark that only items, that contain value with the one entered in the TextBox nearby, will be shown.</comment>
+  </data>
+  <data name="PivotFieldList_DeferLayoutUpdate" xml:space="preserve">
+    <value>手动更新</value>
+    <comment>Used in the below part of RadPivotFieldList as a Checkbox by which you can enable defer of update and nearby button.</comment>
+  </data>
+  <data name="PivotFieldList_DescendingBy" xml:space="preserve">
+    <value>降序排序</value>
+    <comment>Used in RadPivotFieldList buttons and dialogs for ascending sorting. Example: Sort Descending (A to Z) by</comment>
+  </data>
+  <data name="PivotFieldList_DifferenceFrom" xml:space="preserve">
+    <value>差异</value>
+    <comment>Used in the calculation dialog of RadPivotFieldList. It marks that RadPivotGrid must show the values as a difference from a specific group selected in the other ListBox.</comment>
+  </data>
+  <data name="PivotFieldList_DoesNotBeginWith" xml:space="preserve">
+    <value>开头不是</value>
+    <comment>Used in RadPivotFieldList filter dialogs to mark that only items, that does not begin with the value entered in the TextBox nearby, will be shown.</comment>
+  </data>
+  <data name="PivotFieldList_DoesNotContains" xml:space="preserve">
+    <value>不包含</value>
+    <comment>Used in RadPivotFieldList filter dialogs to mark that only items, that does not contain the value entered in the TextBox nearby, will be shown.</comment>
+  </data>
+  <data name="PivotFieldList_DoesNotEndWith" xml:space="preserve">
+    <value>结尾不是</value>
+    <comment>Used in RadPivotFieldList filter dialogs to mark that only items, that does not end with the value entered in the TextBox nearby, will be shown.</comment>
+  </data>
+  <data name="PivotFieldList_DoesNotEqual" xml:space="preserve">
+    <value>不等于</value>
+    <comment>Used in RadPivotFieldList filter dialogs to mark that only items, that are not equal with the value entered in the TextBox nearby, will be shown.</comment>
+  </data>
+  <data name="PivotFieldList_DragFieldsBetweenAreasBelow" xml:space="preserve">
+    <value>拖动字段到下面的区域:</value>
+    <comment>Used in the middle of RadPivotFieldList to explain how to move items between areas below.</comment>
+  </data>
+  <data name="PivotFieldList_EndsWith" xml:space="preserve">
+    <value>结尾是</value>
+    <comment>Used in RadPivotFieldList filter dialogs to mark that only items, that are ends with the value entered in the TextBox nearby, will be shown.</comment>
+  </data>
+  <data name="PivotFieldList_FilterItemsP0" xml:space="preserve">
+    <value>筛选 ({0})</value>
+    <comment>Used in Report Filter dialog of RadPivotFieldList. This is the header of the window that is used for this dialog. The {0} is replaced by the name of the group description. Example: Filter Items (Product) </comment>
+  </data>
+  <data name="PivotFieldList_Format" xml:space="preserve">
+    <value>格式:</value>
+    <comment>Used in Number Format dialog of RadPivotFieldList as a label to show that the nearby TextBox is used to format the values in the cells.</comment>
+  </data>
+  <data name="PivotFieldList_FormatCellsP0" xml:space="preserve">
+    <value>格式化单元格 ({0})</value>
+    <comment>Used in Number Format dialog of RadPivotFieldList. This is the header of the window, that is used for this dialog. The {0} is replaced by the value of Pivot_AggregateP0ofP1. Example: Format Cells (Sum of Quantity) </comment>
+  </data>
+  <data name="PivotFieldList_GeneralFormat" xml:space="preserve">
+    <value>单元格格式</value>
+    <comment>Used in Number Format dialog of RadPivotFieldList to mark the area where you are able to select string format for the cells.</comment>
+  </data>
+  <data name="PivotFieldList_IgnoreCase" xml:space="preserve">
+    <value>忽略大小写</value>
+    <comment>Used in Label Filter dialog of RadPivotFieldList. This is the text of the checkbox, that marks if the value entered in the above TextBox and group names in RadPivotGrid should ignore uppercase/lowercase differences.</comment>
+  </data>
+  <data name="PivotFieldList_Index" xml:space="preserve">
+    <value>Index</value>
+    <comment>Used in RadPivotFieldList drop-down button of aggregate functions and calculations dialog. It marks index calculation.</comment>
+  </data>
+  <data name="PivotFieldList_IsBetween" xml:space="preserve">
+    <value>介于</value>
+    <comment>Used in Value filter dialog of RadPivotFieldList. It is used in ComboBox inside the dialog, which selects how to use the value in the nearby numeric. When is between is selected, two numerics will be visible and the user can select range with them. Only groups which value is in the range will be visible.</comment>
+  </data>
+  <data name="PivotFieldList_IsGreaterThan" xml:space="preserve">
+    <value>大于</value>
+    <comment>Used in Value filter dialog of RadPivotFieldList. It is used in ComboBox inside the dialog, which selects how to use the value in the nearby numeric. When is greater than is selected, only groups with value higher than entered, will be visible.</comment>
+  </data>
+  <data name="PivotFieldList_IsGreaterThanOrEqualTo" xml:space="preserve">
+    <value>大于等于</value>
+    <comment>Used in Value filter dialog of RadPivotFieldList. It is used in ComboBox inside the dialog, which selects how to use the value in the nearby numeric. When is greater than or equal to is selected, only groups with value higher than entered or equal to it, will be visible.</comment>
+  </data>
+  <data name="PivotFieldList_IsLessThan" xml:space="preserve">
+    <value>小于</value>
+    <comment>Used in Value filter dialog of RadPivotFieldList. It is used in ComboBox inside the dialog, which selects how to use the value in the nearby numeric. When is less than is selected, only groups with value less than entered, will be visible.</comment>
+  </data>
+  <data name="PivotFieldList_IsLessThanOrEqualTo" xml:space="preserve">
+    <value>小于等于</value>
+    <comment>Used in Value filter dialog of RadPivotFieldList. It is used in ComboBox inside the dialog, which selects how to use the value in the nearby numeric. When is less than or equal to is selected, only groups with value less than entered or equal to it, will be visible.</comment>
+  </data>
+  <data name="PivotFieldList_IsNotBetween" xml:space="preserve">
+    <value>不介于</value>
+    <comment>Used in Value filter dialog of RadPivotFieldList. It is used in ComboBox inside the dialog, which selects how to use the value in the nearby numeric. When is not between is selected, two numerics will be visible and the user can select range with them. Only groups which value is not in the range will be visible.</comment>
+  </data>
+  <data name="PivotFieldList_LabelFilter" xml:space="preserve">
+    <value>文本筛选</value>
+    <comment>Used in drop-down buttons of RadPivotFieldList. This value indicates that a Label filter will be applied. When you select this option in the drop-down menu, a new dialog will be opened.</comment>
+  </data>
+  <data name="PivotFieldList_LabelFilterP0" xml:space="preserve">
+    <value>文本筛选 ({0})</value>
+    <comment>Used in Label Filter dialog of RadPivotFieldList. This is the header of the window that is used for this dialog. The {0} is replaced by the name of the group description that will be filtered. Example: Label Filter (Product) </comment>
+  </data>
+  <data name="PivotFieldList_MoreAggregateOptions" xml:space="preserve">
+    <value>高级统计...</value>
+    <comment>Used in drop-down buttons of RadPivotFieldList. When this option is selected, a new dialog will be opened in which the user can select an aggregate function that will be used.</comment>
+  </data>
+  <data name="PivotFieldList_MoreCalculationOptions" xml:space="preserve">
+    <value>高级计算...</value>
+    <comment>Used in drop-down buttons of RadPivotFieldList. When this option is selected, a new dialog will be opened in which the user can select calculation function that will be used.</comment>
+  </data>
+  <data name="PivotFieldList_MoreSortingOptions" xml:space="preserve">
+    <value>高级排序...</value>
+    <comment>Used in drop-down buttons of RadPivotFieldList. When this option is selected, a new dialog will be opened in which the user can select how to sort RadPivotGrid.</comment>
+  </data>
+  <data name="PivotFieldList_NoCalculation" xml:space="preserve">
+    <value>无计算</value>
+    <comment>Used in calculation dialog of RadPivotFieldList to indicate that a calculation will not be applied.</comment>
+  </data>
+  <data name="PivotFieldList_Null" xml:space="preserve">
+    <value>(null)</value>
+    <comment>Appears in the "Select Items" dialog for properties with null value.</comment>
+  </data>
+  <data name="PivotFieldList_NumberFormat" xml:space="preserve">
+    <value>数字格式化</value>
+    <comment>Used in drop-down buttons of RadPivotFieldList. When this option is selected, a new dialog will be opened in which the user can select the string format of the numbers shown in RadPivotGrid.</comment>
+  </data>
+  <data name="PivotFieldList_PercentDifferenceFrom" xml:space="preserve">
+    <value>% 不同于</value>
+    <comment>Used in calculation dialog of RadPivotFieldList to indicate that for each value in RadPivotGrid a difference from another group (selected in the next ListBox) will be calculated and the value will be shown as percent.</comment>
+  </data>
+  <data name="PivotFieldList_PercentOf" xml:space="preserve">
+    <value>% 的</value>
+    <comment>Used in calculation dialog of RadPivotFieldList to indicate that the values in RadPivotGrid will be shown as percent of another group (selected in the next ListBox).</comment>
+  </data>
+  <data name="PivotFieldList_PercentOfColumnTotal" xml:space="preserve">
+    <value>% 的列</value>
+    <comment>Used in calculation dialog of RadPivotFieldList to indicate that the values in RadPivotGrid will be shown as percent of Colum Total.</comment>
+  </data>
+  <data name="PivotFieldList_PercentOfGrandTotal" xml:space="preserve">
+    <value>% 的累计</value>
+    <comment>Used in drop-down buttons and calculation dialog of RadPivotFieldList to indicate that the values in RadPivotGrid will be shown as percent of the Grand Total.</comment>
+  </data>
+  <data name="PivotFieldList_PercentOfRowTotal" xml:space="preserve">
+    <value>% 的行</value>
+    <comment>Used in calculation dialog of RadPivotFieldList to indicate that the values in RadPivotGrid will be shown as percent of Row Total.</comment>
+  </data>
+  <data name="PivotFieldList_PercentRunningTotalIn" xml:space="preserve">
+    <value>% Running Total In</value>
+    <comment>Used in calculation dialog of RadPivotFieldList to indicate that the values in RadPivotGrid will be shown as percentages. The value shown in each cell is calculated as a sum of its own value and all of the values above. This sum is presented as a percent of the total (the value in the last cell of the column). So the last cell will have value 100% in all cases.</comment>
+  </data>
+  <data name="PivotFieldList_PleaseRefreshThePivot" xml:space="preserve">
+    <value>请刷新透视图</value>
+    <comment>Used in the dialogs of RadPivotFieldList to indicate that in order to show the content of the dialog, a refresh of RadPivotGrid is necessary. This option may show only in cases when Defer Updates option is turned on.</comment>
+  </data>
+  <data name="PivotFieldList_RankLargestToSmallest" xml:space="preserve">
+    <value>排名从大到小</value>
+    <comment>Used in calculation dialog of RadPivotFieldList to indicate that the values in RadPivotGrid will ranked and the largest one will be set to 1, the next to 2, etc..</comment>
+  </data>
+  <data name="PivotFieldList_RankSmallestToLargest" xml:space="preserve">
+    <value>排名从小到大</value>
+    <comment>Used in calculation dialog of RadPivotFieldList to indicate that the values in RadPivotGrid will ranked and the smallest one will be set to 1, the next to 2, etc..</comment>
+  </data>
+  <data name="PivotFieldList_Refresh" xml:space="preserve">
+    <value>刷新</value>
+    <comment>Used in a button inside the dialogs of RadPivotFieldList. The button indicates that a Refresh is needed in order to show the content of the dialog. This button may became visible only when Defer Updates is set to true.</comment>
+  </data>
+  <data name="PivotFieldList_RelativeToNext" xml:space="preserve">
+    <value>(下一个)</value>
+    <comment>Used in calculation dialog of RadPivotFieldList. This item is visible in the second ListBox only for specific calculations (Difference from, % Difference From, etc.) and it marks that the values in RadPivotGrid will be shown as difference from the next group values.</comment>
+  </data>
+  <data name="PivotFieldList_RelativeToPrevious" xml:space="preserve">
+    <value>(上一个)</value>
+    <comment>Used in calculation dialog of RadPivotFieldList. This item is visible in the second ListBox only for specific calculations (Difference from, % Difference From, etc.) and it marks that the values in RadPivotGrid will be shown as difference from the previous group values.</comment>
+  </data>
+  <data name="PivotFieldList_ReportFilter" xml:space="preserve">
+    <value>筛选</value>
+    <comment>Used in RadPivotFieldList as a header of the area where FilterGroupDescriptions are added.</comment>
+  </data>
+  <data name="PivotFieldList_RowLabels" xml:space="preserve">
+    <value>行头</value>
+    <comment>Used in RadPivotFieldList as a header of the area where RowGroupDescriptions are added.</comment>
+  </data>
+  <data name="PivotFieldList_RunningTotalIn" xml:space="preserve">
+    <value>总计</value>
+    <comment>Used in calculation dialog of RadPivotFieldList to indicate that the values in RadPivotGrid will be calculated in the following way: the value shown in each cell is calculated as a sum of its own value and all of the values above. So the last cell will have the value of the Total (sum of all values).</comment>
+  </data>
+  <data name="PivotFieldList_SelectAll" xml:space="preserve">
+    <value>(全选)</value>
+    <comment>Used in report filter dialog of RadPivotFieldList. When this option is selected, all items inside the dialog will be selected.</comment>
+  </data>
+  <data name="PivotFieldList_SelectItem" xml:space="preserve">
+    <value>所选项</value>
+    <comment>Used in report filter dialog of RadPivotFieldList to mark the area where you can choose which groups to see in RadPivotGrid.</comment>
+  </data>
+  <data name="PivotFieldList_SelectItems" xml:space="preserve">
+    <value>所选项</value>
+    <comment>Used in the drop-down button inside report filter box of RadPivotFieldList. When this option is selected, a new dialog will open.</comment>
+  </data>
+  <data name="PivotFieldList_SetAverageAggregate" xml:space="preserve">
+    <value>平均</value>
+    <comment>Used in the drop-down button inside Values filter box of RadPivotFieldList. When this option is selected, Average aggregate function will be applied to the values inside RadPivotGrid.</comment>
+  </data>
+  <data name="PivotFieldList_SetCountAggregate" xml:space="preserve">
+    <value>计数</value>
+    <comment>Used in the drop-down button inside Values filter box of RadPivotFieldList. When this option is selected, Count aggregate function will be applied to the values inside RadPivotGrid.</comment>
+  </data>
+  <data name="PivotFieldList_SetIndexTotalFormat" xml:space="preserve">
+    <value>Index</value>
+    <comment>Used in the drop-down button inside Values filter box of RadPivotFieldList. When this option is selected, Index calculation will be applied to the values inside RadPivotGrid.</comment>
+  </data>
+  <data name="PivotFieldList_SetPercentOfGrandTotalFormat" xml:space="preserve">
+    <value>% 的累计</value>
+    <comment>Used in the drop-down button inside Values filter box of RadPivotFieldList. When this option is selected, the values inside RadPivotGrid will be shown as percent of the Grand Total.</comment>
+  </data>
+  <data name="PivotFieldList_SetSumAggregate" xml:space="preserve">
+    <value>求和</value>
+    <comment>Used in the drop-down button inside Values filter box of RadPivotFieldList. When this option is selected, Sum aggregate function will be applied to the values inside RadPivotGrid.</comment>
+  </data>
+  <data name="PivotFieldList_Show" xml:space="preserve">
+    <value>显示</value>
+    <comment>Used in the Top 10 Filter dialog of RadPivotFieldList. It marks the area where users can select different options for the filter.</comment>
+  </data>
+  <data name="PivotFieldList_ShowEmptyGroups" xml:space="preserve">
+    <value>显示空组</value>
+    <comment>Used in the drop-down button inside Rows and Columns boxes of RadPivotFieldList. When this option is selected, the empty groups will be shown in RadPivotGrid.</comment>
+  </data>
+  <data name="PivotFieldList_ShowItemsForWhich" xml:space="preserve">
+    <value>显示项目</value>
+    <comment>Used in Values filter dialog of RadPivotFieldList. It marks the area where users can select different options for the filter.</comment>
+  </data>
+  <data name="PivotFieldList_ShowItemsForWhichTheLabel" xml:space="preserve">
+    <value>Show items for which the label</value>
+    <comment>Used in Label filter dialog of RadPivotFieldList. It marks the area where users can select different options for the filter.</comment>
+  </data>
+  <data name="PivotFieldList_ShowValuesAs" xml:space="preserve">
+    <value>显示值为</value>
+    <comment>Used in calculation dialog of RadPivotFieldList. It marks the area where users can select which calculation function to apply.</comment>
+  </data>
+  <data name="PivotFieldList_ShowValuesAsP0" xml:space="preserve">
+    <value>显示值为 ({0})</value>
+    <comment>Used as header of the calculation dialog of RadPivotFieldList. {0} is replaced by Pivot_AggregateP0ofP1 value. Example: Show Values As (Sum of Quantity) </comment>
+  </data>
+  <data name="PivotFieldList_SortAtoZ" xml:space="preserve">
+    <value>升序</value>
+    <comment>Used in drop-down menu of buttons inside Rows and Columns boxes of RadPivotFieldList. When this option is selected, ascending order is applied.</comment>
+  </data>
+  <data name="PivotFieldList_SortOptions" xml:space="preserve">
+    <value>排序选项</value>
+    <comment>Used in sorting dialog of RadPivotFieldList. It marks the area where users can select what kind of sorting to apply.</comment>
+  </data>
+  <data name="PivotFieldList_SortP0" xml:space="preserve">
+    <value>排序 ({0})</value>
+    <comment>Used as header of the sorting dialog in RadPivotFieldList. {0} is replaced by the property name that is used. Example: Sort (Product) </comment>
+  </data>
+  <data name="PivotFieldList_SortZtoA" xml:space="preserve">
+    <value>降序</value>
+    <comment>Used in drop-down menu of buttons inside Rows and Columns boxes of RadPivotFieldList. When this option is selected, descending order is applied.</comment>
+  </data>
+  <data name="PivotFieldList_StringFormatDescription" xml:space="preserve">
+    <value>格式应设为可识别的格式. 格式化的结果将直接应用在求和、平均、最值等运算中.</value>
+    <comment>Used inside Number Format dialog of RadPivotFieldList. This is the description what can be achieved via the dialog.</comment>
+  </data>
+  <data name="PivotFieldList_SummarizeValuesBy" xml:space="preserve">
+    <value>汇总数值</value>
+    <comment>Used in a dialog of RadPivotFieldList where the user can change the aggregate function. It marks the area where users can select which function to apply.</comment>
+  </data>
+  <data name="PivotFieldList_TheActionRequiresMoreRecentInformation" xml:space="preserve">
+    <value>此操作需要更多信息.</value>
+    <comment>Used in the dialogs of RadPivotFieldList to indicate that in order to show the content of the dialog, additional information is needed. It is combined with the value of PivotFieldList_PleaseRefreshThePivot to indicate that Refresh of RadPivotGrid is necessary. This option may show only in cases when Defer Updates option is turned on.</comment>
+  </data>
+  <data name="PivotFieldList_Top10FilterP0" xml:space="preserve">
+    <value>前十个 ({0})</value>
+    <comment>Used as header of the Top 10 filter dialog in RadPivotFieldList. {0} is replaced by the property name that is used. Example: Top10 Filter (Product) </comment>
+  </data>
+  <data name="PivotFieldList_Top10Items" xml:space="preserve">
+    <value>项目</value>
+    <comment>This value is used inside Top 10 Filter dialog of RadPivotFieldList. It is one of the options in the ComboBox, in which the user can select if the filter should be on Items, Percent or Sum. When this option is selected, user can show specific number of groups in RadPivotGrid - for example Top 10 groups by Sum of Quantity.</comment>
+  </data>
+  <data name="PivotFieldList_Top10Percent" xml:space="preserve">
+    <value>%</value>
+    <comment>This value is used inside Top 10 Filter dialog of RadPivotFieldList. It is one of the options in the ComboBox, in which the user can select if the filter should be on Items, Percent or Sum. When this option is selected, user can show specific percent of groups in RadPivotGrid - for example Top 10 percent by Sum of Quantity.</comment>
+  </data>
+  <data name="PivotFieldList_Top10Sum" xml:space="preserve">
+    <value>求和</value>
+    <comment>This value is used inside Top 10 Filter dialog of RadPivotFieldList. It is one of the options in the ComboBox, in which the user can select if the filter should be on Items, Percent or Sum. When this option is selected, user can show groups, which summarize to a specific sum - for example Top 100 Sum by Sum of Quantity.</comment>
+  </data>
+  <data name="PivotFieldList_TopItems" xml:space="preserve">
+    <value>前</value>
+    <comment>This value is used inside Top 10 Filter dialog of RadPivotFieldList. It is one of the options in the ComboBox, where the user can select if the Top or Bottom results of applied filter will be shown. When this option is selected, the Top results will be shown.</comment>
+  </data>
+  <data name="PivotFieldList_TopTenFilter" xml:space="preserve">
+    <value>前10个</value>
+    <comment>Used in drop-down menu of buttons inside Rows and Columns boxes of RadPivotFieldList. When this option is selected, a new dialog will be opened, where the user can apply Top 10 filter.</comment>
+  </data>
+  <data name="PivotFieldList_Update" xml:space="preserve">
+    <value>更新</value>
+    <comment>Used as a content of a button inside RadPivotFieldList. When the button is clicked, RadPivotGrid is refreshed. The button is enabled only when Defer Updates is set to true.</comment>
+  </data>
+  <data name="PivotFieldList_ValueFilter" xml:space="preserve">
+    <value>数值筛选</value>
+    <comment>Used in drop-down menu of buttons inside Rows and Columns boxes of RadPivotFieldList. When this option is selected, a new dialog will be opened, where the user can apply Value filter.</comment>
+  </data>
+  <data name="PivotFieldList_ValueFilterP0" xml:space="preserve">
+    <value>数值筛选 ({0})</value>
+    <comment>Used as a header of the Value Filter dialog of RadPivotGrid. {0} is replaced by the property name that is used. Example: Value Filter (Product) </comment>
+  </data>
+  <data name="PivotFieldList_ValueSummarizationP0" xml:space="preserve">
+    <value>数值汇总 ({0})</value>
+    <comment>Used as a header of the aggregate description dialog of RadPivotGrid. {0} is replaced by Pivot_AggregateP0ofP1 value. Example: Value Summarization (Sum of Quantity) </comment>
+  </data>
+  <data name="PivotFiledList_Values" xml:space="preserve">
+    <value>数值</value>
+    <comment>Used in RadPivotFieldList. This is the header of the box in which are the aggregate descriptions.</comment>
+  </data>
+  <data name="Pivot_AggregateAverage" xml:space="preserve">
+    <value>平均</value>
+    <comment>Average aggregate function. Example: Average of Quantity </comment>
+  </data>
+  <data name="Pivot_AggregateCount" xml:space="preserve">
+    <value>计数</value>
+    <comment>Count aggregate function. Example: Count of Products </comment>
+  </data>
+  <data name="Pivot_AggregateMax" xml:space="preserve">
+    <value>最大</value>
+    <comment>Max aggregate function. Example: Max of Net </comment>
+  </data>
+  <data name="Pivot_AggregateMin" xml:space="preserve">
+    <value>最小</value>
+    <comment>Min aggregate function. Example: Min of Net </comment>
+  </data>
+  <data name="Pivot_AggregateP0ofP1" xml:space="preserve">
+    <value>{1}: {0}</value>
+    <comment>When you apply aggregate function for a specific property, RadPivotGrid and RadPivotFieldList show similar string: Sum of Quantity. This key will help you to localize such strings and particularly the "of" part. In the common scenario you should have {0} to show the aggregate function, your string that will replace the "of" part and {1} for property name.</comment>
+  </data>
+  <data name="Pivot_AggregateProduct" xml:space="preserve">
+    <value>Product</value>
+    <comment>Product aggregate function. Example: Product of Quantity </comment>
+  </data>
+  <data name="Pivot_AggregateStdDev" xml:space="preserve">
+    <value>标准差</value>
+    <comment>Sample Standard Deviation aggregate function. Example: StdDev of Net </comment>
+  </data>
+  <data name="Pivot_AggregateStdDevP" xml:space="preserve">
+    <value>总体标准差</value>
+    <comment>Population Standard Deviation aggregate function. Example: StdDevP of Net </comment>
+  </data>
+  <data name="Pivot_AggregateSum" xml:space="preserve">
+    <value>求和</value>
+    <comment>Sum aggregate function. Example: Sum of Net </comment>
+  </data>
+  <data name="Pivot_AggregateVar" xml:space="preserve">
+    <value>方差</value>
+    <comment>Simple Variance aggregate function. Example: Var of Net </comment>
+  </data>
+  <data name="Pivot_AggregateVarP" xml:space="preserve">
+    <value>总体方差</value>
+    <comment>Population Variance aggregate function. Example: VarP of Net </comment>
+  </data>
+  <data name="Pivot_Column" xml:space="preserve">
+    <value>列</value>
+    <comment>Used in tooltip to mark the Column in which is the current value.</comment>
+  </data>
+  <data name="Pivot_DayGroup" xml:space="preserve">
+    <value>{0} - 天</value>
+    <comment>Used as a DisplayName of the Day Step of a Field with DateTime dataType. {0} is replaced by the property name that is used. Example: ShippingDate-Day</comment>
+  </data>
+  <data name="Pivot_Error" xml:space="preserve">
+    <value>错误</value>
+    <comment>Used in RadPivotGrid to mark that the value in the cell is not correct. You may see this string when the property which you are trying to aggregate is not a number, when there is division with 0, etc.</comment>
+  </data>
+  <data name="Pivot_GrandTotal" xml:space="preserve">
+    <value>累计</value>
+    <comment>Used in RadPivotGrid as the header of the row/column showing the Grand Totals of the aggregation.</comment>
+  </data>
+  <data name="Pivot_GroupP0AggregateP1" xml:space="preserve">
+    <value>{0} {1}</value>
+    <comment>Used in RadPivotGrid as header of the rows/columns, which is showing SubTotal when there are more than one aggregate description. {0} parameter is replaced by items name, while {1} parameter is replaced by Pivot_AggregateP0ofP1 value. Example: For the {0}='Copy Holder' group, the aggregated {1}='Sum of Quantity' it will format the aggregate group name as Copy Holder Sum of Quantity</comment>
+  </data>
+  <data name="Pivot_HourGroup" xml:space="preserve">
+    <value>{0} - 小时</value>
+    <comment>Used as a DisplayName of the Hour Step of a Field with DateTime dataType. {0} is replaced by the property name that is used. Example: ShippingDate-Hour</comment>
+  </data>
+  <data name="Pivot_MinuteGroup" xml:space="preserve">
+    <value>{0} - 分钟</value>
+    <comment>Used as a DisplayName of the Minute Step of a Field with DateTime dataType. {0} is replaced by the property name that is used. Example: ShippingDate-Minute</comment>
+  </data>
+  <data name="Pivot_MonthGroup" xml:space="preserve">
+    <value>{0} - 月</value>
+    <comment>Used as a DisplayName of the Month Step of a Field with DateTime dataType. {0} is replaced by the property name that is used. Example: ShippingDate-Month</comment>
+  </data>
+  <data name="Pivot_P0Total" xml:space="preserve">
+    <value>{0} 总共</value>
+    <comment>Used in RadPivotGrid as header of the row/column, which is showing SubTotals. The {0} parameter is replaced by group name. Example: Newspaper Total</comment>
+  </data>
+  <data name="Pivot_QuarterGroup" xml:space="preserve">
+    <value>{0} - 季</value>
+    <comment>Used as a DisplayName of the Quarter Step of a Field with DateTime dataType. {0} is replaced by the property name that is used. Example: ShippingDate-Quarter</comment>
+  </data>
+  <data name="Pivot_Row" xml:space="preserve">
+    <value>行</value>
+    <comment>Used in tooltip to mark the Row in which is the current value.</comment>
+  </data>
+  <data name="Pivot_SecondGroup" xml:space="preserve">
+    <value>{0} - 秒</value>
+    <comment>Used as a DisplayName of the Second Step of a Field with DateTime dataType. {0} is replaced by the property name that is used. Example: ShippingDate-Second</comment>
+  </data>
+  <data name="Pivot_TotalP0" xml:space="preserve">
+    <value>{0} 小计</value>
+    <comment>Used in RadPivotGrid as header of the row/column, which is showing the Totals for each of the aggregate description when there are more than one. If AggregatesPosition property of RadPivotGrid is set to "Rows", than the last rows in RadPivotGrid will show the "Totals" for each of the aggregate descriptions. The headers of these last rows can be modified with this key. {0} is replaced by Pivot_AggregateP0ofP1 value. Example: Total Sum of Quantity </comment>
+  </data>
+  <data name="Pivot_Value" xml:space="preserve">
+    <value>值: {0}</value>
+    <comment>Used in tooltip to mark the Value of the current cell.</comment>
+  </data>
+  <data name="Pivot_Values" xml:space="preserve">
+    <value>值</value>
+    <comment>Used in the tooltip, when there are more than one aggregate descriptions, to describe the special "Values" group that is created (you can see it in rows/columns in RadPivotFieldList).</comment>
+  </data>
+  <data name="Pivot_WeekGroup" xml:space="preserve">
+    <value>{0} - 周</value>
+    <comment>Used as a DisplayName of the Week Step of a Field with DateTime dataType. {0} is replaced by the property name that is used. Example: ShippingDate-Week</comment>
+  </data>
+  <data name="Pivot_YearGroup" xml:space="preserve">
+    <value>{0} - 年</value>
+    <comment>Used as a DisplayName of the Year Step of a Field with DateTime dataType. {0} is replaced by the property name that is used. Example: ShippingDate-Year</comment>
+  </data>
+  <data name="Quarter" xml:space="preserve">
+    <value>季度</value>
+  </data>
+  <data name="QuarterShort" xml:space="preserve">
+    <value>Q</value>
+  </data>
+  <data name="RadDataPagerEllipsisString" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="RadDataPagerOf" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="RadDataPagerPage" xml:space="preserve">
+    <value>页</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>周</value>
+  </data>
+  <data name="WeekShort" xml:space="preserve">
+    <value>W</value>
+  </data>
+</root>

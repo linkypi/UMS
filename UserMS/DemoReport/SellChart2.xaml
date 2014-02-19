@@ -1,0 +1,186 @@
+﻿<Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           x:Class="UserMS.DemoReport.SellChart2"
+           mc:Ignorable="d"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="SellChart Page" >
+    <telerik:RadBusyIndicator x:Name="busy" IsBusy="True" BusyContent="请稍候">
+        <DockPanel x:Name="LayoutRoot"  Background="White">
+            <telerik:RadDataServiceDataSource 
+Grid.RowSpan="2"
+			x:Name="datasource" Height="Auto" Width="Auto" d:LayoutOverrides="HorizontalAlignment"  >
+                <!--   <telerik:RadDomainDataSource.DomainContext>-->
+                <!--       <e:ReportContext></e:ReportContext>-->
+                <!--   </telerik:RadDomainDataSource.DomainContext>-->
+            </telerik:RadDataServiceDataSource>
+            <TextBlock TextWrapping="Wrap" Text="3G智能终端销售额对比图" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18.667"/>
+            <TextBlock TextWrapping="Wrap" Text="请选择对比月份" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" DockPanel.Dock="Top" Margin="10,3,0,2"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="10,3,0,2">
+                <telerik:RadNumericUpDown x:Name="year1" Maximum="2100" Minimum="2000" ValueFormat="Numeric"     UpdateValueEvent="LostFocus" IsInteger="True" >
+
+                </telerik:RadNumericUpDown>
+                <!--                <TextBox x:Name="FYear" Text="2013" Width="50"/>-->
+                <TextBlock TextWrapping="Wrap" Text="年" VerticalAlignment="Center"/>
+                <telerik:RadComboBox x:Name="FMonth" Width="50" SelectionChanged="FMonth_OnSelectionChanged">
+                    <telerik:RadComboBoxItem Content="1月" IsSelected="True"/>
+                    <telerik:RadComboBoxItem Content="2月" />
+
+                    <telerik:RadComboBoxItem Content="3月"/>
+                    <telerik:RadComboBoxItem Content="4月"/>
+                    <telerik:RadComboBoxItem Content="5月"/>
+                    <telerik:RadComboBoxItem Content="6月"/>
+                    <telerik:RadComboBoxItem Content="7月"/>
+                    <telerik:RadComboBoxItem Content="8月"/>
+                    <telerik:RadComboBoxItem Content="9月"/>
+                    <telerik:RadComboBoxItem Content="10月"/>
+                    <telerik:RadComboBoxItem Content="11月"/>
+                    <telerik:RadComboBoxItem Content="12月"/>
+
+
+                </telerik:RadComboBox>
+                <TextBlock Text="对比" VerticalAlignment="Center"></TextBlock>
+                <!--					<TextBox x:Name="TYear" Text="2013" Width="50"/>-->
+                <telerik:RadNumericUpDown  x:Name="year2" Maximum="2100" Minimum="2000" ValueFormat="Numeric"  UpdateValueEvent="LostFocus" IsInteger="True" >
+
+                </telerik:RadNumericUpDown>
+                <TextBlock TextWrapping="Wrap" Text="年" VerticalAlignment="Center"/>
+                <telerik:RadComboBox x:Name="TMonth" Width="50" SelectionChanged="TMonth_OnSelectionChanged">
+                    <telerik:RadComboBoxItem Content="1月" />
+                    <telerik:RadComboBoxItem Content="2月" IsSelected="True"/>
+                    <telerik:RadComboBoxItem Content="3月"/>
+                    <telerik:RadComboBoxItem Content="4月"/>
+                    <telerik:RadComboBoxItem Content="5月"/>
+                    <telerik:RadComboBoxItem Content="6月"/>
+                    <telerik:RadComboBoxItem Content="7月"/>
+                    <telerik:RadComboBoxItem Content="8月"/>
+                    <telerik:RadComboBoxItem Content="9月"/>
+                    <telerik:RadComboBoxItem Content="10月"/>
+                    <telerik:RadComboBoxItem Content="11月"/>
+                    <telerik:RadComboBoxItem Content="12月"/>
+                </telerik:RadComboBox>
+                <TextBlock Margin="5,0,0,0" Text="日期" VerticalAlignment="Center"></TextBlock>
+                <telerik:RadNumericUpDown x:Name="num1" Minimum="1" Maximum="{Binding MaxDay}"   UpdateValueEvent="LostFocus" IsInteger="True" />
+                <TextBlock Text="至" VerticalAlignment="Center"></TextBlock>
+                <!--            <TextBox Width="30" x:Name="To"></TextBox>-->
+                <telerik:RadNumericUpDown x:Name="num2" Minimum="1" Maximum="{Binding MaxDay}"  UpdateValueEvent="LostFocus" IsInteger="True" />
+                <TextBlock Text="日" VerticalAlignment="Center"></TextBlock>
+                <telerik:RadButton  Margin="5,0,0,0" x:Name="GEN_Chart" Content="生成报表" Click="GEN_Chart_OnClick"/>
+            </StackPanel>
+            <telerik:RadMap x:Name="RadMap" Center="22.52,113.37" ZoomLevel="9" DockPanel.Dock="Right" Width="300"
+    		MouseClickMode="None" MouseDoubleClickMode="None" MapMouseClick="RadMap_OnMapMouseClick" UseDefaultLayout="False" ZoomBarPresetsVisibility="Collapsed" ZoomBarVisibility="Collapsed" ScaleVisibility="Collapsed" CommandBarVisibility="Collapsed" MouseLocationIndicatorVisibility="Collapsed" NavigationVisibility="Collapsed"    >
+                <telerik:RadMap.Resources>
+                    <!--                <DataTemplate x:Key="StoreTemplate">-->
+                    <!--                    <Ellipse Width="10" Height="10" Fill="Black" Stroke="White" StrokeThickness="1" -->
+                    <!--    					telerik:MapLayer.Location="{Binding Center}" MouseLeftButtonDown="elementMouseLeftButtonDown">-->
+                    <!--                        <ToolTipService.ToolTip>-->
+                    <!--                            <StackPanel>-->
+                    <!--                                <TextBlock Text="{Binding Name}" />-->
+                    <!--                                <TextBlock Text="{Binding Total, StringFormat=Sales Total: \{0:C\}}" />-->
+                    <!--                            </StackPanel>-->
+                    <!--                        </ToolTipService.ToolTip>-->
+                    <!--                    </Ellipse>-->
+                    <!--                </DataTemplate>-->
+                    <DataTemplate x:Key="AreaTemplate">
+                        <telerik:MapPolygon Fill="{Binding AreaColor}"
+    					Stroke="#7FFFFFFF"
+    					StrokeThickness="1"
+    					Points="{Binding MapPointLists}"
+    					MouseLeftButtonDown="elementMouseLeftButtonDown"  >
+
+                        </telerik:MapPolygon>
+                    </DataTemplate>
+
+                </telerik:RadMap.Resources>
+                <telerik:RadMap.Provider>
+                    <telerik:OpenStreetMapProvider/>
+                </telerik:RadMap.Provider>
+                <telerik:InformationLayer x:Name="AreaInformation" ItemTemplate="{StaticResource AreaTemplate}">
+                    <!--                <telerik:MapShapeReader Source="/UserMS;component/MapResources/doc.kml" SourceType="Kml"></telerik:MapShapeReader>-->
+
+                </telerik:InformationLayer>
+                <telerik:InformationLayer x:Name="captionLayer" MouseLeftButtonDown="elementMouseLeftButtonDown" >
+                    <telerik:InformationLayer.ItemTemplate>
+                        <DataTemplate>
+
+                            <TextBlock  telerik:MapLayer.HotSpot="0.5,0.5" telerik:MapLayer.Location="{Binding CaptionLocation}" Text="{Binding AreaName}" Foreground="White" />
+
+                        </DataTemplate>
+                    </telerik:InformationLayer.ItemTemplate>
+                </telerik:InformationLayer>
+            </telerik:RadMap>
+
+            <telerik:RadChart x:Name="CHART" DockPanel.Dock="Left" ItemsSource="{Binding result}" DataBound="CHART_DataBound" >
+                <telerik:RadChart.SeriesMappings>
+                    <telerik:SeriesMapping x:Name="Series1" >
+                        <telerik:SeriesMapping.SeriesDefinition>
+                            <telerik:BarSeriesDefinition ></telerik:BarSeriesDefinition>
+                        </telerik:SeriesMapping.SeriesDefinition>
+                        <telerik:SeriesMapping.ItemMappings>
+                            <telerik:ItemMapping FieldName="Day"
+                                             DataPointMember="XValue" />
+                            <telerik:ItemMapping DataPointMember="YValue"
+                                            FieldName="M1" />
+                        </telerik:SeriesMapping.ItemMappings>
+                    </telerik:SeriesMapping>
+                    <telerik:SeriesMapping x:Name="Series2"  >
+                        <telerik:SeriesMapping.SeriesDefinition>
+                            <telerik:BarSeriesDefinition ></telerik:BarSeriesDefinition>
+                        </telerik:SeriesMapping.SeriesDefinition>
+                        <telerik:SeriesMapping.ItemMappings>
+                            <telerik:ItemMapping FieldName="Day"
+                                             DataPointMember="XValue" />
+                            <telerik:ItemMapping DataPointMember="YValue"
+                                            FieldName="M2" />
+                        </telerik:SeriesMapping.ItemMappings>
+                    </telerik:SeriesMapping>
+                    <telerik:SeriesMapping x:Name="Series3" LegendLabel="同比" >
+                        <telerik:SeriesMapping.SeriesDefinition>
+                            <telerik:LineSeriesDefinition  ShowItemLabels="True" AxisName="AxisY_South" ShowPointMarks="True" ItemLabelFormat="#VAL{#,0.00%}">
+                                <telerik:LineSeriesDefinition.LabelSettings>
+                                    <telerik:LabelSettings ShowConnectors="True" Distance="10" ></telerik:LabelSettings>
+                                </telerik:LineSeriesDefinition.LabelSettings>
+                            </telerik:LineSeriesDefinition>
+                        </telerik:SeriesMapping.SeriesDefinition>
+                        <telerik:SeriesMapping.ItemMappings>
+                            <telerik:ItemMapping FieldName="Day"
+                                             DataPointMember="XValue" />
+                            <telerik:ItemMapping DataPointMember="YValue" 
+                                            FieldName="p" />
+                        </telerik:SeriesMapping.ItemMappings>
+                    </telerik:SeriesMapping>
+                </telerik:RadChart.SeriesMappings>
+                <telerik:RadChart.DefaultView>
+                    <telerik:ChartDefaultView>
+                        <telerik:ChartDefaultView.ChartLegend>
+                            <telerik:ChartLegend x:Name="chartLegend" Header="图例" UseAutoGeneratedItems="True" />
+                        </telerik:ChartDefaultView.ChartLegend>
+                        <telerik:ChartDefaultView.ChartArea >
+                            <telerik:ChartArea LegendName="chartLegend" SmartLabelsEnabled="True">
+                                <!--AREA-->
+                                <telerik:ChartArea.AxisX>
+                                    <telerik:AxisX  TicksDistance="1" ></telerik:AxisX>
+                                </telerik:ChartArea.AxisX>
+                                <telerik:ChartArea.AxisY>
+                                    <telerik:AxisY  Title="销量">
+                                    </telerik:AxisY>
+                                </telerik:ChartArea.AxisY>
+
+                                <telerik:ChartArea.AdditionalYAxes>
+                                    <telerik:AxisY Title="同比" AxisName="AxisY_South" DefaultLabelFormat="#VAL{#,0.00%}">
+                                    </telerik:AxisY>
+                                </telerik:ChartArea.AdditionalYAxes>
+                            </telerik:ChartArea>
+                        </telerik:ChartDefaultView.ChartArea>
+                    </telerik:ChartDefaultView>
+                </telerik:RadChart.DefaultView>
+            </telerik:RadChart>
+
+
+        </DockPanel>
+    </telerik:RadBusyIndicator>
+</Page>

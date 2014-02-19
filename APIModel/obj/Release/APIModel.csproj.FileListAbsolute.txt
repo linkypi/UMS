@@ -1,0 +1,15 @@
+D:\UMS\client\UserMS\APIModel\bin\Release\APIModel.dll.config
+D:\UMS\client\UserMS\APIModel\bin\Release\APIModel.dll
+D:\UMS\client\UserMS\APIModel\bin\Release\APIModel.pdb
+D:\UMS\client\UserMS\APIModel\bin\Release\EntityFramework.dll
+D:\UMS\client\UserMS\APIModel\bin\Release\Model.dll
+D:\UMS\client\UserMS\APIModel\bin\Release\Newtonsoft.Json.dll
+D:\UMS\client\UserMS\APIModel\bin\Release\ReportModel.dll
+D:\UMS\client\UserMS\APIModel\bin\Release\Model.pdb
+D:\UMS\client\UserMS\APIModel\bin\Release\ReportModel.pdb
+D:\UMS\client\UserMS\APIModel\bin\Release\EntityFramework.xml
+D:\UMS\client\UserMS\APIModel\bin\Release\Newtonsoft.Json.xml
+D:\UMS\client\UserMS\APIModel\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\UMS\client\UserMS\APIModel\obj\Release\APIModel.csprojResolveAssemblyReference.cache
+D:\UMS\client\UserMS\APIModel\obj\Release\APIModel.dll
+D:\UMS\client\UserMS\APIModel\obj\Release\APIModel.pdb

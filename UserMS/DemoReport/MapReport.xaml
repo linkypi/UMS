@@ -1,0 +1,207 @@
+﻿<Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="UserMS.DemoReport.MapReport"
+           mc:Ignorable="d"
+      xmlns:chart="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Chart"
+      xmlns:userMs="clr-namespace:UserMS"
+      d:DesignWidth="640" d:DesignHeight="480"
+           Title="MapReport Page">
+    <telerik:RadBusyIndicator x:Name="busy" BusyContent="请稍候">
+        
+        <Grid x:Name="LayoutRoot">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="130"/>
+                <RowDefinition Height="38"/>
+                <RowDefinition Height="72"/>
+                <RowDefinition Height="0.475*"/>
+                <RowDefinition Height="0.525*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="99*"/>
+                <ColumnDefinition Width="61*"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock x:Name="TitleStartDay" TextWrapping="Wrap" Text="{Binding SelectedStartDate, StringFormat='yyyy年MM月dd日'}" FontFamily="Segoe UI" FontSize="26.667"/>
+                <TextBlock TextWrapping="Wrap" Text="至" FontFamily="Segoe UI" FontSize="26.667"/>
+                <TextBlock x:Name="TitleEndDay" TextWrapping="Wrap" Text="{Binding SelectedEndDate, StringFormat='yyyy年MM月dd日'}" FontFamily="Segoe UI" FontSize="26.667"/>
+                <TextBlock x:Name="TitleHallname" TextWrapping="Wrap" Text="" FontFamily="Segoe UI" FontSize="26.667"/>
+                <TextBlock TextWrapping="Wrap" Text="销售分析图" FontFamily="Segoe UI" FontSize="26.667"/>
+            </StackPanel>
+            <telerik:RadDataServiceDataSource 
+Grid.RowSpan="2"
+			x:Name="datasource" Height="Auto" Width="Auto" d:LayoutOverrides="HorizontalAlignment"  >
+                <!--   <telerik:RadDomainDataSource.DomainContext>-->
+                <!--       <e:ReportContext></e:ReportContext>-->
+                <!--   </telerik:RadDomainDataSource.DomainContext>-->
+            </telerik:RadDataServiceDataSource>
+<!--            <telerik:RadDomainDataSource -->
+<!--  -->
+<!--			x:Name="datasource" Height="Auto" Width="Auto" Grid.RowSpan="2">-->
+                <!--   <telerik:RadDomainDataSource.DomainContext>-->
+                <!--       <e:ReportContext></e:ReportContext>-->
+                <!--   </telerik:RadDomainDataSource.DomainContext>-->
+<!--            </telerik:RadDomainDataSource>-->
+            
+            <telerik:RadMap x:Name="RadMap" Center="22.52,113.37" ZoomLevel="9" 
+    		MouseClickMode="None" MouseDoubleClickMode="None" MapMouseClick="RadMap_OnMapMouseClick" Grid.Column="1" Grid.Row="2"  Grid.RowSpan="2" UseDefaultLayout="False" ZoomBarPresetsVisibility="Collapsed" ZoomBarVisibility="Collapsed" ScaleVisibility="Collapsed" CommandBarVisibility="Collapsed" MouseLocationIndicatorVisibility="Collapsed" NavigationVisibility="Collapsed" Margin="0,0,0,0.047"    >
+                <telerik:RadMap.Resources>
+                    <!--                <DataTemplate x:Key="StoreTemplate">-->
+                    <!--                    <Ellipse Width="10" Height="10" Fill="Black" Stroke="White" StrokeThickness="1" -->
+                    <!--    					telerik:MapLayer.Location="{Binding Center}" MouseLeftButtonDown="elementMouseLeftButtonDown">-->
+                    <!--                        <ToolTipService.ToolTip>-->
+                    <!--                            <StackPanel>-->
+                    <!--                                <TextBlock Text="{Binding Name}" />-->
+                    <!--                                <TextBlock Text="{Binding Total, StringFormat=Sales Total: \{0:C\}}" />-->
+                    <!--                            </StackPanel>-->
+                    <!--                        </ToolTipService.ToolTip>-->
+                    <!--                    </Ellipse>-->
+                    <!--                </DataTemplate>-->
+                    <DataTemplate x:Key="AreaTemplate">
+                        <telerik:MapPolygon Fill="{Binding AreaColor}"
+            			Stroke="#7FFFFFFF"
+            			StrokeThickness="1"
+            			Points="{Binding MapPointLists}"
+            			MouseLeftButtonDown="elementMouseLeftButtonDown"  />
+                    </DataTemplate>
+
+                </telerik:RadMap.Resources>
+                <telerik:RadMap.Provider>
+<!--                    <telerik:OpenStreetMapProvider/>-->
+                    <userMs:BingChinaMapProvider/>
+                </telerik:RadMap.Provider>
+                <telerik:InformationLayer x:Name="AreaInformation" ItemTemplate="{StaticResource AreaTemplate}">
+                    <!--                <telerik:MapShapeReader Source="/UserMS;component/MapResources/doc.kml" SourceType="Kml"></telerik:MapShapeReader>-->
+
+                </telerik:InformationLayer>
+                <telerik:InformationLayer x:Name="captionLayer" MouseLeftButtonDown="elementMouseLeftButtonDown" >
+                    <telerik:InformationLayer.ItemTemplate>
+                        <DataTemplate>
+
+                            <TextBlock  telerik:MapLayer.HotSpot="0.5,0.5" telerik:MapLayer.Location="{Binding CaptionLocation}" Text="{Binding AreaName}" Foreground="White" />
+
+                        </DataTemplate>
+                    </telerik:InformationLayer.ItemTemplate>
+                </telerik:InformationLayer>
+            </telerik:RadMap>
+
+            <telerik:RadTimeBar HorizontalAlignment="Left" Height="130" Margin="0"
+                            PeriodStart="{Binding PeriodStart, Mode=TwoWay}" 
+                            PeriodEnd="{Binding PeriodEnd, Mode=TwoWay}"
+                            VisiblePeriodStart="{Binding VisiblePeriodStart, Mode=TwoWay}" 
+                            VisiblePeriodEnd="{Binding VisiblePeriodEnd, Mode=TwoWay}"
+                            SelectionStart="{Binding SelectedStartDate, Mode=TwoWay}"
+                            SelectionEnd="{Binding SelectedEndDate, Mode=TwoWay}"
+                            MinSelectionRange="{Binding MinSelectionRange, Mode=TwoWay}"
+                            IsSnapToIntervalEnabled="True"
+                            SelectionChanged="RadTimeBar_OnSelectionChanged"
+                            x:Name="TimeBar1"
+                            VerticalAlignment="Top" Grid.ColumnSpan="2">
+                <telerik:RadTimeBar.Intervals>
+                    <telerik:QuarterInterval />
+                    <telerik:MonthInterval />
+                    <telerik:WeekInterval />
+                    <telerik:DayInterval />
+
+                </telerik:RadTimeBar.Intervals>
+                <!---->
+                <telerik:RadLinearSparkline LineStroke="#FF767676" x:Name="Line1" ItemsSource="{Binding AllDayReport}"  XValuePath="Date" YValuePath="SellPrice" />
+
+        </telerik:RadTimeBar>
+        <Grid HorizontalAlignment="Stretch"  Margin="0,0,0,0.094" Grid.Row="2" VerticalAlignment="Stretch">
+        	 <Grid.ColumnDefinitions>
+        	 	<ColumnDefinition Width="1*"/>
+        	 	<ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                <TextBlock Text="销售总额" FontSize="18.667" Foreground="#FF393939" Margin="5" FontFamily="Segoe UI" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding SellPriceSum, StringFormat=¥\{0:#\,#.00\}}" FontSize="26.667" FontFamily="Segoe UI Light" Foreground="#FF0090FF" Margin="5,0" VerticalAlignment="Top"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" VerticalAlignment="Top" >
+                <TextBlock Text="终端数" Margin="5" FontSize="18.667" Foreground="#FF393939" FontFamily="Segoe UI" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding SellsSum, StringFormat=\{0:#\,#\}}" FontSize="26.667" FontFamily="Segoe UI Light" Foreground="#FF0090FF" Margin="5,0" VerticalAlignment="Top"/>
+            </StackPanel>
+        </Grid>
+        <chart:RadCartesianChart  d:LayoutOverrides="Width" Grid.Row="3" Margin="0,-0.094,0,0.047"  >
+<!--            <chart:RadCartesianChart.HorizontalAxis>-->
+                <!--                <telerik:LinearAxis />-->
+                <!--            </chart:RadCartesianChart.HorizontalAxis>-->
+                <!--            <chart:RadCartesianChart.VerticalAxis>-->
+                <!--                <telerik:CategoricalAxis GapLength="0.5" />-->
+                <!--            </chart:RadCartesianChart.VerticalAxis>-->
+
+                <chart:RadCartesianChart.HorizontalAxis>
+                    <telerik:CategoricalAxis FontFamily="Segoe UI"
+										   FontSize="12"
+										    />
+                </chart:RadCartesianChart.HorizontalAxis>
+
+                <chart:RadCartesianChart.VerticalAxis>
+                    <telerik:LinearAxis FontFamily="Segoe UI"
+									  FontSize="12"
+									  Title="销售额" 
+									  LabelFormat="#,#.00"
+									  />
+                </chart:RadCartesianChart.VerticalAxis>
+                <telerik:BarSeries CategoryBinding="Name" ValueBinding="Value"  
+                                     ItemsSource="{Binding ChartData}" ShowLabels="True" 
+                               Width="10">
+                    <telerik:BarSeries.LabelDefinitions>
+                        <telerik:ChartSeriesLabelDefinition Binding="Value" Format="{}{0:#,#.00}"
+                                                              Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    </telerik:BarSeries.LabelDefinitions>
+                </telerik:BarSeries>
+                </chart:RadCartesianChart>
+
+
+                <chart:RadCartesianChart  d:LayoutOverrides="Width" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,-0.047,0,0">
+
+
+                    <chart:RadCartesianChart.HorizontalAxis>
+                        <telerik:CategoricalAxis FontFamily="Segoe UI"
+										   FontSize="12"
+										    />
+                    </chart:RadCartesianChart.HorizontalAxis>
+
+                    <chart:RadCartesianChart.VerticalAxis>
+                        <telerik:LinearAxis FontFamily="Segoe UI"
+									  FontSize="12"
+									  Title="销售额" 
+									  LabelFormat="#,#.00"
+									  />
+                    </chart:RadCartesianChart.VerticalAxis>
+                    <telerik:BarSeries CategoryBinding="Name" ValueBinding="Value" 
+                                     ItemsSource="{Binding ClassChartData}" ShowLabels="True"
+                               Width="10">
+                        <telerik:BarSeries.LabelDefinitions>
+                            <telerik:ChartSeriesLabelDefinition Binding="Value"  Format="{}{0:#,#.00}"
+                                                              Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                        </telerik:BarSeries.LabelDefinitions>
+                    </telerik:BarSeries>
+                </chart:RadCartesianChart>
+
+                <!--        <telerik:RadGridView Margin="0" IsFilteringAllowed="False" Grid.Row="3" ShowGroupPanel="False" ItemsSource="{Binding Reports}" AutoGenerateColumns="False" x:Name="Grid" IsReadOnly="True" RowIndicatorVisibility="Collapsed">-->
+                <!--            <telerik:RadGridView.Columns>-->
+                <!--                <telerik:GridViewDataColumn DataMemberBinding="{Binding AreaName}" Header="区域" UniqueName="AreaName"  ></telerik:GridViewDataColumn>-->
+                <!--                <telerik:GridViewDataColumn DataMemberBinding="{Binding HallName}" Header="仓库" UniqueName="HallName"  ></telerik:GridViewDataColumn>-->
+                <!--                <telerik:GridViewDataColumn DataMemberBinding="{Binding SellPrice}" Header="销售额" UniqueName="SellPrice"  ></telerik:GridViewDataColumn>-->
+                <!--                <telerik:GridViewDataColumn DataMemberBinding="{Binding Sells}" Header="销售额" UniqueName="Sells"  ></telerik:GridViewDataColumn>-->
+                <!--            </telerik:RadGridView.Columns>-->
+                <!--            <telerik:RadGridView.GroupDescriptors>-->
+                <!--                <telerik:GroupDescriptor Member="AreaName" DisplayContent="区域"-->
+                <!--                                     SortDirection="Descending">-->
+                <!--                    <telerik:GroupDescriptor.AggregateFunctions>-->
+                <!--                        <telerik:SumFunction SourceField="SellPrice" ResultFormatString="{}{0:#,#.00}" Caption="销售总额: " />-->
+                <!--                    </telerik:GroupDescriptor.AggregateFunctions>-->
+                <!--                </telerik:GroupDescriptor>-->
+                <!--            </telerik:RadGridView.GroupDescriptors>-->
+                <!--        </telerik:RadGridView>-->
+
+
+        </Grid>
+    </telerik:RadBusyIndicator>
+</Page>

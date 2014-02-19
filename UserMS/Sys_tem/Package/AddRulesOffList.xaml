@@ -1,0 +1,170 @@
+﻿<Page x:Class="UserMS.Sys_tem.Package.AddRulesOffList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d"   xmlns:userMs="clr-namespace:UserMS"
+   d:DesignHeight="400" d:DesignWidth="800"
+       xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter" 
+     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+	Title="AddRulesOffList">
+
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        <DockPanel>
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+    
+                <telerik:RadMenuItem  Header="保存"  VerticalAlignment="Top" Click="Save_Click"/>
+                <userMs:MyDataImport x:Name="import" Header="导入Excel" />
+                <telerik:RadMenuItem  Header="商品"  VerticalAlignment="Top">
+                    <telerik:RadMenuItem Name="addPro"  Header="添加商品"  Click="addPro_Click" ></telerik:RadMenuItem>
+                    <telerik:RadMenuItem Name="deletePM" Header="删除商品" Click="deletePM_Click" ></telerik:RadMenuItem>
+                </telerik:RadMenuItem>
+
+                <!--<telerik:RadMenuItem  Header="规则活动"  VerticalAlignment="Top">
+                    <telerik:RadMenuItem Name="addRuleType"  Header="添加规则活动"  Click="addRuleType_Click" ></telerik:RadMenuItem>
+                    <telerik:RadMenuItem Name="delteRuleType" Header="删除规则活动" Click="delteRuleType_Click" ></telerik:RadMenuItem>
+                </telerik:RadMenuItem>-->
+                <telerik:RadMenuItem   Header="商品类别"  VerticalAlignment="Top">
+                    <telerik:RadMenuItem Name="addClass" Click ="addClass_Click"  Header="添加商品类别" />
+                    <telerik:RadMenuItem Name="delClass" Header="删除商品类别" Click="delClass_Click" />
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem   Header="生成规则" Name="genrRules" Click="genrRules_Click"  VerticalAlignment="Top"/>
+                    <telerik:RadMenuItem   Header="门店"   VerticalAlignment="Top">
+                    <telerik:RadMenuItem Name="AddHall"  Header="添加门店"  Click="AddHall_Click" ></telerik:RadMenuItem>
+                    <telerik:RadMenuItem Name="delteHall" Header="删除门店" Click="delteHall_Click" ></telerik:RadMenuItem>
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem   Header="销售类别"   VerticalAlignment="Top">
+                    <telerik:RadMenuItem Name="AddSellType"  Header="添加销售类别"  Click="AddSellType_Click" ></telerik:RadMenuItem>
+                    <telerik:RadMenuItem Name="delSellType" Header="删除销售类别" Click="delSellType_Click" ></telerik:RadMenuItem>
+                </telerik:RadMenuItem>
+            </telerik:RadMenu>
+            
+            <DockPanel DockPanel.Dock="Top">
+                <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                    <StackPanel Orientation="Horizontal" Margin="3,2">
+                        <TextBlock Width="80" Text="规则描述" />
+                        <TextBox   x:Name="Note" Width="700" AcceptsReturn="True" Height="60"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3,2">
+                        <TextBlock Width="80" Text="开始日期"/>
+                        <telerik:RadDateTimePicker Width="150" DisplayFormat="Long"  x:Name="StartTime"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3,2">
+                        <TextBlock Width="80" Text="结束日期"/>
+                        <telerik:RadDateTimePicker Width="150" DisplayFormat="Long"  x:Name="EndTime"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="3,2">
+                        <TextBlock Width="80" Text="创建人"/>
+                        <TextBox Width="120"   x:Name="CreatName" IsReadOnly="True"/>
+                    </StackPanel>
+                
+                    <!--<StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="套餐分类"/>
+                            <TextBox Width="120"   x:Name="packageType" IsReadOnly="True"/>
+                        </StackPanel>-->
+
+                </toolkit:WrapPanel>
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Top" Height="200">
+
+                <DockPanel DockPanel.Dock="Right">
+                   <telerik:RadGridView  MinWidth="150"  x:Name="GridClass" Margin="0 0 0 0" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+		       	CanUserFreezeColumns="False" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+					RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Both"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Grid.Column="0" Grid.ColumnSpan="2"  >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+                      
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding ClassName}" IsReadOnly="True" Header="商品类别" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                </DockPanel>
+                
+                <Splitter:DockPanelSplitter DockPanel.Dock="Right" Background="Silver"></Splitter:DockPanelSplitter>
+              
+                <DockPanel DockPanel.Dock="Left">
+                    <telerik:RadGridView  x:Name="GridPros"  MinWidth="150" Margin="0 0 0 0" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+		     	CanUserFreezeColumns="False" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+					RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Both"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Grid.Column="0" Grid.ColumnSpan="2"  >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+                        <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding ClassName}"  Header="商品类别" IsReadOnly="True"  Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding TypeName}"  Header="商品品牌"    IsReadOnly="True"  Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>-->
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding ProName}"  Header="商品名称" IsReadOnly="True"  Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding RulesName}"  Header="规则类型"  Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        
+                          <!--SelectedValueMemberPath="ID" DisplayMemberPath="RulesName"--> 
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding OffPrice, Mode=TwoWay}"  Header="默认优惠金额" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding MinPrice, Mode=TwoWay}" Header="最小优惠" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding MaxPrice, Mode=TwoWay}"  Header="最大优惠" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                </DockPanel>
+            </DockPanel>
+            
+            <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+
+            <DockPanel DockPanel.Dock="Top">
+
+                <!--销售类别-->
+                <telerik:RadGridView DockPanel.Dock="Right" MinWidth="150"  x:Name="GridSellType" Margin="0 0 0 0" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+		          	CanUserFreezeColumns="False" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+					RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Both"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Grid.Column="0" Grid.ColumnSpan="2"  >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Name, Mode=OneWay}" IsReadOnly="True"  Header="销售类别" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+                <Splitter:DockPanelSplitter DockPanel.Dock="Right" Background="Silver"></Splitter:DockPanelSplitter>
+
+                <!--门店-->
+                <telerik:RadGridView DockPanel.Dock="Right" MinWidth="150"  x:Name="GridHall" Margin="0 0 0 0" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+		           	CanUserFreezeColumns="False" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+					RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Both"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Grid.Column="0" Grid.ColumnSpan="2" SelectionChanged="GridHall_SelectionChanged"  >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding HallName, Mode=OneWay}" IsReadOnly="True"  Header="门店" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+                <Splitter:DockPanelSplitter DockPanel.Dock="Right" Background="Silver"></Splitter:DockPanelSplitter>
+                <!--优惠明细-->
+                <telerik:RadGridView DockPanel.Dock="Right"  x:Name="GridRuleOff"  MinWidth="150" CellEditEnded="GridRuleOff_CellEditEnded" Margin="0 0 0 0" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+		       	CanUserFreezeColumns="False" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+					RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Both"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Grid.Column="0" Grid.ColumnSpan="2"  >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding RulesTypeName, Mode=TwoWay}"  Header="规则类型" IsReadOnly="True" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding OffPrice, Mode=TwoWay}"  Header="默认优惠金额" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding MinPrice, Mode=TwoWay}" Header="最小优惠" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding MaxPrice, Mode=TwoWay}"  Header="最大优惠" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding OrderBy, Mode=TwoWay}" Header="排序" Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+                <Splitter:DockPanelSplitter DockPanel.Dock="Right" Background="Silver"></Splitter:DockPanelSplitter>
+                <!--总商品-->
+                <telerik:RadGridView DockPanel.Dock="Left" MinWidth="150"  SelectionChanged="GridProMain_SelectionChanged" x:Name="GridProMain" Margin="0 0 0 0" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+		     	CanUserFreezeColumns="False" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+					RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Both"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Grid.Column="0" Grid.ColumnSpan="2"  >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding ClassName}"  Header="商品类别" IsReadOnly="True"  Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding TypeName}"  Header="商品品牌"    IsReadOnly="True"  Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding ProMainName}"  Header="总商品名称" IsReadOnly="True"  Width="auto" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+            </DockPanel>
+            
+        </DockPanel>
+    </xctk:BusyIndicator>
+</Page>

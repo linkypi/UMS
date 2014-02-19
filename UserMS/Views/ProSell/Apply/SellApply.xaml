@@ -1,0 +1,87 @@
+﻿<Page xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                 xmlns:UserMS="clr-namespace:UserMS" 
+                 xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                 x:Class="UserMS.Views.ProSell.Apply.SellApply" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d" Loaded="Page_Loaded"
+             xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"
+           Title="SellApply Page">
+    
+    <xctk:BusyIndicator  x:Name="busy"  BusyContent="请稍后...">
+        <DockPanel FlowDirection="LeftToRight">
+            <!--Menu-->
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  DockPanel.Dock="Top"
+                             VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="27" >
+                <telerik:RadMenuItem x:Name="AddPro" FontSize="13" Header="新增商品"/>
+                <telerik:RadMenuItem x:Name="DeleteCheck" FontSize="13" Click="DeleteCheck_Click"  Header="删除商品"/>
+                <!--<telerik:RadMenuItem x:Name="DeleteUnCheck" FontSize="13"  Header="删除未拣商品"/>-->
+                <telerik:RadMenuItem Header="提交申请" x:Name="submit" FontSize="13" />
+                <!--<telerik:RadMenuItem Header="拣货" x:Name="check" FontSize="13" />-->
+            </telerik:RadMenu>
+
+            <!--输入框-->
+            <toolkit:WrapPanel x:Name="opPanal" FlowDirection="LeftToRight"  DockPanel.Dock="Top" Height="auto"  >
+                <!--<StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="单据编号：" FontSize="13" Width="55"  VerticalAlignment="Center" HorizontalAlignment="Right" Height="19" Margin="0,0,5,0"/>
+                    <TextBox  x:Name="orderID" FontSize="13" Width="150"    VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,0,5,0" Height="27"  />
+                </StackPanel>-->
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock  Text="申请人：" FontSize="13" Width="55"  HorizontalAlignment="Right"  VerticalAlignment="Center"  Height="19" Margin="0,0,5,0"/>
+                    <TextBox  x:Name="applyUser" IsReadOnly="True" Width="150" HorizontalAlignment="Left" FontSize="13"  VerticalAlignment="Center" Margin="0,0,5,0" Height="27" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="营业厅：" FontSize="13" Width="55"   VerticalAlignment="Center" HorizontalAlignment="Right"  Height="27"  Margin="0,10,5,0" />
+                    <UserMS:MyAutoTextBox x:Name="HallID"   FontSize="13" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="0,0,5,0"  />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="审批单号：" FontSize="13"  Width="55"  VerticalAlignment="Center" HorizontalAlignment="Right"  Height="19" Margin="0,0,5,0"/>
+                    <TextBox  x:Name="AduitID" FontSize="13" Width="150" IsReadOnly="True"   VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,0,5,0" Height="27"  />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="客户名称：" FontSize="13"  Width="55"  VerticalAlignment="Center" HorizontalAlignment="Right"  Height="19" Margin="0,0,5,0"/>
+                    <TextBox  x:Name="cusname" FontSize="13" Width="150"   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0" Height="27"  />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="客户电话：" FontSize="13"  Width="55"  VerticalAlignment="Center" HorizontalAlignment="Right"  Height="19" Margin="0,0,5,0"/>
+                    <TextBox  x:Name="cusphone" FontSize="13" Width="150"   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0" Height="27"  />
+                </StackPanel>
+                
+                <!--<StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="备注：" FontSize="13"  Width="55"  VerticalAlignment="Center" HorizontalAlignment="Right"  Height="19" Margin="0,0,5,0"/>
+                    <TextBox  x:Name="note" FontSize="13" Width="150"   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0" Height="27"  />
+                </StackPanel>-->
+                <toolkit:WrapPanel Orientation="Horizontal">
+                    <StackPanel Margin="2,3" Orientation="Horizontal">
+                        <TextBlock  Text="备注：" Width="80"/>
+                        <TextBox  x:Name="note"  Width="500"  Height="50" AcceptsReturn="True" />
+                    </StackPanel>
+                </toolkit:WrapPanel>
+            </toolkit:WrapPanel>
+
+            <telerik:RadGridView DockPanel.Dock="Bottom" CellEditEnded="GridChecked_CellEditEnded"  x:Name="GridChecked" Margin="0 0 0 0" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+				CanUserFreezeColumns="False" GridLinesVisibility="Both" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+				RowDetailsVisibilityMode="VisibleWhenSelected"   HorizontalAlignment="Stretch" >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewSelectColumn HeaderTextAlignment="Center"/>
+                    <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ClassName}" IsFilterable="False"  HeaderTextAlignment="Center"/>
+                    <telerik:GridViewBoundColumnBase  Header="商品类别" Width="auto"  IsReadOnly="True" IsFilterable="False" TextAlignment="Center" DataMemberBinding="{Binding TypeName}"  HeaderTextAlignment="Center"/>
+                    <telerik:GridViewBoundColumnBase  Header="商品型号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProName}" IsFilterable="False"  HeaderTextAlignment="Center"/>
+                    <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProFormat}" IsFilterable="False"  HeaderTextAlignment="Center"/>
+                    <!--<telerik:GridViewBoundColumnBase  Header="最高价" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding MaxPrice}" IsFilterable="False"  HeaderTextAlignment="Center"/>
+                    <telerik:GridViewBoundColumnBase  Header="最低价" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding MinPrice}" IsFilterable="False"  HeaderTextAlignment="Center"/>-->
+                    
+                    <telerik:GridViewDataColumn  Header="数量" Width="auto" IsFilterable="False"   DataMemberBinding="{Binding ProCount,Mode=TwoWay}"  HeaderTextAlignment="Center" />
+                    <telerik:GridViewDataColumn   Header="批发单价" Width="auto"  DataMemberBinding="{Binding NewPrice,Mode=TwoWay}" IsFilterable="False"  HeaderTextAlignment="Center" />
+                    <telerik:GridViewDataColumn  Header="备注" Width="auto"  IsFilterable="True" TextAlignment="Center" DataMemberBinding="{Binding Note,Mode=TwoWay}"  HeaderTextAlignment="Center"/>
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+           
+        </DockPanel>
+    </xctk:BusyIndicator>
+</Page>

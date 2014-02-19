@@ -1,0 +1,57 @@
+﻿<controls:ChildWindow xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="UserMS.Views.CMS.CardOperate.BC.ShowInfo"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+
+                      Height="300" 
+           >
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel  Orientation="Vertical"  HorizontalAlignment="Stretch">
+
+            <telerik:GroupBox  FontSize="13" Header="变更后的会员信息" />
+            <telerik:RadGridView  x:Name="DGVIPInfo" ShowGroupPanel="False" ShowColumnHeaders="True" CanUserInsertRows="False"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="False" CanUserFreezeColumns="False" 
+            	AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False"  Height="170">
+
+                <telerik:RadContextMenu.ContextMenu>
+                    <telerik:RadContextMenu >
+                        <telerik:RadMenuItem  x:Name="delItem"/>
+                    </telerik:RadContextMenu>
+                </telerik:RadContextMenu.ContextMenu>
+                <telerik:RadGridView.Columns>
+                    
+                    <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding IMEI}"  Header="卡号" Width="auto"  IsReadOnly="True"/>
+                    <telerik:GridViewBoundColumnBase  DataMemberBinding="{Binding TypeName}" Header="卡类型" Width="auto"  IsReadOnly="True"/>
+                    <telerik:GridViewBoundColumnBase  DataMemberBinding="{Binding Cost_production}" Header="卡工本费" Width="auto"  IsReadOnly="True"/>
+                    <telerik:GridViewBoundColumnBase  DataMemberBinding="{Binding Validity}" Header="有效期" Width="auto"  IsReadOnly="True"/>
+                    <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding MemberName}" Header="会员姓名" Width="auto"  IsReadOnly="True"/>
+                    <telerik:GridViewBoundColumnBase  DataMemberBinding="{Binding Sex}" Header="性别" Width="auto"  IsReadOnly="True"/>
+                    <!--<telerik:GridViewBoundColumnBase  DataMemberBinding="{Binding Birthday}" Header="出生年月日" Width="auto"  IsReadOnly="True"/>-->
+                    <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding MobiPhone}" Header="手机号码" Width="auto"  IsReadOnly="True"/>
+                    <telerik:GridViewBoundColumnBase  DataMemberBinding="{Binding IDCard}" Header="证件类型" Width="auto"  IsReadOnly="True"/>
+                    <telerik:GridViewBoundColumnBase  DataMemberBinding="{Binding IDCard_ID}" Header="证件号码" Width="auto"  IsReadOnly="True"/>
+                    <!--<telerik:GridViewBoundColumnBase DataMemberBinding="{Binding Address}" Header="通讯地址" Width="auto"  IsReadOnly="True"/>-->
+                    <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding SPoint}" Header="可用积分" Width="auto"  IsReadOnly="True"/>
+                    <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding StartTime}" Header="加入时间" Width="auto"  IsReadOnly="True"/>
+                    <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding UpdUser}" Header="操作人" Width="auto"  IsReadOnly="True"/>
+                    <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding Note}" Header="备注" Width="auto"  IsReadOnly="True"/>
+                    
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <telerik:RadDataPager 
+                              x:Name="radDataPager1"   
+							  PageSize="10"
+							  BorderThickness="1,0,1,1"
+							  Source="{Binding Items, ElementName=DGVIPInfo}"
+							  DisplayMode="All"
+							  AutoEllipsisMode="Both"
+							  NumericButtonCount="10"
+							  IsTotalItemCountFixed="True" />
+        </StackPanel>
+        <Button x:Name="CancelButton" Content="取消" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button x:Name="OKButton" Content="确定" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+    </Grid>
+</controls:ChildWindow>

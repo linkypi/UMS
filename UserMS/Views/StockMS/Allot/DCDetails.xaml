@@ -1,0 +1,136 @@
+﻿<userMs:BasePage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"      
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:userMs="clr-namespace:UserMS" xmlns:DCDetails="clr-namespace:UserMS.Views.StockMS.Allot"
+    x:Class="UserMS.Views.StockMS.Allot.DCDetails" 
+    mc:Ignorable="d" Loaded="Page_Loaded"
+      d:DesignWidth="640" d:DesignHeight="480">
+
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        <toolkit:DockPanel x:Name="LayoutRoot" >
+            
+            <toolkit:DockPanel toolkit:DockPanel.Dock="Bottom" Height="50">
+                <StackPanel  Orientation="Horizontal" Margin="3,10" HorizontalAlignment="Right">
+                    <Button Height="30" Content="刷新" Width="100" Margin="15,0" x:Name="BtCancel" ></Button>
+                    <Button Height="30" Content="取消调拨单" Width="100"   x:Name="BtSumbit" Click="BtSumbit_Click"></Button>
+                </StackPanel>
+            </toolkit:DockPanel>
+            
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="10 0">
+                <StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="接收状态：" VerticalAlignment="Center" ></TextBlock>
+                    <telerik:RadComboBox Width="100"  Height="25" x:Name="CboAccept" SelectedIndex="0">
+                        <telerik:RadComboBoxItem  Content="全部"/>
+                        <telerik:RadComboBoxItem Content="已接收"/>
+                        <telerik:RadComboBoxItem Content="未接收"/>
+                    </telerik:RadComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="调拨单号：" VerticalAlignment="Center"></TextBlock>
+                    <TextBox Width="100" x:Name="txt_OrderID" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="调出仓库：" VerticalAlignment="Center"></TextBlock>
+                    <userMs:MyAutoTextBox Width="100"  x:Name="GHHall"  Height="25" ></userMs:MyAutoTextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="接收仓库：" VerticalAlignment="Center"></TextBlock>
+                    <userMs:MyAutoTextBox Width="100" x:Name="SHHall" Height="25" ></userMs:MyAutoTextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="录单人：" Margin="12 0 0 0" VerticalAlignment="Center"></TextBlock>
+                    <TextBox Width="100"  x:Name="txt_Transtor" Height="25" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="创建日期：" VerticalAlignment="Center"></TextBlock>
+                    <telerik:RadDateTimePicker x:Name="StartTime" Width="150" />
+                    <TextBlock Text="至：" VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
+                    <telerik:RadDateTimePicker x:Name="EndTime" Width="150" />
+                    <Button x:Name="TBSearch" Content="查 询" Width="60"  Height="25" Margin="10 0 0 0"></Button>
+                </StackPanel>
+            </toolkit:WrapPanel>
+
+            <toolkit:DockPanel toolkit:DockPanel.Dock="Top" Height="200">
+                <toolkit:DockPanel toolkit:DockPanel.Dock="Bottom" >
+                    <telerik:RadNumericUpDown  x:Name="pagesize" Minimum="1" Value="20" ValueChanged="pagesize_ValueChanged"  Width="50" NumberDecimalDigits="0" toolkit:DockPanel.Dock="Right" />
+                    <telerik:RadDataPager x:Name="RadPager" IsTotalItemCountFixed="True" PageIndexChanging="RadPager_PageIndexChanging_1"    DisplayMode="All"  VerticalAlignment="Stretch" toolkit:DockPanel.Dock="Left"/>
+                </toolkit:DockPanel>
+                <telerik:RadGridView x:Name="dataGrid1"  toolkit:DockPanel.Dock="Top" SelectionMode="Single" IsFilteringAllowed="False"  AutoGenerateColumns="False" ShowGroupPanel="False"     
+                        GridLinesVisibility="Both"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"   SelectionChanged="dataGrid1_SelectionChanged">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewSelectColumn />
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                  
+            </toolkit:DockPanel>
+            
+            <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"/>
+            
+            <toolkit:DockPanel  toolkit:DockPanel.Dock="Top" >
+                
+                <toolkit:WrapPanel  VerticalAlignment="Top" toolkit:DockPanel.Dock="Top"  x:Name="ContentSource">
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <sdk:Label Content="单据编号" x:Name="label1" Width="100" />
+                                    <TextBox MinWidth="150" x:Name="PKid" Width="200" Text="{Binding OutOrderID}"/>
+                                </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <sdk:Label Content="发货人" x:Name="label3" Width="100" />
+                            <TextBox x:Name="send" Width="200" Text="{Binding FromUserName}" IsReadOnly="True" />
+                                </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <sdk:Label Content="收货人" x:Name="label5" Width="100" />
+                            <TextBox x:Name="recv" Width="200" Text="{Binding ToUserName}" IsReadOnly="True" Cursor="Hand" />
+                                </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <sdk:Label Content="接收状态" x:Name="label10" Width="100" />
+                                    <TextBox x:Name="Aduti" Width="200" Text="" IsReadOnly="True" />
+                                </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <sdk:Label Content="调出仓库" x:Name="label4" Width="100" />
+                                    <TextBox x:Name="DCHall" Text="{Binding FromHallName}" Width="200" IsReadOnly="True" Cursor="Hand" />
+                                </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <sdk:Label Content="调入仓库" x:Name="label7" Width="100" />
+                                    <TextBox x:Name="DRHall" Width="200" Text="{Binding Pro_HallName}" IsReadOnly="True" Cursor="Hand" />
+                                </StackPanel>
+                        
+                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <sdk:Label Content="制单日期" x:Name="label6" Width="100" />
+                                <telerik:RadDateTimePicker x:Name="date" Width="200" IsReadOnly="True" >
+                                </telerik:RadDateTimePicker>
+                            </StackPanel>
+                    </toolkit:WrapPanel>
+                <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"/>
+                <toolkit:DockPanel toolkit:DockPanel.Dock="Bottom">
+                    <telerik:RadGridView x:Name="dataGrid2" SelectionMode="Extended"  AutoGenerateColumns="False" ShowGroupPanel="False" toolkit:DockPanel.Dock="Right"  ShowColumnFooters="True" >
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewSelectColumn></telerik:GridViewSelectColumn>
+                            <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding InListID}" Header="批次号" IsReadOnly="True" IsGroupable="False" IsFilterable="False"/>
+                            <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding IMEI}" Header="串码" IsReadOnly="True" IsGroupable="False" IsFilterable="False"/>
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+
+                    <telerik:RadGridView x:Name="dataGrid11"  AutoGenerateColumns="False" 
+                                     GridLinesVisibility="Both"    ShowGroupPanel="False" toolkit:DockPanel.Dock="Left" ShowColumnFooters="True"  IsFilteringAllowed="False" SelectionChanged="dataGrid11_SelectionChanged">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewBoundColumnBase  Header="批次号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding InListID}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="商品类别" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ClassName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding TypeName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="商品型号" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProName}" IsFilterable="False" />
+                            <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProFormat}" IsFilterable="False" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding ProCount}" Header="商品数量" IsReadOnly="True" IsFilterable="False" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding NeedIMEI}" Header="是否需要串码" IsGroupable="True" IsReadOnly="True" IsFilterable="False" />
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                 </toolkit:DockPanel>
+                
+            </toolkit:DockPanel>
+        </toolkit:DockPanel>
+    </xctk:BusyIndicator>
+</userMs:BasePage>

@@ -1,0 +1,249 @@
+﻿<Page xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  x:Class="UserMS.Sys_tem.Config.SysConfig" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d" Loaded="Page_Loaded"
+                      
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="SysConfig Page" >
+    <telerik:RadBusyIndicator x:Name="busy">
+        <ScrollViewer>
+            <toolkit:DockPanel x:Name="panel"  Margin="0 20 0 0" >
+            <!--
+            <toolkit:WrapPanel  Orientation="Horizontal" Margin="20 5 0 0" Height="auto"  toolkit:DockPanel.Dock="Top">
+                <StackPanel  Orientation="Horizontal"   Height="25" >
+                    <TextBlock  x:Name="tb_name_0" Height="25">名称：</TextBlock>
+                    <TextBox  x:Name="name_0" Text="" Height="25" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"   Height="25" >
+                    <TextBlock  x:Name="tb_name_1" Height="25">参数1：</TextBlock>
+                    <TextBox  x:Name="value_0" Text=""  Height="25" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  x:Name="tb_name_2"  Height="25" >参数2：</TextBlock>
+                    <TextBox  x:Name="value1_0"  Height="25"  Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  x:Name="tb_name_3"  Height="25" >类名：</TextBlock>
+                    <TextBox  x:Name="classname_0"   Height="25" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  x:Name="tb_name_4"   Height="25" Text="备注：" >
+                    </TextBlock>
+                    <TextBox  x:Name="note_0"   Height="25" Text="" Width="250"/>
+                </StackPanel>
+            </toolkit:WrapPanel>
+
+            <toolkit:WrapPanel Margin="20 5 0 0" Orientation="Horizontal" Height="auto"  toolkit:DockPanel.Dock="Top">
+                <StackPanel  Orientation="Horizontal"  Height="25" >
+                    <TextBlock  >名称：</TextBlock>
+                    <TextBox  x:Name="name_1" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"   Height="25" >
+                    <TextBlock  >参数1：</TextBlock>
+                    <TextBox  x:Name="value_1" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"   Height="25" >
+                    <TextBlock  >参数2：</TextBlock>
+                    <TextBox  x:Name="value1_1" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  >类名：</TextBlock>
+                    <TextBox  x:Name="classname_1" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  Text="备注：">
+                    </TextBlock>
+                    <TextBox  x:Name="note_1" Text="" Width="250"/>
+                </StackPanel>
+            </toolkit:WrapPanel>
+
+            <toolkit:WrapPanel Margin="20 5 0 0"  Orientation="Horizontal" Height="auto"  toolkit:DockPanel.Dock="Top">
+                <StackPanel  Orientation="Horizontal"   Height="25" >
+                    <TextBlock  >名称：</TextBlock>
+                    <TextBox  x:Name="name_2" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  >参数1：</TextBlock>
+                    <TextBox  x:Name="value_2" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  >参数2：</TextBlock>
+                    <TextBox  x:Name="value1_2" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  >类名：</TextBlock>
+                    <TextBox  x:Name="classname_2" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  Text="备注：">
+                    </TextBlock>
+                    <TextBox  x:Name="note_2" Text="" Width="250"/>
+                </StackPanel>
+            </toolkit:WrapPanel>
+
+            <toolkit:WrapPanel Margin="20 5 0 0"  Orientation="Horizontal" Height="auto"  toolkit:DockPanel.Dock="Top">
+                <StackPanel  Orientation="Horizontal"  Height="25" >
+                    <TextBlock  >名称：</TextBlock>
+                    <TextBox  x:Name="name_3" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  >参数1：</TextBlock>
+                    <TextBox  x:Name="value_3" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  >参数2：</TextBlock>
+                    <TextBox  x:Name="value1_3" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  >类名：</TextBlock>
+                    <TextBox  x:Name="classname_3" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  Text="备注：">
+                    </TextBlock>
+                    <TextBox  x:Name="note_3" Text="" Width="250"/>
+                </StackPanel>
+            </toolkit:WrapPanel>
+
+            <toolkit:WrapPanel Margin="20 5 0 0"  Orientation="Horizontal" Height="auto"  toolkit:DockPanel.Dock="Top">
+                <StackPanel  Orientation="Horizontal"  Height="25" >
+                    <TextBlock  >名称：</TextBlock>
+                    <TextBox  x:Name="name_4" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  >参数1：</TextBlock>
+                    <TextBox  x:Name="value_4" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  >参数2：</TextBlock>
+                    <TextBox  x:Name="value1_4" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  >类名：</TextBlock>
+                    <TextBox  x:Name="classname_4" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  Text="备注：">
+                    </TextBlock>
+                    <TextBox  x:Name="note_4" Text="" Width="250"/>
+                </StackPanel>
+            </toolkit:WrapPanel>
+
+            <toolkit:WrapPanel Margin="20 5 0 0"  Orientation="Horizontal" Height="auto"  toolkit:DockPanel.Dock="Top">
+                <StackPanel  Orientation="Horizontal"  Height="25"  >
+                    <TextBlock  >名称：</TextBlock>
+                    <TextBox  x:Name="name_5" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal"  Height="25"  Margin="20 0 0 0">
+                    <TextBlock  >参数1：</TextBlock>
+                    <TextBox  x:Name="value_5" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal"  Height="25"  Margin="20 0 0 0">
+                    <TextBlock  >参数2：</TextBlock>
+                    <TextBox  x:Name="value1_5" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal"  Height="25"  Margin="20 0 0 0">
+                    <TextBlock  >类名：</TextBlock>
+                    <TextBox  x:Name="classname_5" Text="" Width="100"/>
+                </StackPanel>
+
+                <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25" >
+                    <TextBlock  Text="备注：">
+                    </TextBlock>
+                    <TextBox  x:Name="note_5" Text="" Width="250"/>
+                </StackPanel>
+            </toolkit:WrapPanel>
+
+           
+                <toolkit:WrapPanel Margin="20 5 0 0"  Orientation="Horizontal" Height="auto"  toolkit:DockPanel.Dock="Top">
+                    <StackPanel  Orientation="Horizontal"  Height="25"  >
+                        <TextBlock  >名称：</TextBlock>
+                        <TextBox  x:Name="name_6" Text="" Width="100" />
+                    </StackPanel>
+
+                    <StackPanel  Orientation="Horizontal"  Height="25"  Margin="20 0 0 0">
+                        <TextBlock  >参数1：</TextBlock>
+                        <TextBox  x:Name="value_6" Text="" Width="100"/>
+                    </StackPanel>
+
+                    <StackPanel  Orientation="Horizontal"  Height="25"  Margin="20 0 0 0">
+                        <TextBlock  >参数2：</TextBlock>
+                        <TextBox  x:Name="value1_6" Text="" Width="100" />
+                    </StackPanel>
+
+                    <StackPanel  Orientation="Horizontal"  Height="25"  Margin="20 0 0 0">
+                        <TextBlock  >类名：</TextBlock>
+                        <TextBox  x:Name="classname_6" Text="" Width="100" />
+                    </StackPanel>
+
+                    <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25"  >
+                        <TextBlock  Text="备注：">
+                        </TextBlock>
+                        <TextBox   x:Name="note_6" Text="" Width="250"/>
+                    </StackPanel>
+                </toolkit:WrapPanel>
+
+             
+                <toolkit:WrapPanel Margin="20 5 0 0"  Orientation="Horizontal" Height="auto"  toolkit:DockPanel.Dock="Top">
+                    <StackPanel  Orientation="Horizontal"  Height="25"  >
+                        <TextBlock  >名称：</TextBlock>
+                        <TextBox  x:Name="name_7" Text="" Width="100" />
+                    </StackPanel>
+
+                    <StackPanel  Orientation="Horizontal"  Height="25"  Margin="20 0 0 0">
+                        <TextBlock  >参数1：</TextBlock>
+                        <TextBox  x:Name="value_7" Text="" Width="100"/>
+                    </StackPanel>
+
+                    <StackPanel  Orientation="Horizontal"  Height="25"  Margin="20 0 0 0">
+                        <TextBlock  >参数2：</TextBlock>
+                        <TextBox  x:Name="value1_7" Text="" Width="100" />
+                    </StackPanel>
+
+                    <StackPanel  Orientation="Horizontal"  Height="25"  Margin="20 0 0 0">
+                        <TextBlock  >类名：</TextBlock>
+                        <TextBox  x:Name="classname_7" Text="" Width="100" />
+                    </StackPanel>
+
+                    <StackPanel  Orientation="Horizontal" Margin="20 0 0 0"  Height="25"  >
+                        <TextBlock  Text="备注：">
+                        </TextBlock>
+                        <TextBox   x:Name="note_7" Text="" Width="250"/>
+                    </StackPanel>
+                </toolkit:WrapPanel>
+
+                <toolkit:WrapPanel Margin="20 35 0 0" Orientation="Horizontal" toolkit:DockPanel.Dock="Top">
+            <StackPanel  Orientation="Horizontal"  Height="30">
+                <Button Width="100" Content="保存" Height="28" Click="Button_Click"></Button>
+            </StackPanel>
+           </toolkit:WrapPanel>-->
+            
+        </toolkit:DockPanel>
+        </ScrollViewer>
+    </telerik:RadBusyIndicator>
+</Page>

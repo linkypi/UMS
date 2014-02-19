@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RIAServices.LinqToSql</id>
+    <version>4.2.0</version>
+    <title>RIA Services for Linq to Sql (DataContext)</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=223397</licenseUrl>
+    <projectUrl>http://silverlight.net/riaservices/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>RIAServices.LinqToSql provides the LinqToSqlDomainService&lt;T&gt; class which can be used to create Domain Service classes for use with a DataContext class from Linq to Sql.</description>
+    <summary>WCF RIA Services Toolkit - Linq to Sql (DataContext) support with LinqToSqlDomainService.</summary>
+    <language>en-US</language>
+    <tags>WCF RIA Services RIAServices LinqToSql</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Data.Linq" targetFramework="" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

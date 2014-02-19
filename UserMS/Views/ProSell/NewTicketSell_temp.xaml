@@ -1,0 +1,96 @@
+﻿<userMs:BasePage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+    xmlns:userMs="clr-namespace:UserMS" xmlns:proSell="clr-namespace:UserMS.Views.ProSell"
+    x:Class="UserMS.Views.ProSell.NewTicketSell_temp"
+    mc:Ignorable="d"   KeyUp="LayoutRoot_KeyUp"
+    d:DesignHeight="480" d:DesignWidth="640" Width="Auto" >
+
+    <telerik:RadBusyIndicator x:Name="PageBusy">
+
+        <toolkit:DockPanel x:Name="LayoutRoot" Background="White" >
+			<telerik:RadMenu VerticalAlignment="Top" toolkit:DockPanel.Dock="Top" >
+				<telerik:RadMenuItem x:Name="New" Header="新建" Click="New_Click"/>
+				<telerik:RadMenuItem x:Name="Del" Header="删除行" Click="Del_Click"/>
+<telerik:RadMenuItem x:Name="Save" Header="保存" Click="Save_OnClick"/>
+				<telerik:RadMenuItem x:Name="Next" Header="保存并转到结算" Click="Next_Click"/>
+			</telerik:RadMenu>
+			<StackPanel d:LayoutOverrides="Height" toolkit:DockPanel.Dock="Top" Margin="0,0,0,5">
+				<toolkit:WrapPanel VerticalAlignment="Top" Margin="14,0">
+					<StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+						<sdk:Label HorizontalAlignment="Left" Content="当前销售仓库" Width="120" FontSize="18.667"/>
+						<telerik:RadButton x:Name="HallName"  FontSize="18.667" Width="250" Content="{Binding HallName, Mode=TwoWay}" Cursor="Hand" Click="HallName_OnMouseLeftButtonUp"/>
+					</StackPanel>
+				</toolkit:WrapPanel>
+			</StackPanel>
+<!--			<telerik:RadBusyIndicator x:Name="VipBusy" toolkit:DockPanel.Dock="Top" BusyContent="查询中">-->
+<!--				<StackPanel>-->
+<!--					<toolkit:WrapPanel VerticalAlignment="Top" Margin="14,0">-->
+<!--						<StackPanel Orientation="Horizontal" Margin="0,0,7,0">-->
+<!--							<sdk:Label HorizontalAlignment="Left" Content="会员卡卡号" Width="120" FontSize="18.667"/>-->
+<!--                            <telerik:RadButton x:Name="VIPCard"  FontSize="18.667" Width="250" Content="{Binding IMEI, Mode=TwoWay}" Cursor="Hand" Click="VIP_OnMouseLeftButtonUp"/>-->
+<!--~1~                            <TextBox x:Name="VIPCard" TextWrapping="Wrap"  FontSize="18.667" Width="250" IsReadOnly="True" Text="{Binding IMEI, Mode=TwoWay}"/>@1@-->
+<!--						</StackPanel>-->
+<!--						<StackPanel Orientation="Horizontal" Margin="0,0,7,0">-->
+<!--							<sdk:Label HorizontalAlignment="Left" Content="姓名" Width="120" FontSize="18.667"/>-->
+<!--							<TextBox x:Name="VIPName" TextWrapping="Wrap" Margin="0" Width="250" IsReadOnly="True" Text="{Binding MemberName, Mode=TwoWay}" FontSize="18.667"/>-->
+<!--						</StackPanel>-->
+<!--						<StackPanel Orientation="Horizontal" Margin="0,0,7,0">-->
+<!--							<sdk:Label HorizontalAlignment="Left" Content="联系电话" Width="120" FontSize="18.667"/>-->
+<!--							<TextBox x:Name="VIPPhone" TextWrapping="Wrap" Margin="0" Width="250" IsReadOnly="True" Text="{Binding MobiPhone, Mode=TwoWay}" FontSize="18.667"/>-->
+<!--						</StackPanel>-->
+<!--						<StackPanel Orientation="Horizontal" Margin="0,0,7,0">-->
+<!--							<sdk:Label HorizontalAlignment="Left" Content="积分" Width="120" FontSize="18.667"/>-->
+<!--							<TextBox x:Name="VIPPoint" TextWrapping="Wrap" Margin="0" Width="250" IsReadOnly="True" Text="{Binding Point, Mode=TwoWay}" FontSize="18.667"/>-->
+<!--						</StackPanel>-->
+<!--					</toolkit:WrapPanel>-->
+<!--				</StackPanel>-->
+<!--			</telerik:RadBusyIndicator>-->
+<!--            <StackPanel toolkit:DockPanel.Dock="top"  Orientation="Horizontal">-->
+<!--                <sdk:Label HorizontalAlignment="Left" Content="销售单号" Width="128"  FontSize="18.667"></sdk:Label>-->
+<!--                <TextBox x:Name="_SellID" Width="250" FontSize="18.667" ></TextBox>-->
+<!--            </StackPanel>-->
+            <StackPanel Orientation="Horizontal" toolkit:DockPanel.Dock="Top" HorizontalAlignment="Center">
+				<telerik:RadButton x:Name="IMEISell" Content="串码类销售" FontSize="48" FontFamily="Portable User Interface" Click="IMEISell_OnClick"/>
+				<telerik:RadButton x:Name="ProSell" Content="非串码销售" FontSize="48" FontFamily="Portable User Interface" Click="ProSell_OnClick"/>
+			</StackPanel>
+			<toolkit:WrapPanel VerticalAlignment="Top" toolkit:DockPanel.Dock="Bottom" Margin="14,0" Visibility="Collapsed">
+				<StackPanel Orientation="Horizontal" Margin="0,0,7,0" Visibility="Collapsed">
+					<sdk:Label HorizontalAlignment="Left" Content="优惠券" Width="70"/>
+					<telerik:RadComboBox x:Name="OffTicket" Width="150" DisplayMemberPath="Name" SelectedValuePath="ID"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+					<sdk:Label HorizontalAlignment="Left" Content="销售时间" Width="70"/>
+<!--					<TextBox x:Name="Seller" TextWrapping="Wrap" Margin="0" Width="150" IsReadOnly="True"/>-->
+                    <telerik:RadDateTimePicker Width="150" x:Name="SellTime" IsReadOnly="True"></telerik:RadDateTimePicker>
+				</StackPanel>
+			</toolkit:WrapPanel>
+			<telerik:RadGridView x:Name="Grid" toolkit:DockPanel.Dock="Top" ShowGroupPanel="False" ShowGroupFooters="True" CellEditEnded="Grid_CellEditEnded" AutoGenerateColumns="False" IsFilteringAllowed="False">
+				<telerik:RadGridView.Columns>
+<!--					<telerik:GridViewDataColumn Header="商品编号" DataMemberBinding="{Binding ProID}" IsReadOnly="True"/>-->
+                    <telerik:GridViewDataColumn Header="商品类别" DataMemberBinding="{Binding ProClass}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="商品品牌" DataMemberBinding="{Binding ProType}" IsReadOnly="True" />
+
+                    <telerik:GridViewDataColumn Header="商品名称" DataMemberBinding="{Binding ProName}" IsReadOnly="True" />
+					<telerik:GridViewDataColumn Header="数量" DataMemberBinding="{Binding ProCount}"/>
+<!--					<telerik:GridViewDataColumn Header="单位" DataMemberBinding="{Binding Unit}" IsReadOnly="True"/>-->
+					<telerik:GridViewDataColumn Header="串号" DataMemberBinding="{Binding IMEI}" IsReadOnly="True" MinWidth="150"/>
+                    <telerik:GridViewDataColumn Header="属性" DataMemberBinding="{Binding ProFormat}"></telerik:GridViewDataColumn>
+
+                    <telerik:GridViewDataColumn Header="兑券码" DataMemberBinding="{Binding TicketNum}" MinWidth="150" />
+                    <telerik:GridViewDataColumn Header="兑券面值" DataMemberBinding="{Binding TicketPrice}" />
+<!--                    <telerik:GridViewDataColumn DataMemberBinding="{Binding AnBu,Mode=TwoWay}" Header="暗补" DataFormatString="{}{0:0.00}" IsReadOnly="False"></telerik:GridViewDataColumn>-->
+<!--                    <telerik:GridViewDataColumn DataMemberBinding="{Binding LieShouPrice,Mode=TwoWay}" Header="列收" DataFormatString="{}{0:0.00}" IsReadOnly="False" ></telerik:GridViewDataColumn>-->
+
+                    <telerik:GridViewDataColumn Header="备注" DataMemberBinding="{Binding Note}" IsReadOnly="False" />
+
+                    <!--TicketPrice-->
+				</telerik:RadGridView.Columns>
+			</telerik:RadGridView>
+		
+		</toolkit:DockPanel>
+	</telerik:RadBusyIndicator>
+</userMs:BasePage>

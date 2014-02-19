@@ -1,0 +1,213 @@
+﻿<src:BasePage xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+    xmlns:UserMS="clr-namespace:UserMS"  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded"
+    xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"    
+    xmlns:MyControl="clr-namespace:UserMS.MyControl" 
+    xmlns:src="clr-namespace:UserMS"    xmlns:model="clr-namespace:UserMS.Model"
+     x:Class="UserMS.Views.HallOff.CanselSellOffAduit" d:DesignWidth="640" d:DesignHeight="480">
+    <Page.Resources>
+        <model:GridViewRowSytleSelector x:Key="SelectorStyle">
+            <model:GridViewRowSytleSelector.GreenStyle>
+                <Style TargetType="telerik:GridViewRow">
+                    <Setter Property="Background" Value="LightGreen"></Setter>
+
+                </Style>
+            </model:GridViewRowSytleSelector.GreenStyle>
+            <model:GridViewRowSytleSelector.RedStyle>
+                <Style TargetType="telerik:GridViewRow">
+                    <Setter Property="Background" Value="LightCoral"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="LightCoral"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+            </model:GridViewRowSytleSelector.RedStyle>
+            <model:GridViewRowSytleSelector.TomatoStyle>
+                <Style TargetType="telerik:GridViewRow">
+                    <Setter Property="Background" Value="Tomato"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Tomato"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </model:GridViewRowSytleSelector.TomatoStyle>
+        </model:GridViewRowSytleSelector>
+
+    </Page.Resources>
+    <telerik:RadBusyIndicator x:Name="isbusy">
+        <Grid >
+            <toolkit:DockPanel>
+                
+                
+                
+                <toolkit:WrapPanel x:Name="opPanal" toolkit:DockPanel.Dock="Top" >
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <sdk:Label  Content="已审批："  Width="80"/>
+                        <ComboBox x:Name="ckb" Height="25" DisplayMemberPath="Text" SelectedValuePath="Flag" Width="80" />
+                    </StackPanel>
+
+                   <!-- <StackPanel Orientation="Horizontal" Margin="5">
+                        <sdk:Label  Content="已通过：" Width="80"/>
+                        <ComboBox x:Name="ckbPassed" DisplayMemberPath="Text" SelectedValuePath="Flag" Height="25" Width="80" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <sdk:Label  Content="已使用：" Width="80"/>
+                        <ComboBox x:Name="ckbUsed" DisplayMemberPath="Text" SelectedValuePath="Flag" Height="25" Width="80" />
+                    </StackPanel>-->
+
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <sdk:Label  Content="营业厅："  Width="80"/>
+                        <MyControl:MyMulSelect  Height="25" x:Name="hallid" Width="150"/>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <sdk:Label  Content="申请人：" Width="80"/>
+                        <TextBox x:Name="applyUser" Width=" 120" Height="25"/>
+            
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <telerik:RadButton x:Name="search" Width="80" Height="25" Margin="20 0 0 0"  Click="search_Click"  Content="查询"/>
+                    </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                        <sdk:Label Width="80" Content="申请日期：" />
+                        <telerik:RadDatePicker  Height="25" x:Name="fromDate" Width="90"/>
+                        <sdk:Label  Content="到" Margin="2 0 2 0"/>
+                        <telerik:RadDatePicker  Height="25" x:Name="toDate" Width="90"/>
+                       
+                    </StackPanel>
+                </toolkit:WrapPanel>
+                
+                <DockPanel DockPanel.Dock="Top" Height="200">
+                    <!--分页控件-->
+                    <DockPanel  x:Name="panel"  toolkit:DockPanel.Dock="Bottom" HorizontalAlignment="Stretch"  Height="30" >
+                        <telerik:RadNumericUpDown  toolkit:DockPanel.Dock="Right"  x:Name="pagesize" Minimum="1" Value="30" Width="50" NumberDecimalDigits="0"/>
+                        <telerik:RadDataPager x:Name="page"   toolkit:DockPanel.Dock="Left" 
+                      PageSize="30" AutoEllipsisMode="Both"  DisplayMode="All" NumericButtonCount="10"  Height="30" />
+
+                    </DockPanel>
+
+                    <telerik:RadGridView  RowStyleSelector="{StaticResource SelectorStyle}" x:Name="GridAuitList"  MinHeight="100"   GridLinesVisibility="Both"  toolkit:DockPanel.Dock="Top" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+                  CanUserFreezeColumns="False"  SelectionChanged="GridAuitList_SelectionChanged"
+                     AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False"  >
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewSelectColumn />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding IsAduited, Mode=OneWay}"  Header="已审批" Width="auto" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding IsPass, Mode=OneWay}"  Header="已通过" Width="auto" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding NextPrice, Mode=OneWay}" DataFormatString="{}{0:0.0000}"  Header="审批金额档次" Width="auto" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                              <telerik:GridViewDataColumn DataMemberBinding="{Binding ApplyUser, Mode=OneWay}"  Header="申请人" Width="auto" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding HallName, Mode=OneWay}" Width="auto" IsReadOnly="True" HeaderTextAlignment="Center" Header="门店" IsGroupable="False" IsFilterable="False"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding ApplyDate, Mode=OneWay}"  Header="申请日期" Width="auto" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding ApplyNote, Mode=OneWay}"  Header="申请备注" Width="auto" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding AduitNote, Mode=TwoWay}"  Header="备注" IsReadOnly="True" Width="auto"  HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="True"/>
+
+
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+
+                    
+                </DockPanel>
+                <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"/>
+                <StackPanel toolkit:DockPanel.Dock="Bottom" Orientation="Horizontal" Height="45" HorizontalAlignment="Right">
+                    <telerik:RadButton Content="取消申请" x:Name="CancelAduit" Click="CancelAduit_Click"  Width="100" Height="30" />
+                    
+                </StackPanel>
+                <DockPanel DockPanel.Dock="Top">
+                    
+
+                    <toolkit:WrapPanel  toolkit:DockPanel.Dock="Top" >       
+                        <StackPanel Orientation="Horizontal"  Margin="2,3">
+                            <TextBlock  Text="申请日期:" Width="80"/>
+                            <TextBox IsReadOnly="True"    x:Name="applyDate"  Width="120"   />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"  Margin="2,3">
+                            <TextBlock  Text="营业厅:"  Width="80"/>
+                            <!--<UserMS:MyAutoTextBox   FontSize="13" x:Name="HallID"  Width="150" Height="25" VerticalAlignment="Center" Grid.Column="5" HorizontalAlignment="Left" Grid.Row="0"   />-->
+                            <TextBox    IsReadOnly="True"  x:Name="HallName"  Width="120"  />
+                        </StackPanel>
+
+                        <!--<StackPanel Orientation="Horizontal"   Margin="2,3">
+                            <TextBlock  Text="借贷方式：" Width="80"/>
+                            <TextBox x:Name="borowType" IsReadOnly="True"   Width="120"  />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"  Margin="2,3">
+                            <TextBlock  Text="借贷部门:"  Width="80"/>
+                            <TextBox IsReadOnly="True"  x:Name="dept"  Width="120"  />
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal"   Margin="2,3">
+                            <TextBlock  Text="借贷人：" Width="80"/>
+                            <TextBox x:Name="borrower" IsReadOnly="True"  Width="120"  />
+                        </StackPanel>-->
+
+                        <StackPanel Orientation="Horizontal"   Margin="2,3">
+                            <TextBlock  Text="备注：" Width="80"/>
+                            <TextBox x:Name="note" IsReadOnly="True"  Width="120"  />
+                        </StackPanel>
+
+                       
+
+                    </toolkit:WrapPanel>
+ 
+
+                    <toolkit:DockPanel toolkit:DockPanel.Dock="Bottom">
+
+                        <telerik:RadGridView  Width="220"   GridLinesVisibility="Both" x:Name="GridAduitDetail" toolkit:DockPanel.Dock="Right" ShowColumnHeaders="True" 
+                          CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+                              CanUserFreezeColumns="False" IsReadOnly="True" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+    	         	        RowDetailsVisibilityMode="VisibleWhenSelected"   >
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewBoundColumnBase  Header="审批人"  DataMemberBinding="{Binding AduitUser}"  Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="已通过"  DataMemberBinding="{Binding IsPass}"  Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="审批日期"  DataMemberBinding="{Binding AduitDate}"  Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="备注"  DataMemberBinding="{Binding Note}"  Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center" IsFilterable="False" />
+
+                            </telerik:RadGridView.Columns>
+                        </telerik:RadGridView>
+                        <Splitter:DockPanelSplitter DockPanel.Dock="Right"  Background="Silver"/>
+                        <telerik:RadGridView  x:Name="GridApplyList"    GridLinesVisibility="Both"   toolkit:DockPanel.Dock="Left" 
+                          ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+                        CanUserFreezeColumns="False" IsReadOnly="True" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False"  
+    		                >
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewBoundColumnBase  Header="商品类别" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ClassName}" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding TypeName}" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="商品型号" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProName}" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProFormat}" IsFilterable="False" />
+                                <telerik:GridViewBoundColumnBase  Header="单价" Width="auto"  DataFormatString="{}{0:0.0000}"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProPrice}" IsFilterable="False" />
+
+                                <telerik:GridViewBoundColumnBase  Header="数量" Width="auto" DataFormatString="{}{0:0.00}"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding ProCount}" IsFilterable="False" />
+                                
+                                <telerik:GridViewDataColumn DataFormatString="{}{0:0.0000}" DataMemberBinding="{Binding OtherOff, Mode=OneWay}"  Header="店面优惠金额"  IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>
+                                <telerik:GridViewBoundColumnBase  Header="其他优惠"  DataMemberBinding="{Binding Preferent}" Width="auto" DataFormatString="{}{0:0.00}"  IsReadOnly="True" HeaderTextAlignment="Center" IsFilterable="False" />
+
+                                <telerik:GridViewDataColumn DataMemberBinding="{Binding Note, Mode=OneWay}"  Header="备注" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="True"/>
+
+                            </telerik:RadGridView.Columns>
+                        </telerik:RadGridView>
+
+                    </toolkit:DockPanel>
+
+                  
+                </DockPanel>
+                
+                    
+            </toolkit:DockPanel>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</src:BasePage>

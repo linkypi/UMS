@@ -1,0 +1,165 @@
+﻿<userMs:BasePage xmlns:MyControl="clr-namespace:UserMS.MyControl"  xmlns:pivot="http://schemas.telerik.com/2008/xaml/presentation/pivot" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:userMs="clr-namespace:UserMS" xmlns:DCDetails="clr-namespace:UserMS.Views.StockMS.Allot"
+    x:Class="UserMS.Views.UsersellMS.Usercenter.UserRegister"
+    mc:Ignorable="d" Loaded="Page_Loaded"
+      d:DesignWidth="640" d:DesignHeight="480">
+
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        <toolkit:DockPanel x:Name="LayoutRoot">
+
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                <telerik:RadMenuItem Header="提交" FontSize="13" x:Name="Sumbit"/>
+                <telerik:RadMenuItem Header="取消" FontSize="13" x:Name="Cancel"/>
+            </telerik:RadMenu>
+            <TextBlock Text="带星号为必填内容" toolkit:DockPanel.Dock="Top" Margin="10 0"  Foreground="Red"/>
+    
+
+
+                <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="10 0">
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock Text="原始单号：" FontSize="13"  VerticalAlignment="Center" Margin="20 0 0 0"/>
+                        <TextBox  x:Name="TbOldID" FontSize="13"  Width="150"/>
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="White"  FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock Text="卡号：" FontSize="13"  VerticalAlignment="Center" Margin="45 0 0 0"/>
+                        <TextBox  x:Name="tbcardid" FontSize="13"  Width="150"/>
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="Red" FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock  Text="姓名：" FontSize="13" VerticalAlignment="Center"  Margin="45 0 0 0"/>
+                        <TextBox x:Name="tbName"  FontSize="13"  Width="150" />
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="Red" FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock  Text="性别：" FontSize="13" VerticalAlignment="Center"  Margin="45 0 0 0"/>
+                        <telerik:RadComboBox  x:Name="cbsex" Width="150" FontSize="13" >
+                            <telerik:Label>男</telerik:Label>
+                            <telerik:Label>女</telerik:Label>
+                        </telerik:RadComboBox>
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="Red"  FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock Text="生日：" VerticalAlignment="Center" FontSize="13" Margin="45 0 0 0"/>
+                        <telerik:RadDatePicker  x:Name="birthday"  FontSize="13"  Width="150" />
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="Red"  FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock  Text="手机号码：" VerticalAlignment="Center" FontSize="13"  Margin="20 0 0 0"/>
+                        <TextBox  x:Name="phoneNum"  FontSize="13"  Width="150" />
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="Red" FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock  Text="电话号码：" FontSize="13" Margin="20 0 0  0"/>
+                        <TextBox x:Name="telephone"  FontSize="13" Width="150"/>
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="White"  FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock  Text="QQ：" FontSize="13" Margin="58 0 0 0"/>
+                        <TextBox x:Name="QQ"  FontSize="13"  Width="150" />
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="White"  FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock  Text="地址：" FontSize="13" Margin="45 0 0 0"/>
+                        <TextBox   FontSize="13"  x:Name="tbaddress" Width="150" />
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="White"  FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock  Text="注册日期：" FontSize="13" Margin="20 0 0 0"/>
+                        <telerik:RadDatePicker  x:Name="dtjoinTime"  FontSize="13" Width="150" IsReadOnly="True"/>
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="White"  FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock Text="证件类型："  FontSize="13"  Margin="20 0 0 0"/>
+                        <telerik:RadComboBox  FontSize="13"  Width="150" x:Name="tbIDtype" >
+                        </telerik:RadComboBox>
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="White" FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock Text="证件号码：" FontSize="13" Margin="20 0 0 0"/>
+                        <TextBox x:Name="tbIDnum"  FontSize="13"  Width="150" />
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="White" FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock Text="备注：" FontSize="13" Margin="45 0 0 0"/>
+                        <TextBox x:Name="TbNote"  FontSize="13"  Width="150" />
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="White" FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock Text="揽装门店：" FontSize="13"  Margin="20 0 0 0"/>
+                        <TextBox x:Name="TbHall"    Width="150"  IsReadOnly="True" />
+                        <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="Red" FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBlock Text="揽装人：" FontSize="13"  Margin="34 0 0 0"/>
+                    <userMs:MyAutoTextBox  x:Name="Seller" d:LayoutOverrides="Height" Width="150"/>
+                    <TextBlock Text="*" toolkit:DockPanel.Dock="Top"  Foreground="Red"  FontWeight="Bold" Margin="5"/>
+                    </StackPanel>
+                </toolkit:WrapPanel>
+      
+            <ScrollViewer toolkit:DockPanel.Dock="Top" x:Name="NewCardPanel" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel >
+                    <telerik:GroupBox  Header="会员卡数据">
+                        <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="10 0" >
+                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <TextBlock Text="卡类型：" FontSize="13" Margin="34 0 0 0"/>
+                                <TextBox  IsReadOnly="True" FontSize="13"  x:Name="cardtype"  Width="150" Text="{Binding Name}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <TextBlock   Text="卡工本费：" FontSize="13"  Margin="20 0 0 0"/>
+                                <TextBox IsReadOnly="True" x:Name="production" FontSize="13"  Width="150" Text="{Binding Cost_production}"/>
+                            </StackPanel>
+                            <!--<StackPanel Orientation="Horizontal" Margin="0 5">
+                                    <TextBlock  Text="初始余额：" FontSize="13" Margin="20 0 0 0"/>
+                                     <TextBox IsReadOnly="True" x:Name="sbalance"  FontSize="13"  Width="150"/>
+                                 </StackPanel>-->
+                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <TextBlock  Text="初始积分：" FontSize="13" Margin="20 0 0 0"/>
+                                <TextBox  IsReadOnly="True" x:Name="spoint" FontSize="13"  Width="150" Text="{Binding SPoint}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <TextBlock   Text="有效期：" FontSize="13"  Margin="34 0 0 0 "/>
+                                <TextBox IsReadOnly="True" x:Name="validaty"  Width="70" FontSize="13" Text="{Binding Validity}"/>
+                                <sdk:Label  Content="天"  FontSize="13" />
+                            </StackPanel>
+                        </toolkit:WrapPanel>
+                    </telerik:GroupBox>
+                    <StackPanel >
+                        <telerik:GroupBox  Header="可享用服务"  >
+                            <StackPanel Margin="10 0">
+                                <telerik:RadGridView x:Name="DGservice" SelectionMode="Single"   AutoGenerateColumns="False" ShowGroupPanel="False" CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  MinHeight="200" MaxHeight="600" IsFilteringAllowed="False">
+                                    <telerik:RadGridView.Columns>
+                                        <!--<telerik:GridViewBoundColumnBase DataMemberBinding="{Binding ProTypeName}"  Header="商品类别" Width="auto"  IsReadOnly="True"/>
+                                        <telerik:GridViewBoundColumnBase  DataMemberBinding="{Binding ProName}" Header="商品品牌" Width="auto"  IsReadOnly="True"/>-->
+                                        <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding ProName}" Header="服务" Width="auto"  IsReadOnly="True"/>
+                                        <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding SCount}" Header="服务次数" Width="auto"  IsReadOnly="True"/>
+
+                                        <telerik:GridViewBoundColumnBase DataMemberBinding="{Binding Note}" Header="备注" Width="SizeToHeader"  IsReadOnly="True"/>
+
+                                    </telerik:RadGridView.Columns>
+                                </telerik:RadGridView>
+                                <telerik:RadDataPager   toolkit:DockPanel.Dock="Top"  PageSize="4" DisplayMode="All"  VerticalAlignment="Stretch"
+                              x:Name="radDataPager"   
+							  BorderThickness="1,0,1,1"
+							  Source="{Binding Items, ElementName=DGservice}"
+							  AutoEllipsisMode="Both"
+							  NumericButtonCount="10"
+							  IsTotalItemCountFixed="True" />
+                            </StackPanel>
+                        </telerik:GroupBox>
+                    </StackPanel>
+                    <telerik:GroupBox  Header="4S管理内容" toolkit:DockPanel.Dock="Bottom" Height="150">
+                        <TextBox    x:Name="Note"  VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Text="{Binding Note}" IsReadOnly="True"/>
+                    </telerik:GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </toolkit:DockPanel>
+    </xctk:BusyIndicator>
+</userMs:BasePage>

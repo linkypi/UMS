@@ -1,0 +1,16 @@
+﻿<Window x:Class="UserMS.RichTextBoxEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Title="编辑商品相关提示信息" Height="300" Width="300" >
+    <telerik:RadBusyIndicator x:Name="busy">
+
+        <DockPanel x:Name="LayoutRoot">
+            <DockPanel DockPanel.Dock="Bottom" Height="30" HorizontalAlignment="Center">
+                <Button Content="确定" Width="100" Click="Button_Click"></Button>
+                <Button Content="取消" Width="100" Margin="10,0" Click="Button_Click_1"></Button>
+            </DockPanel>
+            <TextBox  DockPanel.Dock="Top" Name="Introduction" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+        </DockPanel>
+    </telerik:RadBusyIndicator>
+</Window>

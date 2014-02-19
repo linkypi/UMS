@@ -1,0 +1,64 @@
+﻿<userMs:BasePage xmlns:MyControl="clr-namespace:UserMS.MyControl" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    
+    xmlns:userMs="clr-namespace:UserMS" xmlns:DCDetails="clr-namespace:UserMS.Views.StockMS.Allot"
+    x:Class="UserMS.Views.UsersellMS.Usercenter.AddIDCard"
+    mc:Ignorable="d"
+      d:DesignWidth="640" d:DesignHeight="480">
+
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        <toolkit:DockPanel x:Name="LayoutRoot" >
+
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                <telerik:RadMenuItem Header="取消" FontSize="13" x:Name="TbCancel" Click="Cancel_Click"/>
+                <telerik:RadMenuItem Header="提交" FontSize="13" x:Name="TbSubit" Click="TbSubit_Click"/>
+                <!--<telerik:RadMenuItem Header="新增证件类别" FontSize="13" x:Name="TbAdd" Click="TbAdd_Click"/>-->
+            </telerik:RadMenu>
+
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="10 0" x:Name="IDCardPanel">
+
+                <!--<StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="ID：" VerticalAlignment="Center"></TextBlock>
+                    <TextBox Width="100" x:Name="IDCardID" Text="由系统自动生成" IsReadOnly="True"></TextBox>
+                </StackPanel>-->
+                <StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="证件类型：" VerticalAlignment="Center" ></TextBlock>
+                    <TextBox x:Name="IDCardName" Width="100" Text="{Binding Name}" />
+                </StackPanel>
+                <!--<StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="备注：" VerticalAlignment="Center"></TextBlock>
+                    <TextBox Width="100" x:Name="Note" Height="25" Text="{Binding Note}"></TextBox>
+                </StackPanel>-->
+                <toolkit:WrapPanel Orientation="Horizontal">
+                    <StackPanel Margin="2,3" Orientation="Horizontal">
+                        <TextBlock  Text="备注：" Width="80"/>
+                        <TextBox  x:Name="Note"  Width="500"  Height="50" AcceptsReturn="True" />
+                    </StackPanel>
+                </toolkit:WrapPanel>
+
+                <!--<StackPanel Orientation="Horizontal" Margin="20 5">
+                    <TextBlock Text="创建日期：" VerticalAlignment="Center"></TextBlock>
+                    <telerik:RadDateTimePicker x:Name="StartTime" Width="150" />
+                    <TextBlock Text="至：" VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
+                    <telerik:RadDateTimePicker x:Name="EndTime" Width="150" />
+                    <Button x:Name="TBSearch" Content="查 询" Width="60"  Height="25" Margin="10 0 0 0"></Button>
+                </StackPanel>-->
+            </toolkit:WrapPanel>
+            <telerik:RadDataPager  IsTotalItemCountFixed="True"
+                x:Name="RadPager" PageIndexChanging="RadPager_PageIndexChanging_1"  toolkit:DockPanel.Dock="Bottom"  PageSize="20" DisplayMode="All"  VerticalAlignment="Stretch" />
+            <telerik:RadGridView x:Name="dataGrid1" toolkit:DockPanel.Dock="Top" SelectionMode="Single" IsFilteringAllowed="False"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewSelectColumn />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+
+        </toolkit:DockPanel>
+    </xctk:BusyIndicator>
+    </userMs:BasePage>

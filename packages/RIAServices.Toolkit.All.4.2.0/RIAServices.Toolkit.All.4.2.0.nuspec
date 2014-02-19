@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RIAServices.Toolkit.All</id>
+    <version>4.2.0</version>
+    <title>RIA Services Toolkit (all packages)</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=223397</licenseUrl>
+    <projectUrl>http://silverlight.net/riaservices/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Includes SOAP and JSON Endpoints, EntityFramework Code-First support, Linq to Sql support, Unit Test Host, T4 code generation, and the Windows Azure Table Storage DomainService.
+
+RIAServices.Server is also included, which allows for easier bin-deployment of your RIA Services applications by referencing the core server assemblies from the NuGet package instead of the GAC.</description>
+    <summary>WCF RIA Services Toolkit - All NuGet Packages</summary>
+    <releaseNotes />
+    <copyright />
+    <language>en-US</language>
+    <tags>WCF RIA Services RIAServices Toolkit</tags>
+    <dependencies>
+      <dependency id="RIAServices.Server" />
+      <dependency id="RIAServices.WindowsAzure" />
+      <dependency id="RIAServices.UnitTesting" />
+      <dependency id="RIAServices.T4" />
+      <dependency id="RIAServices.EntityFramework" />
+      <dependency id="RIAServices.Endpoints" />
+      <dependency id="RIAServices.LinqToSql" />
+      <dependency id="RIAServices.WebForms" />
+      <dependency id="RIAServices.EF4" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,599 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Ink;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
+using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.Primitives;
+using UserMS;
+using Telerik.Windows;
+using UserMS.API;
+using UserMS.Model;
+using SelectionChangedEventArgs = Telerik.Windows.Controls.SelectionChangedEventArgs;
+
+
+namespace UserMS.Views.ProSell
+{
+    public partial class NewProSellSetp2
+    {
+        public API.Pro_SellInfo SellInfo { get; set; }
+        public List<API.VIP_OffList> OffList { get; set; }
+        public API.VIP_VIPInfo VipInfo;
+        private List<ProSellGridModel> GridViewSellList = new List<ProSellGridModel>();
+        public List<API.VIP_OffList> SelectedOffList = new List<VIP_OffList>();
+        public List<API.Pro_SellListInfo> newselllist = new List<Pro_SellListInfo>();
+        
+        public List<VIP_OffList> canselect = new List<VIP_OffList>();
+        public int Save_MethodID = 51;
+        public List<VIP_OffTicket> VIPTicket;
+
+        private List<UserMS.Model.UserOpModel> UserOpList = new List<UserOpModel>();
+        public List<API.Pro_SellSpecalOffList> SpecalOffLists = new List<Pro_SellSpecalOffList>();
+        private decimal sellprice = 0;
+        private decimal offprice = 0;
+        private decimal cashprice = 0;
+
+        private void calcprices()
+        {
+
+            sellprice = 0;
+            offprice = 0;
+            cashprice = 0;
+            foreach (var proSellListInfo in newselllist)
+            {
+                sellprice = sellprice + Convert.ToDecimal(proSellListInfo.ProPrice) * Convert.ToDecimal(proSellListInfo.ProCount);
+                proSellListInfo.CashPrice = (proSellListInfo.ProPrice - proSellListInfo.OffPrice -
+                                             proSellListInfo.OffSepecialPrice - proSellListInfo.TicketUsed)*
+                                            proSellListInfo.ProCount;
+
+            }
+            foreach (var vipOffList in SelectedOffList)
+            {
+                offprice = offprice + Convert.ToDecimal(vipOffList.OffMoney);
+            }
+            if (SellInfo.OffID != null && OffList.Any(p => p.ID == SellInfo.OffID))
+            offprice = offprice + Convert.ToDecimal( OffList.First(p => p.ID == SellInfo.OffID).OffMoney);
+
+            if (SellInfo.OffTicketPrice != null)
+                offprice = offprice + Convert.ToDecimal(SellInfo.OffTicketPrice);
+            cashprice = newselllist.Sum(p=>p.CashPrice);
+            if (cashprice < 0) cashprice = 0;
+            SellInfo.CashTotle = cashprice;
+            this.ProPrice.Text = sellprice.ToString("0.00");
+            this.OffPrice.Text = offprice.ToString("0.00");
+            //this.SellPrice.Text = cashprice.ToString("0.00");
+            this.SellPrice.Value = cashprice;
+
+            
+            CardPrice_ValueChanged(null, null);
+
+            
+        }
+
+        private void InitNewSellList(List<Pro_SellListInfo> listInfos)
+        {
+            newselllist=new List<Pro_SellListInfo>();
+            
+            DataContractSerializer bf = new DataContractSerializer(typeof(List<Pro_SellListInfo>));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                bf.WriteObject(ms,listInfos);
+                ms.Position = 0;
+                newselllist = (List<Pro_SellListInfo>) bf.ReadObject(ms);
+
+            }
+            
+        }
+
+        public NewProSellSetp2()
+        {
+            // Required to initialize variables
+            InitializeComponent();
+        }
+
+        public NewProSellSetp2(API.Pro_SellInfo SellInfo, List<API.VIP_OffList> OffList, API.VIP_VIPInfo vipInfo)
+        {
+            this.SellInfo = SellInfo;
+            this.OffList = OffList;
+
+
+            InitializeComponent();
+            this.VipInfo = vipInfo;
+            VIPCard.DataContext = vipInfo;
+            VIPName.DataContext = vipInfo;
+            VIPPhone.DataContext = vipInfo;
+            VIPPoint.DataContext = vipInfo;
+            if (vipInfo != null) VIPTicket = vipInfo.VIP_OffTicket;
+
+            if (VIPTicket == null)
+                VIPTicket = new List<VIP_OffTicket>();
+            VIPTicket.Insert(0, new VIP_OffTicket() { Name = "无", TicketID = "无", ID = 0 });
+            
+            this.OffTicket.ItemsSource = VIPTicket;
+            this.OffTicket.SelectedIndex = 0;
+            InitGridSellList(SellInfo.Pro_SellListInfo, this.OffList);
+            this.OffListSelected.ItemsSource = SelectedOffList;
+            InitNewSellList(SellInfo.Pro_SellListInfo);
+            this.OffListSelect.ItemsSource = canselect;
+
+            CalcOffCanselect();
+            List<VIP_OffList> sellofflist = OffList.Where(p => p.Type == 2).ToList();
+            sellofflist.Insert(0,new VIP_OffList(){ID=0,Name="无"});
+            this.SellOffSelect.ItemsSource = sellofflist;
+            this.SellOffSelect.SelectedIndex = 0;
+            calcprices();
+            InitGridSellList(newselllist, this.OffList);
+
+            
+            foreach (var sysUserOpList in Store.UserOpList)
+            {
+                UserOpModel p =new UserOpModel();
+                p.ID = sysUserOpList.ID;
+                p.HallID = sysUserOpList.HallID;
+                p.OpID = sysUserOpList.OpID;
+                p.UserID = sysUserOpList.UserID;
+                p.Username = Store.UserInfos.First(q=>q.UserID==sysUserOpList.UserID).UserName;
+                p.opname = Store.UserOp.First(q => q.OpID == sysUserOpList.OpID).Name;
+                UserOpList.Add(p);
+            }
+
+            this.Seller.ItemsSource = UserOpList;
+            this.Seller.TextSearchPath = "Username";
+            this.Seller.SearchEvent = SellerSearchEvent;
+            this.Seller.SelectionMode = AutoCompleteSelectionMode.Single;
+            this.Seller.TextBox_SelectionChanged = SellerSelectEvent;
+
+            this.SellList.AddHandler(RadComboBox.SelectionChangedEvent, new Telerik.Windows.Controls.SelectionChangedEventHandler(GridViewComboBoxColumn_PropertyChanged_1));
+        }
+
+        private void InitGridSellList(List<Pro_SellListInfo> Pro_SellListInfo, List<VIP_OffList> OffList)
+        {
+            GridViewSellList.Clear();
+            foreach (Pro_SellListInfo proSellListInfo in Pro_SellListInfo)
+            {
+                ProSellGridModel p = new ProSellGridModel();
+                p.ProID = proSellListInfo.ProID;
+                p.ProName = Store.ProInfo.First(pp => pp.ProID == proSellListInfo.ProID).ProName;
+                p.ProCount = proSellListInfo.ProCount;
+                //p.Unit = Store.ProInfo.First(pp => pp.ProID == proSellListInfo.ProID).pro;
+                p.ProPrice = proSellListInfo.ProPrice;
+                p.OffPrice = proSellListInfo.OffPrice;
+                p.SpecalOffPrice = proSellListInfo.OffSepecialPrice;
+                
+                p.IMEI = proSellListInfo.IMEI;
+                p.TicketNum = proSellListInfo.TicketID;
+                p.TicketPrice = proSellListInfo.CashTicket;
+                p.OffLists = OffList.Where(t => t.Type == 0 && t.VIP_ProOffList.Any(q => q.ProID == p.ProID)).ToList();
+                p.OffLists.Insert(0, new VIP_OffList() {ID = 0, Name = "无"});
+                p.SelectedOffId = Convert.ToInt16(proSellListInfo.OffID);
+                p.SellListModel = proSellListInfo;
+                GridViewSellList.Add(p);
+            }
+
+
+            SellList.ItemsSource = GridViewSellList;
+            SellList.Rebind();
+        }
+
+        private void SellerSelectEvent(object sender, SelectionChangedEventArgs e)
+        {
+            UserOpModel selected = Seller.SelectedItem as UserOpModel;
+            if (selected != null)
+            {
+                this.SellInfo.Seller = selected.ID + "";
+            }
+
+        }
+
+        private void SellerSearchEvent(object sender, RoutedEventArgs routedEventArgs)
+        {
+            SingleSelecter w = new SingleSelecter(Common.CommonHelper.HallTreeViewModel(), UserOpList, "HallID",
+                                                  "Username", new string[] {"Username", "opname"},
+                                                  new string[] {"用户名", "职位"});
+
+            w.Closed += SellerSearchWindowClose;
+            w.ShowDialog();
+        }
+
+        void SellerSearchWindowClose(object sender, Telerik.Windows.Controls.WindowClosedEventArgs e)
+        {
+            SingleSelecter window = sender as SingleSelecter;
+            if (window != null)
+            {
+                if (window.DialogResult==true)
+                {
+                    UserOpModel selected = (UserOpModel)window.SelectedItem;
+                    this.SellInfo.Seller = selected.ID + "";
+                    this.Seller.TextBox.SearchText = selected.Username;
+
+                }
+            }
+
+        } 
+
+
+        private void Save_OnClick(object sender, RadRoutedEventArgs e)
+        {
+<<<<<<< HEAD
+            if (this.SellInfo.Seller == "" || this.SellInfo.Seller == null)
+            {
+                MessageBox.Show("未选择销售员");
+                return;
+            }
+=======
+            
+>>>>>>> 1
+            API.Pro_SellInfo Sellinfo = this.SellInfo;
+            Sellinfo.Pro_SellListInfo = this.newselllist;
+            Sellinfo.UserID = Store.LoginUserInfo.UserID;
+
+            Sellinfo.CashPay = Convert.ToDecimal(CashPrice.Value);
+            Sellinfo.CardPay = Convert.ToDecimal(CardPrice.Value);
+
+            Sellinfo.Pro_SellSpecalOffList = SpecalOffLists;
+            calcprices();
+            InitGridSellList(newselllist, this.OffList);
+            
+            PublicRequestHelp helper=new PublicRequestHelp(this.IsBusy,Save_MethodID,new object[]{ Sellinfo}, Save_Temp_Event);
+
+
+        }
+
+        private void Save_Temp_Event(object sender, MainCompletedEventArgs e)
+        {
+            this.IsBusy.IsBusy = false;
+            if (e.Error == null)
+            {
+                if (e.Result.ReturnValue)
+                {
+                    MessageBox.Show("保存成功");
+                    //TODO:Clear
+                }
+                else
+                {
+                    MessageBox.Show("保存失败: " + e.Result.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("保存失败: 服务器错误\n" + e.Error.Message);
+            }
+        }
+
+        private void SaveEvent(object sender, MainCompletedEventArgs e)
+        {
+            this.IsBusy.IsBusy = false;
+            if (e.Error == null)
+            {
+                if (e.Result.ReturnValue)
+                {
+                    MessageBox.Show("保存成功");
+                    this.Content = new NewProSell(true);
+                }
+                else
+                {
+                    MessageBox.Show("保存失败: " + e.Result.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("保存失败: 服务器错误\n" + e.Error.Message);
+            }
+        }
+
+        private void OffListSelect_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
+        {
+        }
+
+
+        private void CalcOffCanselect()
+        {
+            
+            canselect.Clear();
+            List<Pro_SellListInfo> temp = new List<Pro_SellListInfo>(SellInfo.Pro_SellListInfo);
+            var temp1 = (from c in temp
+                         group c by c.ProID
+                             into g
+                             select new { ProID = g.Key, ProCount = g.Sum(p => p.ProCount) }).ToList();
+
+            foreach (VIP_OffList vipOffList in OffList)
+            {
+                var a = vipOffList.VIP_ProOffList.ToList();
+                //                vipOffList.ID
+
+                if (vipOffList.Type==1)
+                {
+                    try
+                    {
+                        foreach (VIP_ProOffList vipProOffList in a)
+                        {
+                            var query =
+                                newselllist.Any(
+                                    p =>
+                                    p.ProID == vipProOffList.ProID && (p.SpecialID == 0 || p.SpecialID == null) &&
+                                    p.ProCount >= vipProOffList.ProCount);
+
+                            if (!query)
+                            {
+                                throw new Exception();
+                            }
+                        }
+                        vipOffList.OffMoney = a.Sum(p => p.AfterOffPrice);
+
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+                    canselect.Add(vipOffList);
+
+
+                    //组合
+                }
+            }
+            this.OffListSelect.Rebind();
+            calcprices();
+            InitGridSellList(newselllist, this.OffList);
+        }
+
+
+
+        private void AddOffMethod(VIP_OffList selected)
+        {
+
+             if (selected.Type == 1)
+            {
+                API.Pro_SellSpecalOffList specalOff = new Pro_SellSpecalOffList();
+                specalOff.Pro_SellListInfo = new List<Pro_SellListInfo>();
+                
+                foreach (var vipProOffList in selected.VIP_ProOffList)
+                {
+                    var query1 =
+                        newselllist.Where(
+                            p =>
+                            p.ProID == vipProOffList.ProID && (p.SpecialID == 0 || p.SpecialID == null) &&
+                            p.ProCount >= vipProOffList.ProCount).OrderByDescending(p => p.ProCount);
+                    decimal need = (decimal) vipProOffList.ProCount;
+                    
+                    
+                    specalOff.SpecalOffID = selected.ID;
+                    if (SpecalOffLists.Count < 1)
+                    {
+                        specalOff.ID = 1;
+                    }
+                    else
+                    {
+                        specalOff.ID = SpecalOffLists.Max(p => p.ID) + 1;
+                    }
+
+                    foreach (var query in query1)
+                    {
+                        if (query.ProCount == need)
+                        {
+                            query.SpecialID = specalOff.ID;
+                            
+                            if (query.ProPrice - query.OffPrice <= vipProOffList.AfterOffPrice)
+                            {
+                                query.OffSepecialPrice = query.ProPrice - query.OffPrice;
+                            }
+                            else
+                            {
+                                query.OffSepecialPrice = query.ProPrice - query.OffPrice - vipProOffList.AfterOffPrice;
+                            }
+                            
+                            //specalOff.Pro_SellListInfo.Add(query);
+                            break;
+                        }
+                        else if
+                            (query.ProCount > need)
+                        {
+                            query.ProCount -= vipProOffList.ProCount;
+                            
+                            Pro_SellListInfo b = new Pro_SellListInfo();
+                            b.ProID = query.ProID;
+                            b.ProCount = vipProOffList.ProCount;
+                            b.ProPrice = query.ProPrice;
+                            b.OffPrice = query.OffPrice;
+                            if (b.ProPrice - b.OffPrice <= vipProOffList.AfterOffPrice)
+                            {
+                                b.OffSepecialPrice = b.ProPrice - b.OffPrice;
+                            }
+                            else
+                            {
+                                b.OffSepecialPrice = b.ProPrice - b.OffPrice - vipProOffList.AfterOffPrice;
+                            }
+                            b.IMEI = query.IMEI;
+                            b.SpecialID = specalOff.ID;
+                            b.OffID = query.OffID;
+                            //specalOff.Pro_SellListInfo.Add(b);
+                            newselllist.Add(b);
+                            break;
+                        }
+                        else
+                        {
+                            need = (decimal) (need - query.ProCount);
+                            query.SpecialID = specalOff.ID;
+                            if (query.ProPrice - query.OffPrice <= vipProOffList.AfterOffPrice)
+                            {
+                                query.OffSepecialPrice = query.ProPrice - query.OffPrice;
+                            }
+                            else
+                            {
+                                query.OffSepecialPrice = query.ProPrice - query.OffPrice - vipProOffList.AfterOffPrice;
+                            }
+                            //specalOff.Pro_SellListInfo.Add(query);
+                        }
+                    }
+
+                    
+                }
+                
+                //selected.Pro_SellSpecalOffList = new List<Pro_SellSpecalOffList>(SpecalOffLists);
+                VIP_OffList newselect = new VIP_OffList()
+                    {
+                        ID = selected.ID,
+                        Name = selected.Name,
+                        Pro_SellSpecalOffList = new List<Pro_SellSpecalOffList>(),
+                        OffMoney = selected.OffMoney,
+                        OffPoint = selected.OffPoint,
+                        OffRate = selected.OffRate,
+                        OffPointMoney = selected.OffPointMoney
+                    };
+                 newselect.Pro_SellSpecalOffList.Add(specalOff);
+                SpecalOffLists.Add(specalOff);
+                SelectedOffList.Add(newselect);
+                this.OffListSelected.Rebind();
+            }
+            
+        }
+
+        private void DelOffClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+
+            VIP_OffList selected = (VIP_OffList)this.OffListSelected.SelectedItem;
+            if (selected == null)
+            {
+                return;
+            }
+//            foreach (var proSellSpecalOffList in selected.Pro_SellSpecalOffList)
+//            {
+//                foreach (var proSellListInfo in proSellSpecalOffList.Pro_SellListInfo)
+//                {
+//                    proSellListInfo.SpecialID = null;
+//                    proSellListInfo.OffSepecialPrice = 0;
+//                }
+//                
+//            }
+
+            var specaloff = selected.Pro_SellSpecalOffList[0];
+
+            var query = newselllist.Where(p => p.SpecialID == specaloff.ID).ToList();
+            foreach (var proSellListInfo in query)
+            {
+                proSellListInfo.SpecialID = null;
+                proSellListInfo.OffSepecialPrice = 0;
+            }
+
+            SpecalOffLists.Remove(specaloff);
+            this.SelectedOffList.Remove(selected);
+            this.OffListSelected.Rebind();
+            CalcOffCanselect();
+
+       
+
+        }
+
+        private void Prev_OnClick(object sender, RadRoutedEventArgs e)
+        {
+
+
+            
+            this.Content = new NewProSell(this.SellInfo, this.VipInfo);
+
+        }
+
+        private void OffAddClick(object sender, RoutedEventArgs e)
+        {
+            this.SellList.IsReadOnly = true;
+            API.VIP_OffList selected = this.OffListSelect.SelectedItem as VIP_OffList;
+            if (selected != null)
+            {
+                AddOffMethod(selected);
+            }
+            CalcOffCanselect();
+        }
+
+        private void OffTicket_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((VIP_OffTicket) OffTicket.SelectedItem).ID != 0)
+            {
+                this.SellInfo.OffTicketID = ((VIP_OffTicket) OffTicket.SelectedItem).ID;
+            }
+            calcprices();
+            //InitGridSellList(newselllist, this.OffList);
+        }
+
+        private void SellOffSelect_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           if (((VIP_OffList) SellOffSelect.SelectedItem).ID != 0)
+           {
+               this.SellInfo.OffID = ((VIP_OffList) SellOffSelect.SelectedItem).ID;
+           }
+           calcprices();
+           //InitGridSellList(newselllist, this.OffList);
+        }
+
+        private void Reset_OnClick(object sender, RadRoutedEventArgs e)
+        {
+            InitNewSellList(SellInfo.Pro_SellListInfo); 
+            GridViewSellList.Clear();
+            InitGridSellList(newselllist, this.OffList);
+            this.OffTicket.SelectedIndex = 0;
+            this.SellOffSelect.SelectedIndex = 0;
+
+            
+            
+            this.SellList.IsReadOnly = false;
+            this.SpecalOffLists.Clear();
+            this.SelectedOffList.Clear();
+            this.OffListSelected.Rebind();
+
+
+
+            CalcOffCanselect();
+
+        }
+
+        private void CashPrice_ValueChanged(object sender, RadRoutedEventArgs e)
+        {
+            if (this.CashPrice.Value > this.cashprice)
+            {
+                this.CashPrice.Value = this.cashprice;
+            }
+            this.CardPrice.Value = this.cashprice - this.CashPrice.Value;
+        }
+
+        private void CardPrice_ValueChanged(object sender, RadRoutedEventArgs e)
+        {
+            if (CardPrice.Value > this.cashprice)
+            {
+                this.CardPrice.Value = this.cashprice;
+            }
+            this.CashPrice.Value = this.cashprice - this.CardPrice.Value;
+        }
+
+        private void GridViewComboBoxColumn_PropertyChanged_1(object sender, RadRoutedEventArgs e)
+        {
+            RadComboBox comboBox = (RadComboBox)e.OriginalSource;
+            if (comboBox.SelectedValue == null)
+            {
+                return;
+            }
+            ((ProSellGridModel)comboBox.DataContext).SelectedOffId = Convert.ToInt16(comboBox.SelectedValue);
+            //this.SellList.Rebind();
+            calcprices();
+            
+
+        }
+
+        private void NewProSellSetp2_OnLoaded(object sender, RoutedEventArgs e)
+        {
+
+           // this.GridViewComboBoxColumn1.PropertyChanged += GridViewComboBoxColumn_PropertyChanged_1;
+        }
+
+        private void SellList_OnCellEditEnded(object sender, GridViewCellEditEndedEventArgs e)
+        {
+            //this.SellList.Rebind();
+            calcprices();
+        }
+    }
+}

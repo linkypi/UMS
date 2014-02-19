@@ -1,0 +1,598 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.Text;
+using DAL;
+using Model;
+using System.ServiceModel.Activation;
+using System.Web;
+using System.Web.SessionState;
+using Common;
+using System.Reflection;
+using System.Collections;
+using System.Transactions;
+using Sys_UserInfo = Model.Sys_UserInfo;
+
+
+namespace UserMSService
+{
+    // 注意: 使用“重构”菜单上的“重命名”命令，可以同时更改代码、svc 和配置文件中的类名“UserMsService”。
+    // 注意: 为了启动 WCF 测试客户端以测试此服务，请在解决方案资源管理器中选择 UserMsService.svc 或 UserMsService.svc.cs，然后开始调试。
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
+    [ServiceContract(SessionMode = SessionMode.Allowed)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
+
+
+    #region Model序列化定义
+    [ServiceKnownType(typeof(Model.AduitListInfo))]
+    [ServiceKnownType(typeof(Model.AduitModel))]
+    [ServiceKnownType(typeof(Model.BorowListModel))]
+    [ServiceKnownType(typeof(Model.BorowModel))]
+    [ServiceKnownType(typeof(Model.IMEIModel))]
+    [ServiceKnownType(typeof(Model.MenuInfo))]
+    [ServiceKnownType(typeof(Model.NoIMEIModel))]
+    [ServiceKnownType(typeof(Model.Pro_SellInfo_Child))]
+    [ServiceKnownType(typeof(Model.Pro_SellListInfo_Child))]
+    [ServiceKnownType(typeof(Model.RenewModel))]
+    [ServiceKnownType(typeof(Model.RepairListModel))]
+    [ServiceKnownType(typeof(Model.RepairModel))]
+    [ServiceKnownType(typeof(Model.SetSelection))]
+    [ServiceKnownType(typeof(Model.Sys_InitDataStatus_Child))]
+    [ServiceKnownType(typeof(Model.Pro_AreaInfo))]
+    [ServiceKnownType(typeof(Model.Pro_BackInfo))]
+    [ServiceKnownType(typeof(Model.Pro_BackListInfo))]
+    [ServiceKnownType(typeof(Model.Pro_BackOrderIMEI))]
+    [ServiceKnownType(typeof(Model.Pro_BorowAduit))]
+    [ServiceKnownType(typeof(Model.Pro_BorowAduitList))]
+    [ServiceKnownType(typeof(Model.Pro_BorowInfo))]
+    [ServiceKnownType(typeof(Model.Pro_BorowListInfo))]
+    [ServiceKnownType(typeof(Model.Pro_BorowOrderIMEI))]
+    [ServiceKnownType(typeof(Model.Pro_CashTicket))]
+    [ServiceKnownType(typeof(Model.Pro_PriceChangeList))]
+    [ServiceKnownType(typeof(Model.Pro_ClassInfo))]
+    [ServiceKnownType(typeof(Model.Pro_HallInfo))]
+    [ServiceKnownType(typeof(Model.Pro_IMEI))]
+    [ServiceKnownType(typeof(Model.Pro_IMEI_Deleted))]
+    [ServiceKnownType(typeof(Model.Pro_InOrder))]
+    [ServiceKnownType(typeof(Model.Pro_InOrderIMEI))]
+    [ServiceKnownType(typeof(Model.Pro_InOrderList))]
+    [ServiceKnownType(typeof(Model.Pro_LevelInfo))]
+    [ServiceKnownType(typeof(Model.Pro_OutInfo))]
+    [ServiceKnownType(typeof(Model.Pro_OutModel))]
+    [ServiceKnownType(typeof(Model.Pro_OutOrderIMEI))]
+    [ServiceKnownType(typeof(Model.Pro_OutOrderList))]
+    [ServiceKnownType(typeof(Model.Pro_PriceChange))]
+    [ServiceKnownType(typeof(Model.Pro_PriceCostChange))]
+    [ServiceKnownType(typeof(Model.Pro_PriceCostChangeList))]
+    [ServiceKnownType(typeof(Model.Pro_ProInfo))]
+    [ServiceKnownType(typeof(Model.Pro_Property))]
+    [ServiceKnownType(typeof(Model.Pro_PropertyValue))]
+    [ServiceKnownType(typeof(Model.Pro_ProProperty_F))]
+    [ServiceKnownType(typeof(Model.Pro_RepairInfo))]
+    [ServiceKnownType(typeof(Model.Pro_RepairListInfo))]
+    [ServiceKnownType(typeof(Model.Pro_RepairReturnInfo))]
+    [ServiceKnownType(typeof(Model.Pro_RepairReturnListInfo))]
+    [ServiceKnownType(typeof(Model.Pro_ReturnInfo))]
+    [ServiceKnownType(typeof(Model.Pro_ReturnListInfo))]
+    [ServiceKnownType(typeof(Model.Pro_ReturnOrderIMEI))]
+    [ServiceKnownType(typeof(Model.Pro_SellAduit))]
+    [ServiceKnownType(typeof(Model.Pro_SellAduitList))]
+    [ServiceKnownType(typeof(Model.Pro_SellBack))]
+    [ServiceKnownType(typeof(Model.Pro_SellBackAduit))]
+    [ServiceKnownType(typeof(Model.Pro_SellBackIMEIList))]
+    [ServiceKnownType(typeof(Model.Pro_SellBackList))]
+    [ServiceKnownType(typeof(Model.Pro_SellBackSpecalOffList))]
+    [ServiceKnownType(typeof(Model.Pro_SellIMEIList))]
+    [ServiceKnownType(typeof(Model.Pro_SellInfo))]
+    [ServiceKnownType(typeof(Model.Pro_SellListInfo))]
+    [ServiceKnownType(typeof(Model.Pro_SellListServiceInfo))]
+    [ServiceKnownType(typeof(Model.Pro_SellSendInfo))]
+    [ServiceKnownType(typeof(Model.Pro_SellSpecalOffList))]
+    [ServiceKnownType(typeof(Model.Pro_SellType))]
+    [ServiceKnownType(typeof(Model.Pro_SellTypeProduct))]
+    [ServiceKnownType(typeof(Model.Pro_StoreInfo))]
+    [ServiceKnownType(typeof(Model.Pro_TypeInfo))]
+    [ServiceKnownType(typeof(Model.Sys_DeptInfo))]
+    [ServiceKnownType(typeof(Model.Sys_InitDataStatus))]
+    [ServiceKnownType(typeof(Model.Sys_LoginInfo))]
+    [ServiceKnownType(typeof(Model.Sys_MenuInfo))]
+    [ServiceKnownType(typeof(Model.Sys_MethodInfo))]
+    [ServiceKnownType(typeof(Model.Sys_Option))]
+    [ServiceKnownType(typeof(Model.Sys_OrderMakerInfo))]
+    [ServiceKnownType(typeof(Model.Sys_RemindList))]
+    [ServiceKnownType(typeof(Model.Sys_Role_HallInfo))]
+    [ServiceKnownType(typeof(Model.Sys_Role_Menu_HallInfo))]
+    [ServiceKnownType(typeof(Model.Sys_Role_Menu_ProInfo))]
+    [ServiceKnownType(typeof(Model.Sys_Role_MenuInfo))]
+    [ServiceKnownType(typeof(Model.Sys_RoleInfo))]
+    [ServiceKnownType(typeof(Model.Sys_RoleInfo_back))]
+    [ServiceKnownType(typeof(Model.Sys_RoleMethod))]
+    [ServiceKnownType(typeof(Model.Sys_SalaryList))]
+    [ServiceKnownType(typeof(Model.Sys_UserInfo))]
+    [ServiceKnownType(typeof(Model.Sys_UserOp))]
+    [ServiceKnownType(typeof(Model.Sys_UserOPList))]
+    [ServiceKnownType(typeof(Model.Sys_UserRemidList))]
+    [ServiceKnownType(typeof(Model.VIP_CardChange))]
+    [ServiceKnownType(typeof(Model.VIP_HallOffInfo))]
+    [ServiceKnownType(typeof(Model.VIP_IDCardType))]
+    [ServiceKnownType(typeof(Model.VIP_OffList))]
+    [ServiceKnownType(typeof(Model.VIP_OffTicket))]
+    [ServiceKnownType(typeof(Model.VIP_ProOffList))]
+    [ServiceKnownType(typeof(Model.VIP_Renew))]
+    [ServiceKnownType(typeof(Model.VIP_RenewBack))]
+    [ServiceKnownType(typeof(Model.VIP_RenewBackAduit))]
+    [ServiceKnownType(typeof(Model.VIP_SendProList))]
+    [ServiceKnownType(typeof(Model.VIP_SendProOffList))]
+    [ServiceKnownType(typeof(Model.VIP_VIPBack))]
+    [ServiceKnownType(typeof(Model.VIP_VIPBackAduit))]
+    [ServiceKnownType(typeof(Model.VIP_VIPInfo))]
+    [ServiceKnownType(typeof(Model.VIP_VIPInfo_BAK))]
+    [ServiceKnownType(typeof(Model.VIP_VIPOffLIst))]
+    [ServiceKnownType(typeof(Model.VIP_VIPService))]
+    [ServiceKnownType(typeof(Model.VIP_VIPType))]
+    [ServiceKnownType(typeof(Model.VIP_VIPType_Bak))]
+    [ServiceKnownType(typeof(Model.VIP_VIPTypeOffLIst))]
+    [ServiceKnownType(typeof(Model.VIP_VIPTypeService))]
+    [ServiceKnownType(typeof(Model.VIP_VIPTypeService_BAK))]
+    [ServiceKnownType(typeof(Model.GetBorowAduitInfoByAIDResult))]
+    [ServiceKnownType(typeof(Model.GetBorowAduitListByPageResult))]
+    [ServiceKnownType(typeof(Model.GetBorowListByIDResult))]
+    [ServiceKnownType(typeof(Model.GetBorowListByUIDResult))]
+    [ServiceKnownType(typeof(Model.GetRenewBackAduitListResult))]
+    [ServiceKnownType(typeof(Model.GetRepairListByUIDResult))]
+    [ServiceKnownType(typeof(Model.GetSellAduitListByPageResult))]
+    [ServiceKnownType(typeof(Model.GetSellBackAduitListResult))]
+    [ServiceKnownType(typeof(Model.GetVIPBackAduitListResult))]
+    [ServiceKnownType(typeof(Model.Sys_UserInfo))]
+    [ServiceKnownType(typeof(Model.Pro_SellAduitList))]
+    [ServiceKnownType(typeof(Model.Pro_Sell_Yanbao))]
+    [ServiceKnownType(typeof(Model.Pro_YanbaoPriceStepInfo))]
+    [ServiceKnownType(typeof(Model.View_Pro_InOrder))]
+    [ServiceKnownType(typeof(Model.View_Pro_RepairInfo))]
+    [ServiceKnownType(typeof(Model.View_BorowAduit))]
+    [ServiceKnownType(typeof(Model.ReportSqlParams_String))]
+    [ServiceKnownType(typeof(Model.ReportSqlParams_Bool))]
+    [ServiceKnownType(typeof(Model.ReportSqlParams_ListString))]
+    [ServiceKnownType(typeof(Model.ReportSqlParams_DataTime))]
+    [ServiceKnownType(typeof(Model.ReportPagingParam))]
+    [ServiceKnownType(typeof(Model.SelecterIMEI))]
+    [ServiceKnownType(typeof(Model.SeleterModel))]
+    [ServiceKnownType(typeof(Model.Pro_OutModel))]
+    [ServiceKnownType(typeof(Model.View_OutOrderList))]
+    [ServiceKnownType(typeof(Model.View_OutIMEI))]
+    [ServiceKnownType(typeof(Model.GetSAModelResult))]
+    [ServiceKnownType(typeof(Model.View_Pro_RepairReturnInfo))]
+    [ServiceKnownType(typeof(Model.View_Pro_RepairRetrunDetail))]
+    [ServiceKnownType(typeof(Model.View_Pro_SellInfo))]
+    [ServiceKnownType(typeof(Model.View_Pro_SellBackAduit))]
+    [ServiceKnownType(typeof(Model.View_Pro_SellAduit))] 
+    [ServiceKnownType(typeof(Model.View_VIP_Renew))] 
+    [ServiceKnownType(typeof(Model.View_VIPTypeService))]
+    [ServiceKnownType(typeof(Model.VIP_VIPInfo_Temp))]
+    [ServiceKnownType(typeof(Model.Pro_SellListInfo_Temp))]
+    [ServiceKnownType(typeof(Model.View_VIPInfo))]
+    [ServiceKnownType(typeof(Model.View_VIPService))]
+    [ServiceKnownType(typeof(Model.View_BorowInfo))]
+    [ServiceKnownType(typeof(Model.View_ReturnInfo))]
+    [ServiceKnownType(typeof(Model.View_VIPBackAduit))]
+    [ServiceKnownType(typeof(Model.View_VIP_RenewBackAduit))]
+    [ServiceKnownType(typeof(Model.CancelListModel))]
+    [ServiceKnownType(typeof(Model.View_RepairInfo))]
+    [ServiceKnownType(typeof(Model.TreeModel))]
+    [ServiceKnownType(typeof(Model.View_Pro_ChangeList))]
+    [ServiceKnownType(typeof(Model.View_Pro_CostChangeList))]
+    [ServiceKnownType(typeof(Model.View_UserBorowInfo))]
+    [ServiceKnownType(typeof(Model.View_BorowReturnInfo))]
+    [ServiceKnownType(typeof(Model.View_BorowReturnDetail))]
+    [ServiceKnownType(typeof(Model.View_YanBoPriceStepInfo))]
+    [ServiceKnownType(typeof(Model.Pro_YanbaoPriceStepInfo))]
+    [ServiceKnownType(typeof(Model.Pro_YanbaoPriceStepInfo_bak))]
+    [ServiceKnownType(typeof(Model.View_SellTypeProduct))]
+    [ServiceKnownType(typeof(Model.View_ProAllType))]
+    [ServiceKnownType(typeof(Model.View_VIP_OffList))]
+    [ServiceKnownType(typeof(Model.View_SellTypeProduct))]
+    [ServiceKnownType(typeof(Model.View_SalaryList))]
+    [ServiceKnownType(typeof(Model.PriceBill))]
+    [ServiceKnownType(typeof(Model.PriceBillChild))]
+    [ServiceKnownType(typeof(Model.CostBill))]
+    [ServiceKnownType(typeof(Model.CostBillChild))]
+<<<<<<< HEAD
+    [ServiceKnownType(typeof(Model.SalaryBill))]
+    [ServiceKnownType(typeof(Model.SalaryBillChild))] 
+=======
+    [ServiceKnownType(typeof(Model.Pro_Sell_Yanbao_temp))] 
+>>>>>>> 21
+    #endregion
+    #region List Model序列化定义
+    [ServiceKnownType(typeof(List<string>))]
+    [ServiceKnownType(typeof(List<Model.AduitListInfo>))]
+    [ServiceKnownType(typeof(List<Model.AduitModel>))]
+    [ServiceKnownType(typeof(List<Model.BorowListModel>))]
+    [ServiceKnownType(typeof(List<Model.BorowModel>))]
+    [ServiceKnownType(typeof(List<Model.IMEIModel>))]
+    [ServiceKnownType(typeof(List<Model.MenuInfo>))]
+    [ServiceKnownType(typeof(List<Model.NoIMEIModel>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellInfo_Child>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellListInfo_Child>))]
+    [ServiceKnownType(typeof(List<Model.RepairListModel>))]
+    [ServiceKnownType(typeof(List<Model.RenewModel>))]
+    [ServiceKnownType(typeof(List<Model.RepairModel>))]
+    [ServiceKnownType(typeof(List<Model.SetSelection>))]
+    [ServiceKnownType(typeof(List<Model.Sys_InitDataStatus_Child>))]
+    [ServiceKnownType(typeof(List<Model.Pro_AreaInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_BackInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_BackListInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_BackOrderIMEI>))]
+    [ServiceKnownType(typeof(List<Model.Pro_BorowAduit>))]
+    [ServiceKnownType(typeof(List<Model.Pro_BorowAduitList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_BorowInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_BorowListInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_BorowOrderIMEI>))]
+    [ServiceKnownType(typeof(List<Model.Pro_CashTicket>))]
+    [ServiceKnownType(typeof(List<Model.Pro_PriceChangeList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_ClassInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_HallInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_IMEI>))]
+    [ServiceKnownType(typeof(List<Model.Pro_IMEI_Deleted>))]
+    [ServiceKnownType(typeof(List<Model.Pro_InOrder>))]
+    [ServiceKnownType(typeof(List<Model.Pro_InOrderIMEI>))]
+    [ServiceKnownType(typeof(List<Model.Pro_InOrderList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_LevelInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_OutInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_OutModel>))]
+    [ServiceKnownType(typeof(List<Model.Pro_OutOrderIMEI>))]
+    [ServiceKnownType(typeof(List<Model.Pro_OutOrderList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_PriceChange>))]
+    [ServiceKnownType(typeof(List<Model.Pro_PriceCostChange>))]
+    [ServiceKnownType(typeof(List<Model.Pro_PriceCostChangeList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_ProInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_Property>))]
+    [ServiceKnownType(typeof(List<Model.Pro_PropertyValue>))]
+    [ServiceKnownType(typeof(List<Model.Pro_ProProperty_F>))]
+    [ServiceKnownType(typeof(List<Model.Pro_RepairInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_RepairListInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_RepairReturnInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_RepairReturnListInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_ReturnInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_ReturnListInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_ReturnOrderIMEI>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellAduit>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellAduitList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellBack>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellBackAduit>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellBackIMEIList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellBackList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellBackSpecalOffList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellIMEIList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellListInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellListServiceInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellSendInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellSpecalOffList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellType>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellTypeProduct>))]
+    [ServiceKnownType(typeof(List<Model.Pro_StoreInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_TypeInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_DeptInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_InitDataStatus>))]
+    [ServiceKnownType(typeof(List<Model.Sys_LoginInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_MenuInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_MethodInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_Option>))]
+    [ServiceKnownType(typeof(List<Model.Sys_OrderMakerInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_RemindList>))]
+    [ServiceKnownType(typeof(List<Model.Sys_Role_HallInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_Role_Menu_HallInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_Role_Menu_ProInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_Role_MenuInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_RoleInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_RoleInfo_back>))]
+    [ServiceKnownType(typeof(List<Model.Sys_RoleMethod>))]
+    [ServiceKnownType(typeof(List<Model.Sys_SalaryList>))]
+    [ServiceKnownType(typeof(List<Model.Sys_UserInfo>))]
+    [ServiceKnownType(typeof(List<Model.Sys_UserOp>))]
+    [ServiceKnownType(typeof(List<Model.Sys_UserOPList>))]
+    [ServiceKnownType(typeof(List<Model.Sys_UserRemidList>))]
+    [ServiceKnownType(typeof(List<Model.VIP_CardChange>))]
+    [ServiceKnownType(typeof(List<Model.VIP_HallOffInfo>))]
+    [ServiceKnownType(typeof(List<Model.VIP_IDCardType>))]
+    [ServiceKnownType(typeof(List<Model.VIP_OffList>))]
+    [ServiceKnownType(typeof(List<Model.VIP_OffTicket>))]
+    [ServiceKnownType(typeof(List<Model.VIP_ProOffList>))]
+    [ServiceKnownType(typeof(List<Model.VIP_Renew>))]
+    [ServiceKnownType(typeof(List<Model.VIP_RenewBack>))]
+    [ServiceKnownType(typeof(List<Model.VIP_RenewBackAduit>))]
+    [ServiceKnownType(typeof(List<Model.VIP_SendProList>))]
+    [ServiceKnownType(typeof(List<Model.VIP_SendProOffList>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPBack>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPBackAduit>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPInfo>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPInfo_BAK>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPOffLIst>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPService>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPType>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPType_Bak>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPTypeOffLIst>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPTypeService>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPTypeService_BAK>))]
+    [ServiceKnownType(typeof(List<Model.GetBorowAduitInfoByAIDResult>))]
+    [ServiceKnownType(typeof(List<Model.GetBorowAduitListByPageResult>))]
+    [ServiceKnownType(typeof(List<Model.GetBorowListByIDResult>))]
+    [ServiceKnownType(typeof(List<Model.GetBorowListByUIDResult>))]
+    [ServiceKnownType(typeof(List<Model.GetRenewBackAduitListResult>))]
+    [ServiceKnownType(typeof(List<Model.GetRepairListByUIDResult>))]
+    [ServiceKnownType(typeof(List<Model.GetSellAduitListByPageResult>))]
+    [ServiceKnownType(typeof(List<Model.GetSellBackAduitListResult>))]
+    [ServiceKnownType(typeof(List<Model.GetVIPBackAduitListResult>))]
+    [ServiceKnownType(typeof(List<Model.Sys_UserInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellAduitList>))]
+    [ServiceKnownType(typeof(List<Model.Pro_Sell_Yanbao>))]
+    [ServiceKnownType(typeof(List<Model.Pro_YanbaoPriceStepInfo>))]
+    [ServiceKnownType(typeof(List<Model.View_Pro_InOrder>))]
+    [ServiceKnownType(typeof(List<Model.View_Pro_RepairInfo>))]
+    [ServiceKnownType(typeof(List<Model.View_BorowAduit>))]
+    [ServiceKnownType(typeof(List<Model.ReportSqlParams_DataTime>))]
+    [ServiceKnownType(typeof(List<Model.ReportSqlParams_ListString>))]
+    [ServiceKnownType(typeof(List<Model.ReportSqlParams_String>))]
+    [ServiceKnownType(typeof(List<Model.ReportSqlParams_Bool>))]
+    [ServiceKnownType(typeof(List<Model.ReportPagingParam>))]
+    [ServiceKnownType(typeof(List<Model.SelecterIMEI>))]
+    [ServiceKnownType(typeof(List<Model.SeleterModel>))]
+    [ServiceKnownType(typeof(List<Model.Pro_OutModel>))]
+    [ServiceKnownType(typeof(List<Model.View_OutOrderList>))]
+    [ServiceKnownType(typeof(List<Model.View_OutIMEI>))]
+    [ServiceKnownType(typeof(List<Model.GetSAModelResult>))]
+    [ServiceKnownType(typeof(List<Model.View_Pro_RepairReturnInfo>))]
+    [ServiceKnownType(typeof(List<Model.View_Pro_RepairRetrunDetail>))]
+    [ServiceKnownType(typeof(List<Model.View_Pro_SellInfo>))]
+    [ServiceKnownType(typeof(List<Model.View_Pro_SellBackAduit>))]
+    [ServiceKnownType(typeof(List<Model.View_Pro_SellAduit>))] 
+    [ServiceKnownType(typeof(List<Model.View_VIP_Renew>))]
+    [ServiceKnownType(typeof(List<Model.View_VIPBackApply>))]
+    [ServiceKnownType(typeof(List<Model.View_BorowInfo>))]
+    [ServiceKnownType(typeof(List<Model.View_VIPBackAduit>))]
+    [ServiceKnownType(typeof(List<Model.View_VIPTypeService>))]
+    [ServiceKnownType(typeof(List<Model.VIP_VIPInfo_Temp>))]
+    [ServiceKnownType(typeof(List<Model.Pro_SellListInfo_Temp>))]
+    [ServiceKnownType(typeof(List<Model.View_VIPInfo>))]
+    [ServiceKnownType(typeof(List<Model.View_ReturnInfo>))]
+    [ServiceKnownType(typeof(List<Model.View_VIPService>))]
+    [ServiceKnownType(typeof(List<Model.View_VIP_RenewBackAduit>))] 
+    [ServiceKnownType(typeof(List<Model.Pro_SellListInfo_Temp>))]
+    [ServiceKnownType(typeof(List<Model.CancelListModel>))]
+    [ServiceKnownType(typeof(List<Model.View_RepairInfo>))]
+    [ServiceKnownType(typeof(List<int>))]
+    [ServiceKnownType(typeof(List<Model.TreeModel>))]
+    [ServiceKnownType(typeof(List<Model.View_Pro_ChangeList>))]
+    [ServiceKnownType(typeof(List<Model.View_Pro_CostChangeList>))]
+    [ServiceKnownType(typeof(List<Model.View_UserBorowInfo>))]
+    [ServiceKnownType(typeof(List<Model.View_BorowReturnInfo>))]
+    [ServiceKnownType(typeof(List<Model.View_BorowReturnDetail>))]
+    [ServiceKnownType(typeof(List<Model.View_YanBoPriceStepInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_YanbaoPriceStepInfo>))]
+    [ServiceKnownType(typeof(List<Model.Pro_YanbaoPriceStepInfo_bak>))]
+    [ServiceKnownType(typeof(List<Model.View_VIP_OffList>))]  
+      [ServiceKnownType(typeof(List<Model.View_SellTypeProduct>))]
+    [ServiceKnownType(typeof(List<Model.View_Sys_UserInfo>))] 
+      [ServiceKnownType(typeof(List<Model.View_ProAllType>))] 
+    [ServiceKnownType(typeof(List<Model.View_SalaryList>))]
+    [ServiceKnownType(typeof(List<Model.PriceBill>))]
+    [ServiceKnownType(typeof(List<Model.PriceBillChild>))]
+    [ServiceKnownType(typeof(List<Model.CostBill>))]
+    [ServiceKnownType(typeof(List<Model.CostBillChild>))]
+<<<<<<< HEAD
+    [ServiceKnownType(typeof(List<Model.SalaryBill>))]
+    [ServiceKnownType(typeof(List<Model.SalaryBillChild>))] 
+=======
+    [ServiceKnownType(typeof(List<Model.Pro_Sell_Yanbao_temp>))] 
+>>>>>>> 21
+    #endregion
+    public class UserMsService
+    {
+        public WebReturn webR;
+        public Sys_UserInfo LoginSysUserInfo;
+        [OperationContract]
+        public WebReturn Main(int MethodId, object[] args)
+        {
+           
+            //全局验证
+            //webR = MainCheck(MethodId);         
+            //if (!webR.ReturnValue)
+            //{
+            //    return webR;
+            //}
+
+
+            //调试用
+            if (ConfigurationManager.AppSettings["AdminDebugMode"] == "1")
+            {
+            if (!IsLogin())
+            {
+                Login("1", "1", "");
+            }
+            }
+
+            //调试用END
+            
+            return Common.MainCheckHelp.MainRequest(MethodId, args, (Model.Sys_UserInfo)MySession["user"]);
+            
+        }
+
+        [OperationContract]
+        
+        public WebReturn Login(string username, string password, string sign)
+        {
+            
+            //初始化菜单
+
+            //登陆
+            //验证信息
+            //Sys_roleMethod List 菜单 方法 仓库
+            //菜单 xml
+            //
+            //InitdataState 需要初始化的信息
+            //返回 userinfo InitdataState
+            Model.Sys_RoleInfo menu = new Model.Sys_RoleInfo();
+            webR = new WebReturn();
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                webR.Message = "用户名或者密码不能为空";
+                webR.Obj = null;
+                webR.ReturnValue = false;
+                return webR;
+            }
+            username = username.Trim();
+            password = password.Trim();
+
+            #region 解密时间戳
+            if (!Common.MainCheckHelp.CheckTimeTrick(sign))
+            {
+                webR.Message = "签名错误";
+                webR.Obj = null;
+                webR.ReturnValue = false;
+                return webR;
+            }
+            #endregion
+           
+
+            //验证用户信息
+            Model.Sys_UserInfo user = new Model.Sys_UserInfo();
+            user.UserName = username;
+            user.UserPwd = password;
+  
+            DAL.Sys_LoginInfo login = new DAL.Sys_LoginInfo();
+            webR = login.Add(user);
+            if (webR.Obj!=null)
+            MySession["User"]=  webR.Obj;        
+            return webR;
+
+        }
+     
+        [OperationContract]
+        public WebReturn InitData(DateTime dt)
+        {
+
+            //是否登陆
+
+            if (!IsLogin())
+            {
+                webR.Message = "用户尚未登录";
+                webR.ReturnValue = false;
+                return webR;
+            }
+            //解析需要初始化清单
+            DAL.Sys_InitDataStatus dal=new DAL.Sys_InitDataStatus();
+
+            return dal.GetList((Sys_UserInfo) MySession["User"], dt);
+               
+            
+           
+
+            //返回清单实体类
+
+        }
+
+        [OperationContract]
+        public WebReturn UpdatePwd(string Newpassword, string sign)
+        {
+            ///
+            return new WebReturn() { };
+        }
+
+        public WebReturn MainCheck(int MethodId)
+        {
+
+            //WebReturn r = new WebReturn();
+            ////验证是否已经登录
+            if (!IsLogin())
+            {
+                webR.Message = "用户尚未登录";
+                webR.ReturnValue = false;
+            }
+            webR = RoleCheckHelp.MainCheck(this.LoginSysUserInfo, MethodId);
+            return webR;
+        }
+
+
+
+        public bool IsLogin()
+        {
+            return MySession["User"] != null;
+        }
+
+        [OperationContract]
+        
+        public Model.WebReturn GetRole(Model.Sys_UserInfo role)
+        {
+            //DAL_.Pro_SellInfo s = new DAL_.Pro_SellInfo();
+            //Model.Pro_SellInfo sell = new Model.Pro_SellInfo() { VIP_ID = 3, HallID = "1" };
+            //sell.Pro_SellListInfo.Add(
+            //    new Model.Pro_SellListInfo() { ProID = "2", ProCount = 2, SellType = 2 }
+            //    );
+            //sell.Pro_SellListInfo.Add(
+            //    new Model.Pro_SellListInfo() { ProID = "2", ProCount = 1, SellType = 1 }
+            //    );
+            //sell.Pro_SellListInfo.Add(
+            //    new Model.Pro_SellListInfo() { ProID = "3", ProCount = 1, SellType = 1 }
+            //    );
+            //Model.WebReturn r = s.GetSellOff(null, sell);
+           
+            //return r;
+            return null;
+        }
+        [OperationContract]
+        public Model.Pro_IMEI_Deleted mmmm()
+        {
+            return new Model.Pro_IMEI_Deleted();
+        }
+
+        public HttpSessionState MySession
+        {
+            get { return HttpContext.Current.Session; }
+
+        }
+
+
+        #region 查询报表主入口
+        [OperationContract]
+        public WebReturn MainReport(int MethodId,string username,string password,string sign, object[] args)
+        {
+           
+            //全局验证
+            //webR = MainCheck(MethodId);         
+            //if (!webR.ReturnValue)
+            //{
+            //    return webR;
+            //}
+            #region 是否登陆
+            if (MySession["user"] == null)//未登录
+            {
+                webR= Login(username, password, sign);
+                if (webR.ReturnValue !=true)
+                {
+                    return webR;
+                }
+            }
+            #endregion
+
+
+            return Common.MainCheckHelp.MainRequest(MethodId, args, (Model.Sys_UserInfo)MySession["user"]);
+            
+        }
+        #endregion
+        #region 获取销售类别商品信息
+        [OperationContract]
+        public List<Model.Pro_SellTypeProduct> GetSellTyPro()
+        {
+          
+            DAL.Pro_SellTypeProduct SellTypePro = new DAL.Pro_SellTypeProduct();
+            return SellTypePro.GetModel();
+        }
+        #endregion 
+    }
+}
+

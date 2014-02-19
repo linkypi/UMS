@@ -1,0 +1,15 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:local="clr-namespace:UserMS" x:Class="UserMS.GridTest"
+    mc:Ignorable="d" 
+    xmlns:MaskedInput="clr-namespace:Telerik.Windows.Controls.MaskedInput;assembly=Telerik.Windows.Controls.Input"
+    xmlns:OpenSourceControls="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"
+    d:DesignHeight="300" d:DesignWidth="400">
+
+    <Grid>
+        <Button Click="ButtonBase_OnClick"/>
+    </Grid>
+</Page>

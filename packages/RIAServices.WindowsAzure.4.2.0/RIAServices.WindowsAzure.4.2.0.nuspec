@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RIAServices.WindowsAzure</id>
+    <version>4.2.0</version>
+    <title>RIA Services for Azure Table Storage</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=223397</licenseUrl>
+    <projectUrl>http://silverlight.net/riaservices/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>RIAServices.WindowsAzure provides the TableDomainService&lt;T&gt; class, as well as the TableEntity and TableEntityContext classes that can be used to create Domain Services backed by Windows Azure Table Storage.</description>
+    <summary>WCF RIA Services Toolkit - Windows Azure Table Storage support with TableDomainService</summary>
+    <language>en-US</language>
+    <tags>WCF RIA Services RIAServices Azure</tags>
+  </metadata>
+</package>

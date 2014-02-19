@@ -1,0 +1,83 @@
+﻿<src:BasePage xmlns:src="clr-namespace:UserMS" x:Class="UserMS.Report.SellAduit.SellAduit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+           xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"      
+           xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms" 
+           mc:Ignorable="d"
+           d:DesignWidth="640" d:DesignHeight="480" Loaded="BasePage_Loaded"
+           Title="ReportTest Page">
+
+    <xctk:BusyIndicator x:Name="busy">
+        <DockPanel>
+            
+            
+            <DockPanel x:Name="LayoutRoot" DockPanel.Dock="Top" Height="300">
+            <telerik:RadDataServiceDataSource 
+  
+			x:Name="datasource" Height="Auto" Width="Auto" d:LayoutOverrides="HorizontalAlignment"  >
+                <!--   <telerik:RadDomainDataSource.DomainContext>-->
+                <!--       <e:ReportContext></e:ReportContext>-->
+                <!--   </telerik:RadDomainDataSource.DomainContext>-->
+            </telerik:RadDataServiceDataSource>
+            <telerik:RadMenu VerticalAlignment="Top" DockPanel.Dock="Top" >
+                    <telerik:RadMenuItem x:Name="Export" Header="导出" Click="Export_OnClick"/>
+                    <telerik:RadMenuItem x:Name="BookColumnHeader" Header="定制表头" Click="BookColumnHeader_Click"/>
+                </telerik:RadMenu>
+            <ScrollViewer DockPanel.Dock="Top" MaxHeight="200">
+
+
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="筛选工具" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <telerik:RadDataFilter Source="{Binding DataView, ElementName=datasource}" VerticalAlignment="Top" Margin="0,0,-440,0" />
+                </StackPanel>
+            </ScrollViewer>
+            <DockPanel DockPanel.Dock="Bottom">
+                <telerik:RadNumericUpDown    x:Name="Txt_PageSize" DockPanel.Dock="Right" Value="20" Minimum="1" Maximum="500" 
+                                               IsInteger="True"/>
+
+                <TextBlock DockPanel.Dock="Right" Width="30"  Text="每页" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <telerik:RadDataPager x:Name="radDataPager"
+			Source="{Binding DataView, ElementName=datasource}"
+			DisplayMode="All"
+			IsTotalItemCountFixed="True" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment" DockPanel.Dock="Left" Height="Auto" />
+            </DockPanel>
+
+             <telerik:RadGridView x:Name="Grid"    AutoGenerateColumns="False" GridLinesVisibility="Both" SelectionUnit="Cell" SelectionMode="Single"
+			ItemsSource="{Binding DataView, ElementName=datasource}"
+			IsBusy="{Binding IsBusy, ElementName=datasource}"
+			IsReadOnly="True"
+			RowIndicatorVisibility="Collapsed" 
+			CanUserFreezeColumns="True" DockPanel.Dock="Top" SelectionChanged="Grid_SelectionChanged">
+                    <telerik:RadGridView.Columns>
+                        
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+            </DockPanel>
+            <Splitter:DockPanelSplitter DockPanel.Dock="Top"/>
+            <DockPanel DockPanel.Dock="Bottom" >
+                <telerik:RadGridView x:Name="GridList"    AutoGenerateColumns="False" GridLinesVisibility="Both" SelectionUnit="Cell" SelectionMode="Extended"
+			
+			IsBusy="{Binding IsBusy, ElementName=datasource}"
+			IsReadOnly="True"
+			RowIndicatorVisibility="Collapsed" 
+			CanUserFreezeColumns="True" DockPanel.Dock="Top" >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="商品类别" DataMemberBinding="{Binding 商品类别}"></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="商品品牌" DataMemberBinding="{Binding 商品品牌}"></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="商品型号" DataMemberBinding="{Binding 商品型号}"></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="属性" DataMemberBinding="{Binding 属性}"></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="批发数量" DataMemberBinding="{Binding 批发数量}"></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="批发单价" DataMemberBinding="{Binding 批发单价}" DataFormatString="{}{0:N2}"></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="备注" DataMemberBinding="{Binding 备注}"></telerik:GridViewDataColumn>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+            </DockPanel>
+        </DockPanel>
+    </xctk:BusyIndicator>
+</src:BasePage>

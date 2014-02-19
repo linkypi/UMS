@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RIAServices.Endpoints</id>
+    <version>4.2.0</version>
+    <title>RIA Services SOAP and JSON Endpoints</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=223397</licenseUrl>
+    <projectUrl>http://silverlight.net/riaservices/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>RIAServices.Endpoints provides the Microsoft.ServiceModel.DomainServices.Hosting assembly, which serves the SOAP and JSON endpoints for Domain Services.
+
+The necessary web.config entries are added with this package as well.</description>
+    <summary>WCF RIA Services Toolkit - SOAP and JSON Endpoints for web development</summary>
+    <language>en-US</language>
+    <tags>WCF RIA Services RIAServices SOAP JSON</tags>
+  </metadata>
+</package>

@@ -1,0 +1,205 @@
+﻿<src:BasePage 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+           xmlns:src="clr-namespace:UserMS"
+           
+           xmlns:LMS="clr-namespace:UserMS.Views.LMS" x:Class="UserMS.Views.ProSell.VipOff.AddSingleOff"
+           mc:Ignorable="d" 
+           d:DesignWidth="800" d:DesignHeight="600"
+           Title="AddSingleOff Page">
+
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+
+        <toolkit:DockPanel x:Name="LayoutRoot" >
+
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                <telerik:RadMenuItem  Header="保存"  Click="RadMenuItem_Click_4"/>
+                <telerik:RadMenuItem  Header="取消"/>
+                <telerik:RadMenuItem  Header="新增单品优惠" Click="RadMenuItem_Click_3"/>
+                <telerik:RadMenuItem  Header="删除单品优惠" x:Name="DelOff" Click="DelOff_Click_1"/>
+                <telerik:RadMenuItem  Header="商品">
+                    <telerik:RadMenuItem  Header="添加商品" Click="RadMenuItem_Click_1"/>
+                    <telerik:RadMenuItem  Header="删除商品" x:Name="DelPro" Click="DelPro_Click_1"/>
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem  Header="门店">
+                    <telerik:RadMenuItem  Header="添加门店" Click="RadMenuItem_Click_2"/>
+                    <telerik:RadMenuItem  Header="删除门店" x:Name="DelHall" Click="DelHall_Click_1"/>
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem  Header="会员类别">
+                    <telerik:RadMenuItem  Header="添加会员类别" x:Name="AddVIPType" Click="AddVIPType_Click_1"/>
+                    <telerik:RadMenuItem  Header="删除会员类别" x:Name="DeleteVIPType" Click="DeleteVIPType_Click_1"/>
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem  Header="删除会员" x:Name="DelVIP" Click="DelVIP_Click_1" />
+            </telerik:RadMenu>
+            <StackPanel toolkit:DockPanel.Dock="Top">
+                <TextBlock Text="单品优惠列表"/>
+                <telerik:RadGridView x:Name="dataGridOffList" Height="100"  Margin="0,5" SelectionMode="Multiple"   IsFilteringAllowed="False"
+                 GridLinesVisibility="Both"     AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+
+                    </telerik:RadGridView.Columns>
+
+                </telerik:RadGridView>
+            </StackPanel>
+
+           
+                    <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="优惠名称" />
+                            <TextBox Width="120" Text="{Binding Name}" x:Name="Name"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="开始日期"/>
+                            <telerik:RadDateTimePicker Width="120" SelectedValue="{Binding StartTime}" x:Name="StartTime"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="结束日期"/>
+                            <telerik:RadDateTimePicker Width="120" SelectedValue="{Binding EndTime}" x:Name="EndTime"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <CheckBox Content="限制名额" Width="80" x:Name="CBLimit" Click="CBLimit_Click_1" />
+                            <TextBox Width="120" IsEnabled="True"  x:Name="LimitNum"  />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="创建人"/>
+                            <TextBox Width="120"   x:Name="CreatName" IsReadOnly="True"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="备注"/>
+                            <TextBox Width="120" IsEnabled="True" Text="{Binding Note}" x:Name="Note"/>
+                        </StackPanel>
+         
+                        
+            </toolkit:WrapPanel>
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <RadioButton Width="80" GroupName="off" x:Name="offRebate" Content="折扣" Click="RadioButton_Click_1"/>
+                    <telerik:RadNumericUpDown  x:Name="Rebate" Value="1" 
+                                            UpdateValueEvent="PropertyChanged"    Minimum="0"  Maximum="1" NumberDecimalDigits="3" Height="25"  Width="120"  SmallChange="0.01"/>
+   
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <RadioButton Width="80" GroupName="off" x:Name="offReduceCash" Content="减现金" Click="RadioButton_Click_1"/>
+                    <telerik:RadNumericUpDown  x:Name="ReduceCash"
+                                            UpdateValueEvent="PropertyChanged"      NumberDecimalDigits="2" Height="25"  Width="120" ValueChanged="ReduceCash_ValueChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <RadioButton Width="80" x:Name="offPointChanged" GroupName="off" Content="积分兑换" Click="RadioButton_Click_1"/>                   
+                    <telerik:RadNumericUpDown  x:Name="PointChanged" 
+                                            UpdateValueEvent="PropertyChanged"    Minimum="0"   NumberDecimalDigits="0" Height="25"  Width="120" ValueChanged="PointChanged_ValueChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <RadioButton Width="80" x:Name="offPointSend" GroupName="off" Content="赠送积分" Click="RadioButton_Click_1"/>
+                    <TextBox Width="120" IsEnabled="True" Text="{Binding SendPoint}" x:Name="PointSend"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <telerik:RadButton Height="25" Width="80" Content="应用到选中项" x:Name="AddAll" Click="AddAll_Click"/>
+                </StackPanel>
+            </toolkit:WrapPanel>
+
+            <toolkit:DockPanel toolkit:DockPanel.Dock="Top" >
+                        <TextBlock Text="享受活动的会员类别" toolkit:DockPanel.Dock="Left" Width="150" />
+                        <TextBlock Text="享受活动的会员"/>
+                    </toolkit:DockPanel>
+
+                    <toolkit:DockPanel toolkit:DockPanel.Dock="Top" Margin="0,5" Height="100">
+                        <telerik:RadGridView x:Name="dataGridVipType"  toolkit:DockPanel.Dock="Left" Width="150" SelectionMode="Multiple"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewSelectColumn />
+
+                            </telerik:RadGridView.Columns>
+
+                        </telerik:RadGridView>
+                        <StackPanel toolkit:DockPanel.Dock="Right" Width="200" Orientation="Vertical">
+                            <TextBox VerticalAlignment="Stretch" VerticalContentAlignment="Top"
+                                        TextWrapping="Wrap" Text="" AcceptsReturn="True" Height="70" x:Name="txtIMEI"/>
+                            <Button Height="25" Margin="0,5,0,0" Content="添加会员" x:Name="AddVIP" Click="AddVIP_Click_1"/>
+                        </StackPanel>
+                        <telerik:RadGridView x:Name="dataGridVip2"  toolkit:DockPanel.Dock="Right"   
+                                         SelectionMode="Multiple"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewSelectColumn />
+
+                            </telerik:RadGridView.Columns>
+
+                        </telerik:RadGridView>
+                    </toolkit:DockPanel>
+
+
+
+
+                    <toolkit:DockPanel toolkit:DockPanel.Dock="Top" >
+                        <TextBlock Text="参与活动的门店" toolkit:DockPanel.Dock="Right" Width="200" />
+                        <TextBlock Text="参与活动商品"/>
+                    </toolkit:DockPanel>
+
+                    <toolkit:DockPanel toolkit:DockPanel.Dock="Top" Margin="0,5"  MinHeight="150">
+                        <telerik:RadGridView x:Name="HallGrid"  Width="200" toolkit:DockPanel.Dock="Right" SelectionMode="Multiple"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewSelectColumn />
+
+                            </telerik:RadGridView.Columns>
+
+                        </telerik:RadGridView>
+                        <telerik:RadGridView x:Name="ProGrid"    toolkit:DockPanel.Dock="Left" SelectionMode="Extended" 
+                              CellEditEnded="DGCardType_CellEditEnded"     GridLinesVisibility="Both"  IsFilteringAllowed="False"            AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="False"  >
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewSelectColumn />
+                                <telerik:GridViewBoundColumnBase  Header="商品类别" Width="auto"  IsReadOnly="True" TextAlignment="Center" DataMemberBinding="{Binding ProClassName}"/>
+                                <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProTypeName}"  />
+                                <telerik:GridViewBoundColumnBase  Header="商品型号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProName}"  />
+                                <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding ProCount, Mode=TwoWay}" Header="入库数量"   x:Name="goodsmnum"/>-->
+                                <telerik:GridViewDataColumn DataMemberBinding="{Binding ProFormat}" Header="商品属性" IsReadOnly="True"  x:Name="ProFormt"/>
+                                <telerik:GridViewDataColumn DataMemberBinding="{Binding SellTypeName}" Header="销售类型" IsReadOnly="True"  />
+                                <telerik:GridViewDataColumn DataMemberBinding="{Binding Price}" Header="价格" IsReadOnly="True"  />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Rate}" Header="折扣" IsReadOnly="False"  />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding ReduceMoney}" Header="减现金" IsReadOnly="False"  />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Point}" Header="积分兑换" IsReadOnly="False"  />
+                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Salary}" Header="提成" IsReadOnly="False"  />
+                    </telerik:RadGridView.Columns>
+
+                        </telerik:RadGridView>
+                    </toolkit:DockPanel>
+
+                    <!--<toolkit:DockPanel toolkit:DockPanel.Dock="Top" Margin="0,5"  MinHeight="150">
+                        <telerik:GroupBox  Header="描述" MinHeight="250" Width="400" toolkit:DockPanel.Dock="Right">
+                            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                                <StackPanel Orientation="Horizontal" Margin="3,2">
+                                    <TextBlock Width="80" Text="标题：" />
+                                    <TextBox Width="120" Text="{Binding discountSynopsis}" x:Name="Title"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="3,2">
+                                    <TextBlock Width="80" Text="优惠描述：" />
+                                    <TextBox Width="300" MinHeight="220" Text="{Binding discountInfo}" x:Name="Content"/>
+                                </StackPanel>
+                            </toolkit:WrapPanel>
+                        </telerik:GroupBox>
+
+                        <telerik:GroupBox  Header="海报" toolkit:DockPanel.Dock="Left" >
+                            <StackPanel>
+                                <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                                    <TextBlock Width="80" Text="标题：" />
+                                    <TextBox Width="120" Text="{Binding discountSynopsis}" x:Name="FileName"/>
+                                    <telerik:RadButton Width="80" x:Name="UpLoad" Content="上传" Click="UpLoad_Click_1"/>
+                                </toolkit:WrapPanel>
+                                <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                                    <Image  MinHeight="220" />
+                                </toolkit:WrapPanel>
+                            </StackPanel>
+                        </telerik:GroupBox>
+
+                    </toolkit:DockPanel>-->
+
+            
+
+
+        </toolkit:DockPanel>
+
+    </xctk:BusyIndicator>
+</src:BasePage>

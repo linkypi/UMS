@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="../styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="../styles/kendo.default.min.css" rel="stylesheet" />
+	<link href="../styles/kendo.mobile.all.min.css" rel="stylesheet"/>
+  
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="../global.js"></script>
+   
+<title>借贷统计</title>
+<style>
+ .btn{position:absolute;left:5px;top:5px;
+ }
+</style>
+</head>
+
+<body>
+ 
+  <div  id="loading" data-role="view" class="km-insetcontent"  data-init="viewInit" data-hide="viewHide">
+         <header data-role="header" id="header">
+            <div data-role="navbar">
+           <a class="nav-button" data-align="left" data-role="backbutton" id="cancel" href="#menu">首页</a>
+                <span data-role="view-title">图表查看</span>
+
+
+            </div>
+        </header>
+    <div class="chart-wrapper">
+        <div id="borrowchart"  style="background: center no-repeat; " ></div>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        // var  app = new kendo.mobile.Application();
+        if (typeof app == "undefined")
+            app = new kendo.mobile.Application(document.body, {
+                platform: "meego"
+            });
+
+        function viewInit() {
+            app.pane.loader.show();
+            createChart();
+            request();
+        }
+
+        $(window).resize(function () {
+            /*if (window.innerWidth)
+            var winWidth = window.innerWidth;
+            else if ((document.body) && (document.body.clientWidth))
+             winWidth = document.body.clientWidth;
+     
+	       // 获取窗口高度
+            if (window.innerHeight)
+            var winHeight = window.innerHeight;
+            else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;*/
+            var chart = $("#borrowchart").data("kendoChart");
+            var ds = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: hosturl + "BorrowStatistics/GetUnReturnCount",
+                        dataType: "json"
+                    }
+                },
+                schema: {
+                    data: "response"
+                }
+            });
+         
+            chart.setDataSource = ds;
+            chart.options.chartArea.height = window.innerHeight;
+            chart.refresh();
+        });
+
+
+
+        function request() {
+
+            $.ajax({
+                type: "GET",
+                url: hosturl + "BorrowStatistics/GetUnReturnCount",
+                dataType: "jsonp",
+                success: function (data) {
+
+                    if ($("#btn") != undefined) {
+                        $("#btn").remove();
+                    }
+                    // 蓝/紫 /黄 /绿 /橙
+                    var colors = ["#2F93CE", "#B23DC2", "#FFBA26", "#A3CE56", "#FE954D"];
+                    $.each(colors, function (index, val) {
+                        data["response"][index].color = val;
+                    });
+
+                    var dataSource = new kendo.data.DataSource({
+                        data: data["response"]
+                    });
+                    createChart();
+                    var chart = $("#borrowchart").data("kendoChart");
+                    chart.setDataSource(dataSource);
+
+                    chart.options.chartArea.height = window.innerHeight;
+                    chart.options.chartArea.width = window.innerWidth;
+                    chart.refresh();
+                    app.pane.loader.hide();
+                }
+            });
+        }
+
+        function createChart() {
+            $("#borrowchart").kendoChart({
+                dataSource: {
+                    data: []
+                },
+                title: {
+                    position: "top",
+                    text: "借贷统计"
+                },
+                legend: {  //旁邊標注
+                    visible: true,
+                    position:"top",
+                    labels: {
+                        color: "#4285F4"
+                    }
+                },
+                chartArea: {
+                    background: "transparent"
+                },
+                seriesDefaults: {
+                    type: "pie",
+                    labels: {
+                        visible: true,
+                        background: "transparent",
+                        template: "#= category #: #= value#"
+                    }
+                },
+                series: [
+				{
+				    field: "Procount",
+				    startAngle: 150,
+				    categoryField: "Scope",
+				    padding: 40,
+				    labels: {
+				        visible: true,
+				        align: "circle",
+				        color: "#4285F4"
+				    }
+				}],
+                categoryAxis: {
+                    categories: ["0-30", "30-60", "60-90", "90-120", "120以上"],
+                    color: ["#2990CC", "#97C93E"]
+                },
+
+                tooltip: {
+                    visible: true,
+                    format: "{0}",
+                    template: "#=category #: #= value#"
+                },
+                seriesClick: function (e) {
+                    app.pane.loader.hide();
+
+                    //请求数据
+                    $.ajax({
+                        type: "GET",
+                        url: hosturl + "BorrowStatistics/GetDetail",
+                        data: {
+                            "min": e.dataItem["Scope"].split("-")[0],
+                            "max": e.dataItem["Scope"].split("-")[1] == undefined ? "" : e.dataItem["Scope"].split("-")[1]
+                        },
+                        dataType: "jsonp",
+                        success: function (data) {
+                            $("#loading").append('<a  id="btn" data-role="button" >返回</a>');
+                            $("#btn").kendoMobileButton();
+                            $("#btn").addClass("btn");
+                            $("#btn").bind("click", request);
+                            showDetail(e, data);
+                        }
+                    });
+
+                },
+            });
+        }
+
+        //显示各仓库未归还情况
+        function showDetail(e, data) {
+            $("#borrowchart").kendoChart({
+                categoryAxis: {
+                    field: "Hallname",
+                    majorGridLines: {
+                        visible: false
+                    }
+                }, legend: {
+                    visible: false
+                },
+                title: {
+                    text: e.dataItem["Scope"] + "各厅借贷情况"
+                },
+                series: [{
+                    field: "Procount",
+                    name: "procount"
+                }],
+                seriesDefaults: {
+                    type: "column",
+                    color: "#97C93E",
+                    labels: {
+                        visible: true,
+                        background: "transparent"
+                    }
+                },
+                valueAxis: {
+                    line: {
+                        visible: false
+                    },
+                    minorGridLines: {
+                        visible: true
+                    }
+                },
+                tooltip: {
+                    visible: true,
+                    background: "transparent",
+                    template: "#= category  #: #= value #"
+                }
+            });
+
+            var chart = $("#borrowchart").data("kendoChart");
+            var dataSource = new kendo.data.DataSource({
+                data: data["response"]
+            });
+            chart.setDataSource(dataSource);
+
+            chart.options.chartArea.height = window.innerHeight;
+            chart.options.chartArea.width = 1500;
+            chart.refresh();
+            //chart.refresh();
+            app.pane.loader.hide();
+
+            // hideLoader();
+        }
+
+        $(document).ready(createChart);
+        $(document).bind("kendo:skinChange", createChart);
+    </script> 
+
+
+</body>
+</html>
+ 

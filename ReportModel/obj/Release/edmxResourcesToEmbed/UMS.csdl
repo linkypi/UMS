@@ -1,0 +1,2231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReportModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Demo_提成报表" EntityType="ReportModel.Demo_提成报表" />
+    <EntitySet Name="Pro_HallInfo" EntityType="ReportModel.Pro_HallInfo" />
+    <EntitySet Name="Pro_ProInfo" EntityType="ReportModel.Pro_ProInfo" />
+    <EntitySet Name="Sys_Role_Menu_HallInfo" EntityType="ReportModel.Sys_Role_Menu_HallInfo" />
+    <EntitySet Name="Sys_Role_MenuInfo" EntityType="ReportModel.Sys_Role_MenuInfo" />
+    <AssociationSet Name="FK_Sys_Role_Menu_HallInfo_Pro_HallInfo" Association="ReportModel.FK_Sys_Role_Menu_HallInfo_Pro_HallInfo">
+      <End Role="Pro_HallInfo" EntitySet="Pro_HallInfo" />
+      <End Role="Sys_Role_Menu_HallInfo" EntitySet="Sys_Role_Menu_HallInfo" />
+    </AssociationSet>
+    <EntitySet Name="Sys_MenuInfo" EntityType="ReportModel.Sys_MenuInfo" />
+    <AssociationSet Name="FK_Sys_MenuInfo_Sys_MenuInfo" Association="ReportModel.FK_Sys_MenuInfo_Sys_MenuInfo">
+      <End Role="Sys_MenuInfo" EntitySet="Sys_MenuInfo" />
+      <End Role="Sys_MenuInfo1" EntitySet="Sys_MenuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Role_Menu_HallInfo_Sys_MenuInfo" Association="ReportModel.FK_Sys_Role_Menu_HallInfo_Sys_MenuInfo">
+      <End Role="Sys_MenuInfo" EntitySet="Sys_MenuInfo" />
+      <End Role="Sys_Role_Menu_HallInfo" EntitySet="Sys_Role_Menu_HallInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Role_MenuInfo_Sys_MenuInfo" Association="ReportModel.FK_Sys_Role_MenuInfo_Sys_MenuInfo">
+      <End Role="Sys_MenuInfo" EntitySet="Sys_MenuInfo" />
+      <End Role="Sys_Role_MenuInfo" EntitySet="Sys_Role_MenuInfo" />
+    </AssociationSet>
+    <EntitySet Name="Report_Borow" EntityType="ReportModel.Report_Borow" />
+    <EntitySet Name="Report_Return" EntityType="ReportModel.Report_Return" />
+    <EntitySet Name="Report_IMEIInfo" EntityType="ReportModel.Report_IMEIInfo" />
+    <EntitySet Name="Report_IMEITracksInfo" EntityType="ReportModel.Report_IMEITracksInfo" />
+    <EntitySet Name="Pro_ClassInfo" EntityType="ReportModel.Pro_ClassInfo" />
+    <EntitySet Name="Sys_Role_Menu_ProInfo" EntityType="ReportModel.Sys_Role_Menu_ProInfo" />
+    <AssociationSet Name="FK_PRO_PROI_REFERENCE_PRO_CLAS" Association="ReportModel.FK_PRO_PROI_REFERENCE_PRO_CLAS">
+      <End Role="Pro_ClassInfo" EntitySet="Pro_ClassInfo" />
+      <End Role="Pro_ProInfo" EntitySet="Pro_ProInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Role_Menu_ProInfo_Pro_ClassInfo" Association="ReportModel.FK_Sys_Role_Menu_ProInfo_Pro_ClassInfo">
+      <End Role="Pro_ClassInfo" EntitySet="Pro_ClassInfo" />
+      <End Role="Sys_Role_Menu_ProInfo" EntitySet="Sys_Role_Menu_ProInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Role_ProInfo_Sys_MenuInfo" Association="ReportModel.FK_Sys_Role_ProInfo_Sys_MenuInfo">
+      <End Role="Sys_MenuInfo" EntitySet="Sys_MenuInfo" />
+      <End Role="Sys_Role_Menu_ProInfo" EntitySet="Sys_Role_Menu_ProInfo" />
+    </AssociationSet>
+    <EntitySet Name="Report_OutInfo" EntityType="ReportModel.Report_OutInfo" />
+    <EntitySet Name="Report_InOrderInfo" EntityType="ReportModel.Report_InOrderInfo" />
+    <EntitySet Name="Report_BackIMEIInfo" EntityType="ReportModel.Report_BackIMEIInfo" />
+    <EntitySet Name="Report_BackInfo" EntityType="ReportModel.Report_BackInfo" />
+    <EntitySet Name="Report_BackListInfo" EntityType="ReportModel.Report_BackListInfo" />
+    <EntitySet Name="Report_ChangeIMEIInfo" EntityType="ReportModel.Report_ChangeIMEIInfo" />
+    <EntitySet Name="Report_ChangeListInfo" EntityType="ReportModel.Report_ChangeListInfo" />
+    <EntitySet Name="Report_ChangeProInfo" EntityType="ReportModel.Report_ChangeProInfo" />
+    <EntitySet Name="Report_EveryHallStoreInfo" EntityType="ReportModel.Report_EveryHallStoreInfo" />
+    <FunctionImport Name="GetInOutSellInfo" EntitySet="Report_InOutSellInfo" ReturnType="Collection(ReportModel.Report_InOutSellInfo)">
+      <Parameter Name="t1" Mode="In" Type="DateTime" />
+      <Parameter Name="t2" Mode="In" Type="DateTime" />
+      <Parameter Name="ReportName" Mode="In" Type="String" />
+      <Parameter Name="RoleID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Report_PriceInfo" EntityType="ReportModel.Report_PriceInfo" />
+    <EntitySet Name="Report_OutOrderIMEIInfo" EntityType="ReportModel.Report_OutOrderIMEIInfo" />
+    <EntitySet Name="Report_OutOrderListInfo" EntityType="ReportModel.Report_OutOrderListInfo" />
+    <AssociationSet Name="Report_OutInfoReport_OutOrderListInfo" Association="ReportModel.Report_OutInfoReport_OutOrderListInfo">
+      <End Role="Report_OutInfo" EntitySet="Report_OutInfo" />
+      <End Role="Report_OutOrderListInfo" EntitySet="Report_OutOrderListInfo" />
+    </AssociationSet>
+    <EntitySet Name="Report_ReturnIMEIInfo" EntityType="ReportModel.Report_ReturnIMEIInfo" />
+    <EntitySet Name="Report_ReturnListInfo" EntityType="ReportModel.Report_ReturnListInfo" />
+    <EntitySet Name="Report_ReNewInfo" EntityType="ReportModel.Report_ReNewInfo" />
+    <EntitySet Name="Report_RepairReturnInfo" EntityType="ReportModel.Report_RepairReturnInfo" />
+    <EntitySet Name="Print_SellListInfo" EntityType="ReportModel.Print_SellListInfo" />
+    <EntitySet Name="Print_SellInfo" EntityType="ReportModel.Print_SellInfo" />
+    <AssociationSet Name="Print_SellInfoPrint_SellListInfo" Association="ReportModel.Print_SellInfoPrint_SellListInfo">
+      <End Role="Print_SellInfo" EntitySet="Print_SellInfo" />
+      <End Role="Print_SellListInfo" EntitySet="Print_SellListInfo" />
+    </AssociationSet>
+    <EntitySet Name="Demo_ReportViewInfo" EntityType="ReportModel.Demo_ReportViewInfo" />
+    <AssociationSet Name="FK_Demo_ReportViewInfo_Sys_MenuInfo" Association="ReportModel.FK_Demo_ReportViewInfo_Sys_MenuInfo">
+      <End Role="Sys_MenuInfo" EntitySet="Sys_MenuInfo" />
+      <End Role="Demo_ReportViewInfo" EntitySet="Demo_ReportViewInfo" />
+    </AssociationSet>
+    <EntitySet Name="Print_SellBackInfo" EntityType="ReportModel.Print_SellBackInfo" />
+    <EntitySet Name="Print_SellBackListInfo" EntityType="ReportModel.Print_SellBackListInfo" />
+    <AssociationSet Name="Print_SellBackInfoPrint_SellBackListInfo" Association="ReportModel.Print_SellBackInfoPrint_SellBackListInfo">
+      <End Role="Print_SellBackInfo" EntitySet="Print_SellBackInfo" />
+      <End Role="Print_SellBackListInfo" EntitySet="Print_SellBackListInfo" />
+    </AssociationSet>
+    <EntitySet Name="Report_ProductInfo" EntityType="ReportModel.Report_ProductInfo" />
+    <EntitySet Name="Report_AirOutListInfo" EntityType="ReportModel.Report_AirOutListInfo" />
+    <EntitySet Name="Report_StoreInfo" EntityType="ReportModel.Report_StoreInfo" />
+    <EntitySet Name="Report_CostPriceListInfo" EntityType="ReportModel.Report_CostPriceListInfo" />
+    <EntitySet Name="Report_YANBAO" EntityType="ReportModel.Report_YANBAO" />
+    <EntitySet Name="Report_InOutSellInfo" EntityType="ReportModel.Report_InOutSellInfo" />
+    <EntitySet Name="Chart_MapReport" EntityType="ReportModel.Chart_MapReport" />
+    <EntitySet Name="Report_InOrderIMEIInfo" EntityType="ReportModel.Report_InOrderIMEIInfo" />
+    <EntitySet Name="Report_SellListInfo" EntityType="ReportModel.Report_SellListInfo" />
+    <EntitySet Name="Report_BorrowAduitInfo" EntityType="ReportModel.Report_BorrowAduitInfo" />
+    <EntitySet Name="Report_BorrowAduitListInfo" EntityType="ReportModel.Report_BorrowAduitListInfo" />
+    <AssociationSet Name="Report_BorrowAduitInfoReport_BorrowAduitListInfo" Association="ReportModel.Report_BorrowAduitInfoReport_BorrowAduitListInfo">
+      <End Role="Report_BorrowAduitInfo" EntitySet="Report_BorrowAduitInfo" />
+      <End Role="Report_BorrowAduitListInfo" EntitySet="Report_BorrowAduitListInfo" />
+    </AssociationSet>
+    <EntitySet Name="Report_Profit" EntityType="ReportModel.Report_Profit" />
+    <EntitySet Name="Report_SellReport" EntityType="ReportModel.Report_SellReport" />
+    <EntitySet Name="Report_SellReport2" EntityType="ReportModel.Report_SellReport2" />
+    <EntitySet Name="Report_Profit2" EntityType="ReportModel.Report_Profit2" />
+    <EntitySet Name="Report_BorrowInfo" EntityType="ReportModel.Report_BorrowInfo" />
+    <EntitySet Name="Report_SellAduitInfo" EntityType="ReportModel.Report_SellAduitInfo" />
+    <EntitySet Name="Report_SellAduitListInfo" EntityType="ReportModel.Report_SellAduitListInfo" />
+    <AssociationSet Name="Report_SellAduitInfoReport_SellAduitListInfo" Association="ReportModel.Report_SellAduitInfoReport_SellAduitListInfo">
+      <End Role="Report_SellAduitInfo" EntitySet="Report_SellAduitInfo" />
+      <End Role="Report_SellAduitListInfo" EntitySet="Report_SellAduitListInfo" />
+    </AssociationSet>
+    <EntitySet Name="Report_SellReport3" EntityType="ReportModel.Report_SellReport3" />
+    <EntitySet Name="Report_VipBuyTimeInfo2" EntityType="ReportModel.Report_VipBuyTimeInfo2" />
+    <EntitySet Name="Report_YANBAO2" EntityType="ReportModel.Report_YANBAO2" />
+    <EntitySet Name="Report_SellListInfo2" EntityType="ReportModel.Report_SellListInfo2" />
+    <EntitySet Name="Report_BorrowIMEIInfo" EntityType="ReportModel.Report_BorrowIMEIInfo" />
+    <EntitySet Name="Report_RepairInfo" EntityType="ReportModel.Report_RepairInfo" />
+    <EntitySet Name="Report_SMSSign" EntityType="ReportModel.Report_SMSSign" />
+    <EntitySet Name="View_BorowAduit" EntityType="ReportModel.View_BorowAduit" />
+    <EntitySet Name="Report_VipBuyTimeInfo" EntityType="ReportModel.Report_VipBuyTimeInfo" />
+    <EntitySet Name="View_Package_GroupInfo" EntityType="ReportModel.View_Package_GroupInfo" />
+    <EntitySet Name="View_VIPOffListAduit" EntityType="ReportModel.View_VIPOffListAduit" />
+    <EntitySet Name="View_VIPOffListAduitHeader" EntityType="ReportModel.View_VIPOffListAduitHeader" />
+    <AssociationSet Name="View_VIPOffListAduitHeaderView_VIPOffListAduit" Association="ReportModel.View_VIPOffListAduitHeaderView_VIPOffListAduit">
+      <End Role="View_VIPOffListAduitHeader" EntitySet="View_VIPOffListAduitHeader" />
+      <End Role="View_VIPOffListAduit" EntitySet="View_VIPOffListAduit" />
+    </AssociationSet>
+    <AssociationSet Name="View_VIPOffListAduitView_Package_GroupInfo" Association="ReportModel.View_VIPOffListAduitView_Package_GroupInfo">
+      <End Role="View_VIPOffListAduit" EntitySet="View_VIPOffListAduit" />
+      <End Role="View_Package_GroupInfo" EntitySet="View_Package_GroupInfo" />
+    </AssociationSet>
+    <EntitySet Name="Report_InOrderListInfo" EntityType="ReportModel.Report_InOrderListInfo" />
+  </EntityContainer>
+  <EntityType Name="Demo_提成报表">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="DateTime" Name="日期" Precision="3" />
+    <Property Type="String" Name="营销员" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="职位" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="仓库" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="片区" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="广信延保销售数量" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="广信延保提成" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="本人销售数量" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="本人销售提成" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="本人销售退机" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="本人销售退机金额" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="非本人销售数量" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="非本人销售提成" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="非本人销售退机" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="非本人销售退机金额" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="终端提成总额" Precision="18" Scale="4" />
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Pro_HallInfo">
+    <Key>
+      <PropertyRef Name="HallID" />
+    </Key>
+    <Property Type="String" Name="HallID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="HallName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Flag" />
+    <Property Type="Int32" Name="Order" />
+    <Property Type="Int32" Name="AreaID" />
+    <Property Type="Int32" Name="LevelID" />
+    <Property Type="Boolean" Name="CanIn" />
+    <Property Type="String" Name="Note" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="CanBack" />
+    <Property Type="Decimal" Name="Longitude" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Latitude" Precision="18" Scale="0" />
+    <NavigationProperty Name="Sys_Role_Menu_HallInfo" Relationship="ReportModel.FK_Sys_Role_Menu_HallInfo_Pro_HallInfo" FromRole="Pro_HallInfo" ToRole="Sys_Role_Menu_HallInfo" />
+    <Property Type="String" Name="DisPlayName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ShortName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="SellNum" Nullable="false" />
+    <Property Type="String" Name="PrintName" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Pro_ProInfo">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Type="String" Name="ProID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Pro_TypeID" />
+    <Property Type="Int32" Name="Pro_ClassID" />
+    <Property Type="Int32" Name="VIP_TypeID" Nullable="false" />
+    <Property Type="String" Name="ProName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="NeedIMEI" Nullable="false" />
+    <Property Type="DateTime" Name="SepDate" Precision="3" />
+    <Property Type="Boolean" Name="BeforeSep" Nullable="false" />
+    <Property Type="Decimal" Name="BeforeRate" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Boolean" Name="AfterSep" Nullable="false" />
+    <Property Type="Decimal" Name="AfterRate" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="TicketLevel" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="BeforeTicket" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="AfterTicket" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="String" Name="ValueIDList" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="IsService" Nullable="false" />
+    <Property Type="String" Name="Note" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="NeedMoreorLess" />
+    <Property Type="String" Name="ProFormat" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pro_ClassInfo" Relationship="ReportModel.FK_PRO_PROI_REFERENCE_PRO_CLAS" FromRole="Pro_ProInfo" ToRole="Pro_ClassInfo" />
+    <Property Type="Int32" Name="ProMainID" />
+    <Property Type="String" Name="PrintName" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="ISdecimals" Nullable="false" />
+    <Property Type="Int32" Name="YanBaoModelID" />
+    <Property Type="String" Name="AirHallID" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Pro_ClassTypeID" />
+  </EntityType>
+  <EntityType Name="Sys_Role_Menu_HallInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="MenuID" />
+    <Property Type="String" Name="HallID" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Note" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="RoleID" />
+    <NavigationProperty Name="Pro_HallInfo" Relationship="ReportModel.FK_Sys_Role_Menu_HallInfo_Pro_HallInfo" FromRole="Sys_Role_Menu_HallInfo" ToRole="Pro_HallInfo" />
+    <NavigationProperty Name="Sys_MenuInfo" Relationship="ReportModel.FK_Sys_Role_Menu_HallInfo_Sys_MenuInfo" FromRole="Sys_Role_Menu_HallInfo" ToRole="Sys_MenuInfo" />
+  </EntityType>
+  <EntityType Name="Sys_Role_MenuInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="RoleID" />
+    <Property Type="Int32" Name="MenuID" />
+    <Property Type="String" Name="Note" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsChecked" />
+    <NavigationProperty Name="Sys_MenuInfo" Relationship="ReportModel.FK_Sys_Role_MenuInfo_Sys_MenuInfo" FromRole="Sys_Role_MenuInfo" ToRole="Sys_MenuInfo" />
+  </EntityType>
+  <Association Name="FK_Sys_Role_Menu_HallInfo_Pro_HallInfo">
+    <End Type="ReportModel.Pro_HallInfo" Role="Pro_HallInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Sys_Role_Menu_HallInfo" Role="Sys_Role_Menu_HallInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pro_HallInfo">
+        <PropertyRef Name="HallID" />
+      </Principal>
+      <Dependent Role="Sys_Role_Menu_HallInfo">
+        <PropertyRef Name="HallID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Sys_MenuInfo">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Type="Int32" Name="MenuID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="MenuText" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MenuValue" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Note" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Parent" />
+    <Property Type="String" Name="MenuImg" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Flag" />
+    <Property Type="Decimal" Name="Order" Precision="18" Scale="0" />
+    <Property Type="Boolean" Name="HasHallRole" />
+    <Property Type="Boolean" Name="HasProRole" />
+    <NavigationProperty Name="Sys_MenuInfo1" Relationship="ReportModel.FK_Sys_MenuInfo_Sys_MenuInfo" FromRole="Sys_MenuInfo" ToRole="Sys_MenuInfo1" />
+    <NavigationProperty Name="Sys_MenuInfo2" Relationship="ReportModel.FK_Sys_MenuInfo_Sys_MenuInfo" FromRole="Sys_MenuInfo1" ToRole="Sys_MenuInfo" />
+    <NavigationProperty Name="Sys_Role_Menu_HallInfo" Relationship="ReportModel.FK_Sys_Role_Menu_HallInfo_Sys_MenuInfo" FromRole="Sys_MenuInfo" ToRole="Sys_Role_Menu_HallInfo" />
+    <NavigationProperty Name="Sys_Role_MenuInfo" Relationship="ReportModel.FK_Sys_Role_MenuInfo_Sys_MenuInfo" FromRole="Sys_MenuInfo" ToRole="Sys_Role_MenuInfo" />
+    <NavigationProperty Name="Sys_Role_Menu_ProInfo" Relationship="ReportModel.FK_Sys_Role_ProInfo_Sys_MenuInfo" FromRole="Sys_MenuInfo" ToRole="Sys_Role_Menu_ProInfo" />
+    <NavigationProperty Name="Demo_ReportViewInfo" Relationship="ReportModel.FK_Demo_ReportViewInfo_Sys_MenuInfo" FromRole="Sys_MenuInfo" ToRole="Demo_ReportViewInfo" />
+    <Property Type="Boolean" Name="DisplayMobile" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Sys_MenuInfo_Sys_MenuInfo">
+    <End Type="ReportModel.Sys_MenuInfo" Role="Sys_MenuInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Sys_MenuInfo" Role="Sys_MenuInfo1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Sys_MenuInfo1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Role_Menu_HallInfo_Sys_MenuInfo">
+    <End Type="ReportModel.Sys_MenuInfo" Role="Sys_MenuInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Sys_Role_Menu_HallInfo" Role="Sys_Role_Menu_HallInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Sys_Role_Menu_HallInfo">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Role_MenuInfo_Sys_MenuInfo">
+    <End Type="ReportModel.Sys_MenuInfo" Role="Sys_MenuInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Sys_Role_MenuInfo" Role="Sys_Role_MenuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Sys_Role_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Report_Borow">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="审批单" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷日期" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷部门" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品型号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="18" Scale="0" />
+    <Property Type="String" Name="营业厅" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="String" Name="商品编码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_Return">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="SysDate" Precision="3" />
+    <Property Type="Int32" Name="借贷单号" />
+    <Property Type="String" Name="商品类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品型号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="18" Scale="0" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="归还日期" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_IMEIInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="区域" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="状态" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="库龄_天" Nullable="false" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_IMEITracksInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统平台" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="跟踪" MaxLength="129" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="日期" Precision="3" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="系统平台" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Pro_ClassInfo">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Type="Int32" Name="ClassID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ClassName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Order" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <Property Type="String" Name="Note" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pro_ProInfo" Relationship="ReportModel.FK_PRO_PROI_REFERENCE_PRO_CLAS" FromRole="Pro_ClassInfo" ToRole="Pro_ProInfo" />
+    <NavigationProperty Name="Sys_Role_Menu_ProInfo" Relationship="ReportModel.FK_Sys_Role_Menu_ProInfo_Pro_ClassInfo" FromRole="Pro_ClassInfo" ToRole="Sys_Role_Menu_ProInfo" />
+    <Property Type="Boolean" Name="HasSalary" />
+    <Property Type="Int32" Name="ClassTypeID" />
+  </EntityType>
+  <EntityType Name="Sys_Role_Menu_ProInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="MenuID" />
+    <Property Type="Int32" Name="ClassID" />
+    <Property Type="String" Name="Note" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="RoleID" />
+    <NavigationProperty Name="Pro_ClassInfo" Relationship="ReportModel.FK_Sys_Role_Menu_ProInfo_Pro_ClassInfo" FromRole="Sys_Role_Menu_ProInfo" ToRole="Pro_ClassInfo" />
+    <NavigationProperty Name="Sys_MenuInfo" Relationship="ReportModel.FK_Sys_Role_ProInfo_Sys_MenuInfo" FromRole="Sys_Role_Menu_ProInfo" ToRole="Sys_MenuInfo" />
+  </EntityType>
+  <Association Name="FK_PRO_PROI_REFERENCE_PRO_CLAS">
+    <End Type="ReportModel.Pro_ClassInfo" Role="Pro_ClassInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Pro_ProInfo" Role="Pro_ProInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pro_ClassInfo">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="Pro_ProInfo">
+        <PropertyRef Name="Pro_ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Role_Menu_ProInfo_Pro_ClassInfo">
+    <End Type="ReportModel.Pro_ClassInfo" Role="Pro_ClassInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Sys_Role_Menu_ProInfo" Role="Sys_Role_Menu_ProInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pro_ClassInfo">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="Sys_Role_Menu_ProInfo">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Role_ProInfo_Sys_MenuInfo">
+    <End Type="ReportModel.Sys_MenuInfo" Role="Sys_MenuInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Sys_Role_Menu_ProInfo" Role="Sys_Role_Menu_ProInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Sys_Role_Menu_ProInfo">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Report_OutInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="调拨单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调出仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调入仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="调拨日期" Precision="3" />
+    <Property Type="String" Name="调拨人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="已接收" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="接收人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="接收日期" Precision="3" />
+    <Property Type="String" Name="调出仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调入仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="总高度" />
+    <NavigationProperty Name="Report_OutOrderListInfo" Relationship="ReportModel.Report_OutInfoReport_OutOrderListInfo" FromRole="Report_OutInfo" ToRole="Report_OutOrderListInfo" />
+  </EntityType>
+  <EntityType Name="Report_InOrderInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="入库单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="入库仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="入库日期" Precision="3" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="入库仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_BackIMEIInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="系统自增外键编号" />
+      <PropertyRef Name="数量" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增外键编号" Nullable="false" />
+    <Property Type="Int32" Name="自增外键退库单编号" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Nullable="false" Precision="3" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="退库单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="退库仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="退库日期" Precision="3" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="退库仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_BackInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="退库单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="退库仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="退库日期" Precision="3" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="退库仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_BackListInfo">
+    <Key>
+      <PropertyRef Name="系统自增外键编号" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增外键编号" Nullable="false" />
+    <Property Type="Int32" Name="自增外键退库编号" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="退库单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="退库仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="退库日期" Precision="3" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="退库仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_ChangeIMEIInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="系统自增外键编号" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="旧批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="新批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增外键编号" Nullable="false" />
+    <Property Type="Int32" Name="自增外键转类别单编号" />
+    <Property Type="String" Name="原类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="现类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="现品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="现商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="现商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Nullable="false" Precision="3" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="转类别仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="转类别日期" Precision="3" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="转类别仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_ChangeListInfo">
+    <Key>
+      <PropertyRef Name="系统自增外键编号" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="String" Name="旧批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="新批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增外键编号" Nullable="false" />
+    <Property Type="Int32" Name="自增外键转类别编号" />
+    <Property Type="String" Name="原类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="现类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="现品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="现商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="现商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Nullable="false" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="转类别仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="转类别日期" Precision="3" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="转类别仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_ChangeProInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="转类别仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="转类别日期" Precision="3" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="转类别仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_EveryHallStoreInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="门店编码" />
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="制式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="8" />
+    <Property Type="String" Name="门店等级" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="等级排序" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="门店排序" />
+    <Property Type="Decimal" Name="数量" Precision="38" Scale="8" />
+    <Property Type="Decimal" Name="在途" Precision="38" Scale="2" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="Int32" Name="类别排序" />
+    <Property Type="String" Name="门店编码" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="属性排序" />
+    <Property Type="String" Name="ProID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="GetInOutSellInfo_Result">
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="类别" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="品牌" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="商品名称" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="商品属性" Nullable="true" />
+    <Property Type="Decimal" Name="期初库存" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期初始入库" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期退库" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期类别转入" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期类别转出" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期调入" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期调出" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期销售" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期退货" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期送修" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期返库" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期借贷" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期归还" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="期末库存" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="送修累计" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="借贷累计" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="String" Name="门店" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="区域" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="门店编码" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="类别编码" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetInOutSellInfo_Result1">
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="类别" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="品牌" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="商品名称" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="商品属性" Nullable="true" />
+    <Property Type="Decimal" Name="期初库存" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期初始入库" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期退库" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期类别转入" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期类别转出" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期调入" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期调出" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期销售" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期退货" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期送修" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期返库" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期借贷" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期归还" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="期末库存" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="送修累计" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="借贷累计" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="String" Name="门店" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="区域" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="门店编码" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="类别编码" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Report_PriceInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="价格" />
+      <PropertyRef Name="结算价" />
+      <PropertyRef Name="最低价格" />
+      <PropertyRef Name="最高价格" />
+      <PropertyRef Name="可以兑券" />
+      <PropertyRef Name="需要审批单" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="价格" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="结算价" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="最低价格" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="最高价格" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="String" Name="可以兑券" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="需要审批单" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Report_OutOrderIMEIInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="自增外键调拨明细编号" />
+      <PropertyRef Name="已接收" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="调拨单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调出仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调入仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="调拨日期" Precision="3" />
+    <Property Type="String" Name="调拨人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调拨备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="自增外键调拨单编号" />
+    <Property Type="Int32" Name="自增外键调拨明细编号" Nullable="false" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="串码备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="已接收" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="接收人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="接收日期" Precision="3" />
+    <Property Type="String" Name="调出仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调入仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_OutOrderListInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="调拨单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调出仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调入仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="调拨日期" Precision="3" />
+    <Property Type="String" Name="调拨人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调拨备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="批次号" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Type="Int32" Name="系统自增外键编号" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" Nullable="false" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="已接收" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="接收人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="接收日期" Precision="3" />
+    <Property Type="String" Name="调出仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调入仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <NavigationProperty Name="Report_OutInfo" Relationship="ReportModel.Report_OutInfoReport_OutOrderListInfo" FromRole="Report_OutOrderListInfo" ToRole="Report_OutInfo" />
+  </EntityType>
+  <Association Name="Report_OutInfoReport_OutOrderListInfo">
+    <End Type="ReportModel.Report_OutInfo" Role="Report_OutInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Report_OutOrderListInfo" Role="Report_OutOrderListInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Report_OutInfo">
+        <PropertyRef Name="系统自增编号" />
+      </Principal>
+      <Dependent Role="Report_OutOrderListInfo">
+        <PropertyRef Name="系统自增外键编号" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Report_ReturnIMEIInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="自主主键编号" />
+      <PropertyRef Name="归还明细外键编号" />
+      <PropertyRef Name="归还外键编号" />
+      <PropertyRef Name="数量" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="Int32" Name="自主主键编号" Nullable="false" />
+    <Property Type="Int32" Name="归还明细外键编号" Nullable="false" />
+    <Property Type="Int32" Name="归还外键编号" Nullable="false" />
+    <Property Type="String" Name="借贷单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="审批单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="借贷日期" Precision="3" />
+    <Property Type="String" Name="借贷部门" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="联系电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="预计归还日期" Precision="3" />
+    <Property Type="DateTime" Name="归还日期" Precision="3" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Nullable="false" Precision="3" Scale="2" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_ReturnListInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增主键编码" />
+      <PropertyRef Name="系统自增外键编号" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="Int32" Name="系统自增主键编码" Nullable="false" />
+    <Property Type="Int32" Name="系统自增外键编号" Nullable="false" />
+    <Property Type="String" Name="借贷单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="审批单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="借贷日期" Precision="3" />
+    <Property Type="String" Name="借贷部门" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="联系电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="预计归还日期" Precision="3" />
+    <Property Type="DateTime" Name="归还日期" Precision="3" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_ReNewInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="续期方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="续期比列" MaxLength="101" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="续期金额" Precision="24" Scale="8" />
+    <Property Type="Decimal" Name="续期积分" Precision="21" Scale="2" />
+    <Property Type="Int32" Name="续期天数" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="续期日期" Precision="3" />
+    <Property Type="String" Name="会员姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="拦装人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_RepairReturnInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="系统自增外键编号" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增外键编号" Nullable="false" />
+    <Property Type="String" Name="送修单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="返库单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始返库单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="返库日期" Precision="3" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="返修串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Print_SellListInfo">
+    <Key>
+      <PropertyRef Name="自增主键编号" />
+      <PropertyRef Name="备注" />
+    </Key>
+    <Property Type="Int64" Name="自增主键编号" Nullable="false" />
+    <Property Type="Int32" Name="系统自增外键编号" />
+    <Property Type="String" Name="商品名称" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="串码_号码_合同号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="券面值" Precision="20" Scale="2" />
+    <Property Type="String" Name="券号_合约号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="优惠" Precision="20" Scale="2" />
+    <Property Type="String" Name="备注" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="金额小计" Precision="20" Scale="4" />
+    <Property Type="String" Name="销售单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="String" Name="销售门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售公司" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="应收总额" Precision="20" Scale="2" />
+    <Property Type="String" Name="优惠券名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="优惠券金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实收总额" Precision="20" Scale="2" />
+    <Property Type="String" Name="实收总额大写" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="刷卡" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="现金" Precision="20" Scale="2" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="系统单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Print_SellInfo" Relationship="ReportModel.Print_SellInfoPrint_SellListInfo" FromRole="Print_SellListInfo" ToRole="Print_SellInfo" />
+    <Property Type="Int32" Name="backid" />
+  </EntityType>
+  <EntityType Name="Print_SellInfo">
+    <Key>
+      <PropertyRef Name="自增主键" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="Int32" Name="自增主键" Nullable="false" />
+    <Property Type="String" Name="销售单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="String" Name="销售门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售公司" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="应收总额" Precision="20" Scale="2" />
+    <Property Type="String" Name="优惠券名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="优惠券金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实收总额" Precision="20" Scale="2" />
+    <Property Type="String" Name="实收总额大写" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="刷卡" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="现金" Precision="20" Scale="2" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="系统单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Print_SellListInfo" Relationship="ReportModel.Print_SellInfoPrint_SellListInfo" FromRole="Print_SellInfo" ToRole="Print_SellListInfo" />
+    <Property Type="Int32" Name="backid" />
+  </EntityType>
+  <Association Name="Print_SellInfoPrint_SellListInfo">
+    <End Type="ReportModel.Print_SellInfo" Role="Print_SellInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Print_SellListInfo" Role="Print_SellListInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Print_SellInfo">
+        <PropertyRef Name="自增主键" />
+      </Principal>
+      <Dependent Role="Print_SellListInfo">
+        <PropertyRef Name="系统自增外键编号" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Demo_ReportViewInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ReportViewName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="MenuID" />
+    <NavigationProperty Name="Sys_MenuInfo" Relationship="ReportModel.FK_Demo_ReportViewInfo_Sys_MenuInfo" FromRole="Demo_ReportViewInfo" ToRole="Sys_MenuInfo" />
+  </EntityType>
+  <Association Name="FK_Demo_ReportViewInfo_Sys_MenuInfo">
+    <End Type="ReportModel.Sys_MenuInfo" Role="Sys_MenuInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Demo_ReportViewInfo" Role="Demo_ReportViewInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MenuInfo">
+        <PropertyRef Name="MenuID" />
+      </Principal>
+      <Dependent Role="Demo_ReportViewInfo">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Print_SellBackInfo">
+    <Key>
+      <PropertyRef Name="自增主键" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="Int32" Name="自增主键" Nullable="false" />
+    <Property Type="String" Name="退货单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="String" Name="销售门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售公司" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="应收总额" Precision="20" Scale="4" />
+    <Property Type="String" Name="优惠券名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="优惠券金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实收总额" Precision="20" Scale="4" />
+    <Property Type="String" Name="实收总额大写" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="刷卡" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="现金" Precision="20" Scale="2" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Print_SellBackListInfo" Relationship="ReportModel.Print_SellBackInfoPrint_SellBackListInfo" FromRole="Print_SellBackInfo" ToRole="Print_SellBackListInfo" />
+  </EntityType>
+  <EntityType Name="Print_SellBackListInfo">
+    <Key>
+      <PropertyRef Name="自增主键编号" />
+      <PropertyRef Name="备注" />
+    </Key>
+    <Property Type="Int64" Name="自增主键编号" Nullable="false" />
+    <Property Type="Int32" Name="系统自增外键编号" />
+    <Property Type="String" Name="商品名称" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="串码_号码_合同号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="券面值" Precision="20" Scale="2" />
+    <Property Type="String" Name="券号_合约号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="优惠" Precision="38" Scale="2" />
+    <Property Type="String" Name="备注" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="金额小计" Precision="20" Scale="4" />
+    <Property Type="String" Name="退货单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="String" Name="销售门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售公司" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="应收总额" Precision="20" Scale="4" />
+    <Property Type="String" Name="优惠券名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="优惠券金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实收总额" Precision="20" Scale="4" />
+    <Property Type="String" Name="实收总额大写" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="刷卡" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="现金" Precision="20" Scale="2" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Print_SellBackInfo" Relationship="ReportModel.Print_SellBackInfoPrint_SellBackListInfo" FromRole="Print_SellBackListInfo" ToRole="Print_SellBackInfo" />
+  </EntityType>
+  <Association Name="Print_SellBackInfoPrint_SellBackListInfo">
+    <End Type="ReportModel.Print_SellBackInfo" Role="Print_SellBackInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Print_SellBackListInfo" Role="Print_SellBackListInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Print_SellBackInfo">
+        <PropertyRef Name="自增主键" />
+      </Principal>
+      <Dependent Role="Print_SellBackListInfo">
+        <PropertyRef Name="系统自增外键编号" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Report_ProductInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="商品编码" />
+      <PropertyRef Name="有串码" />
+      <PropertyRef Name="属于服务" />
+      <PropertyRef Name="日期之前可用" />
+      <PropertyRef Name="日期之前加" />
+      <PropertyRef Name="日期之后可用" />
+      <PropertyRef Name="日期之后加" />
+      <PropertyRef Name="兑券临界值" />
+      <PropertyRef Name="小于临界值加" />
+      <PropertyRef Name="大于临界值加" />
+      <PropertyRef Name="需要补差" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="商品编码" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="有串码" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="属于服务" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="兑券临界日期" Precision="3" />
+    <Property Type="String" Name="日期之前可用" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="日期之前加" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="String" Name="日期之后可用" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="日期之后加" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="兑券临界值" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="小于临界值加" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="大于临界值加" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="String" Name="需要补差" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_AirOutListInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="批次号" />
+      <PropertyRef Name="系统自增外键编号" />
+      <PropertyRef Name="调拨金额" />
+      <PropertyRef Name="已接收" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="调拨单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调出仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调入仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="调拨日期" Precision="3" />
+    <Property Type="String" Name="调拨人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调拨备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="批次号" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增外键编号" Nullable="false" />
+    <Property Type="String" Name="调出号码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调出号码属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="调拨金额" Nullable="false" Precision="20" Scale="2" />
+    <Property Type="String" Name="调入号码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调入号码属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="已接收" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="接收人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="接收日期" Precision="3" />
+    <Property Type="String" Name="调出仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="调入仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_StoreInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="在库数量" />
+      <PropertyRef Name="送修中数量" />
+      <PropertyRef Name="借贷中数量" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="零售价格" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="在库数量" Nullable="false" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="门店优惠审批中" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="调拨中数量" Precision="21" Scale="2" />
+    <Property Type="Decimal" Name="送修中数量" Nullable="false" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="借贷中数量" Nullable="false" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="小计" Precision="38" Scale="2" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="区域" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_CostPriceListInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="批次号" />
+      <PropertyRef Name="成本价" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="批次号" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="入库日期" Precision="3" />
+    <Property Type="Decimal" Name="成本价" Nullable="false" Precision="20" Scale="8" />
+  </EntityType>
+  <EntityType Name="Report_YANBAO">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="备注" />
+      <PropertyRef Name="状态" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="DateTime" Name="录入时间" Precision="3" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="区域" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="店名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="网店属性" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="仓管员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="联系方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="延保购买日期" Precision="3" />
+    <Property Type="String" Name="合同编号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="销售数量" Precision="26" Scale="8" />
+    <Property Type="Decimal" Name="延保价格" Precision="38" Scale="6" />
+    <Property Type="String" Name="手机型号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="手机价格" Precision="20" Scale="8" />
+    <Property Type="String" Name="手机串号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="手机购买方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="发票号码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="电池编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="充电器编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="耳机编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" Nullable="false" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="状态" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_InOutSellInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="期初库存" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期初始入库" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期退库" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期类别转入" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期类别转出" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期调入" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期调出" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期销售审批_申请_" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期销售审批_已审批_" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期销售" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期退货" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期送修" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期返库" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期借贷" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="本期归还" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="期末库存" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="送修累计" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="借贷累计" Precision="20" Scale="2" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="区域" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Chart_MapReport">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="HallID" />
+      <PropertyRef Name="ProClass" />
+      <PropertyRef Name="DATE" />
+      <PropertyRef Name="AreaID" />
+      <PropertyRef Name="Profit" />
+      <PropertyRef Name="AsPrice" />
+    </Key>
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="String" Name="HallID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="HallName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ProClass" Nullable="false" />
+    <Property Type="String" Name="TypeName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DATE" Nullable="false" Precision="3" />
+    <Property Type="Decimal" Name="Sells" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="SellPrice" Precision="38" Scale="4" />
+    <Property Type="String" Name="AreaName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="AreaID" Nullable="false" />
+    <Property Type="Int32" Name="Profit" Nullable="false" />
+    <Property Type="String" Name="ClassTypeName" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Type="Boolean" Name="AsPrice" Nullable="false" />
+    <Property Type="Int32" Name="BigAreaID" />
+    <Property Type="String" Name="BigAreaName" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_InOrderIMEIInfo">
+    <Key>
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="批次号" />
+      <PropertyRef Name="数量" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="批次号" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="自增外键入库单编号" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Nullable="false" Precision="3" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="入库单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="入库仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="入库日期" Precision="3" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="入库仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="Decimal" Name="成本价" Precision="20" Scale="4" />
+  </EntityType>
+  <EntityType Name="Report_SellListInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="组合优惠名称" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="销售单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="String" Name="销售方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实际单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实收金额" Precision="20" Scale="4" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="String" Name="代金券编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="代金券面值" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="兑换值" Precision="20" Scale="2" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单品优惠名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单品优惠金额" Precision="20" Scale="2" />
+    <Property Type="String" Name="组合优惠名称" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="组合优惠金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="批发优惠金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="多收单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="暗补" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="列收" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="终端代销费" Precision="38" Scale="4" />
+    <Property Type="String" Name="是否免费服务" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="门店优惠" Precision="20" Scale="2" />
+    <Property Type="String" Name="销售时间" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="片区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品大类" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单头备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="终端制式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="片区编码" />
+    <Property Type="Int32" Name="大区编码" />
+    <Property Type="String" Name="商品编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="Int32" Name="商品大类编码" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="销售时成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="入库成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="规则毛利可拿回" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="规则毛利不可拿回" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="结算价" Precision="20" Scale="8" />
+    <Property Type="String" Name="仓属性" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_BorrowAduitInfo">
+    <Key>
+      <PropertyRef Name="系统主键" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="Int32" Name="系统主键" Nullable="false" />
+    <Property Type="String" Name="申请单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="借贷总额" Precision="18" Scale="2" />
+    <Property Type="String" Name="已审批" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="已通过" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="已使用" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="使用日期" Precision="3" />
+    <Property Type="String" Name="申请人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="申请日期" Precision="3" />
+    <Property Type="DateTime" Name="系统日期" Precision="3" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="内部借机" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="借贷人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷部门" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷人电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="预计归还日期" Precision="3" />
+    <Property Type="String" Name="申请备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="一级已审批" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="一级已通过" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="一级审批人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="一级审批日期" Precision="3" />
+    <Property Type="String" Name="一级备注" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="二级已审批" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="二级已通过" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="二级审批人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="二级审批日期" Precision="3" />
+    <Property Type="String" Name="二级备注" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="三级已审批" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="三级已通过" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="三级审批人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="三级审批日期" Precision="3" />
+    <Property Type="String" Name="三级备注" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="四级已审批" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="四级已通过" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="四级审批人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="四级审批日期" Precision="3" />
+    <Property Type="String" Name="四级备注" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Report_BorrowAduitListInfo" Relationship="ReportModel.Report_BorrowAduitInfoReport_BorrowAduitListInfo" FromRole="Report_BorrowAduitInfo" ToRole="Report_BorrowAduitListInfo" />
+  </EntityType>
+  <EntityType Name="Report_BorrowAduitListInfo">
+    <Key>
+      <PropertyRef Name="系统主键" />
+    </Key>
+    <Property Type="Int32" Name="系统主键" Nullable="false" />
+    <Property Type="Int32" Name="系统外键" />
+    <Property Type="String" Name="商品类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品型号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="借贷数量" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="借贷单价" Precision="20" Scale="8" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Report_BorrowAduitInfo" Relationship="ReportModel.Report_BorrowAduitInfoReport_BorrowAduitListInfo" FromRole="Report_BorrowAduitListInfo" ToRole="Report_BorrowAduitInfo" />
+  </EntityType>
+  <Association Name="Report_BorrowAduitInfoReport_BorrowAduitListInfo">
+    <End Type="ReportModel.Report_BorrowAduitInfo" Role="Report_BorrowAduitInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Report_BorrowAduitListInfo" Role="Report_BorrowAduitListInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Report_BorrowAduitInfo">
+        <PropertyRef Name="系统主键" />
+      </Principal>
+      <Dependent Role="Report_BorrowAduitListInfo">
+        <PropertyRef Name="系统外键" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Report_Profit">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="计算成本价" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="Decimal" Name="兑换值" Precision="20" Scale="2" />
+    <Property Type="String" Name="商品大类" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="片区编码" />
+    <Property Type="Int32" Name="大区编码" />
+    <Property Type="String" Name="商品编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="Int32" Name="商品大类编码" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="结算价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="入库成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="销售时成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="计算成本价" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="实收单价" Precision="33" Scale="8" />
+    <Property Type="Decimal" Name="退货审批利润" Precision="21" Scale="2" />
+    <Property Type="Decimal" Name="利润" Precision="36" Scale="8" />
+    <Property Type="String" Name="销售单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="片区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售时间" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_SellReport">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="组合优惠名称" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="销售单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="String" Name="销售方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实际单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实收金额" Precision="20" Scale="4" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="String" Name="代金券编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="代金券面值" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="兑换值" Precision="20" Scale="2" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单品优惠名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单品优惠金额" Precision="20" Scale="2" />
+    <Property Type="String" Name="组合优惠名称" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="组合优惠金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="批发优惠金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="多收单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="暗补" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="列收" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="终端代销费" Precision="38" Scale="4" />
+    <Property Type="String" Name="是否免费服务" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="门店优惠" Precision="20" Scale="2" />
+    <Property Type="String" Name="销售时间" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="片区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品大类" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单头备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="终端制式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="片区编码" />
+    <Property Type="Int32" Name="大区编码" />
+    <Property Type="String" Name="商品编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="Int32" Name="商品大类编码" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="销售时成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="入库成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="规则毛利可拿回" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="规则毛利不可拿回" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="结算价" Precision="20" Scale="8" />
+    <Property Type="String" Name="ProMainID" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="price" Precision="20" Scale="8" />
+  </EntityType>
+  <EntityType Name="Report_SellReport2">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="组合优惠名称" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="销售单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="String" Name="销售方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实际单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实收金额" Precision="20" Scale="4" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="String" Name="代金券编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="代金券面值" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="兑换值" Precision="20" Scale="2" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单品优惠名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单品优惠金额" Precision="20" Scale="2" />
+    <Property Type="String" Name="组合优惠名称" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="组合优惠金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="批发优惠金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="多收单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="暗补" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="列收" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="终端代销费" Precision="38" Scale="4" />
+    <Property Type="String" Name="是否免费服务" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="门店优惠" Precision="20" Scale="2" />
+    <Property Type="String" Name="销售时间" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="片区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品大类" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单头备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="终端制式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="片区编码" />
+    <Property Type="Int32" Name="大区编码" />
+    <Property Type="String" Name="商品编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="Int32" Name="商品大类编码" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="销售时成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="入库成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="规则毛利可拿回" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="规则毛利不可拿回" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="结算价" Precision="20" Scale="8" />
+    <Property Type="String" Name="ProMainID" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="price" Precision="20" Scale="8" />
+  </EntityType>
+  <EntityType Name="Report_Profit2">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="计算成本价" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="销售单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="Decimal" Name="兑换值" Precision="20" Scale="2" />
+    <Property Type="String" Name="商品大类" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="片区编码" />
+    <Property Type="Int32" Name="大区编码" />
+    <Property Type="String" Name="商品编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="Int32" Name="商品大类编码" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="结算价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="入库成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="销售时成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="计算成本价" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="实收单价" Precision="33" Scale="8" />
+    <Property Type="Decimal" Name="退货审批利润" Precision="21" Scale="2" />
+    <Property Type="Decimal" Name="利润" Precision="36" Scale="8" />
+    <Property Type="String" Name="片区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售时间" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_BorrowInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增主键" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增主键" Nullable="false" />
+    <Property Type="Int32" Name="自增外键编号" />
+    <Property Type="String" Name="借贷单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="审批单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="借贷日期" Precision="3" />
+    <Property Type="String" Name="借贷部门" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="联系电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="预计归还日期" Precision="3" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="借贷数量" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="未还数量" Precision="21" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_SellAduitInfo">
+    <Key>
+      <PropertyRef Name="系统主键" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="Int32" Name="系统主键" Nullable="false" />
+    <Property Type="String" Name="申请单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="批发总额" Precision="20" Scale="2" />
+    <Property Type="String" Name="已审批" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="已通过" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="已使用" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="使用日期" Precision="3" />
+    <Property Type="String" Name="申请人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="申请日期" Precision="3" />
+    <Property Type="DateTime" Name="系统日期" Precision="3" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="申请备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="一级已审批" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="一级已通过" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="一级审批人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="一级审批日期" Precision="3" />
+    <Property Type="String" Name="一级备注" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="二级已审批" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="二级已通过" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="二级审批人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="二级审批日期" Precision="3" />
+    <Property Type="String" Name="二级备注" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="三级已审批" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="三级已通过" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="三级审批人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="三级审批日期" Precision="3" />
+    <Property Type="String" Name="三级备注" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Report_SellAduitListInfo" Relationship="ReportModel.Report_SellAduitInfoReport_SellAduitListInfo" FromRole="Report_SellAduitInfo" ToRole="Report_SellAduitListInfo" />
+  </EntityType>
+  <EntityType Name="Report_SellAduitListInfo">
+    <Key>
+      <PropertyRef Name="系统主键" />
+      <PropertyRef Name="批发单价" />
+      <PropertyRef Name="批发数量" />
+    </Key>
+    <Property Type="Int32" Name="系统主键" Nullable="false" />
+    <Property Type="Int32" Name="系统外键" />
+    <Property Type="String" Name="商品类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品型号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="批发单价" Nullable="false" Precision="20" Scale="4" />
+    <Property Type="String" Name="备注" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Report_SellAduitInfo" Relationship="ReportModel.Report_SellAduitInfoReport_SellAduitListInfo" FromRole="Report_SellAduitListInfo" ToRole="Report_SellAduitInfo" />
+    <Property Type="Decimal" Name="批发数量" Nullable="false" Precision="20" Scale="4" />
+  </EntityType>
+  <Association Name="Report_SellAduitInfoReport_SellAduitListInfo">
+    <End Type="ReportModel.Report_SellAduitInfo" Role="Report_SellAduitInfo" Multiplicity="0..1" />
+    <End Type="ReportModel.Report_SellAduitListInfo" Role="Report_SellAduitListInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Report_SellAduitInfo">
+        <PropertyRef Name="系统主键" />
+      </Principal>
+      <Dependent Role="Report_SellAduitListInfo">
+        <PropertyRef Name="系统外键" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Report_SellReport3">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="组合优惠名称" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="销售单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="String" Name="销售方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实际单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实收金额" Precision="20" Scale="4" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="String" Name="代金券编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="代金券面值" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="兑换值" Precision="20" Scale="2" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单品优惠名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单品优惠金额" Precision="20" Scale="2" />
+    <Property Type="String" Name="组合优惠名称" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="组合优惠金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="批发优惠金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="多收单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="暗补" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="列收" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="终端代销费" Precision="38" Scale="4" />
+    <Property Type="String" Name="是否免费服务" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="门店优惠" Precision="20" Scale="2" />
+    <Property Type="String" Name="销售时间" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="片区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品大类" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单头备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="终端制式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="片区编码" />
+    <Property Type="Int32" Name="大区编码" />
+    <Property Type="String" Name="商品编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="Int32" Name="商品大类编码" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="销售时成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="入库成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="规则毛利可拿回" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="规则毛利不可拿回" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="结算价" Precision="20" Scale="8" />
+    <Property Type="String" Name="ProMainID" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="price" Precision="20" Scale="8" />
+  </EntityType>
+  <EntityType Name="Report_VipBuyTimeInfo2">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="会员贴膜次数" />
+      <PropertyRef Name="状态" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="DateTime" Name="注册时间" Precision="3" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="区域" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="店名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="网店属性" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="仓管员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="卡类" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="销售金额" Precision="29" Scale="0" />
+    <Property Type="String" Name="客户名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="性别" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="生日日期" Precision="3" />
+    <Property Type="String" Name="联系号码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备用号码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="身份证" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="详细地址" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="QQ号_微信_微博" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="累计积分" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="消费次数" />
+    <Property Type="Int32" Name="会员贴膜次数" Nullable="false" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="状态" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_YANBAO2">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="备注" />
+      <PropertyRef Name="状态" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="DateTime" Name="录入时间" Precision="3" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="区域" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="店名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="网店属性" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="仓管员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="联系方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="延保购买日期" Precision="3" />
+    <Property Type="String" Name="合同编号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="销售数量" Precision="26" Scale="8" />
+    <Property Type="Decimal" Name="延保价格" Precision="20" Scale="2" />
+    <Property Type="String" Name="手机型号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="手机价格" Precision="20" Scale="8" />
+    <Property Type="String" Name="手机串号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="手机购买方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="发票号码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="电池编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="充电器编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="耳机编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" Nullable="false" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="状态" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Report_SellListInfo2">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="组合优惠名称" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="销售单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="String" Name="销售方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实际单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实收金额" Precision="20" Scale="4" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="销售日期" Precision="3" />
+    <Property Type="String" Name="代金券编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="代金券面值" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="兑换值" Precision="20" Scale="2" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单品优惠名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="单品优惠金额" Precision="20" Scale="2" />
+    <Property Type="String" Name="组合优惠名称" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="组合优惠金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="批发优惠金额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="多收单价" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="暗补" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="列收" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="终端代销费" Precision="38" Scale="4" />
+    <Property Type="String" Name="是否免费服务" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="会员卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户姓名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="客户电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="门店优惠" Precision="20" Scale="2" />
+    <Property Type="String" Name="销售时间" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="片区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品大类" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单头备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="终端制式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="片区编码" />
+    <Property Type="Int32" Name="大区编码" />
+    <Property Type="String" Name="商品编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="Int32" Name="商品大类编码" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="销售时成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="入库成本价" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="规则毛利可拿回" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="规则毛利不可拿回" Precision="20" Scale="8" />
+    <Property Type="Decimal" Name="结算价" Precision="20" Scale="8" />
+  </EntityType>
+  <EntityType Name="Report_BorrowIMEIInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="系统自增外键编号" />
+      <PropertyRef Name="数量" />
+      <PropertyRef Name="已归还" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增外键编号" Nullable="false" />
+    <Property Type="Int32" Name="自增外键借贷单编号" />
+    <Property Type="String" Name="借贷单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="审批单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="借贷日期" Precision="3" />
+    <Property Type="String" Name="借贷部门" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="联系电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷方式" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="预计归还日期" Precision="3" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Nullable="false" Precision="3" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="已归还" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="借贷仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_RepairInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="系统自增编号" />
+      <PropertyRef Name="系统自增外键编号" />
+      <PropertyRef Name="已返库" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="Int32" Name="系统自增编号" Nullable="false" />
+    <Property Type="String" Name="批次号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增外键编号" Nullable="false" />
+    <Property Type="String" Name="送修单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="门店" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="送修日期" Precision="3" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="String" Name="串码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="已返库" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+  </EntityType>
+  <EntityType Name="Report_SMSSign">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="合同金额" />
+      <PropertyRef Name="合同发送数量" />
+      <PropertyRef Name="实收金额" />
+      <PropertyRef Name="实际发送数量" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="String" Name="销售单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="系统时间" Precision="3" />
+    <Property Type="String" Name="行业" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="合同日期" Precision="3" />
+    <Property Type="String" Name="单位名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="单位地址" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="业务内容" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="合同金额" Nullable="false" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="合同发送数量" Nullable="false" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实收金额" Nullable="false" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="实际发送数量" Nullable="false" Precision="20" Scale="2" />
+    <Property Type="DateTime" Name="合同结清日期" Precision="3" />
+    <Property Type="DateTime" Name="实际结清日期" Precision="3" />
+    <Property Type="Decimal" Name="佣金" Precision="20" Scale="2" />
+    <Property Type="String" Name="联系人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="联系电话" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="发票抬头" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="发票代码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="发票日期" Precision="3" />
+    <Property Type="Decimal" Name="税率" Precision="20" Scale="2" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="已结清" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="录单员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="View_BorowAduit">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="HallID" />
+      <PropertyRef Name="Aduited1" />
+      <PropertyRef Name="Passed1" />
+      <PropertyRef Name="Aduited2" />
+      <PropertyRef Name="Passed2" />
+      <PropertyRef Name="Aduited3" />
+      <PropertyRef Name="Passed3" />
+      <PropertyRef Name="Aduited" />
+      <PropertyRef Name="Passed" />
+      <PropertyRef Name="Aduited4" />
+      <PropertyRef Name="Passed4" />
+      <PropertyRef Name="Used" />
+      <PropertyRef Name="InternalBorow" />
+      <PropertyRef Name="TotalMoney" />
+      <PropertyRef Name="HasAduited" />
+      <PropertyRef Name="HasPassed" />
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="HasPassed1" />
+      <PropertyRef Name="HasAduited2" />
+      <PropertyRef Name="HasPassed2" />
+      <PropertyRef Name="HasAduited3" />
+      <PropertyRef Name="HasPassed3" />
+      <PropertyRef Name="HasAduited4" />
+      <PropertyRef Name="HasPassed4" />
+      <PropertyRef Name="HasUsed" />
+    </Key>
+    <Property Type="String" Name="AduitID" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="AduitUser" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AduitUser2" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AduitUser3" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ApplyUser" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ApplyDate" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Note" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="HallID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="HallName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Aduited1" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Passed1" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Aduited2" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Passed2" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Aduited3" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Passed3" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Aduited" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Passed" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Aduited4" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Passed4" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AduitDate4" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AduitUser4" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Used" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="SysDate" Precision="3" />
+    <Property Type="String" Name="UseDate" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AduitDate" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Dept" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AduitDate2" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AduitDate3" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BorrowType" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Borrower" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="InternalBorow" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Note1" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Note2" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Note3" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Note4" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MobilPhone" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="EstimateReturnTime" Precision="3" />
+    <Property Type="Decimal" Name="TotalMoney" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Boolean" Name="Used1" />
+    <Property Type="Boolean" Name="hasAduited1" />
+    <Property Type="Boolean" Name="HasAduited" Nullable="false" />
+    <Property Type="Boolean" Name="HasPassed" Nullable="false" />
+    <Property Type="Boolean" Name="Expr1" Nullable="false" />
+    <Property Type="Boolean" Name="HasPassed1" Nullable="false" />
+    <Property Type="Boolean" Name="HasAduited2" Nullable="false" />
+    <Property Type="Boolean" Name="HasPassed2" Nullable="false" />
+    <Property Type="Boolean" Name="HasAduited3" Nullable="false" />
+    <Property Type="Boolean" Name="HasPassed3" Nullable="false" />
+    <Property Type="Boolean" Name="HasAduited4" Nullable="false" />
+    <Property Type="Boolean" Name="HasPassed4" Nullable="false" />
+    <Property Type="Boolean" Name="HasUsed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Report_VipBuyTimeInfo">
+    <Key>
+      <PropertyRef Name="序号" />
+      <PropertyRef Name="会员贴膜次数" />
+      <PropertyRef Name="状态" />
+    </Key>
+    <Property Type="Int64" Name="序号" Nullable="false" />
+    <Property Type="DateTime" Name="注册时间" Precision="3" />
+    <Property Type="String" Name="大区" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="区域" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="店名" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="网店属性" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="销售员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="仓管员" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="卡号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="卡类" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="销售金额" Precision="29" Scale="0" />
+    <Property Type="String" Name="客户名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="性别" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="生日日期" Precision="3" />
+    <Property Type="String" Name="联系号码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备用号码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="身份证" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="详细地址" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="QQ号_微信_微博" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="累计积分" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="消费次数" />
+    <Property Type="Decimal" Name="累计消费总额" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="平均消费水平" Precision="20" Scale="2" />
+    <Property Type="Int32" Name="会员贴膜次数" Nullable="false" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="状态" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="门店编码" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="View_Package_GroupInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="SellTypeID" />
+    <Property Type="Boolean" Name="IsMust" />
+    <Property Type="String" Name="Note" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="GroupName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="TempOffID" />
+    <Property Type="String" Name="SellTypeName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SubNote" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="View_VIPOffListAduit" Relationship="ReportModel.View_VIPOffListAduitView_Package_GroupInfo" FromRole="View_Package_GroupInfo" ToRole="View_VIPOffListAduit" />
+  </EntityType>
+  <EntityType Name="View_VIPOffListAduit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="Type" Nullable="false" />
+    <Property Type="Decimal" Name="ArriveMoney" Nullable="false" Precision="20" Scale="8" />
+    <Property Type="String" Name="Note" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="VIPTicketMaxCount" />
+    <Property Type="String" Name="SalesName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="HeadID" Nullable="false" />
+    <NavigationProperty Name="View_VIPOffListAduitHeader" Relationship="ReportModel.View_VIPOffListAduitHeaderView_VIPOffListAduit" FromRole="View_VIPOffListAduit" ToRole="View_VIPOffListAduitHeader" />
+    <NavigationProperty Name="View_Package_GroupInfo" Relationship="ReportModel.View_VIPOffListAduitView_Package_GroupInfo" FromRole="View_VIPOffListAduit" ToRole="View_Package_GroupInfo" />
+  </EntityType>
+  <EntityType Name="View_VIPOffListAduitHeader">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Destination" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SaleTarget" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StartDate" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="SysDate" Precision="3" />
+    <Property Type="String" Name="Applyer" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ApplyDate" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Aduited" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Passed" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Aduited2" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Passed2" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Aduited3" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Passed3" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Aduited1" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Passed1" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AduitNote1" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AduitDate1" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AduitNote2" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AduitDate2" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ApplyNote" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="EndDate" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Creater" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DeadLine" MaxLength="206" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Scope" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ExtNote" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AduitNote3" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AduitDate3" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AduitUser3" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="HasAduited" Nullable="false" />
+    <Property Type="Boolean" Name="HasPassed" Nullable="false" />
+    <Property Type="Boolean" Name="HasAduited1" Nullable="false" />
+    <Property Type="Boolean" Name="HasPassed1" Nullable="false" />
+    <Property Type="Boolean" Name="HasAduited2" Nullable="false" />
+    <Property Type="Boolean" Name="HasPassed2" Nullable="false" />
+    <Property Type="Boolean" Name="HasAduited3" Nullable="false" />
+    <Property Type="Boolean" Name="HasPassed3" Nullable="false" />
+    <NavigationProperty Name="View_VIPOffListAduit" Relationship="ReportModel.View_VIPOffListAduitHeaderView_VIPOffListAduit" FromRole="View_VIPOffListAduitHeader" ToRole="View_VIPOffListAduit" />
+  </EntityType>
+  <Association Name="View_VIPOffListAduitHeaderView_VIPOffListAduit">
+    <End Type="ReportModel.View_VIPOffListAduitHeader" Role="View_VIPOffListAduitHeader" Multiplicity="1" />
+    <End Type="ReportModel.View_VIPOffListAduit" Role="View_VIPOffListAduit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="View_VIPOffListAduitHeader">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="View_VIPOffListAduit">
+        <PropertyRef Name="HeadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="View_VIPOffListAduitView_Package_GroupInfo">
+    <End Type="ReportModel.View_VIPOffListAduit" Role="View_VIPOffListAduit" Multiplicity="0..1" />
+    <End Type="ReportModel.View_Package_GroupInfo" Role="View_Package_GroupInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="View_VIPOffListAduit">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="View_Package_GroupInfo">
+        <PropertyRef Name="TempOffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Report_InOrderListInfo">
+    <Key>
+      <PropertyRef Name="批次号" />
+    </Key>
+    <Property Type="Int64" Name="序号" />
+    <Property Type="String" Name="批次号" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="系统自增外键编号" />
+    <Property Type="String" Name="类别" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="品牌" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品名称" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="商品属性" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="数量" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="单价" Precision="20" Scale="4" />
+    <Property Type="Decimal" Name="成本价" Precision="20" Scale="4" />
+    <Property Type="String" Name="入库单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="原始单号" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="入库仓库" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="入库日期" Precision="3" />
+    <Property Type="String" Name="操作人" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="入库仓库编码" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="类别编码" />
+    <Property Type="String" Name="商品备注" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="备注" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

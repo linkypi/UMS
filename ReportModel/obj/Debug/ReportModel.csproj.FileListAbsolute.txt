@@ -1,0 +1,9 @@
+D:\UMS\client\UserMS\ReportModel\bin\Debug\ReportModel.dll.config
+D:\UMS\client\UserMS\ReportModel\bin\Debug\ReportModel.dll
+D:\UMS\client\UserMS\ReportModel\bin\Debug\ReportModel.pdb
+D:\UMS\client\UserMS\ReportModel\bin\Debug\EntityFramework.dll
+D:\UMS\client\UserMS\ReportModel\bin\Debug\EntityFramework.xml
+D:\UMS\client\UserMS\ReportModel\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\UMS\client\UserMS\ReportModel\obj\Debug\ReportModel.dll
+D:\UMS\client\UserMS\ReportModel\obj\Debug\ReportModel.pdb
+D:\UMS\client\UserMS\ReportModel\obj\Debug\ReportModel.csprojResolveAssemblyReference.cache

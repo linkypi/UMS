@@ -1,0 +1,12 @@
+D:\UMS\client\UserMS\DockPanelSplitter\bin\Debug\DockPanelSplitter.dll
+D:\UMS\client\UserMS\DockPanelSplitter\bin\Debug\DockPanelSplitter.pdb
+D:\UMS\client\UserMS\DockPanelSplitter\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\UMS\client\UserMS\DockPanelSplitter\obj\Debug\DockPanelSplitter_MarkupCompile.cache
+D:\UMS\client\UserMS\DockPanelSplitter\obj\Debug\DockPanelSplitter_MarkupCompile.lref
+D:\UMS\client\UserMS\DockPanelSplitter\obj\Debug\Themes\Generic.baml
+D:\UMS\client\UserMS\DockPanelSplitter\obj\Debug\DockPanelSplitter.g.resources
+D:\UMS\client\UserMS\DockPanelSplitter\obj\Debug\DockPanelSplitter.Properties.Resources.resources
+D:\UMS\client\UserMS\DockPanelSplitter\obj\Debug\DockPanelSplitter.csproj.GenerateResource.Cache
+D:\UMS\client\UserMS\DockPanelSplitter\obj\Debug\DockPanelSplitter.dll
+D:\UMS\client\UserMS\DockPanelSplitter\obj\Debug\DockPanelSplitter.pdb
+D:\UMS\client\UserMS\DockPanelSplitter\obj\Debug\DockPanelSplitter.csprojResolveAssemblyReference.cache

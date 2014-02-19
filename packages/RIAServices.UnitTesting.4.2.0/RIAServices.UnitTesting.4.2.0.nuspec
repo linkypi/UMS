@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RIAServices.UnitTesting</id>
+    <version>4.2.0</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=223397</licenseUrl>
+    <projectUrl>http://silverlight.net/riaservices/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>RIAServices.UnitTesting provides a DomainServiceTestHost that can be used to unit test your Domain Services.</description>
+    <summary>WCF RIA Services Toolkit - Domain Service Unit Test Host</summary>
+    <language>en-US</language>
+    <tags>WCF RIA Services RIAServices Testing</tags>
+  </metadata>
+</package>

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C43B4D7-2AC3-4006-9E7C-594A6D9F8C38}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonFx">
+      <HintPath>..\UserMSMobileAPI\libs\JsonFx.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ASP_CheckInfo.cs" />
+    <Compile Include="ASP_CurrentOrderInfo.cs" />
+    <Compile Include="ASP_ErrorInfo.cs" />
+    <Compile Include="ASP_GetPhoneInfo.cs" />
+    <Compile Include="ASP_ManaAuditInfo.cs" />
+    <Compile Include="ASP_ReceiveInfo.cs" />
+    <Compile Include="ASP_ZJInfo.cs" />
+    <Compile Include="Asset_UseInfo.cs" />
+    <Compile Include="BorowAduit2.cs" />
+    <Compile Include="BorowAduit3.cs" />
+    <Compile Include="BorowAduit4.cs" />
+    <Compile Include="Common\MyWebClient.cs" />
+    <Compile Include="Common\RepairState.cs" />
+    <Compile Include="Common\State.cs" />
+    <Compile Include="ConfigurationTable.cs" />
+    <Compile Include="DataExtensions.cs" />
+    <Compile Include="NewSeleter.cs" />
+    <Compile Include="Off_AduitTypeInfo.cs" />
+    <Compile Include="Package_GroupTypeInfo.cs" />
+    <Compile Include="Package_SalesNameInfo.cs" />
+    <Compile Include="Pagination.cs" />
+    <Compile Include="Pro_AirOutInfo.cs" />
+    <Compile Include="Pro_BigAreaInfo.cs" />
+    <Compile Include="Pro_BillFieldInfo.cs" />
+    <Compile Include="Pro_ChangeProInfo.cs" />
+    <Compile Include="Pro_GetSelection.cs" />
+    <Compile Include="Pro_PriceChange.cs" />
+    <Compile Include="Pro_PriceCostChange.cs" />
+    <Compile Include="Pro_ProMainInfo.cs" />
+    <Compile Include="Pro_ProNameInfo.cs" />
+    <Compile Include="Pro_SellBack.cs" />
+    <Compile Include="BorowAduit.cs" />
+    <Compile Include="Pro_SellAduit.cs" />
+    <Compile Include="Pro_SellBackAduit.cs" />
+    <Compile Include="Pro_SellInfo.cs" />
+    <Compile Include="Pro_OrderReturn.cs" />
+    <Compile Include="Pro_SellListInfo_Temp.cs" />
+    <Compile Include="Pro_SellOffAduitInfo.cs" />
+    <Compile Include="Pro_SellType.cs" />
+    <Compile Include="Pro_SellTypeProduct.cs" />
+    <Compile Include="Pro_Sell_CarInfo.cs" />
+    <Compile Include="Pro_YanbaoPriceStepInfo.cs" />
+    <Compile Include="Report_Borow.cs" />
+    <Compile Include="Report_Return.cs" />
+    <Compile Include="Report_SellListInfo.cs" />
+    <Compile Include="Report_SellReport.cs" />
+    <Compile Include="Rules_AllCurrentRulesInfo.cs" />
+    <Compile Include="Rules_OffList.cs" />
+    <Compile Include="Rules_TypeInfo.cs" />
+    <Compile Include="SelectInlist.cs" />
+    <Compile Include="SMS_SellBack.cs" />
+    <Compile Include="SMS_SignInfo.cs" />
+    <Compile Include="SMS_SignSendPayInfo.cs" />
+    <Compile Include="Sys_DeptInfo.cs" />
+    <Compile Include="Sys_MenuInfo.cs" />
+    <Compile Include="Sys_Option.cs" />
+    <Compile Include="Sys_RemindList.cs" />
+    <Compile Include="Sys_Role_Menu_HallInfo.cs" />
+    <Compile Include="Sys_Role_Menu_ProInfo.cs" />
+    <Compile Include="Sys_SalaryList.cs" />
+    <Compile Include="Sys_SalaryPriceStep.cs" />
+    <Compile Include="Sys_UserDefaultOpenPage.cs" />
+    <Compile Include="Sys_UserOp.cs" />
+    <Compile Include="Sys_UserRemindList.cs" />
+    <Compile Include="AllReportInfo_Model.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="ValidClassInfo.cs" />
+    <Compile Include="LinQSqlHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pro_AreaInfo.cs" />
+    <Compile Include="Pro_BackInfo.cs" />
+    <Compile Include="Pro_BorrowInfo.cs" />
+    <Compile Include="Pro_ClassInfo.cs" />
+    <Compile Include="Pro_HallInfo.cs" />
+    <Compile Include="Pro_InOrder.cs" />
+    <Compile Include="Pro_LevelInfo.cs" />
+    <Compile Include="Pro_OutInfo.cs" />
+    <Compile Include="Pro_ProInfo.cs" />
+    <Compile Include="Pro_Property.cs" />
+    <Compile Include="Pro_PropertyValue.cs" />
+    <Compile Include="Pro_RepairInfo.cs" />
+    <Compile Include="Pro_RepairReturnInfo.cs" />
+    <Compile Include="Pro_ReturnInfo.cs" />
+    <Compile Include="Pro_TypeInfo.cs" />
+    <Compile Include="Sys_InitDataStatus.cs" />
+    <Compile Include="Sys_InitParentInfo.cs" />
+    <Compile Include="Sys_LoginInfo.cs" />
+    <Compile Include="Sys_RoleInfo.cs" />
+    <Compile Include="Sys_UserRemidList.cs" />
+    <Compile Include="ValidProInfo.cs" />
+    <Compile Include="View_Pro_InOrder.cs" />
+    <Compile Include="VIP_DAL\VIP_CardChange.cs" />
+    <Compile Include="VIP_DAL\VIP_Renew.cs" />
+    <Compile Include="VIP_DAL\VIP_VIPBack.cs" />
+    <Compile Include="VIP_DAL\VIP_VIPInfo.cs" />
+    <Compile Include="VIP_IDCardType.cs" />
+    <Compile Include="VIP_OffList.cs" />
+    <Compile Include="VIP_Renew.cs" />
+    <Compile Include="VIP_RenewBack.cs" />
+    <Compile Include="VIP_RenewBackAduit.cs" />
+    <Compile Include="VIP_TypeService.cs" />
+    <Compile Include="VIP_VIPBackAduit.cs" />
+    <Compile Include="VIP_VIPCardMS.cs" />
+    <Compile Include="VIP_VIPInfo.cs" />
+    <Compile Include="VIP_VIPService.cs" />
+    <Compile Include="VIP_VIPType.cs" />
+    <Compile Include="Sys_UserOPList.cs" />
+    <Compile Include="Sys_UserInfo.cs" />
+    <Compile Include="Demo_ReportViewInfo.cs" />
+    <Compile Include="Report_StoreInfo.cs" />
+    <Compile Include="Report_InOutSellInfo.cs" />
+    <Compile Include="Report_IMEIInfo.cs" />
+    <Compile Include="Report_IMEITracksInfo.cs" />
+    <Compile Include="Report_InOrderListInfo.cs" />
+    <Compile Include="Report_InOrderIMEIInfo.cs" />
+    <Compile Include="Report_BackIMEIInfo.cs" />
+    <Compile Include="Report_ChangeListInfo.cs" />
+    <Compile Include="Report_OutOrderIMEIInfo.cs" />
+    <Compile Include="Report_OutInfo.cs" />
+    <Compile Include="Report_EveryHallStoreInfo.cs" />
+    <Compile Include="AllReportInfo.cs" />
+    <Compile Include="Report_Profit.cs" />
+    <Compile Include="ASP_ErrType.cs" />
+    <Compile Include="ASP_ProOther.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service_Operate\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\APIModel\APIModel.csproj">
+      <Project>{8b13959e-3510-433f-8337-0996c38b76a9}</Project>
+      <Name>APIModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{7716ce6f-26b2-41bb-b463-cea37166784d}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReportModel\ReportModel.csproj">
+      <Project>{cd62d6fd-9281-418f-8b60-0c46ad599a78}</Project>
+      <Name>ReportModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Report_BackListInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Report_ChangeIMEIInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Report_OutOrderListInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ASP_RepairInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

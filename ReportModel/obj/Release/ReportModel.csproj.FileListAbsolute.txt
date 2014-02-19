@@ -1,0 +1,9 @@
+D:\UMS\client\UserMS\ReportModel\bin\Release\ReportModel.dll.config
+D:\UMS\client\UserMS\ReportModel\bin\Release\ReportModel.dll
+D:\UMS\client\UserMS\ReportModel\bin\Release\ReportModel.pdb
+D:\UMS\client\UserMS\ReportModel\bin\Release\EntityFramework.dll
+D:\UMS\client\UserMS\ReportModel\bin\Release\EntityFramework.xml
+D:\UMS\client\UserMS\ReportModel\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\UMS\client\UserMS\ReportModel\obj\Release\ReportModel.csprojResolveAssemblyReference.cache
+D:\UMS\client\UserMS\ReportModel\obj\Release\ReportModel.dll
+D:\UMS\client\UserMS\ReportModel\obj\Release\ReportModel.pdb

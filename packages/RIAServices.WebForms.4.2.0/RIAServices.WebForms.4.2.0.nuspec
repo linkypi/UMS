@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>RIAServices.WebForms</id>
+    <version>4.2.0</version>
+    <title>RIA Services Web Forms Controls</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=223397</licenseUrl>
+    <projectUrl>http://silverlight.net/riaservices/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>RIAServices.WebForms contains the ASP.NET DomainDataSource and DomainValidator controls for using a DomainService in an ASP.NET Web Forms application.</description>
+    <summary>WCF RIA Services Toolkit - ASP.NET Web Forms Controls</summary>
+    <language>en-US</language>
+    <tags>WCF RIA Services RIAServices aspnet WebForms</tags>
+  </metadata>
+</package>

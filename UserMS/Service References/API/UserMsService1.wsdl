@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UserMsService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="CustomBinding_UserMsService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="28800000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/UserMSService/UserMSService.svc?xsd=xsd3" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/UserMSService/UserMSService.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/UserMSService/UserMSService.svc?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/Model" />
+      <xsd:import schemaLocation="http://localhost/UserMSService/UserMSService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="UserMsService_Main_InputMessage">
+    <wsdl:part name="parameters" element="tns:Main" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_Main_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MainResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_InitData_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitData" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_InitData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_UpdatePwd_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePwd" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_UpdatePwd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePwdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_GetRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRole" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_GetRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_mmmm_InputMessage">
+    <wsdl:part name="parameters" element="tns:mmmm" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_mmmm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:mmmmResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_MainReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:MainReport" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_MainReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MainReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_MainReportViewInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:MainReportViewInfo" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_MainReportViewInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MainReportViewInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_GetSellTyPro_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSellTyPro" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_GetSellTyPro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSellTyProResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_TESTER_InputMessage">
+    <wsdl:part name="parameters" element="tns:TESTER" />
+  </wsdl:message>
+  <wsdl:message name="UserMsService_TESTER_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TESTERResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="UserMsService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Main">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserMsService/Main" message="tns:UserMsService_Main_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserMsService/MainResponse" message="tns:UserMsService_Main_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserMsService/Login" message="tns:UserMsService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserMsService/LoginResponse" message="tns:UserMsService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InitData">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserMsService/InitData" message="tns:UserMsService_InitData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserMsService/InitDataResponse" message="tns:UserMsService_InitData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdatePwd">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserMsService/UpdatePwd" message="tns:UserMsService_UpdatePwd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserMsService/UpdatePwdResponse" message="tns:UserMsService_UpdatePwd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserMsService/GetRole" message="tns:UserMsService_GetRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserMsService/GetRoleResponse" message="tns:UserMsService_GetRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="mmmm">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserMsService/mmmm" message="tns:UserMsService_mmmm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserMsService/mmmmResponse" message="tns:UserMsService_mmmm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="MainReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserMsService/MainReport" message="tns:UserMsService_MainReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserMsService/MainReportResponse" message="tns:UserMsService_MainReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="MainReportViewInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserMsService/MainReportViewInfo" message="tns:UserMsService_MainReportViewInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserMsService/MainReportViewInfoResponse" message="tns:UserMsService_MainReportViewInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetSellTyPro">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserMsService/GetSellTyPro" message="tns:UserMsService_GetSellTyPro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserMsService/GetSellTyProResponse" message="tns:UserMsService_GetSellTyPro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="TESTER">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserMsService/TESTER" message="tns:UserMsService_TESTER_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserMsService/TESTERResponse" message="tns:UserMsService_TESTER_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomBinding_UserMsService" type="tns:UserMsService">
+    <wsp:PolicyReference URI="#CustomBinding_UserMsService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Main">
+      <soap12:operation soapAction="http://tempuri.org/UserMsService/Main" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/UserMsService/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitData">
+      <soap12:operation soapAction="http://tempuri.org/UserMsService/InitData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePwd">
+      <soap12:operation soapAction="http://tempuri.org/UserMsService/UpdatePwd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRole">
+      <soap12:operation soapAction="http://tempuri.org/UserMsService/GetRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mmmm">
+      <soap12:operation soapAction="http://tempuri.org/UserMsService/mmmm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MainReport">
+      <soap12:operation soapAction="http://tempuri.org/UserMsService/MainReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MainReportViewInfo">
+      <soap12:operation soapAction="http://tempuri.org/UserMsService/MainReportViewInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSellTyPro">
+      <soap12:operation soapAction="http://tempuri.org/UserMsService/GetSellTyPro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TESTER">
+      <soap12:operation soapAction="http://tempuri.org/UserMsService/TESTER" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserMsService">
+    <wsdl:port name="CustomBinding_UserMsService" binding="tns:CustomBinding_UserMsService">
+      <soap12:address location="http://localhost/UserMSService/UserMSService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost/UserMSService/UserMSService.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

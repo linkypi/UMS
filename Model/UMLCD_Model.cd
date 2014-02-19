@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Model.Sys_InitDataStatus_Child">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sys_InitDataStatus_Child.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Pro_SellListInfo_Child">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pro_SellListInfo_Child.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Pro_SellInfo_Child">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCAABAAAAAAAAAAAAAAAAYAAAAAAAAAAAAIBAACAAAA=</HashCode>
+      <FileName>Pro_SellInfo_Child.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Model.Sys_InitParentInfo">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Sys_InitParentInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="宋体" Size="9" />
+</ClassDiagram>

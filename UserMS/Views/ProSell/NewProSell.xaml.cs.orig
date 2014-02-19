@@ -1,0 +1,302 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
+using SlModel;
+using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.GridView;
+using Telerik.Windows.Controls.Primitives;
+using UserMS.API;
+using SelectionChangedEventArgs = Telerik.Windows.Controls.SelectionChangedEventArgs;
+
+namespace UserMS.Views.ProSell
+{
+    public partial class NewProSell : INotifyPropertyChanged  
+    {
+//        private int MethodID_VIPGetInfo = 3;
+//        private int MethodID_IMEIGetInfo = 5;
+        private int MethodID_SellNext = 8;
+        public API.VIP_VIPInfo SellVIP;
+        public API.Pro_SellInfo SellInfo=new Pro_SellInfo();
+        public List<ProSellGridModel> SellGridModels=new List<ProSellGridModel>();
+        public List<VIP_OffTicket> VIPTicket;
+        public API.Pro_HallInfo Hall;
+        public NewProSell()
+        {
+            
+            InitializeComponent();
+//            this.ProID.ItemsSource = Store.ProInfo;
+//            this.ProID.SelectionMode = AutoCompleteSelectionMode.Single;
+//            this.ProID.SearchEvent=ProIDSearchEvent;
+//            this.ProID.TextBox_SelectionChanged=ProIDSelected;
+//            this.ProID.DisplayMemberPath = "ProName";
+            this.Grid.ItemsSource = SellGridModels;
+            this.Seller.Text = Store.LoginUserInfo.RealName;
+            this.HallName.DataContext = Hall;
+            if (Store.ProHallInfo.Count()==1)
+
+            {
+                Hall = Store.ProHallInfo[0];
+            }
+
+
+
+            VIPWindow w=new VIPWindow();
+            w.Closed+=WOnClosed;
+            w.ShowDialog();
+
+
+        }
+
+        private void WOnClosed(object sender, WindowClosedEventArgs windowClosedEventArgs)
+        {
+            VIPWindow w = (VIPWindow) sender;
+            if (w.DialogResult == true)
+            {
+                SellVIP = w.SellVIP;
+                VIPCard.DataContext = SellVIP;
+                VIPName.DataContext = SellVIP;
+                VIPPhone.DataContext = SellVIP;
+                VIPPoint.DataContext = SellVIP;
+                VIPCard.IsReadOnly = true;
+                VIPTicket = SellVIP.VIP_OffTicket;
+
+                if (VIPTicket == null)
+                {
+                    VIPTicket=new List<VIP_OffTicket>();
+                    
+                }
+                VIPTicket.Insert(0, new VIP_OffTicket() { Name = "无", TicketID = "无", ID = 0 });
+                OffTicket.ItemsSource = VIPTicket;
+            }
+        }
+
+        private void ProIDSelected(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+        {
+//            var l = new ProSellGridModel();
+//            API.Pro_ProInfo i = (Pro_ProInfo) this.ProID.SelectedItem;
+//            l.ProID = i.ProID;
+//            l.ProName = i.ProName;
+//            l.ProCount = 1;
+//            SellGridModels.Add(l);
+//
+//
+//            this.ProID.TextBox.SearchText = "";
+//
+//            this.Grid.Rebind();
+
+
+
+
+
+
+            //throw new NotImplementedException();
+        }
+
+        private void ProIDSearchEvent(object sender, RoutedEventArgs routedEventArgs)
+        {
+        
+            MultSelecter m =new MultSelecter(null ,Store.ProInfo,"TypeID","ProName",new string[]{"ProID","ProName"},new string[]{"商品编码","商品名称"} );
+            m.Closed += m_Closed;
+            m.ShowDialog();
+
+        }
+
+        void m_Closed(object sender, Telerik.Windows.Controls.WindowClosedEventArgs e)
+        {
+            
+            MultSelecter s = (MultSelecter) sender;
+            if (s.DialogResult==true){
+            
+            List<API.Pro_ProInfo> i = (from object b in s.SelectedItems select (API.Pro_ProInfo)b).ToList();
+                foreach (var proProInfo in i)
+                {
+                    var l = new ProSellGridModel();
+                    l.ProID = proProInfo.ProID;
+                    l.ProName = proProInfo.ProName;
+                    l.ProCount = 1;
+                    SellGridModels.Add(l);
+                }
+           
+
+
+            //this.ProID.TextBox.SearchText = "";
+            this.Grid.Rebind();
+            }
+        }
+
+
+        private void ClearForm()
+        {
+            //TODO: 清空本体
+            this.Content = new NewProSell();
+        }
+
+        private void New_Click(object sender, Telerik.Windows.RadRoutedEventArgs e)
+        {
+            ClearForm();
+        }
+
+
+
+        private void Del_Click(object sender, Telerik.Windows.RadRoutedEventArgs e)
+        {
+            SellGridModels.Remove((ProSellGridModel) this.Grid.SelectedItem);
+            this.Grid.Rebind();
+
+        }
+
+      
+        private void Next_Click(object sender, Telerik.Windows.RadRoutedEventArgs e)
+        {
+            //TODO:生成结算
+            var proHallInfo = this.Hall;
+            if (proHallInfo == null)
+            {
+                MessageBox.Show("未选择仓库");
+                return;
+            }
+
+           API.Pro_SellInfo sellInfo=new Pro_SellInfo();
+<<<<<<< HEAD
+          //  sellInfo.Seller = Store.LoginUserInfo.UserID;
+=======
+//            sellInfo.Seller = Store.LoginUserInfo.UserID;
+>>>>>>> 1
+            sellInfo.SysDate = DateTime.Now;
+            //TODO: 优惠券
+            sellInfo.OffTicketID = (int?) OffTicket.SelectedValue;
+            if (SellVIP != null) sellInfo.VIP_ID = SellVIP.ID;
+            sellInfo.HallID = proHallInfo.HallID;
+            List<Pro_SellListInfo> sellList=new List<Pro_SellListInfo>();
+            foreach (var proSellGridModel in SellGridModels)
+            {
+                Pro_SellListInfo info=new Pro_SellListInfo();
+                info.ProID = proSellGridModel.ProID;
+                info.ProCount = proSellGridModel.ProCount;
+                info.IMEI = proSellGridModel.IMEI;
+                info.TicketID = proSellGridModel.TicketNum;
+                info.CashTicket = proSellGridModel.TicketPrice;
+                info.SellType = 1;
+                sellList.Add(info);
+            }
+            sellInfo.Pro_SellListInfo = sellList;
+            var a = new PublicRequestHelp(PageBusy, MethodID_SellNext, new object[] {Store.LoginUserInfo,sellInfo}, SellNextEvent);
+
+
+
+
+        }
+
+        private void SellNextEvent(object sender, MainCompletedEventArgs e)
+        {
+            PageBusy.IsBusy = false;
+            if (e.Error == null)
+            {
+                if (e.Result.ReturnValue)
+                {
+                    var newpage = new NewProSellSetp2((Pro_SellInfo) e.Result.Obj, (from b in e.Result.ArrList select (API.VIP_OffList)b).ToList(),this.SellVIP);
+                    
+                    this.Content = newpage;
+
+
+                }
+                else
+                {
+                    MessageBox.Show("提交失败: " + e.Result.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("提交失败: 服务器错误\n" + e.Error.Message);
+                
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }  
+        }
+
+        private void LayoutRoot_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+               
+                default:
+                    break;
+            }
+        }
+
+        private void Grid_CellEditEnded(object sender, Telerik.Windows.Controls.GridViewCellEditEndedEventArgs e)
+        {
+        	if (e.EditAction == GridViewEditAction.Commit)
+        	{
+        	    //TODO: 查询兑券
+        	}
+
+        }
+
+        private void IMEISell_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+          UserMS.IMEISell w=new UserMS.IMEISell();
+          w.OnSelectedPro += w_OnSelectedPro;
+            w.ShowDialog();
+
+        }
+
+        void w_OnSelectedPro(object sender, SelectedProInfoArgs e)
+        {
+            var l = new ProSellGridModel();
+            API.Pro_ProInfo i = e.ProInfo;
+            l.ProID = i.ProID;
+            l.ProName = i.ProName;
+            l.ProCount = 1;
+            l.IMEI = e.IMEI;
+            SellGridModels.Add(l);
+
+            this.Grid.Rebind();
+        }
+
+        private void ProSell_OnClick(object sender, RoutedEventArgs e)
+        {
+            MultSelecter m = new MultSelecter(null, Store.ProInfo, "TypeID", "ProName", new string[] { "ProID", "ProName" }, new string[] { "商品编码", "商品名称" });
+            m.Closed += m_Closed;
+            m.ShowDialog();
+        }
+
+        private void HallName_OnMouseLeftButtonUp(object sender, RoutedEventArgs e)
+        {
+            MultSelecter m =new MultSelecter(null,Store.ProHallInfo,"HallID","HallName",new string[]{"HallID","HallName"},new string[]{"仓库编号","仓库名称"} );
+            m.Closed += Hall_select_closed;
+            m.ShowDialog();
+            
+        }
+
+        void Hall_select_closed(object sender, WindowClosedEventArgs e)
+        {
+            MultSelecter m = (MultSelecter) sender;
+
+               if (e.DialogResult == true &&m.SelectedItems.Count==1)
+               {
+                   this.Hall = (Pro_HallInfo) m.SelectedItems[0];
+                   this.HallName.DataContext = this.Hall;
+
+               }
+        }
+    }
+}

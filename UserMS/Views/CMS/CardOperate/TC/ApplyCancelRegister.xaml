@@ -1,0 +1,142 @@
+﻿<src:BasePage x:Class="UserMS.Views.ProSell.VipOff.ApplyCancelRegister" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d" Loaded="Page_Loaded"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+           xmlns:src="clr-namespace:UserMS" 
+
+              Title="AddSingleOff Page" >
+    
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        
+        <toolkit:DockPanel x:Name="LayoutRoot"  >
+
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="卡号"></TextBlock>
+                    <TextBox Width="120"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="证件号码"></TextBlock>
+                    <TextBox Width="120"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="会员姓名"></TextBlock>
+                    <TextBox Width="120"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="手机号码"></TextBlock>
+                    <TextBox Width="120"></TextBox> 
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="注册日期"></TextBlock>
+                    <telerik:RadDatePicker></telerik:RadDatePicker>
+                    <TextBlock Width="20" Text="至" TextAlignment="Center"></TextBlock>
+                    <telerik:RadDatePicker></telerik:RadDatePicker>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3,2">
+                    <TextBlock Width="80" Text="申请状态"></TextBlock>
+                    <ComboBox Width="120">
+                        <ComboBoxItem Content="全部"></ComboBoxItem>
+                        <ComboBoxItem Content="未申请" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="已申请"></ComboBoxItem>
+                    </ComboBox>
+
+                    <Button  Content="查 询" Width="80" Margin="5,0"></Button>
+                </StackPanel>
+                
+
+            </toolkit:WrapPanel>
+            
+            <toolkit:WrapPanel toolkit:DockPanel.Dock="Bottom" Margin="0,2" HorizontalAlignment="Right"   >
+
+                <Button Height="30" Content="确定申请" Width="100" Margin="15,0"></Button>
+                <Button Height="30" Content="暂时不申请" Width="100" ></Button>
+
+            </toolkit:WrapPanel>
+            <ScrollViewer toolkit:DockPanel.Dock="Top" Padding="0">
+                <StackPanel>
+                    <telerik:RadGridView x:Name="dataGridOffList" Height="150"  toolkit:DockPanel.Dock="Top"    AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewSelectColumn />
+
+                        </telerik:RadGridView.Columns>
+
+                    </telerik:RadGridView>
+                    <telerik:RadDataPager  toolkit:DockPanel.Dock="Top"></telerik:RadDataPager>
+                    <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="卡号"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="证件号码"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="会员姓名"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="手机号码"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="积分"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="注册日期"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="有效期"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="卡类型"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="申请状态"></TextBlock>
+                            <TextBox Width="120"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="销售员"></TextBlock>
+                            <TextBox Width="120" Height="25"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="3,2">
+                            <TextBlock Width="80" Text="有效期至"></TextBlock>
+                            <telerik:RadDatePicker Width="120"></telerik:RadDatePicker>
+                        </StackPanel>
+                    </toolkit:WrapPanel> 
+                    <TextBlock Text="服务列表"></TextBlock>
+                        <telerik:RadGridView  Height="150"  toolkit:DockPanel.Dock="Top" Margin="0,5"   AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewSelectColumn />
+
+                            </telerik:RadGridView.Columns>
+
+                        </telerik:RadGridView>
+                
+                </StackPanel>
+            </ScrollViewer>
+
+
+
+
+
+            
+
+            
+
+             
+        </toolkit:DockPanel>
+         
+    </xctk:BusyIndicator>
+</src:BasePage>

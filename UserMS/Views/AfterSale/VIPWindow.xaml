@@ -1,0 +1,36 @@
+﻿<Window x:Class="UserMS.Views.AfterSale.VIPWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+         Height="150" Width="300">
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+
+        <DockPanel>
+            <WrapPanel Orientation="Horizontal" FlowDirection="LeftToRight">
+                <StackPanel Orientation="Horizontal"  Margin="20 20 0 0" >
+                    <TextBlock  Text="会员卡号：" Margin="10 5 0 0" Width="80"/>
+                    <TextBox HorizontalAlignment="Left" Height="23"  Name="vipimei" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="" Margin="10 5 0 0" Width="80"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="确定" Margin="30 0 0 0" Name="ok" Height="25" Width="80" Click="OK_Click"></Button>
+                    <Button Content="无会员卡" Margin="70 0 0 0" Name="cancel" Height="25" Width="80" Click="Button_Click"></Button>
+                </StackPanel>
+            </WrapPanel>
+        </DockPanel>
+    </xctk:BusyIndicator>
+    
+    
+    <!--<Grid Margin="0,0,0,-3">
+        <Label Content="会员卡号：" HorizontalAlignment="Left" Margin="27,38,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="109,38,0,0" Name="vipimei" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156"/>
+        <Button Content="确定" Name="OK" HorizontalAlignment="Left" Margin="27,97,0,0" VerticalAlignment="Top" Width="75" Click="OK_Click"/>
+        <Button Content="无会员卡" HorizontalAlignment="Left" Margin="190,97,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.613,-0.545" Click="Button_Click"/>
+
+    </Grid>-->
+    
+</Window>
