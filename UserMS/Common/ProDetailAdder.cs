@@ -166,6 +166,17 @@ namespace UserMS.Common
             msFrm.ShowDialog();
         }
 
+        public void Add2()
+        {
+            msFrm = new NoFileterMulSelect(
+               treeModels,
+               models, "ProName",
+               new string[] { "ClassName", "TypeName", "ProName", "ProFormat", "NeedIMEI", "IMEI", "InListID", "ProCost" },
+               new string[] { "商品品牌", "商品类别", "商品型号", "商品属性", "需要串码", "串码", "商品批次","成本" });
+            msFrm.Closed += msFrm_Closed;
+            msFrm.ShowDialog();
+        }
+
         /// <summary>
         /// 添加无串码商品
         /// </summary>

@@ -1,11 +1,11 @@
-﻿<src:BasePage xmlns:UserMS="clr-namespace:UserMS"  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="UserMS.Views.StockMS.EnteringStock.Back_store"
+﻿<src:BasePage xmlns:UserMS="http://www.zs96000.com/wpf"  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="UserMS.Views.StockMS.EnteringStock.Back_store"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"             
-                 xmlns:src="clr-namespace:UserMS"
+                 xmlns:src="http://www.zs96000.com/wpf"
   mc:Ignorable="d" Loaded="Page_Loaded" d:DesignWidth="800" d:DesignHeight="600">
     <telerik:RadBusyIndicator x:Name="IsBusy">
         <Grid >

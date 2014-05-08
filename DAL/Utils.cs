@@ -43,7 +43,7 @@ namespace Common
                 r.ReturnValue = false;
             }
 
-            else if (imei.SellID > 0 || imei.OutID > 0 || imei.BorowID > 0 || imei.RepairID > 0 || imei.AuditID > 0 || imei.AssetID > 0|| imei.BJID>0|| imei.PJID>0)
+            else if (imei.VIPID >0 || imei.SellID > 0 || imei.OutID > 0 || imei.BorowID > 0 || imei.RepairID > 0 || imei.AuditID > 0 || imei.AssetID > 0|| imei.BJID>0|| imei.PJID>0||imei.State>0)
             {
                 r.Message = "串码已处理: " + imei.IMEI;
                 r.ReturnValue = false;

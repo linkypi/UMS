@@ -108,7 +108,7 @@ namespace UserMS.Views.ProSell.Salary
             if (e.Result.ReturnValue)
             {
                 API.ReportPagingParam rpp = e.Result.Obj as API.ReportPagingParam;
-                GridSalaryList.ItemsSource = rpp.Obj as List<API.View_MySalary>;
+                GridSalaryList.ItemsSource = rpp.Obj as List<API.Proc_SalaryReportDetailResult>;
               
                 page.PageSize = (int)pagesize.Value;
 

@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Input;
 using Telerik.Windows.Controls;
 using UserMS.Common;
+using UserMS.Report.Print;
+using UserMS.Report.Print.RepairPrint;
 
 namespace UserMS.Views.StockMS.Allot
 {
@@ -43,9 +45,91 @@ namespace UserMS.Views.StockMS.Allot
         /// </summary>
         List<API.Pro_HallInfo> hall;
 
+        bool forRepairOut = false;
+
+        List<int> repIDs = new List<int>();
+
+        //缺料串码数量
+        int LackCount = 0; 
 
         string r = "";
         public Main_allot()
+        {
+            Init();
+        }
+
+        public Main_allot(List<int> repModels,string hallid)
+        {
+            Init();
+            repIDs = repModels;
+            forRepairOut = true;
+           // oldID.Tag = model.ID; //绑定售后维修单号ID
+            var HallInfo = Store.ProHallInfo.Where(h => h.HallID == hallid);
+            if (HallInfo.Count() == 0) { return; }
+            this.SHHall.TextBox.SearchText = HallInfo.First().HallName;
+            this.SHHall.Tag = HallInfo.First().HallID;
+            LackCount = 0;
+            PublicRequestHelp p = new PublicRequestHelp(this.IsBusy, 375, new object[] {repModels }, GetProsCompleted);
+
+        }
+
+        /// <summary>
+        /// 获取缺料商品
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GetProsCompleted(object sender, API.MainCompletedEventArgs e)
+        {
+            this.IsBusy.IsBusy = false;
+            if (e.Result.ReturnValue)
+            {
+                List<API.View_ASPCurrentOrderPros> list = e.Result.Obj as List<API.View_ASPCurrentOrderPros>;
+                var pros = list.Where(a=>a.NeedIMEI==false);
+                LackCount = list.Where(a => a.NeedIMEI).Count();
+                foreach (var item in pros)
+	            {
+	            	 API.SeleterModel sm =ValUnImeiModel(item.ProID);
+                     if (sm == null)
+                     {
+                         sm = new API.SeleterModel();
+                         sm.ISdecimals = item.ISdecimals;
+                         sm.ProID = item.ProID;
+                         sm.ClassID = Convert.ToInt32(item.ClassID);
+                         sm.ProClassName = item.ClassName;
+                         sm.TypeID = Convert.ToInt32(item.TypeID);
+                         sm.ProTypeName = item.TypeName;
+                         sm.ProName = item.ProName;
+                         sm.ProFormat = item.ProFormat;
+                         sm.IsNeedIMEI = false;
+                         sm.Count = Convert.ToDecimal(item.ProCount);
+                         unIMEIModels.Add(sm);
+                     }
+                     else
+                     {
+                         sm.Count += Convert.ToDecimal(item.ProCount);
+                     }
+	            }
+                GridUnCheckPro.Rebind();
+            }
+            else
+            {
+                MessageBox.Show("获取维修单缺料配件失败，请联系技术人员！");
+            }
+        }
+
+        private API.SeleterModel ValUnImeiModel(string proid)
+        {
+            foreach (var item in  unIMEIModels)
+            {
+                if (item.ProID == proid)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        private void Init()
         {
             InitializeComponent();
             this.GHHall.TextBox.IsEnabled = false;
@@ -76,7 +160,7 @@ namespace UserMS.Views.StockMS.Allot
             pickder = new NewPicking(ref this.GHHall, ref this.IsBusy, ref checkedModels, ref unIMEIModels,
                             ref uncheckIMEI, ref GridCheckedPro, ref GridUnCheckPro, ref GridUnCheckIMEI);
             adder = new ProductionFilter(ref unIMEIModels, ref GridUnCheckPro);
- 
+
             this.toDate.SelectedValue = DateTime.Now;
             this.userID.Text = Store.LoginUserInfo.UserName;
             this.cancel.Click += cancel_Click;
@@ -112,6 +196,7 @@ namespace UserMS.Views.StockMS.Allot
             {
                 return;
             }
+            if (hall.Count == 0) { return; }
             this.GHHall.TextBox.SearchText = hall.First().HallName;
             this.GHHall.Tag = hall.First().HallID;
         }
@@ -243,8 +328,7 @@ namespace UserMS.Views.StockMS.Allot
 
         #endregion
 
-
-        #region 提交到后台
+        #region 提交
         /// <summary>
         /// 提交
         /// </summary>
@@ -252,6 +336,7 @@ namespace UserMS.Views.StockMS.Allot
         /// <param name="e"></param>
         private void Sumbit_Click(object sender, RoutedEventArgs e)
         {
+            #region 
             //添加表头
             API.Pro_OutInfo head = new API.Pro_OutInfo();
             
@@ -294,6 +379,8 @@ namespace UserMS.Views.StockMS.Allot
                 return;
             }
             head.OutDate =toDate.SelectedValue;
+            #endregion 
+
             List<string> imeiList = new List<string>();
             foreach (var vm in checkedModels)
             {
@@ -307,7 +394,7 @@ namespace UserMS.Views.StockMS.Allot
                 List.InListID = vm.ProInListID;
                 List.ProID = vm.ProID;
                 List.Note = vm.Note;
-                //添加借贷串码明细
+                //添加串码明细
                 API.Pro_OutOrderIMEI imei = null;
 
                 if (vm.IsIMEI != null)
@@ -334,9 +421,19 @@ namespace UserMS.Views.StockMS.Allot
             }
             API.Sys_UserInfo user = Store.LoginUserInfo;
 
+            if (forRepairOut)
+            {
+                if (imeiList.Count != LackCount)
+                {
+                    MessageBox.Show("实际调拨串码数量与缺料串码数量不匹配！");
+                    return;
+                }
+            }
+
             if (MessageBox.Show(System.Windows.Application.Current.MainWindow, "确定执行调拨操作吗？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                PublicRequestHelp help = new PublicRequestHelp(this.IsBusy, 4, new object[] { head, imeiList }, new EventHandler<API.MainCompletedEventArgs>(SubmitCompleted));
+                PublicRequestHelp help = new PublicRequestHelp(this.IsBusy, 4, new object[] { head, imeiList, forRepairOut, repIDs },
+                    SubmitCompleted);
             }
           
         }
@@ -347,12 +444,27 @@ namespace UserMS.Views.StockMS.Allot
             if (mcea.Error == null)
             {
 
-                MessageBox.Show(System.Windows.Application.Current.MainWindow, mcea.Result.Message);
+                //MessageBox.Show(System.Windows.Application.Current.MainWindow, mcea.Result.Message);
                 Logger.Log(mcea.Result.Message + "");
                 if (mcea.Result.ReturnValue == true)
                 {
                     Clear();
-                    return;
+                    repIDs.Clear();
+                    forRepairOut = false;
+                    LackCount = 0;
+
+                    if (MessageBox.Show("保存成功，是否打印？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                    {
+                        return;
+                    }
+                    PrintOutOrder2 print = new PrintOutOrder2(mcea.Result.Obj as List<API.Report_OutOrderListInfoWithIMEI>);
+
+                    print.SrcPage = "/Views/StockMS/Allot/Main_allot.xaml?MenuID=11";
+                    this.NavigationService.Navigate(print);
+                }
+                else
+                {
+                    MessageBox.Show(System.Windows.Application.Current.MainWindow, mcea.Result.Message);
                 }
             }
             else

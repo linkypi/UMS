@@ -184,8 +184,9 @@ namespace DAL
                             salarys.Add(child.BaseSalary);
                             ratios.Add(child.Ratio);
                             overRatios.Add(child.OverRatio);
-                            selltypes.Add(child.SellTypeID);
+                           
                         }
+                        selltypes.Add(item.SellType);
                     }
 
                     #region  验证数据
@@ -288,7 +289,10 @@ namespace DAL
                                   a.ProMainName,
                                   m.ProMainID,
                                   c.ClassID,
-                                  s.Name ,
+                                  s.Name,
+                                  SellTypeID = s.ID,
+                                  m.StartDate,
+                                  m.EndDate,
                                   m.Children
                               }).Distinct();
                     if (val.Count() > 0)
@@ -301,6 +305,9 @@ namespace DAL
                             sb.ClassName = child.ClassName;
                             sb.ClassID = child.ClassID.ToString();
                             sb.IsProMain = true;
+                            sb.SellType = child.SellTypeID;
+                            sb.EndDate = child.EndDate;
+                            sb.StartDate = child.StartDate;
                             sb.SellTypeName = child.Name;
                             sb.ProMainID = child.ProMainID;
                             sb.Children = new List<Model.SalaryBillChild>();
@@ -327,7 +334,9 @@ namespace DAL
                                   t.TypeName,
                                   c.ClassID,
                                   p.ProID,
-                                  s.Name,
+                                  m.StartDate,
+                                  m.EndDate,
+                                  s.Name,SellTypeID = s.ID ,
                                   m.Children
                               };
                     if (val2.Count() > 0)
@@ -339,6 +348,9 @@ namespace DAL
                             sb.TypeName = child.TypeName;
                             sb.ProID = child.ProID;
                             sb.SellTypeName = child.Name;
+                            sb.SellType = child.SellTypeID;
+                            sb.EndDate = child.EndDate;
+                            sb.StartDate = child.StartDate;
                             sb.IsProMain = false;
                             sb.ClassID = child.ClassID.ToString();
                             sb.ClassName = child.ClassName;
@@ -524,44 +536,37 @@ namespace DAL
                     {
                         return new Model.WebReturn() { ReturnValue = false, Message = "参数错误" };
                     }
-                    if (pageParam.ParamList == null) pageParam.ParamList = new List<Model.ReportSqlParams>();
 
+                    if (pageParam.ParamList == null) pageParam.ParamList = new List<Model.ReportSqlParams>();
+                     
                     #region "过滤数据"
 
-                    //IList<Model.Proc_MySalaryResult>  list= lqh.Umsdb.Proc_MySalary().ToList();
-                    //List<Model.Proc_MySalaryResult> aduit_query = new List<Model.Proc_MySalaryResult>(list);
-                    var aduit_query = from b in lqh.Umsdb.View_MySalary
-                                      where b.Seller == user.UserID
-                                      //orderby b.Identy ascending
-                                      select b;
+                    DateTime sdate = new DateTime();
+                    DateTime edate =   DateTime.Now;
                     foreach (var item in pageParam.ParamList)
                     {
                         switch (item.ParamName)
                         {
                             case "StartTime":
                                 Model.ReportSqlParams_DataTime mm5 = (Model.ReportSqlParams_DataTime)item;
-                                if (mm5.ParamValues != null)
-                                {
-                                    aduit_query = from b in aduit_query
-                                                  where b.Sysdate >= mm5.ParamValues
-                                                  select b;
-                                }
+                                sdate =(DateTime) mm5.ParamValues;
                                 break;
                             case "EndTime":
-                                Model.ReportSqlParams_DataTime mm6 = (Model.ReportSqlParams_DataTime)item;
-                                if (mm6.ParamValues != null)
-                                {
-                                    aduit_query = from b in aduit_query
-                                                  where b.Sysdate <= mm6.ParamValues
-                                                  select b;
-                                }
+                                Model.ReportSqlParams_DataTime eda = (Model.ReportSqlParams_DataTime)item;
+                                edate = (DateTime)eda.ParamValues;
                                 break;
                         }
                     }
+                    //lqh.Umsdb.GenerateSalaryByDate(args[0], args[1]);  
+                    var aduit_query = lqh.Umsdb.Proc_SalaryReportDetail(sdate.ToShortDateString(),
+                        edate.ToShortDateString(),user.UserName,"");
+
+
+                    List<Model.Proc_SalaryReportDetailResult> list = aduit_query.ToList();
 
                     #endregion
 
-                    pageParam.RecordCount = aduit_query.Count();
+                    pageParam.RecordCount = list.Count();
 
                     #region 判断是否超过总页数
 
@@ -570,10 +575,10 @@ namespace DAL
                     if (pageParam.PageIndex > pagecount)
                     {
                         pageParam.PageIndex = 0;
-                        var results = from a in aduit_query.Take(pageParam.PageSize).ToList()
+                        var results = from a in list.Take(pageParam.PageSize).ToList()
                                       select a;
 
-                        List<Model.View_MySalary> aduitList = results.ToList();
+                        List<Model.Proc_SalaryReportDetailResult> aduitList = results.ToList();
 
                         pageParam.Obj = aduitList;
                         return new Model.WebReturn() { ReturnValue = true, Message = "获取成功", Obj = pageParam };
@@ -581,10 +586,10 @@ namespace DAL
 
                     else
                     {
-                        var results = from a in aduit_query.Skip(pageParam.PageSize * pageParam.PageIndex).Take(pageParam.PageSize).ToList()
+                        var results = from a in list.Skip(pageParam.PageSize * pageParam.PageIndex).Take(pageParam.PageSize).ToList()
                                       select a;
 
-                        List<Model.View_MySalary> aduitList = results.ToList();
+                        List<Model.Proc_SalaryReportDetailResult> aduitList = results.ToList();
 
                         pageParam.Obj = aduitList;
                         return new Model.WebReturn() { ReturnValue = true, Message = "获取成功", Obj = pageParam };
@@ -647,10 +652,9 @@ namespace DAL
                         return new Model.WebReturn() { ReturnValue = true, Message = "获取成功", Obj = pageParam };
                     }
                     //IList<Model.Proc_MySalaryResult>  list= lqh.Umsdb.Proc_MySalary().ToList();
-                    //lqh.Umsdb.GenerateSalaryByDate(args[0],args[1]);
+                   // lqh.Umsdb.GenerateSalaryByDate(args[0],args[1]);
                    var query = lqh.Umsdb.Proc_SalaryReport(args[0],args[1],args[2],args[3]).ToList();
 
-                
                    List<Model.Proc_SalaryReportResult> list = query.ToList();
                     #endregion
                     
@@ -1143,7 +1147,7 @@ namespace DAL
                     //1.备份提成旧数据
                     //2.删除后添加新提成到实时表
                     //3.同步selllistinfo中提成为0 的数据
-                    lqh.Umsdb.AsynSalary(user.UserID,"");
+                   // lqh.Umsdb.AsynSalary(user.UserID,"");
                     return new Model.WebReturn() { Message="同步完成！",ReturnValue =true };
                 }
 
@@ -1285,8 +1289,10 @@ namespace DAL
                         var stepinfo = from a in lqh.Umsdb.Sys_SalaryPriceStep
                             select a;
 
+                        #region  更新最新提成
 
                         Model.Sys_SalaryBillInfo model = new Model.Sys_SalaryBillInfo();
+                        List<Model.Sys_CurrentSalary> models = new List<Model.Sys_CurrentSalary>();
 
                         model.Note = note;
                         model.SysDate = DateTime.Now;
@@ -1301,6 +1307,17 @@ namespace DAL
                             b.ProMainID = item.ProMainID;
                             b.SellType = item.SellType;
                             b.Sys_SalaryList_StepInfo = new System.Data.Linq.EntitySet<Model.Sys_SalaryList_StepInfo>();
+
+                            var pros = new List<string>();
+                            if (string.IsNullOrEmpty(item.ProID))
+                            {
+                                 pros = (from a in lqh.Umsdb.Pro_ProMainInfo
+                                           join p in lqh.Umsdb.Pro_ProInfo
+                                           on a.ProMainID equals p.ProMainID
+                                           where a.ProMainID == item.ProMainID
+                                           select p.ProID).ToList();
+
+                            }
                             foreach (var child in item.Children)
                             {
                                  Model.Sys_SalaryList_StepInfo s = new Model.Sys_SalaryList_StepInfo();
@@ -1321,15 +1338,45 @@ namespace DAL
                                      s.StepID = x.ID;
                                  }
                                  b.Sys_SalaryList_StepInfo.Add(s);
+
+                                 if (string.IsNullOrEmpty(item.ProID))
+                                 {
+                                     foreach (var xx in pros)
+                                     {
+                                        Model.Sys_CurrentSalary sc = new Model.Sys_CurrentSalary();
+                                        sc.BaseSalary = child.BaseSalary;
+                                        sc.EndDate = item.EndDate;
+                                        sc.StartDate = item.StartDate;
+                                        sc.SellType = item.SellType;
+                                        sc.StartDate = item.StartDate;
+                                        sc.OverNum = child.OverNum;
+                                        sc.OverRatio = child.OverRatio;
+                                        sc.PriceNum = child.Step;
+                                        sc.ProID = xx;
+                                        models.Add(sc);
+                                     }
+                                 }
+                                 else
+                                 {
+                                     Model.Sys_CurrentSalary sc = new Model.Sys_CurrentSalary();
+                                     sc.BaseSalary = child.BaseSalary;
+                                     sc.EndDate = item.EndDate;
+                                     sc.StartDate = item.StartDate;
+                                     sc.SellType = item.SellType;
+                                     sc.StartDate = item.StartDate;
+                                     sc.OverNum = child.OverNum;
+                                     sc.OverRatio = child.OverRatio;
+                                     sc.PriceNum = child.Step;
+                                     sc.ProID = item.ProID;
+                                     models.Add(sc);
+                                 }
                             }
                             model.Sys_SalaryBillListInfo.Add(b);
                         }
                        
                         lqh.Umsdb.Sys_SalaryBillInfo.InsertOnSubmit(model);
+                        lqh.Umsdb.Sys_CurrentSalary.InsertAllOnSubmit(models);
                         lqh.Umsdb.SubmitChanges();
-                        #region  更新最新提成Sys_SalaryCurrentList
-
-                       // lqh.Umsdb.InsertSalary(maxid, user.UserID, note);
 
                         #endregion
 

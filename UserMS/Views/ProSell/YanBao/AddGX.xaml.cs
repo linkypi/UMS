@@ -233,9 +233,10 @@ namespace UserMS.Views.ProSell.YanBao
                         }
                         else
                         {
-                            this._ModelPrice.Value = this.Pro.Pro_SellTypeProduct.Any(p => p.SellType == 1)
-                                ? this.Pro.Pro_SellTypeProduct.First(p => p.SellType == 1).Price
-                                : 0;
+//                            this._ModelPrice.Value = this.Pro.Pro_SellTypeProduct.Any(p => p.SellType == 1)
+//                                ? this.Pro.Pro_SellTypeProduct.First(p => p.SellType == 1).Price
+//                                : 0;
+                            this._ModelPrice.Value = 0;
                         }
                     }
                     catch (Exception ex)
@@ -297,11 +298,11 @@ namespace UserMS.Views.ProSell.YanBao
                 return;
             }
 
-            if (Convert.ToDecimal(this._ModelPrice.Value) == 0)
-            {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow, "终端价格为0 不可销售延保");
-                return;
-            }
+//            if (Convert.ToDecimal(this._ModelPrice.Value) == 0)
+//            {
+//                MessageBox.Show(System.Windows.Application.Current.MainWindow, "终端价格为0 不可销售延保");
+//                return;
+//            }
             YanbaoModel model=new YanbaoModel();
             model.ProID = this.Pro.ProID;
             model.Name = this._Name.Text;
@@ -345,8 +346,8 @@ namespace UserMS.Views.ProSell.YanBao
 //                model.YanbaoPrice =
 //                    Convert.ToDecimal(Yanbaoprices.Where(p => p.ProID == pro.ProID)
 //                                                  .OrderByDescending(p => p.StepPrice).First().ProPrice);
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"该终端无法购买延保服务");
-                return;
+//                MessageBox.Show(System.Windows.Application.Current.MainWindow,"该终端无法购买延保服务");
+//                return;
                 
             }
 

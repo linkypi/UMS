@@ -7,18 +7,20 @@
              xmlns:editors="clr-namespace:Telerik.Windows.Controls.Filtering.Editors;assembly=Telerik.Windows.Controls"
              ShutdownMode="OnMainWindowClose" 
   >
-    <Application.Resources> 
-    
- 
+    <Application.Resources>
+
+        
         <telerik:Windows8Theme x:Key="Theme" />
         <telerik:Windows7Theme x:Key="Theme7" />
- 
-        <Style TargetType="Button">
+        <Style TargetType="telerik:RadMenu">
+            <Setter Property="Background" Value="{telerik:Windows8Resource ResourceKey=AccentBrush}"/> 
+        </Style>
+            <Style TargetType="Button">
             <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>
         </Style>
-        <Style TargetType="ScrollViewer">
-            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>
-        </Style>
+<!--        <Style TargetType="ScrollViewer">-->
+<!--            <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>-->
+<!--        </Style>-->
         <Style TargetType="CheckBox">
             <Setter Property="telerik:StyleManager.Theme" Value="{StaticResource Theme}"/>
         </Style>
@@ -71,7 +73,7 @@
     </Application.Resources>
 <Application.MainWindow>
         <NavigationWindow Name="MainWin" MinHeight="600" MinWidth="800" Source="Login.xaml"  Visibility="Visible"
-                          Title="广信中山分公司渠道运营部综合管理系统">
+                          Title="渠道运营部综合管理系统">
             
         </NavigationWindow>
         

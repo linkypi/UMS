@@ -17,6 +17,8 @@ namespace Model
     {
     }
 
+ 
+
     public partial class Pro_ProInfo
     {
         [global::System.Runtime.Serialization.DataMemberAttribute]
@@ -230,4 +232,16 @@ namespace Model
         public List<Proc_SalaryReportDetailResult> Children;
     }
 
+
+    public partial class View_ASPReceiveInfo
+    {
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public List<View_ASPRepairProgress> Children;
+    }
+
+    public partial class View_ASPRepairInfo
+    {
+        [global::System.Runtime.Serialization.DataMemberAttribute]
+        public List<Model.ASP_Factory> Factorys;
+    }
 }

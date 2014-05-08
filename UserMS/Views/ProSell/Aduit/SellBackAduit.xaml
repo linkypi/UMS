@@ -1,7 +1,7 @@
-﻿<Page xmlns:MyControl="clr-namespace:UserMS.MyControl"  
+﻿<Page xmlns:MyControl="http://www.zs96000.com/wpf"  
       xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
       xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-      xmlns:UserMS="clr-namespace:UserMS"  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+      xmlns:UserMS="http://www.zs96000.com/wpf"  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
       x:Class="UserMS.Views.ProSell.Aduit.SellBackAduit" 
            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
@@ -73,7 +73,7 @@
               <telerik:RadGridView  x:Name="GridAuitList" DockPanel.Dock="Top" MinHeight="100"   Margin="0 0 0 0" GridLinesVisibility="Both" ShowColumnHeaders="True" CanUserInsertRows="False" 
              ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True"  SelectionChanged=" GridAuitList_SelectionChanged"
 			CanUserFreezeColumns="False" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
-			RowDetailsVisibilityMode="VisibleWhenSelected"  VerticalAlignment="Stretch" SelectionUnit="Cell"  HorizontalAlignment="Stretch" >
+			 VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" >
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewSelectColumn Width="auto"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding AduitID, Mode=OneWay}"  Header="审批单" Width="auto" IsReadOnly="True" HeaderTextAlignment="Center" IsGroupable="False" IsFilterable="False"/>

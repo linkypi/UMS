@@ -210,6 +210,7 @@ namespace DAL
 
                         var menu_list = (from b in lqh.Umsdb.Sys_MenuInfo
                                          where menuStr.Contains(b.MenuID)
+                                         orderby b.Order
                                          select b).ToList();
 
                         #endregion
@@ -292,10 +293,10 @@ namespace DAL
             string xml = "";
             //System.Data.DataRow[] drs = dtLV.Select("pmenulv=" + menuLV);
             //System.Data.DataRow[] drs_menu;
-            List<Model.Sys_MenuInfo> drs = (dtLV.Where<Model.Sys_MenuInfo>(p => p!=null && p.Parent == parent)).ToList();
+            List<Model.Sys_MenuInfo> drs = (dtLV.Where<Model.Sys_MenuInfo>(p => p!=null && p.Parent == parent).OrderBy(p=>p.Order)).ToList();
          //   List<Model.Sys_MenuInfo> drs_menu = null;
             //带子节点的节点
-            
+             
             foreach (Model.Sys_MenuInfo dr in drs)
             {
                 
@@ -580,6 +581,7 @@ namespace DAL
 
                         var menu_list = (from b in lqh.Umsdb.Sys_MenuInfo
                                          where menuStr.Contains(b.MenuID)
+                                         orderby b.Order
                                          select b).ToList();
 
                         #endregion

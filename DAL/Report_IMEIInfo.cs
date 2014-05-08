@@ -130,14 +130,14 @@ namespace DAL
                    var obj = lqh.Umsdb.Report_IMEIInfo.AsQueryable();
 
                    obj = from b in obj
-                         join c in ValidHallIDS
-                         on b.门店编码 equals c.HallID
+                         //join c in ValidHallIDS
+                         //on b.门店编码 equals c.HallID
                          where list.Contains(b.串码)
                          select b;
-                   obj = from b in obj
-                         join c in ValidProIDS
-                         on b.类别编码 equals c.ClassID
-                         select b;
+                   //obj = from b in obj
+                   //      join c in ValidProIDS
+                   //      on b.类别编码 equals c.ClassID
+                   //      select b;
                    return new Model.WebReturn() { ReturnValue=true, Message="", Obj=obj.ToList() };
 
                }

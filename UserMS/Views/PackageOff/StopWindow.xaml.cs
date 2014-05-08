@@ -37,6 +37,7 @@ namespace UserMS.Views.PackageOff
             listIDs.AddRange(idlist);
         }
 
+     
         private void ok_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(enddate.DateTimeText))

@@ -76,28 +76,37 @@ namespace UserMS.Views.AfterSale
 
             rpp.ParamList = new List<API.ReportSqlParams>();
 
-            API.ReportSqlParams_Bool pass = new API.ReportSqlParams_Bool();
-            pass.ParamName = "ZJPassed";
-            pass.ParamValues =true;
-            rpp.ParamList.Add(pass);
+            //API.ReportSqlParams_Bool pass = new API.ReportSqlParams_Bool();
+            //pass.ParamName = "ZJPassed";
+            //pass.ParamValues =true;
+            //rpp.ParamList.Add(pass);
 
-            API.ReportSqlParams_Bool IsAudit = new API.ReportSqlParams_Bool();
-            IsAudit.ParamName = "IsAudit";
-            IsAudit.ParamValues = true;
-            rpp.ParamList.Add(IsAudit);  //IsAudit
+            //API.ReportSqlParams_Bool IsAudit = new API.ReportSqlParams_Bool();
+            //IsAudit.ParamName = "IsAudit";
+            //IsAudit.ParamValues = true;
+            //rpp.ParamList.Add(IsAudit);  //IsAudit
 
-            //审核未通过
-            API.ReportSqlParams_Bool IsPassed = new API.ReportSqlParams_Bool();
-            IsPassed.ParamName = "IsPassed";
-            IsPassed.ParamValues = false;
-            rpp.ParamList.Add(IsPassed);
+            ////审核未通过
+            //API.ReportSqlParams_Bool IsPassed = new API.ReportSqlParams_Bool();
+            //IsPassed.ParamName = "IsPassed";
+            //IsPassed.ParamValues = false;
+            //rpp.ParamList.Add(IsPassed);
 
-            API.ReportSqlParams_Bool Finished = new API.ReportSqlParams_Bool();
-            Finished.ParamName = "Finished";
-            Finished.ParamValues = false;
-            rpp.ParamList.Add(Finished);
+            //API.ReportSqlParams_Bool Finished = new API.ReportSqlParams_Bool();
+            //Finished.ParamName = "Finished";
+            //Finished.ParamValues = false;
+            //rpp.ParamList.Add(Finished);
 
-            if (!string.IsNullOrEmpty(this.hall.Tag.ToString()))
+            if (state.SelectedIndex != 0)
+            {
+                API.ReportSqlParams_String repstate = new API.ReportSqlParams_String();
+                repstate.ParamName = "RpState";
+                object obj = (state.SelectedItem as ComboBoxItem).Content;
+                repstate.ParamValues = obj == null ? "" : obj.ToString();
+                rpp.ParamList.Add(repstate);
+            }
+
+            if (!string.IsNullOrEmpty(this.hall.Tag+""))
             {
                 API.ReportSqlParams_String hall = new API.ReportSqlParams_String();
                 hall.ParamName = "HallID";
@@ -348,7 +357,11 @@ namespace UserMS.Views.AfterSale
             foreach (var item in searchGrid.SelectedItems)
             {
                 API.View_ASPZJInfo m = item as API.View_ASPZJInfo;
-                m.ChkNote = chkNote.Text;
+                if (m.RpState != "待审核")
+                {
+                    MessageBox.Show("单号 " + m.OldID + "处于" + m.RpState + "状态，无法审核！");
+                    return;
+                }
                 m.IsPassed = pass;
                 list.Add(m);
             }

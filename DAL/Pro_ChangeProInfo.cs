@@ -113,7 +113,16 @@ namespace DAL
                             NewList.Pro_InOrderID = 0;
 
                             NewList.InListID = Item.NewInListID;
-                            NewList.InitInListID = Item.InListID;
+                            var init = from a in lqh.Umsdb.Pro_InOrderList
+                                       where a.InListID == Item.InListID && a.ProID == Item.OldProID
+                                       select a;
+                            if (init.Count() == 0)
+                            {
+                                return new WebReturn() { ReturnValue = false, Message = "获取原批次号出错，请联系管理员！" };
+                            }
+
+                            NewList.InitInListID = init.First().InitInListID;
+
 
                             NewList.ProID = Item.NewProID;
                             NewList.ProCount = Item.ProCount;

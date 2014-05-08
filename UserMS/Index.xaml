@@ -5,9 +5,9 @@
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
            xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-           xmlns:src="clr-namespace:UserMS"
+           xmlns:src="http://www.zs96000.com/wpf"
            xmlns:myClass="clr-namespace:UserMS.ViewModel"
-           xmlns:myControl="clr-namespace:UserMS.MyControl"
+           xmlns:myControl="http://www.zs96000.com/wpf"
 
               xmlns:System="clr-namespace:System;assembly=mscorlib"
               xmlns:Chromes="clr-namespace:Telerik.Windows.Controls.Chromes;assembly=Telerik.Windows.Controls"
@@ -2759,11 +2759,11 @@
                             <telerik:RadButton  x:Name="Lock" Click="Lock_OnClick" Content="锁定"  Margin="2" HorizontalAlignment="Right"/>
                             
 						</telerik:RadToolBar>
-                        <telerik:RadToolBar Width="120" FlowDirection="LeftToRight"   toolkit:DockPanel.Dock="Right"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch" OverflowButtonVisibility="Collapsed" >
-                            <TextBlock x:Name="CurrentUser" Text="当前用户：Amin"  Margin="0"></TextBlock>
+                        <telerik:RadToolBar Width="150"  FlowDirection="RightToLeft"  toolkit:DockPanel.Dock="Right"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch" OverflowButtonVisibility="Collapsed" >
+                            <TextBlock x:Name="CurrentUser" HorizontalAlignment="Right" Text="当前用户：Amin" Width="150"  Margin="0"></TextBlock>
                         </telerik:RadToolBar>
-                        <telerik:RadToolBar x:Name="allwaysBar" FlowDirection="LeftToRight" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" OverflowButtonVisibility="Collapsed" Style="{StaticResource IndexToolBarTemplate}" >
-							<!--<telerik:RadToolBar.ItemTemplate>
+                    <telerik:RadToolBar x:Name="allwaysBar" FlowDirection="LeftToRight" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" OverflowButtonVisibility="Collapsed" Style="{StaticResource IndexToolBarTemplate}" >
+						<!--<telerik:RadToolBar.ItemTemplate>
 								<DataTemplate>
 									<telerik:RadListBoxItem Margin="2"    MouseLeftButtonUp="RadListBoxItem_MouseLeftButtonUp_1" Content="{Binding Title}"/>
 								</DataTemplate>

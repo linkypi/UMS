@@ -105,12 +105,12 @@ namespace UserMS.Views.StockMS.EnteringStock
             List<API.Pro_HallInfo> HallInfo = Store.ProHallInfo.Where(p => p.CanBack == true).ToList();
             hall = hAdder.FilterHall(int.Parse(r.Trim()), HallInfo);
           
-            if (hall == null)
+            if (hall.Count()>0)
             {
-                return;
+                this.HallID.TextBox.SearchText = hall.First().HallName;
+                this.HallID.Tag = hall.First().HallID;
             }
-            this.HallID.TextBox.SearchText = hall.First().HallName;
-            this.HallID.Tag = hall.First().HallID;
+          
         }
         /// <summary>
         /// 按下确定键添加代码

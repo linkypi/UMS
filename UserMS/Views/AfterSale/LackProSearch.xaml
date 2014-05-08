@@ -7,10 +7,16 @@
        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
     xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter" 
    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-    xmlns:UserMS="clr-namespace:UserMS"  xmlns:MyControl="clr-namespace:UserMS.MyControl"
+    xmlns:UserMS="http://www.zs96000.com/wpf"  xmlns:MyControl="http://www.zs96000.com/wpf"
 	Title="LackProSearch">
     <telerik:RadBusyIndicator Name="isbusy">
         <DockPanel>
+            <telerik:RadMenu x:Name="radMenu" DockPanel.Dock="Top" ClickToOpen="False" >
+                <WrapPanel MaxHeight="100">
+                    <telerik:RadMenuItem Header="生成调拨单" FontSize="13" x:Name="out"  Click="out_Click"/>
+                 
+                </WrapPanel>
+            </telerik:RadMenu>
             <DockPanel DockPanel.Dock="Top">
             <WrapPanel DockPanel.Dock="Top">
                 <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
@@ -71,10 +77,18 @@
                     <!--<telerik:GridViewBoundColumnBase  Header="主板串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_HeaderIMEI}"   IsFilterable="False" />-->
                         <telerik:GridViewBoundColumnBase  Header="串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_HeaderIMEI}"   IsFilterable="False" />
                         <telerik:GridViewBoundColumnBase  Header="受理日期"  DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding SysDate}"  />
-                </telerik:RadGridView.Columns>
+                        <!--<telerik:GridViewBoundColumnBase  Header="操作"  Width="auto"  IsFilterable="False"   >
+                            <telerik:GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                      <telerik:RadButton Content="调拨" Tag="{Binding ID}" Click="RadButton_Click"></telerik:RadButton>
+                                </DataTemplate>
+                            </telerik:GridViewColumn.CellTemplate>
+                        </telerik:GridViewBoundColumnBase>-->
+
+                    </telerik:RadGridView.Columns>
             </telerik:RadGridView>
         </DockPanel>
-            
+            <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
             <DockPanel DockPanel.Dock="Top">
                 <DockPanel DockPanel.Dock="Top">
                     <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">

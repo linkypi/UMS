@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
-    xmlns:userMs="clr-namespace:UserMS" xmlns:proSell="clr-namespace:UserMS.Views.ProSell"
+    xmlns:userMs="http://www.zs96000.com/wpf" xmlns:proSell="clr-namespace:UserMS.Views.ProSell"
     x:Class="UserMS.Views.ProSell.NewJiPeiKaSell_temp"
     mc:Ignorable="d"   KeyUp="LayoutRoot_KeyUp"
     d:DesignHeight="480" d:DesignWidth="640" Width="Auto" >

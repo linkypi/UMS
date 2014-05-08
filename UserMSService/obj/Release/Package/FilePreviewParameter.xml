@@ -4,7 +4,7 @@
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\UMS\\client\\UserMS\\UserMSService\\obj\\Release\\Package\\PackageTmp$" />
     <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\UMS\\client\\UserMS\\UserMSService\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="Entities-Web.config Connection String" description="" value="metadata=res://*/UMS.csdl|res://*/UMS.ssdl|res://*/UMS.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=192.168.0.8;initial catalog=UMS;user id=sa;password=gdgx96000!@#;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="">
+  <parameter name="Entities-Web.config Connection String" description="" value="metadata=res://*/UMS.csdl|res://*/UMS.ssdl|res://*/UMS.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=192.168.0.16;initial catalog=UMS;user id=sa;password=ztf96000;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="">
     <parameterEntry kind="XmlFile" scope="D:\\UMS\\client\\UserMS\\UserMSService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Entities']/@connectionString" />
   </parameter>
 </parameters>

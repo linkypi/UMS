@@ -38,6 +38,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_HZ|AnyCPU'">
+    <OutputPath>bin\Release_HZ\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_HZ|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug_HZ\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
@@ -60,12 +78,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ASP_BackApply.cs" />
     <Compile Include="ASP_CheckInfo.cs" />
     <Compile Include="ASP_CurrentOrderInfo.cs" />
+    <Compile Include="ASP_Dealer.cs" />
     <Compile Include="ASP_ErrorInfo.cs" />
+    <Compile Include="ASP_Factory.cs" />
     <Compile Include="ASP_GetPhoneInfo.cs" />
     <Compile Include="ASP_ManaAuditInfo.cs" />
     <Compile Include="ASP_ReceiveInfo.cs" />
+    <Compile Include="ASP_RepairerProductInfo.cs" />
     <Compile Include="ASP_ZJInfo.cs" />
     <Compile Include="Asset_UseInfo.cs" />
     <Compile Include="BorowAduit2.cs" />
@@ -86,6 +108,7 @@
     <Compile Include="Pro_BillFieldInfo.cs" />
     <Compile Include="Pro_ChangeProInfo.cs" />
     <Compile Include="Pro_GetSelection.cs" />
+    <Compile Include="Pro_IMEI.cs" />
     <Compile Include="Pro_PriceChange.cs" />
     <Compile Include="Pro_PriceCostChange.cs" />
     <Compile Include="Pro_ProMainInfo.cs" />
@@ -102,10 +125,19 @@
     <Compile Include="Pro_SellTypeProduct.cs" />
     <Compile Include="Pro_Sell_CarInfo.cs" />
     <Compile Include="Pro_YanbaoPriceStepInfo.cs" />
+    <Compile Include="RepairerProductInfo.cs" />
+    <Compile Include="Report_AfterSale.cs" />
+    <Compile Include="Report_BaoWaiCash.cs" />
+    <Compile Include="Report_BasPros.cs" />
     <Compile Include="Report_Borow.cs" />
+    <Compile Include="Report_CallBackInfo.cs" />
+    <Compile Include="Report_RepairFetchInfo.cs" />
+    <Compile Include="Report_RepairTimeOutInfo.cs" />
+    <Compile Include="Report_RepTimeControl.cs" />
     <Compile Include="Report_Return.cs" />
     <Compile Include="Report_SellListInfo.cs" />
     <Compile Include="Report_SellReport.cs" />
+    <Compile Include="Report_邮储三方报表.cs" />
     <Compile Include="Rules_AllCurrentRulesInfo.cs" />
     <Compile Include="Rules_OffList.cs" />
     <Compile Include="Rules_TypeInfo.cs" />

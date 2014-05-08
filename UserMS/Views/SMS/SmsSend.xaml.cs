@@ -18,6 +18,7 @@ using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 using UserMS.API;
 using UserMS.Common;
 using UserMS.Model;
+using Convert = System.Convert;
 
 namespace UserMS.Views.SMS
 {

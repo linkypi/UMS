@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<configuration>
+  <appSettings>
+    <add key="ReportServiceUrl" value="http://192.168.51.185:9011/WcfReportService.svc"/>
+  </appSettings>
+    <system.serviceModel>
+        <bindings>
+            <wsHttpBinding>
+                <binding name="WSHttpBinding_UserMsService1" maxBufferPoolSize="2147483647"
+                    maxReceivedMessageSize="2147483647" messageEncoding="Mtom"
+                    allowCookies="true">
+                    <reliableSession enabled="true" />
+                    <security mode="None">
+                        <transport clientCredentialType="Windows" />
+                        <message clientCredentialType="Windows" />
+                    </security>
+                </binding>
+            </wsHttpBinding>
+            <webHttpBinding>
+                <binding name="WSHttpBinding_UserMsService" maxBufferPoolSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647"
+                        maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+                </binding>
+            </webHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://192.168.51.185:9011/UserMSService.svc"
+                binding="wsHttpBinding" bindingConfiguration="WSHttpBinding_UserMsService1"
+                contract="API.UserMsService" name="WSHttpBinding_UserMsService">
+                <identity>
+                    <dns value="localhost" />
+                </identity>
+            </endpoint>
+        </client>
+    </system.serviceModel>
+<startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/></startup></configuration>

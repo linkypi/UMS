@@ -21,7 +21,7 @@ namespace UserMS.Views.AfterSale
     {
         public AfterSale()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

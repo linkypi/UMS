@@ -63,6 +63,53 @@ namespace DAL
                     {
                         switch (item.ParamName)
                         {
+                            case "OldID":
+                                Model.ReportSqlParams_String oldid = (Model.ReportSqlParams_String)item;
+
+                                aduit_query = from b in aduit_query
+                                              where b.OldID.Contains(oldid.ParamValues)
+                                              select b;
+                                break;
+                            case "Cus_Name":
+                                Model.ReportSqlParams_String mm2 = (Model.ReportSqlParams_String)item;
+
+                                aduit_query = from b in aduit_query
+                                              where b.Cus_Name.Contains(mm2.ParamValues)
+                                              select b;
+                                break;
+
+                            case "Cus_Phone":
+                                Model.ReportSqlParams_String pass2 = (Model.ReportSqlParams_String)item;
+
+
+                                aduit_query = from b in aduit_query
+                                              where b.Cus_Phone.Contains(pass2.ParamValues)
+                                              select b;
+
+                                break;
+
+                            case "Pro_IMEI":
+                                Model.ReportSqlParams_String imei = (Model.ReportSqlParams_String)item;
+
+                                aduit_query = from b in aduit_query
+                                              where b.Pro_HeaderIMEI == imei.ParamValues
+                                              select b;
+                                break;
+
+                            case "VIP_IMEI": //会员卡号
+                                Model.ReportSqlParams_String mm3 = (Model.ReportSqlParams_String)item;
+
+                                aduit_query = from b in aduit_query
+                                              where b.IMEI == mm3.ParamValues
+                                              select b;
+                                break;
+
+                            case "RpState":
+                                Model.ReportSqlParams_String state = (Model.ReportSqlParams_String)item;
+                                aduit_query = from b in aduit_query
+                                              where b.RpState == state.ParamValues
+                                              select b;
+                                break;
                             case "HasFetch":
                                 Model.ReportSqlParams_Bool HasFetch = (Model.ReportSqlParams_Bool)item;
 

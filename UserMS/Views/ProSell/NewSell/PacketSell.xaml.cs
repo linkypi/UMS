@@ -72,6 +72,10 @@ namespace UserMS
 //            this.listbox.ItemsSource=
 
 		    // 在此点之下插入创建对象所需的代码。
+#if HZ
+            VIPBTN.Visibility=Visibility.Collapsed;
+            VIPPOINT.Visibility=Visibility.Collapsed;
+#endif
 		}
 
 
@@ -440,8 +444,9 @@ namespace UserMS
             {
                 Yanbaoprices = new List<View_YanBoPriceStepInfo>();
             }
-
+#if !HZ
             VIP_OnMouseLeftButtonUp(null, null);
+#endif
             var userops = Store.UserOpList.Where(p => p.Flag == true && p.OpID != null && p.HallID != null);
             UserOpList =
     userops.Join(Store.UserInfos, oplist => oplist.UserID, info => info.UserID,
@@ -944,6 +949,7 @@ namespace UserMS
                                                             vipmodel.VIPType = viptype;
                                                             vipmodel.ProID = resultv.ArrList[1].ToString();
                                                             vipmodel.IMEI = imei;
+                                                            
                                                             this.busy.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                                                                 new Action(() =>
                                                                 {
@@ -1222,7 +1228,7 @@ namespace UserMS
                                 MobiPhone=g.MobiPhone,
                                 Address = g.Address,
                                 ProPrice=g.ProPrice,
-                                
+                                Flag=true,
                                 Birthday = g.Birthday,
                                 IDCard = g.IDCard,
                                 LZUser = g.LZUserID,

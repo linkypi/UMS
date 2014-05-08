@@ -7,7 +7,7 @@
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
            mc:Ignorable="d" Loaded="Page_Loaded"
-    xmlns:UserMS="clr-namespace:UserMS"  x:Class="UserMS.Views.StockMS.Repair.Mainaddrepair"
+    xmlns:UserMS="http://www.zs96000.com/wpf"  x:Class="UserMS.Views.StockMS.Repair.Mainaddrepair"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"              
   d:DesignWidth="800" d:DesignHeight="600">
 

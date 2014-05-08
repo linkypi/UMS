@@ -49,6 +49,7 @@ namespace UserMS.Report
                 this.datasource.AutoLoad = true;
                 this.datasource.PageSize = 20;
                 this.datasource.DataServiceContext = a;
+
                 Telerik.Windows.Data.SortDescriptor sd = new Telerik.Windows.Data.SortDescriptor();
                 sd.Member = "序号";
                 sd.SortDirection = System.ComponentModel.ListSortDirection.Ascending;
@@ -92,23 +93,31 @@ namespace UserMS.Report
 
             if (dialog.ShowDialog() == true)
             {
-                using (Stream stream = dialog.OpenFile())
+                try
                 {
+                    using (Stream stream = dialog.OpenFile())
+                    {
 
-                    var x = new SlModel.operateExcel<object>();
-                    var headers = new List<string>();
-                    if (this.Colhead.Count() > 0)
-                        headers = (from b in this.Colhead
+                        var x = new SlModel.operateExcel<object>();
+                        var headers = new List<string>();
+                        if (this.Colhead.Count() > 0)
+                            headers = (from b in this.Colhead
 
-                                   select b.ColName).ToList();
-                    else
-                        headers = (from b in this.ParentHead
+                                       select b.ColName).ToList();
+                        else
+                            headers = (from b in this.ParentHead
 
-                                   select b.ColName).ToList();
-                    x.getExcel(list, headers, stream);
+                                       select b.ColName).ToList();
+                        x.getExcel(list, headers, stream);
 
-                    MessageBox.Show(System.Windows.Application.Current.MainWindow,"导出成功");
+                        MessageBox.Show(System.Windows.Application.Current.MainWindow, "导出成功");
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(System.Windows.Application.Current.MainWindow, "导出失败\n"+ex.Message);
+                }
+               
             }
 
         }

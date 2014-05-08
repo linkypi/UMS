@@ -33,7 +33,57 @@ namespace UserMS.Views.ProSell
         private decimal offprice = 0;
         private decimal cashprice = 0;
         private bool cansave = true;
-        public List<int> SellTempIds { get; set; } 
+        public List<int> SellTempIds { get; set; }
+
+        decimal calcyanbaoprice(API.Pro_SellListInfo proSellListInfo)
+        {
+            proSellListInfo.AnBuPrice = (proSellListInfo.ProPrice - proSellListInfo.TicketUsed) <
+                                           proSellListInfo.AnBu
+                                               ? (proSellListInfo.ProPrice - proSellListInfo.TicketUsed)
+                                               : proSellListInfo.AnBu;
+            decimal temp = proSellListInfo.ProPrice -
+                           proSellListInfo.TicketUsed - proSellListInfo.AnBuPrice - proSellListInfo.OffPrice -
+                           proSellListInfo.OtherOff -
+                           proSellListInfo.OffSepecialPrice;
+            if (temp < 0) temp = 0;
+            proSellListInfo.CashPrice = temp + proSellListInfo.OtherCash;
+
+
+            if (proSellListInfo.Pro_SellList_RulesInfo.Count > 0)
+            {
+
+                foreach (var proSellListRulesInfo in proSellListInfo.Pro_SellList_RulesInfo)
+                {
+                    if (proSellListInfo.CashPrice < proSellListRulesInfo.OffPrice)
+                    {
+                        proSellListRulesInfo.RealPrice = proSellListInfo.CashPrice;
+                    }
+                    else
+                    {
+                        proSellListRulesInfo.RealPrice =
+                            proSellListRulesInfo.OffPrice;
+
+                    }
+                    proSellListInfo.CashPrice = proSellListInfo.CashPrice - proSellListRulesInfo.RealPrice;
+                }
+
+
+            }
+
+            decimal temps= proSellListInfo.CashPrice + proSellListInfo.TicketUsed +
+                   proSellListInfo.Pro_SellList_RulesInfo.Where(p => p.CanGetBack).Sum(o => o.RealPrice);
+            if (temps == 0)
+            {
+                return Store.ProInfo.First(p => p.ProID == proSellListInfo.ProID)
+                    .Pro_SellTypeProduct.First(o => o.SellType == proSellListInfo.SellType).LowPrice;
+                 
+            }
+            else
+            {
+                return temps;
+            }
+
+        }
         private void calcprices()
         {
 
@@ -57,7 +107,8 @@ namespace UserMS.Views.ProSell
                    if (newselllist.Any(p => p.IMEI == proSellListInfo.Pro_Sell_Yanbao.MobileIMEI))
                    {
                        var yanbaomobile = newselllist.First(p => p.IMEI == proSellListInfo.Pro_Sell_Yanbao.MobileIMEI);
-                       var mobileprice = yanbaomobile.YanbaoModelPrice;
+                       var mobileprice = calcyanbaoprice(yanbaomobile);
+                       yanbaomobile.YanbaoModelPrice = mobileprice;
                        var yanbaomodule = proSellListInfo.Pro_Sell_Yanbao;
 
                        if (
@@ -223,7 +274,7 @@ namespace UserMS.Views.ProSell
                     
                     cansave = false;
                 }
-
+                proSellListInfo.YanbaoModelPrice = calcyanbaoprice(proSellListInfo);
                 sellprice += proSellListInfo.CashPrice*proSellListInfo.ProCount;
 //                sellprice = sellprice - proSellListInfo.OffSepecialPrice*proSellListInfo.ProCount -
 //                            proSellListInfo.LieShouPrice*proSellListInfo.ProCount;
@@ -285,6 +336,10 @@ namespace UserMS.Views.ProSell
         {
             // Required to initialize variables
             InitializeComponent();
+#if HZ
+            VIPBTN.Visibility = Visibility.Collapsed;
+            VIPPOINT.Visibility = Visibility.Collapsed;
+#endif
         }
 
         public NewProSellSetp2(API.Pro_SellInfo SellInfo, List<API.VIP_OffList> OffList, API.VIP_VIPInfo vipInfo)
@@ -294,6 +349,10 @@ namespace UserMS.Views.ProSell
 
 
             InitializeComponent();
+#if HZ
+            VIPBTN.Visibility = Visibility.Collapsed;
+            VIPPOINT.Visibility = Visibility.Collapsed;
+#endif
             this.VipInfo = vipInfo;
             VIPCard.DataContext = vipInfo;
             VIPName.Text=SellInfo.CusName;

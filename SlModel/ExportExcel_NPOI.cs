@@ -313,7 +313,7 @@ namespace SlModel
                     dataRow.CreateCell(i).SetCellValue(Convert.ToDouble(column.GetValue(item, null)));
                     break;
                 case "System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]":
-                    dataRow.CreateCell(i).SetCellValue(column.GetValue(item, null) == null ? null : Convert.ToDateTime(column.GetValue(item, null)).ToShortDateString());
+                    dataRow.CreateCell(i).SetCellValue(column.GetValue(item, null) == null ? null : Convert.ToDateTime(column.GetValue(item, null)).ToShortDateString());//.ToShortDateString()
                     break;
                 case "System.String":
                     dataRow.CreateCell(i).SetCellValue((column.GetValue(item, null)) + "");
@@ -366,6 +366,7 @@ namespace SlModel
                     }
                     lists.Add(t);
                 }
+                
                 return lists;
             }
             catch (Exception ee)
@@ -382,6 +383,10 @@ namespace SlModel
             if (t.Name == "Nullable`1")
             {
                 strt = t.GetGenericArguments()[0].Name;
+            }
+            else
+            {
+                strt = t.Name;
             }
             switch (strt)
             {

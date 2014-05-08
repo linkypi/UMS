@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:userMs="clr-namespace:UserMS"
+	xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:userMs="http://www.zs96000.com/wpf"
 	mc:Ignorable="d" Header="资产编码"
 	x:Class="UserMS.AssetIMEI"  Height="168" Width="438" WindowStartupLocation="Manual"  >
 

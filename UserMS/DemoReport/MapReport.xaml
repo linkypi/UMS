@@ -7,7 +7,7 @@
            xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="UserMS.DemoReport.MapReport"
            mc:Ignorable="d"
       xmlns:chart="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Chart"
-      xmlns:userMs="clr-namespace:UserMS"
+      xmlns:userMs="http://www.zs96000.com/wpf"
       d:DesignWidth="640" d:DesignHeight="480"
            Title="MapReport Page">
     <telerik:RadBusyIndicator x:Name="busy" BusyContent="请稍候">

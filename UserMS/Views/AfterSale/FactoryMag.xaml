@@ -1,0 +1,168 @@
+﻿<Page x:Class="UserMS.Views.AfterSale.FactoryMag"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+          xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter" 
+   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+	Title="FactoryMag">
+
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        <DockPanel>
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                <telerik:RadMenuItem Name="delete"  Header="删 除"   Click="delete_Click" VerticalAlignment="Top"/>
+            </telerik:RadMenu>
+
+            <DockPanel DockPanel.Dock="Bottom">
+                <DockPanel DockPanel.Dock="Top">
+                    <WrapPanel DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                            <TextBlock Height="25" Width="80" Text="厂家名称:" Foreground="Black"></TextBlock>
+                            <TextBox Height="25" Width="150" Text="" Name="facname"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                            <TextBlock Height="25" Width="80" Text="厂家编码:" Foreground="Black"></TextBlock>
+                            <TextBox Height="25" Width="150" Text="" Name="faccode"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                            <Button Content="查询" Width="80" Click="search_Click"></Button>
+                        </StackPanel>
+                    </WrapPanel>
+                </DockPanel>
+
+              
+                <DockPanel DockPanel.Dock="Top" Height="200">
+                    <DockPanel DockPanel.Dock="Bottom" >
+                    <telerik:RadNumericUpDown  x:Name="pagesize" Minimum="1" Value="20" ValueChanged="pagesize_ValueChanged"  Width="50" NumberDecimalDigits="0" DockPanel.Dock="Right" />
+                    <telerik:RadDataPager x:Name="radDataPager1" IsTotalItemCountFixed="True" PageIndexChanged="radDataPager1_PageIndexChanged"    DisplayMode="All"  VerticalAlignment="Stretch" DockPanel.Dock="Left"/>
+                </DockPanel>
+                    <telerik:RadGridView DockPanel.Dock="Top"   x:Name="searchGrid" Margin="0 0 0 0" ShowColumnHeaders="True" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+		            SelectionChanged="RepairGrid_SelectionChanged" 	CanUserFreezeColumns="False" AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+				RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Both"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Grid.Column="0" Grid.ColumnSpan="2"  >
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewSelectColumn />
+                        <telerik:GridViewDataColumn IsFilterable="False"  Header="厂家名称"  IsReadOnly="True" DataMemberBinding="{Binding FacName}" Width="auto"    />
+                        <telerik:GridViewDataColumn IsFilterable="False"  Header="编码"  IsReadOnly="True" DataMemberBinding="{Binding FacID,Mode=TwoWay}" Width="auto"    />
+                        <telerik:GridViewBoundColumnBase  IsFilterable="False"  Header="区域"  Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Area}"  />
+
+                        <telerik:GridViewDataColumn IsFilterable="False"  Header="省份"  IsReadOnly="True" DataMemberBinding="{Binding Province}" Width="auto"    />
+                        <telerik:GridViewDataColumn IsFilterable="False"  Header="城市"  IsReadOnly="True" DataMemberBinding="{Binding City,Mode=TwoWay}" Width="auto"    />
+                        <telerik:GridViewBoundColumnBase  IsFilterable="False"  Header="价格级别"  Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding PriceLevel}"  />
+                        <telerik:GridViewDataColumn IsFilterable="False"  Header="联系人"  IsReadOnly="True" DataMemberBinding="{Binding Contacts,Mode=TwoWay}" Width="auto"    />
+                        <telerik:GridViewBoundColumnBase  IsFilterable="False"  Header="电话"  Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Phone}"  />
+                        <telerik:GridViewBoundColumnBase  IsFilterable="False"  Header="传真"  Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Fax}"  />
+                        <telerik:GridViewDataColumn IsFilterable="False"  Header="电子邮件"  IsReadOnly="True" DataMemberBinding="{Binding Email}" Width="auto"    />
+                        <telerik:GridViewDataColumn IsFilterable="False"  Header="地址"  IsReadOnly="True" DataMemberBinding="{Binding Addr,Mode=TwoWay}" Width="auto"    />
+                        <telerik:GridViewBoundColumnBase  IsFilterable="False"  Header="邮编"  Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding PostCode}"  />
+                        <telerik:GridViewDataColumn IsFilterable="False"  Header="负责人"  IsReadOnly="True" DataMemberBinding="{Binding Responser,Mode=TwoWay}" Width="auto"    />
+                        <telerik:GridViewBoundColumnBase  IsFilterable="False"  Header="税务编号"  Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding TaxCode}"  />
+                        <telerik:GridViewBoundColumnBase  IsFilterable="False"  Header="开户银行"  Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Bank}"  />
+                        <telerik:GridViewBoundColumnBase  IsFilterable="False"  Header="银行帐号"  Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding BankNum}"  />
+                        <telerik:GridViewBoundColumnBase  IsFilterable="False"  Header="备注"  Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Note}"  />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                </DockPanel>
+        
+                
+                <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+                <DockPanel DockPanel.Dock="Bottom" >
+
+                    <!--修改-->
+                    <DockPanel DockPanel.Dock="Top">
+                        <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="厂家名称"></TextBlock>
+                                <TextBox Width="150" x:Name="updfacname" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="编码"></TextBlock>
+                                <TextBox Width="150" x:Name="updfaccode" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="区域" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="updarea"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="省份"></TextBlock>
+                                <TextBox Width="150" x:Name="updprovince" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="城市" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="updcity"></TextBox>
+                            </StackPanel>
+
+
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="价格级别"></TextBlock>
+                                <TextBox Width="150" x:Name="updpricelevel" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="联系人"></TextBlock>
+                                <TextBox Width="150" x:Name="updcontact" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="电话" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="updphone"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="传真"></TextBlock>
+                                <TextBox Width="150" x:Name="updfax" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="电子邮件" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="updemail"></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="地址"></TextBlock>
+                                <TextBox Width="150" x:Name="updaddr" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="邮编"></TextBlock>
+                                <TextBox Width="150" x:Name="updpostcode" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="负责人" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="updresponser"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="税务编码"></TextBlock>
+                                <TextBox Width="150" x:Name="updtaxcode" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="开户银行" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="updbank"></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="银行帐号"></TextBlock>
+                                <TextBox Width="150" x:Name="updbanknum" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="备注" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="updnote"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <Button Content="修  改"  Height="25"  Name="upd" Width="80" Click="upd_Click"></Button>
+                            </StackPanel>
+                        </toolkit:WrapPanel>
+                    </DockPanel>
+
+                </DockPanel>
+            </DockPanel>
+
+        </DockPanel>
+    </xctk:BusyIndicator>
+</Page>

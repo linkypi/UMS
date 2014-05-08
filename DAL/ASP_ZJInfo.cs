@@ -63,6 +63,46 @@ namespace DAL
                     {
                         switch (item.ParamName)
                         {
+                          
+                            case "RpState":
+                                Model.ReportSqlParams_String state = (Model.ReportSqlParams_String)item;
+                                aduit_query = from b in aduit_query
+                                              where b.RpState == state.ParamValues
+                                              select b;
+                                break;
+                            case "Cus_Name":
+                                Model.ReportSqlParams_String mm2 = (Model.ReportSqlParams_String)item;
+
+                                aduit_query = from b in aduit_query
+                                              where b.Cus_Name.Contains(mm2.ParamValues)
+                                              select b;
+                                break;
+
+                            case "Cus_Phone":
+                                Model.ReportSqlParams_String pass2 = (Model.ReportSqlParams_String)item;
+
+
+                                aduit_query = from b in aduit_query
+                                              where b.Cus_Phone.Contains(pass2.ParamValues)
+                                              select b;
+
+                                break;
+
+                            case "Pro_IMEI":
+                                Model.ReportSqlParams_String imei = (Model.ReportSqlParams_String)item;
+
+                                aduit_query = from b in aduit_query
+                                              where b.Pro_HeaderIMEI == imei.ParamValues
+                                              select b;
+                                break;
+
+                            case "VIP_IMEI": //会员卡号
+                                Model.ReportSqlParams_String mm3 = (Model.ReportSqlParams_String)item;
+
+                                aduit_query = from b in aduit_query
+                                              where b.IMEI == mm3.ParamValues
+                                              select b;
+                                break;
                             case "ZJPassed":
                                 Model.ReportSqlParams_Bool pass = (Model.ReportSqlParams_Bool)item;
 
@@ -138,6 +178,14 @@ namespace DAL
                                               select b;
 
                                 break;
+                            case "OldID":
+                                Model.ReportSqlParams_String OldID = (Model.ReportSqlParams_String)item;
+
+                                aduit_query = from b in aduit_query
+                                              where b.OldID.Contains( OldID.ParamValues.ToString())
+                                              select b;
+
+                                break;
                      
                         }
                     }
@@ -192,7 +240,7 @@ namespace DAL
 
                     return new Model.WebReturn() { ReturnValue = true };
                 }
-                catch (Exception ex)
+                    catch (Exception ex)
                 {
                     return new Model.WebReturn() { Message = ex.Message, ReturnValue = false };
                 }

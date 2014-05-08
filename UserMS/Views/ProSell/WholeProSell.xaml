@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:userMs="clr-namespace:UserMS" xmlns:proSell="clr-namespace:UserMS.Views.ProSell"
+    xmlns:userMs="http://www.zs96000.com/wpf" xmlns:proSell="clr-namespace:UserMS.Views.ProSell"
     xmlns:maskedInput="clr-namespace:Telerik.Windows.Controls.MaskedInput;assembly=Telerik.Windows.Controls.Input"
     x:Class="UserMS.Views.ProSell.WholeMoreProSell"
     mc:Ignorable="d" 
@@ -89,7 +89,7 @@
                 </StackPanel>
             </toolkit:WrapPanel>
             
-            <telerik:RadGridView IsFilteringAllowed="False" x:Name="Grid2" toolkit:DockPanel.Dock="Right" ShowGroupPanel="False" ShowGroupFooters="True" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed"  MinWidth="100" SelectionMode="Multiple" SelectionUnit="FullRow" >
+            <telerik:RadGridView IsFilteringAllowed="False" x:Name="Grid2" toolkit:DockPanel.Dock="Right" ShowGroupPanel="False" ShowGroupFooters="True" AutoGenerateColumns="False" RowIndicatorVisibility="Collapsed"  MinWidth="100" SelectionMode="Multiple" SelectionUnit="FullRow" IsReadOnly="True" >
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewSelectColumn></telerik:GridViewSelectColumn>
                 <telerik:GridViewDataColumn Header="串号" DataMemberBinding="{Binding}" IsReadOnly="True" />

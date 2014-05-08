@@ -17,6 +17,7 @@ namespace Model
         private int proMainID;
         private string iMEI;
         private bool isDecimal;
+        public decimal ProCost { set; get; }
 
         public bool IsDecimal
         {

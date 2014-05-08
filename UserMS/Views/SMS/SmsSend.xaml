@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
       xmlns:MaskedInput="clr-namespace:Telerik.Windows.Controls.MaskedInput;assembly=Telerik.Windows.Controls.Input"
-      xmlns:userMs="clr-namespace:UserMS"
+      xmlns:userMs="http://www.zs96000.com/wpf"
       x:Class="UserMS.Views.SMS.SmsSend"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"

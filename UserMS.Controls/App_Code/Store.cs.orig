@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO.IsolatedStorage;
+using System.Windows.Controls;
+
+
+namespace UserMS
+{
+    public static class Store
+    {
+        public static API.UserInfo LoginUserInfo;
+
+        public static IsolatedStorageSettings clientSettings = IsolatedStorageSettings.SiteSettings;
+
+        //public static string[] NeedInitDataList = new string[] {"Object"};
+      
+        public static List<API.Sys_RoleInfo> RoleInfo;
+        public static List<API.Pro_ProInfo> ProInfo;
+        public static List<API.Pro_TypeInfo> ProTypeInfo; 
+        public static List<API.Pro_HallInfo> ProHallInfo;
+        public static List<API.VIP_VIPType> VIPType;
+        public static List<API.Pro_ClassInfo> ProClassInfo;
+<<<<<<< HEAD
+        public static List<API.VIP_IDCardType> CardType;
+=======
+        public static List<API.Sys_UserOPList> UserOpList;
+        public static List<API.Pro_AreaInfo> AreaInfo;
+
+
+>>>>>>> 1
+
+        public static void SetClientStore(string key, object value)
+        {
+            clientSettings[key] = value;
+        }
+
+        public static object GetClientStore(string key)
+        {
+            try
+            {
+                return clientSettings[key];
+            }
+            catch (Exception)
+            {
+                return null;
+            
+            }
+        }
+
+    }
+}

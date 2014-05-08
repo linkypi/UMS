@@ -179,6 +179,112 @@ namespace UserMSService
 //            }
 //        }
 
+
+        [QueryInterceptor("Report_RepairFetchInfo")]
+        public Expression<Func<ReportModel.Report_RepairFetchInfo, bool>> Report_RepairFetchInfo()
+        {
+            try
+            {
+                var user = Login();
+
+                DAL.Report_RepairFetchInfo rep = new DAL.Report_RepairFetchInfo();
+                return rep.GetList(user, this.CurrentDataSource);
+
+            }
+            catch (Exception)
+            {
+                return o => false;
+            }
+        }
+
+
+        [QueryInterceptor("Report_BaoWaiCash")]
+        public Expression<Func<ReportModel.Report_BaoWaiCash, bool>> Report_BaoWaiCash()
+        {
+            try
+            {
+                var user = Login();
+
+                DAL.Report_BaoWaiCash rep = new DAL.Report_BaoWaiCash();
+                return rep.GetList(user, this.CurrentDataSource);
+
+            }
+            catch (Exception)
+            {
+                return o => false;
+            }
+        }
+
+        [QueryInterceptor("Report_CallBackInfo")]
+        public Expression<Func<ReportModel.Report_CallBackInfo, bool>> Report_CallBackInfo()
+        {
+            try
+            {
+                var user = Login();
+
+                DAL.Report_CallBackInfo rep = new DAL.Report_CallBackInfo();
+                return rep.GetList(user, this.CurrentDataSource);
+
+            }
+            catch (Exception)
+            {
+                return o => false;
+            }
+        }
+
+
+        [QueryInterceptor("Report_RepairTimeOutInfo")]
+        public Expression<Func<ReportModel.Report_RepairTimeOutInfo, bool>> Report_RepairTimeOutInfo()
+        {
+            try
+            {
+                var user = Login();
+
+                DAL.Report_RepairTimeOutInfo rep = new DAL.Report_RepairTimeOutInfo();
+                return rep.GetList(user, this.CurrentDataSource);
+
+            }
+            catch (Exception)
+            {
+                return o => false;
+            }
+        }
+
+
+        [QueryInterceptor("Report_AfterSale")]
+        public Expression<Func<ReportModel.Report_AfterSale, bool>> Report_AfterSale()
+        {
+            try
+            {
+                var user = Login();
+
+                DAL.Report_AfterSale rep = new DAL.Report_AfterSale();
+                return rep.GetList(user, this.CurrentDataSource);
+
+            }
+            catch (Exception)
+            {
+                return o => false;
+            }
+        }
+
+        [QueryInterceptor("Report_邮储三方报表")]
+        public Expression<Func<ReportModel.Report_邮储三方报表, bool>> Report_邮储三方报表()
+        {
+            try
+            {
+                var user = Login();
+
+                DAL.Report_邮储三方报表 rep = new DAL.Report_邮储三方报表();
+                return rep.GetList(user, this.CurrentDataSource);
+
+            }
+            catch (Exception)
+            {
+                return o => false;
+            }
+        }
+
         [QueryInterceptor("Report_SMSSign")]
         public Expression<Func<ReportModel.Report_SMSSign, bool>> Report_SMSSign()
         {
@@ -1211,6 +1317,9 @@ namespace UserMSService
         
     }
 }
+
+
+
 public class JSONPSupportInspector : IDispatchMessageInspector
 {
     // Assume utf-8, note that Data Services supports

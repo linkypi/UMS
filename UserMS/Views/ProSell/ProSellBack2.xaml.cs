@@ -851,40 +851,41 @@ namespace UserMS.Views.ProSell
             if (Common.CommonHelper.ButtonNotic(sender)) return;
         }
 
-        private void IMEIBack_OnClick(object sender, RadRoutedEventArgs e)
-        {
-            IMEISell w=new  IMEISell();
-            w.OnSelectedPro += w_OnSelectedPro;
-            w.ShowDialog();
-            
-        }
-
-        void w_OnSelectedPro(object sender, SelectedProInfoArgs e)
-        {
-            var selected = e.ProInfo;
-            var l = new ProSellGridModel();
-            API.Pro_ProInfo i = e.ProInfo;
-            l.ProID = i.ProID;
-//            l.ProName = i.ProName;
-            l.ProCount = 1;
-            l.IMEI = e.IMEI;
-            //SellGridModels.Add(l);
-            //TODO: 搜索串码退库
-            //this.Grid.Rebind();
-
-            var q = SellInfo.Pro_SellListInfo.Where(p => p.IMEI == e.IMEI);
-            if (q.Any())
-            {
-                //TODO: 退指定串碼
-            }
-            else
-            {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"串碼不存在");
-            }
-
-
-            this.SellList.Rebind();
-        }
+//        private void IMEIBack_OnClick(object sender, RadRoutedEventArgs e)
+//        {
+//            IMEISell w=new  IMEISell();
+//            w.OnSelectedPro += w_OnSelectedPro;
+//            w.ShowDialog();
+//            
+//        }
+//
+//        void w_OnSelectedPro(object sender, SelectedProInfoArgs e)
+//        {
+//
+//            var selected = e.ProInfo;
+//            var l = new ProSellGridModel();
+//            API.Pro_ProInfo i = e.ProInfo;
+//            l.ProID = i.ProID;
+////            l.ProName = i.ProName;
+//            l.ProCount = 1;
+//            l.IMEI = e.IMEI;
+//            //SellGridModels.Add(l);
+//            //TODO: 搜索串码退库
+//            //this.Grid.Rebind();
+//
+//            var q = SellInfo.Pro_SellListInfo.Where(p => p.IMEI == e.IMEI);
+//            if (q.Any())
+//            {
+//                //TODO: 退指定串碼
+//            }
+//            else
+//            {
+//                MessageBox.Show(System.Windows.Application.Current.MainWindow,"串碼不存在");
+//            }
+//
+//
+//            this.SellList.Rebind();
+//        }
 
 
 

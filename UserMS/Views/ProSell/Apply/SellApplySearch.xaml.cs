@@ -79,6 +79,7 @@ namespace UserMS.Views.ProSell.Apply
         private void Search()
         {
             if (!flag) { return; }
+            aduitID.Text = string.Empty;
             this.GridAuitList.ItemsSource = null;
             GridAuitList.Rebind();
 
@@ -113,10 +114,10 @@ namespace UserMS.Views.ProSell.Apply
             }
             if (!string.IsNullOrEmpty(this.aduitid.Text.Trim()))
             {
-                API.ReportSqlParams_String aduitID = new API.ReportSqlParams_String();
-                aduitID.ParamName = "AduitID";
-                aduitID.ParamValues = this.aduitid.Text.Trim();
-                rpp.ParamList.Add(aduitID);
+                API.ReportSqlParams_String aduitID2 = new API.ReportSqlParams_String();
+                aduitID2.ParamName = "AduitID";
+                aduitID2.ParamValues = this.aduitid.Text.Trim();
+                rpp.ParamList.Add(aduitID2);
             }
             //if (this.ckb.SelectedIndex != 2)
             //{
@@ -304,7 +305,7 @@ namespace UserMS.Views.ProSell.Apply
                 return;
             }
             API.View_Pro_SellAduit vp = GridAuitList.SelectedItem as API.View_Pro_SellAduit;
-
+            aduitID.Text = vp.AduitID;
             PublicRequestHelp prh = new PublicRequestHelp(this.busy, 47, new object[] { vp.ID }, new EventHandler<API.MainCompletedEventArgs>(GetDetailCompleted));
         }
 
@@ -373,6 +374,11 @@ namespace UserMS.Views.ProSell.Apply
                 GridDetail.Rebind();
                 Search();
             }
+        }
+
+        private void btnCopy_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetDataObject(this.aduitID.Text);
         }
     }
 }

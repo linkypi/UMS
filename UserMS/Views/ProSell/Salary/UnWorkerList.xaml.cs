@@ -563,8 +563,8 @@ namespace UserMS.Views.ProSell.Salary
             User.SysDate = DateTime.Now;
             User.IsDefault = this.CbIsDefault.Text == "是" ? true : false;
             User.IsBoss = this.IsBoss.IsChecked == true ? true : false;
-            User.AuditOffPrice = (decimal)this.BossValue.Value;
-            User.BorowAduitPrice = (decimal)BorowValue.Value;
+            User.AuditOffPrice = Convert.ToDecimal(this.BossValue.Value);
+            User.BorowAduitPrice = Convert.ToDecimal(BorowValue.Value);
 
             User.Sys_UserOPList = new List<API.Sys_UserOPList>();
             API.Sys_UserOPList UserOP = new API.Sys_UserOPList();

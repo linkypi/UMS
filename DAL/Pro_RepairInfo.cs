@@ -1006,6 +1006,8 @@ namespace DAL
                                      on det.RepairID equals b.ID
                                      join p in lqh.Umsdb.Pro_ProInfo
                                      on det.ProID equals p.ProID
+                                     join h in lqh.Umsdb.Pro_HallInfo 
+                                     on b.HallID equals  h.HallID
                                      where b.ID == repairID
                                      select new
                                      {
@@ -1014,8 +1016,61 @@ namespace DAL
                                          det.ProCount,
                                          det.InListID,
                                          p.NeedIMEI,
-                                         det.ProID
+                                         det.ProID,
+                                         det.IMEI,
+                                         h.IsAreaAge
                                      };
+
+                        #endregion
+
+                        #region 库龄
+                        DateTime tdate = DateTime.Now;
+                        DateTime sdate = DateTime.Now;
+                        foreach (var item in detail)
+                        {
+                            var imei = from ai in lqh.Umsdb.Pro_IMEI
+                                       where ai.IMEI == item.IMEI
+                                       select ai;
+                            if (imei.First() == null)
+                            {
+                                return new WebReturn() { ReturnValue=false,Message="串码 "+item.IMEI+" 不存在，接收失败！"};
+                            }
+                            Model.Pro_IMEI m = imei.First();
+                            if (m.OutRecDate != null)
+                            {
+                                TimeSpan tspan = (TimeSpan)(tdate - m.OutRecDate);
+                                //m.AreaAgeDelta = new DateTime(2000, 1, 1);
+                                if (m.AreaAgeDelta == null)
+                                {
+                                    m.AreaAgeDelta =  new DateTime(2000, 1, 1);
+                                }
+                                if (m.AreaAgeDelta < sdate)
+                                {
+                                    m.AreaAgeDelta = sdate;
+                                }
+                                m.AreaAgeDelta = ((DateTime)(m.AreaAgeDelta)).Add(tspan);
+                                
+                            }
+
+                            if (item.IsAreaAge == true)
+                            {
+                                m.OutRecDate = null;
+                            }
+                            else
+                            {
+                                m.OutRecDate = DateTime.Now;
+                            }
+
+
+                            if (item.IsAreaAge == true)
+                            {
+                                if (m.AreaAgeInitDate == null)
+                                {
+                                    m.AreaAgeInitDate = DateTime.Now;
+                                }
+                            }
+                            lqh.Umsdb.SubmitChanges();
+                        }
 
                         #endregion
 

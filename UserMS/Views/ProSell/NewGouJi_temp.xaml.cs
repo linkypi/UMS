@@ -453,26 +453,33 @@ namespace UserMS.Views.ProSell
 
         void w_OnSelectedPro(object sender, SelectedProInfoArgs e)
         {
-            if (UserProInfos.Select(p => p.ProID).Contains(e.ProInfo.ProID))
+            foreach (var imei in e.Results.Keys)
             {
-                var l = new ProSellGridModel();
-
-                if (SellGridModels.All(p => p.IMEI != e.IMEI))
+                if (UserProInfos.Select(p => p.ProID).Contains(e.Results[imei].ProID))
                 {
-                    API.Pro_ProInfo i = e.ProInfo;
-                    l.ProID = i.ProID;
-                    //                l.ProName = i.ProName;
-                    l.ProCount = 1;
-                    l.IMEI = e.IMEI;
-                    SellGridModels.Add(l);
 
-                    this.Grid.Rebind();
+                    var l = new ProSellGridModel();
+
+                    if (SellGridModels.All(p => p.IMEI != imei))
+                    {
+                        API.Pro_ProInfo i = e.Results[imei];
+                        l.ProID = i.ProID;
+                        //                l.ProName = i.ProName;
+                        l.ProCount = 1;
+                        l.IMEI = imei;
+                        SellGridModels.Add(l);
+
+                        this.Grid.Rebind();
+                    }
+                }
+                else
+                {
+
+                    MessageBox.Show(System.Windows.Application.Current.MainWindow, "串码: " + imei + " 无该商品操作权限或该商品未定价");
                 }
             }
-            else
-            {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"无该商品操作权限或该商品未定价");
-            }
+
+            
         }
 
         private void ProSell_OnClick(object sender, RoutedEventArgs e)

@@ -1,0 +1,5 @@
+D:\UMS\client\UserMS\APPUMS\bin\APPUMS.dll
+D:\UMS\client\UserMS\APPUMS\bin\APPUMS.pdb
+D:\UMS\client\UserMS\APPUMS\obj\Release\APPUMS.csprojResolveAssemblyReference.cache
+D:\UMS\client\UserMS\APPUMS\obj\Release\APPUMS.dll
+D:\UMS\client\UserMS\APPUMS\obj\Release\APPUMS.pdb

@@ -570,6 +570,7 @@ namespace DAL
                             }
                             m.Pro_IMEI.Pro_StoreInfo.ProCount += m.Pro_SellListInfo.ProCount;
                             m.Pro_IMEI.SellID = null;
+                            m.Pro_IMEI.State = null;
                             BackIMEIModels.Add(m.Pro_IMEI);
                         }
                         else
@@ -1415,6 +1416,29 @@ namespace DAL
                                     NoError = false;
                                     continue;
                                 }
+                               
+                                if (child.Pro_SellTypeProduct.IsTicketUseful != true)
+                                {
+                                    child.Pro_SellListInfo.Note = "涉及到兑券码/合约码等编码的机型需要在价格管理中设置可兑券";
+                                    NoError = false;
+                                    continue;
+                                }
+                                if (child.Pro_SellListInfo.CashTicket > 0)
+                                {
+                                    if ((child.Pro_SellTypeProduct.MinTicket > 0) &&
+                                        child.Pro_SellTypeProduct.MaxTicket > 0)
+                                    {
+                                        if (child.Pro_SellListInfo.CashTicket < child.Pro_SellTypeProduct.MinTicket ||
+                                            child.Pro_SellListInfo.CashTicket > child.Pro_SellTypeProduct.MaxTicket
+                                            )
+                                        {
+                                            child.Pro_SellListInfo.Note = "券面值不在允许范围内";
+                                            NoError = false;
+                                            continue;
+                                        }
+                                    }
+                                }
+
                                 cashTickList.Add(new Model.Pro_CashTicket() { Pro_SellListInfo = child.Pro_SellListInfo, TicketID = child.Pro_SellListInfo.TicketID });
 
                                 if (str_ticket.Contains(child.Pro_SellListInfo.TicketID))
@@ -1547,49 +1571,44 @@ namespace DAL
                             }
 
                             #endregion
-                            #region 计算提成
+#region 计算提成
 
-                            if (child.Pro_SellListInfo.Salary == 0 || child.Pro_SellListInfo.Salary == null)
+                        if (child.Pro_SellListInfo.Salary == 0 || child.Pro_SellListInfo.Salary == null)
                             //无套餐提成
-                            {
-                                var today = DateTime.Today;
-                                var query = lqh.Umsdb.Sys_SalaryCurrentList.Where(
+                        {
+                            var today = DateTime.Today;
+                            var query = lqh.Umsdb.Sys_CurrentSalary.Where(p=>p.StartDate<DateTime.Now&&p.EndDate>=DateTime.Now);
+                             query=query.Where(
+                                    o =>
+                                        o.ProID == child.Pro_SellListInfo.ProID &&
+                                        o.SellType == child.Pro_SellListInfo.SellType);
+                            query =
+                                query.Where(
                                     p =>
-                                        p.SalaryYear == today.Year && p.SalaryMonth == today.Month &&
-                                        p.SalaryDay == today.Day)
-                                    .Where(
-                                        o =>
-                                            o.ProID == child.Pro_SellListInfo.ProID &&
-                                            o.SellType == child.Pro_SellListInfo.SellType);
-                                query =
-                                    query.Where(
-                                        p =>
-                                            p.Min >= (child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed) &&
-                                            p.Max < (child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed));
-                                if (query.Any())
+                                        p.PriceNum >=
+                                        (child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed));
+                            query = query.OrderBy(p => p.PriceNum);
+                                       
+                            if (query.Any())
+                            {
+                                var salarymodel = query.First();
+                                decimal childsalary = 0;
+                                if (salarymodel.BaseSalary > 0)
                                 {
-                                    var salarymodel = query.First();
-                                    decimal childsalary = 0;
-                                    if (salarymodel.BaseSalary > 0)
-                                    {
-                                        childsalary += salarymodel.BaseSalary;
-                                    }
-                                    else
-                                    {
-                                        childsalary += Convert.ToDecimal(child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed) *
-                                                       salarymodel.SpecialSalary;
-                                    }
-                                    if ((child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed) >
-                                        salarymodel.Ratio)
-                                    {
-                                        childsalary += Convert.ToDecimal(child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed - salarymodel.Ratio) *
-                                                       salarymodel.OverRatio;
-                                    }
-                                    child.Pro_SellListInfo.Salary = childsalary;
-
+                                    childsalary += salarymodel.BaseSalary;
                                 }
+                                
+                                if ((child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed) >
+                                    salarymodel.OverNum)
+                                {
+                                    childsalary += Convert.ToDecimal(child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed - salarymodel.OverNum) *
+                                                   salarymodel.OverRatio;
+                                }
+                                child.Pro_SellListInfo.Salary = childsalary;
+
                             }
-                            #endregion
+                        }
+                        #endregion
                             #region 验证实收
 
                             decimal? real = child.Pro_SellListInfo.ProPrice - child.Pro_SellListInfo.AnBuPrice -
@@ -1633,6 +1652,7 @@ namespace DAL
                                 child.Pro_SellListInfo.ProCost = child.Pro_IMEI.Pro_InOrderList.InitInList.Price;
                                 child.Pro_IMEI.Pro_StoreInfo.ProCount--;
                                 child.Pro_IMEI.Pro_SellInfo = sell;
+                                child.Pro_IMEI.State = 1;
                                 child.Pro_IMEI.SellID = model.SellID;
                                 SellIMEIModels.Add(child.Pro_IMEI);
                             }
@@ -1666,7 +1686,17 @@ namespace DAL
 
 
 
-                        
+                        #region 更新延保价格
+                        decimal ytemps = child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed +
+   child.Pro_SellListInfo.Pro_SellList_RulesInfo.Where(p => p.CanGetBack).Sum(o => o.RealPrice);
+                        if (ytemps == 0)
+                        {
+                            ytemps = lqh.Umsdb.Pro_SellTypeProduct.First(o => o.SellType == child.Pro_SellListInfo.SellType && o.ProID == child.Pro_SellListInfo.ProID).LowPrice;
+
+                        }
+                        child.Pro_SellListInfo.YanbaoModelPrice = ytemps;
+
+                        #endregion 
 
                         
 
@@ -1929,12 +1959,14 @@ namespace DAL
                         foreach (var backImeiModel in BackIMEIModels)
                         {
                             backImeiModel.Pro_SellInfo = sell;
+                            backImeiModel.State = 1;
                             backImeiModel.Pro_SellOffAduitInfo = aduit;
 
                         }
                         foreach (var sellImeiModel in SellIMEIModels)
                         {
                             sellImeiModel.Pro_SellInfo = null;
+                            sellImeiModel.State = null;
                             sellImeiModel.Pro_SellOffAduitInfo = aduit;
                         }
 
@@ -2009,6 +2041,15 @@ namespace DAL
                     #endregion
 
                     lqh.Umsdb.SubmitChanges();
+                    try
+                    {
+                        lqh.Umsdb.UpdateReportSellListInfo();
+                    }
+                    catch (Exception)
+                    {
+                        
+                        throw;
+                    }
                     return new Model.WebReturn()
                         {
                             ReturnValue = true,

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:userMs="clr-namespace:UserMS"
+        xmlns:userMs="http://www.zs96000.com/wpf"
         WindowStartupLocation="CenterScreen"
         Header="发送短信/收款" Height="167" Width="262" CanClose="False" HideMaximizeButton="True" HideMinimizeButton="True">
     <DockPanel>

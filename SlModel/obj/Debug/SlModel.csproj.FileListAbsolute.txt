@@ -5,4 +5,3 @@ D:\UMS\client\UserMS\SlModel\bin\Debug\NPOI.dll
 D:\UMS\client\UserMS\SlModel\bin\Debug\Lite.Library.dll
 D:\UMS\client\UserMS\SlModel\obj\Debug\SlModel.dll
 D:\UMS\client\UserMS\SlModel\obj\Debug\SlModel.pdb
-D:\UMS\client\UserMS\SlModel\obj\Debug\SlModel.csprojResolveAssemblyReference.cache

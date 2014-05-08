@@ -57,7 +57,7 @@
            
             <DockPanel DockPanel.Dock="Left" >
                 <telerik:RadTreeView   toolkit:DockPanel.Dock="Top" MinWidth="300" SelectionMode="Single" IsLineEnabled="True"
-				    ItemsOptionListType="CheckList" IsOptionElementsEnabled="True"  
+				      IsOptionElementsEnabled="True"  
 				    IsRootLinesEnabled="True" x:Name="RadTreeView1" IsTriStateMode="True"
                     SelectionChanged="RadTreeView1_SelectionChanged"           />
             </DockPanel>

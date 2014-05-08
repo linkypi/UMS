@@ -1,8 +1,9 @@
 ﻿<Page 
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:local="clr-namespace:UserMS" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:MaskedInput="clr-namespace:Telerik.Windows.Controls.MaskedInput;assembly=Telerik.Windows.Controls.Input"
-    xmlns:API="clr-namespace:UserMS.API"
+	xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:local="http://www.zs96000.com/wpf" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:MaskedInput="clr-namespace:Telerik.Windows.Controls.MaskedInput;assembly=Telerik.Windows.Controls.Input"
+    
+    xmlns:api="clr-namespace:UserMS.API;assembly=UserMS.Commons"
     mc:Ignorable="d"
 	x:Class="UserMS.QuickSell"
 	x:Name="Page"
@@ -40,7 +41,7 @@
 			<telerik:RadBusyIndicator x:Name="VipBusy" DockPanel.Dock="Top" BusyContent="查询中" Margin="0">
 				<StackPanel>
 					<WrapPanel VerticalAlignment="Top" Margin="14,0">
-						<StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+						<StackPanel Orientation="Horizontal" Margin="0,0,7,0" x:Name="VIPBTN">
 							<!--                            <TextBox x:Name="VIPCard" TextWrapping="Wrap"  FontSize="18.667" Width="250" IsReadOnly="True" Text="{Binding IMEI, Mode=TwoWay}"/>-->
 							<Label HorizontalAlignment="Left" Content="会员卡卡号" Width="120" FontSize="18.667"/>
 							<telerik:RadButton x:Name="VIPCard"  FontSize="18.667" Width="250" Content="{Binding IMEI, Mode=TwoWay}" Cursor="Hand" Click="VIP_OnMouseLeftButtonUp"/>
@@ -53,7 +54,7 @@
 							<Label HorizontalAlignment="Left" Content="联系电话" Width="120" FontSize="18.667"/>
 							<TextBox x:Name="VIPPhone" TextWrapping="Wrap" Margin="0" Width="250" Text="{Binding MobiPhone, Mode=TwoWay}" FontSize="18.667"/>
 						</StackPanel>
-						<StackPanel Orientation="Horizontal" Margin="0,0,7,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,7,0" x:Name="VIPPOINT">
 							<Label HorizontalAlignment="Left" Content="积分" Width="120" FontSize="18.667"/>
 							<TextBox x:Name="VIPPoint" TextWrapping="Wrap" Margin="0" Width="250" IsReadOnly="True" Text="{Binding Point, Mode=TwoWay}" FontSize="18.667"/>
 						</StackPanel>
@@ -626,7 +627,7 @@
                             </StackPanel>
 
                         </WrapPanel>
-                        <WrapPanel x:Name="MainPanel" VerticalAlignment="Top" Margin="14,0" d:DataContext="{d:DesignInstance Type={x:Type API:Pro_BillInfo}}">
+                        <WrapPanel x:Name="MainPanel" VerticalAlignment="Top" Margin="14,0" d:DataContext="{d:DesignInstance Type={x:Type api:Pro_BillInfo}}">
                             <StackPanel Orientation="Horizontal" Margin="0,0,7,0">
 
                                 <Label HorizontalAlignment="Left" Content="终端串码" Width="120" FontSize="18.667"/>

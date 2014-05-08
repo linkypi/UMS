@@ -8,6 +8,7 @@ namespace Model
     public  class SeleterModel
     {
         public string ShowCount { get; set; }
+        public string IMEIS { get; set; }
         public decimal Count { get; set; }
         public bool? ISdecimals { get; set; }
         public decimal Price { get; set; }

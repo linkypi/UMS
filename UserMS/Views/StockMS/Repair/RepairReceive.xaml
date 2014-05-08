@@ -1,4 +1,4 @@
-﻿<Page xmlns:MyControl="clr-namespace:UserMS.MyControl"  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  x:Class="UserMS.Views.StockMS.Repair.RepairReceive" 
+﻿<Page xmlns:MyControl="http://www.zs96000.com/wpf"  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  x:Class="UserMS.Views.StockMS.Repair.RepairReceive" 
            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"

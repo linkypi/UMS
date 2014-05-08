@@ -39,6 +39,10 @@ namespace UserMS.Views.ProSell
         public NewProSell(bool NoDialog)
         {
             InitializeComponent();
+#if HZ
+            this.VIPBTN.Visibility = Visibility.Collapsed;
+            this.VIPPOINT.Visibility = Visibility.Collapsed;
+#endif
             this.Grid.ItemsSource = SellGridModels;
             this.SellTime.SelectedValue = DateTime.Now;
             //VIP_OnMouseLeftButtonUp(null, null);
@@ -77,8 +81,13 @@ namespace UserMS.Views.ProSell
 //            this.ProID.DisplayMemberPath = "ProName";
             this.Grid.ItemsSource = SellGridModels;
             this.SellTime.SelectedValue = DateTime.Now;
-            VIP_OnMouseLeftButtonUp(null, null);
+#if HZ
+            this.VIPBTN.Visibility = Visibility.Collapsed;
+            this.VIPPOINT.Visibility = Visibility.Collapsed;
 
+#else
+            VIP_OnMouseLeftButtonUp(null, null);
+#endif
             if (CommonHelper.GetHalls(103).Count >= 1)
 
             {
@@ -182,8 +191,12 @@ namespace UserMS.Views.ProSell
             }
             this.Grid.ItemsSource = SellGridModels;
             this.SellTime.SelectedValue = DateTime.Now;
+#if HZ
+            this.VIPBTN.Visibility = Visibility.Collapsed;
+            this.VIPPOINT.Visibility = Visibility.Collapsed;
+#else
             VIP_OnMouseLeftButtonUp(null, null);
-
+#endif
 
             if (CommonHelper.GetHalls(103).Count >= 1)
             {

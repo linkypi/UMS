@@ -43,6 +43,7 @@ namespace UserMS.Views.AfterSale
 
             checkinfo.ItemsSource = errInfo;
 
+            dealer.IsEnabled = false;
             bj_date.DateTimeText = DateTime.Now.ToShortDateString();
 
             chk_inOut.IsEnabled = false;
@@ -50,22 +51,34 @@ namespace UserMS.Views.AfterSale
             bjHall.SearchButton.IsEnabled = false;
             hadder = new HallFilter(menuid, false, bjHall, new EventHandler<MyEventArgs>(hadder_AddCompleted));
             bjHall.SearchButton.Click += SearchButton_Click;
-            
+            receive.IsEnabled = true;
+            if(Store.RoleInfo.First().Sys_Role_Menu_HallInfo.Count==0)
+            {
+                MessageBox.Show("无仓库权限，请联系管理员！");
+                receive.IsEnabled = false;
+                return;
+            }
+          
             var h = (from a in Store.ProHallInfo
-                    where a.HallID == Store.LoginRoleInfo.Sys_Role_Menu_HallInfo.First().HallID
-                    select a).ToList().First();
-            hallid.Text = h.HallName;
-            hallid.Tag = h.HallID;
-
+                     where a.HallID == Store.UserOpList.Where(p=>p.Flag==true && p.UserID==Store.LoginUserInfo.UserID).First().HallID
+                        select a).ToList().First();
+            if (h != null)
+            {
+                hallid.Text = h.HallName;
+                hallid.Tag = h.HallID;
+            }
+           
+         
             //bjHall.Text = h.HallName;
             //bjHall.Tag = h.HallID;
-
+            dispatchRep.IsChecked = true;
             receiver.Text = Store.LoginUserName;
 
             chk_fid.ItemsSource = Store.CheckInfo;
             chk_fid.SelectedIndex = 0;
 
-            var userops = Store.UserOpList.Where(p => p.Flag == true && p.OpID != null && p.HallID != null);
+            var userops = Store.UserOpList.Where(p => p.Flag == true && p.OpID ==93 && p.HallID != null
+                );
             UserOpList = userops.Join(Store.UserInfos, oplist => oplist.UserID, info => info.UserID,
                           (list, info) => new { op = list, user = info })
              .Join(Store.UserOp, arg => arg.op.OpID, op => op.OpID, (a, t) => new UserOpModel()
@@ -77,17 +90,24 @@ namespace UserMS.Views.AfterSale
                  Username = a.user.RealName,
                  opname = t.Name
              }).ToList();
-            var userinfos = Store.UserInfos.Join(UserOpList, info => info.UserID, model => model.UserID,
-                                              (info, model) => info).ToList();
-            this.repairer.ItemsSource = userinfos;
+            //var userinfos = Store.UserInfos.Join(UserOpList, info => info.UserID, model => model.UserID,
+            //                                  (info, model) => info).ToList();
+            //this.repairer.ItemsSource = userinfos;
             this.repairer.TextSearchPath = "RealName";
             this.repairer.SearchEvent = SellerSearchEvent;
             this.repairer.SelectionMode = AutoCompleteSelectionMode.Single;
 
             flag = true;
+            ckbAdd.IsEnabled = false;
+            //dealer.ItemsSource = Store.Dealers;
+            dealer.SearchEvent = new RoutedEventHandler(DealerSearch);
+            //if (Store.Dealers.Count > 0)
+            //{
+            //    dealer.SelectedIndex = 0;
+            //}
             cus_cpc.IsReadOnly = true;
-            sendRer.IsReadOnly = true;
-            sendRer_phone.IsReadOnly = true;
+            //sendRer.IsReadOnly = true;
+            //sendRer_phone.IsReadOnly = true;
 
             //List<string> arr = new List<string>() { "白","黑","橙",
             //"粉","红","黄","灰","金","蓝","绿","银","紫","棕","桃红","铂银"};
@@ -100,10 +120,47 @@ namespace UserMS.Views.AfterSale
             //}
             //pro_col.ItemsSource = colors;
             //pro_col.SelectedIndex = 0;
-            pro_Name.SearchButton.Click+=SearchProName_Click;  
-            pro_type.SearchButton .Click+=SearchProType_Click;
+            pro_Name.SearchEvent += SearchProName_Click;  
+            //pro_type.SearchButton .Click+=SearchProType_Click;
             pro_other.SearchButton.Click+=SearchOther_Click;
             //pro_Error.SearchButton.Click+=SearchError_Click;
+        }
+
+        private void DealerSearch(object sender, RoutedEventArgs e)
+        {
+            SingleSelecter s = new SingleSelecter(null, Store.Dealers, "Dealer", "Dealer"
+                ,new string[]{ "Dealer","UserName","Phone"}
+                , new string[] { "经销商","送修人","电话" });
+            s.Closed += dealClsed;
+            s.ShowDialog();
+        }
+
+        private void dealClsed(object sender, Telerik.Windows.Controls.WindowClosedEventArgs e)
+        {
+            SingleSelecter window = sender as SingleSelecter;
+            if (window != null)
+            {
+                if (window.DialogResult == true)
+                {
+                    API.ASP_Dealer model = (API.ASP_Dealer)window.SelectedItem;
+
+                    if (model == null)
+                    {
+                        dealer.Text = "";
+                        cus_cpc.Text = "";
+                        sendRer.Text = "";
+                        sendRer_phone.Text = "";
+                        dealer.Tag = null;
+                        return;
+                    } 
+                    dealer.txt.Text = model.Dealer;
+                    dealer.Tag = model.ID;
+                    cus_cpc.Text = model.Dealer;
+                    sendRer.Text = model.UserName;
+                    sendRer_phone.Text = model.Phone;                  
+
+                }
+            }
         }
 
         #region   选择详细故障
@@ -182,7 +239,7 @@ namespace UserMS.Views.AfterSale
                     }
                     index++;
                 }
-                pro_other.TextBox.SearchText = msg;                                                               
+                pro_other.Text = msg;                                                               
             }
         }
 
@@ -206,7 +263,7 @@ namespace UserMS.Views.AfterSale
             if (selecter.DialogResult == true)
             {
                 API.Pro_TypeInfo pro = selecter.SelectedItem as API.Pro_TypeInfo;
-                pro_type.TextBox.SearchText = pro.TypeName;
+               // pro_type.TextBox.SearchText = pro.TypeName;
             }
 
         }
@@ -215,33 +272,84 @@ namespace UserMS.Views.AfterSale
 
         #region 选择商品名称
 
-        private void SearchProName_Click(object sender, RoutedEventArgs e)
+        private TreeViewModel Exist(string name,List<TreeViewModel> models)
         {
-            List<API.Pro_ProMainInfo> list = new List<API.Pro_ProMainInfo>();
-            foreach (var item in Store.ProMainInfo)
+            foreach (var item in models)
             {
-                if (list.Where(p => p.ProMainName == item.ProMainName).Count() == 0)
+                if (item.Title == name)
                 {
-                    list.Add(item);
+                    return item;
                 }
             }
-            SingleSelecter ss = new SingleSelecter(null, list, "", "ProMainName",
-             new string[] { "ProMainID", "ProMainName" },
-             new string[] { "商品编码", "商品名称" });
-            ss.Closed += ss_Closed;
-            ss.ShowDialog();
+            return null;
+        }
+
+        private void SearchProName_Click(object sender, RoutedEventArgs e)
+        {
+            List<TreeViewModel> treeModels = new List<TreeViewModel>();
+            List<SlModel.BaseModel> list = new List<SlModel.BaseModel>();
+            var query = (from b in Store.ProInfo
+                         join c in Store.ProClassInfo on b.Pro_ClassID equals c.ClassID
+                         join d in Store.ProTypeInfo on b.Pro_TypeID equals d.TypeID
+                         orderby c.ClassName
+                         where c.ClassID==128 || c.ClassID==129
+                         select new
+                         {
+                             ProID = b.ProID,
+                             ProName = b.ProName,
+                             ProFormat = b.ProFormat,
+                             NeedIMEI = b.NeedIMEI,
+                             TypeName = d.TypeName,
+                             d.TypeID
+                         }).ToList();
+            foreach (var item in query)
+            {
+                SlModel.BaseModel bm = new SlModel.BaseModel();
+                bm.ProID = item.ProID;
+                bm.ProName = item.ProName;
+                bm.ProFormat = item.ProFormat;
+                bm.NeedIMEI = item.NeedIMEI;
+                bm.TypeName = item.TypeName;
+                bm.Pro_TypeID = item.TypeID.ToString();
+
+                TreeViewModel p2 = null;
+                if ((p2 = Exist(item.TypeName, treeModels)) == null)
+                {
+                    p2 = new TreeViewModel();
+                    p2.Fields = new string[] { "TypeName", "Pro_TypeID" };
+                    p2.Values = new object[] { item.TypeName, item.TypeID.ToString() };
+                    p2.ID = item.TypeID.ToString();
+                    p2.Title = item.TypeName;
+                    treeModels.Add(p2);
+                }
+           
+                list.Add(bm);
+            }
+
+            SingleSelecter msFrm = new SingleSelecter(
+             treeModels,
+             list, "Pro_TypeID", "ProName",
+             new string[] { "TypeName", "ProName", "ProFormat" },
+             new string[] { "商品品牌", "商品名称", "属性" });
+            msFrm.Closed += ss_Closed;
+            msFrm.ShowDialog();
+          
         }
 
         void ss_Closed(object sender, Telerik.Windows.Controls.WindowClosedEventArgs e)
         {
-            UserMS.SingleSelecter selecter = sender as UserMS.SingleSelecter;
+            SingleSelecter selecter = sender as SingleSelecter;
            
               if (selecter.DialogResult == true)
               {
-                  API.Pro_ProMainInfo pro = selecter.SelectedItem as API.Pro_ProMainInfo;
-                  pro_Name.TextBox.SearchText = pro.ProMainName;
-              }
+                  SlModel.BaseModel pro = selecter.SelectedItem as SlModel.BaseModel;
+                  pro_col.Text = pro.ProFormat;
+                  pro_type.Text = pro.TypeName;
+                  pro_Name.txt.Text = pro.ProName;
 
+                  pro_Name.Tag = pro.ProID;
+                  repairer.TextBox.Tag = new List<int>() { Convert.ToInt32(pro.Pro_TypeID) };
+              }
         }
 
         #endregion 
@@ -250,9 +358,14 @@ namespace UserMS.Views.AfterSale
 
         private void SellerSearchEvent(object sender, RoutedEventArgs routedEventArgs)
         {
-            SingleSelecter w = new SingleSelecter(Common.CommonHelper.HallTreeViewModel(), UserOpList, "HallID",
-                                                  "Username", new string[] { "Username", "opname" },
-                                                  new string[] { "用户名", "职位" });
+            if (repairer.TextBox.Tag == null) { MessageBox.Show("请先选择产品名称！"); return; }
+
+            List<API.ASP_RepairerProductInfo> repairers = Store.RepairerProductInfo.Where(p => (repairer.TextBox.Tag as List<int>).Contains((int)p.TypeID)).ToList();
+
+            SingleSelecter w = new SingleSelecter(Common.CommonHelper.RepairerHallTree(repairers),
+                UserOpList.Where(a => repairers.Select(r=>r.RepairerID).ToList().Contains(a.UserID)), "HallID",
+                                    "Username", new string[] { "Username", "opname" },
+                                    new string[] { "用户名", "职位" });
             w.Closed += SellerSearchWindowClose;
             w.ShowDialog();
         }
@@ -265,8 +378,13 @@ namespace UserMS.Views.AfterSale
                 if (window.DialogResult == true)
                 {
                     UserOpModel selected = (UserOpModel)window.SelectedItem;
-                    repairer.Tag = selected.UserID;
-                    this.repairer.TextBox.SearchText = selected.Username;
+                    API.Sys_UserInfo u = Store.UserInfos.Where(a=>a.UserID== selected.UserID).First();
+                    if(u!=null)
+                    {
+                        repairer.Tag = selected.UserID;
+                        this.repairer.TextBox.SearchText = u.RealName;
+
+                    }
 
                 }
             }
@@ -289,8 +407,10 @@ namespace UserMS.Views.AfterSale
         private void GetProCompleted(object sender, API.MainCompletedEventArgs e)
         {
             this.isbusy.IsBusy = false;
+            receive.IsEnabled = false;
             if (e.Result.ReturnValue)
             {
+                receive.IsEnabled = true;
                 List<API.BJModel> pros = e.Result.Obj as List<API.BJModel>;
                 adder = new ProDetailAdder<API.View_BJModels>(bjModels, bjGrid, pros, new EventHandler<MyEventArgs>(GetBJCompleted));
             }
@@ -356,23 +476,55 @@ namespace UserMS.Views.AfterSale
 
             #region  验证指定维修员
 
-            List<API.Sys_UserInfo> users = repairer.ItemsSource as List<API.Sys_UserInfo>;
+            API.ASP_ReceiveInfo rec = new API.ASP_ReceiveInfo();
 
-            var usr = from  a in users 
-                      where a.RealName == repairer.Text
-                      select a;
-
-            if (usr.Count() > 0)
+            if (dispatchRep.IsChecked == true)
             {
-                repairer.SelectedItem = usr.First();
-            }
-            else
-            {
-                MessageBox.Show("维修师不存在！");
-                return;
-            }
+                if (repairer.Tag == null)
+                {
+                    MessageBox.Show("请选择维修师！");
+                    return;
+                }
 
+                var usr = from a in Store.UserInfos
+                          where a.RealName == repairer.TextBox.SearchText
+                          && repairer.Tag.ToString() == a.UserID
+                          select a;
+
+                if (usr.Count() == 0)
+                {
+                    MessageBox.Show("维修师不存在！");
+                    return;
+                }
+                rec.Repairer = usr.First().UserID;
+                rec.HasDispatch = true;
+                rec.Dispatcher = Store.LoginUserInfo.UserID;
+            }
             #endregion 
+
+            API.ASP_Dealer dler = new API.ASP_Dealer();
+           
+            if ((cus_type.SelectedItem as ComboBoxItem).Content.ToString() == "经销商" && ckbAdd.IsChecked==false)
+            {
+                if (dealer.Tag == null)
+                {
+                    MessageBox.Show("请选择经销商！"); return;
+                }
+                dler.ID = Convert.ToInt32(dealer.Tag);
+            }
+
+            if (ckbAdd.IsChecked == true)
+            {
+                if (string.IsNullOrEmpty(cus_cpc.Text))
+                {
+                    MessageBox.Show("请输入经销商名称！"); return;
+                }
+
+                dler.Addr = dealerAddr.Text;
+                dler.Dealer = cus_cpc.Text;
+                dler.UserName = sendRer.Text;
+                dler.Phone = sendRer_phone.Text;
+            }
 
             if (!Validate())
             {
@@ -383,20 +535,26 @@ namespace UserMS.Views.AfterSale
             {
                 return;
             }
-            API.ASP_ReceiveInfo rec = new API.ASP_ReceiveInfo();
+         
 
             #region 
 
+            rec.DealerID = Convert.ToInt32(dealer.Tag);
+            rec.PredictDate = pdDate.SelectedDate;
             rec.HallID = hallid.Tag.ToString();
             rec.OldID = oldID.Text.ToString().Trim();
             if (!string.IsNullOrEmpty(vipIMEI.Text))
             {
-                rec.Cus_VIPID = Convert.ToInt32(vipIMEI.Tag.ToString());
+                if (vipIMEI.Tag == null || vipIMEI.Tag == string.Empty)
+                {
+                    rec.Cus_VIPID = null;
+                }
+                else
+                {
+                    rec.Cus_VIPID = Convert.ToInt32(vipIMEI.Tag.ToString());
+                }
             }
             rec.Cus_Add = cus_addr.Text;
-            API.Sys_UserInfo user =  repairer.SelectedItem as API.Sys_UserInfo;
-            if (user == null) { MessageBox.Show("请选择指定维修师！"); return; }
-            rec.Repairer = user.UserID;
             rec.Cus_CPC = cus_cpc.Text;
             rec.Cus_CusType = (cus_type.SelectedItem as ComboBoxItem).Content.ToString();
             rec.Cus_Email = cus_email.Text;
@@ -407,25 +565,27 @@ namespace UserMS.Views.AfterSale
             rec.Pro_Bill = pro_bill.Text;
             rec.Pro_BuyT = pro_BuyT.SelectedDate;
             rec.Pro_Color = pro_col.Text;
+            rec.ProID = pro_Name.Tag == null ? "" : pro_Name.Tag.ToString() ;
             //rec.Pro_Error = pro_Error.TextBox.SearchText;
-            rec.Pro_GetT = pro_GetT.SelectedDate;
+            //rec.Pro_GetT = pro_GetT.SelectedDate;
             rec.Pro_HeaderIMEI = headerIMEI.Text;
             //rec.Pro_IMEI = IMEI.Text;
-            rec.Pro_Name = pro_Name.TextBox.SearchText;
+            rec.Pro_Name = pro_Name.txt.Text;
             rec.Pro_Note = pro_note.Text;
-            rec.Pro_Other = pro_other.TextBox.SearchText;
+            rec.Pro_Other = pro_other.Text;
             rec.Pro_OutSide = pro_outside.Text;
             rec.Pro_Seq = (pro_seq.SelectedItem as ComboBoxItem).Content.ToString();
             rec.Pro_SN = pro_sn.Text;
             rec.Pro_Type = pro_type.Text;
-            rec.Receiver = receiver.Text;
+            rec.Receiver = Store.LoginUserInfo.UserID;
             rec.Sender = sendRer.Text;
             rec.Sender_Phone = sendRer_phone.Text;
+      
 
             if (bjModels.Count > 0)
             {
                 rec.BJ_Date = bj_date.SelectedDate;
-                rec.BJ_HallID = bjHall.Tag.ToString();
+                rec.BJ_HallID = bjHall.Tag==null?"": bjHall.Tag.ToString();
                 rec.BJ_Money = Convert.ToDecimal(bj_money.Value);
                 rec.BJ_UserID = bj_userid.Text;
             }
@@ -460,7 +620,7 @@ namespace UserMS.Views.AfterSale
                 rec.ASP_CurrentOrder_ErrorInfo.Add(er);
             }
 
-            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy,320,new object[]{rec },
+            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 320, new object[] { rec, Convert.ToBoolean(ckbAdd.IsChecked), dler },
                 new EventHandler<API.MainCompletedEventArgs>(SaveCompleted));
         }
 
@@ -470,12 +630,19 @@ namespace UserMS.Views.AfterSale
             if (e.Result.ReturnValue)
             {
                 Clear();
+                //重新加載备机数据
+                PublicRequestHelp peh = new PublicRequestHelp(this.isbusy, 318, new object[] { bjHall.Tag == null ? "" : bjHall.Tag.ToString(), true },
+                new EventHandler<API.MainCompletedEventArgs>(GetProCompleted));
                 if (MessageBox.Show("保存成功，是否需要打印？","提示",MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
                 {
                     return;
                 }
                // NavigationService.GetNavigationService(this).Navigate(new Uri("Report.Print.RepairPrint.PrintRepairBill.xaml", UriKind.Relative));
+               
+                
                 PrintRepairBill print = new PrintRepairBill(e.Result.Obj as List<API.View_ASPReceiveInfo> );
+                //PrintReceive
+               // PrintReceive print = new PrintReceive(e.Result.Obj as List<API.View_ASPReceiveInfo>);
                 print.SrcPage = "/Views/AfterSale/Receive.xaml";
                 this.NavigationService.Navigate(print);
             }
@@ -492,6 +659,12 @@ namespace UserMS.Views.AfterSale
             bjModels.Clear();
             bjGrid.Rebind();
 
+            dealer.Tag = null;
+            cus_cpc.Text = "";
+            sendRer.Text ="";
+            sendRer_phone.Text = "";
+
+            pdDate.DateTimeText = string.Empty;
             repairer.Tag = null ;
             this.repairer.TextBox.SearchText = "";
             sendRer.Text = string.Empty;
@@ -506,26 +679,26 @@ namespace UserMS.Views.AfterSale
             cus_name.Text = string.Empty;
             cus_phone.Text = string.Empty;
             cus_phone2.Text = string.Empty;
-            pro_Name.TextBox.SearchText = string.Empty;
-            pro_other.TextBox.SearchText = string.Empty;
+            pro_Name.txt.Text = string.Empty;
+            pro_other.Text = string.Empty;
             pro_outside.Text = string.Empty;
             //pro_Error.TextBox.SearchText = string.Empty;
             //cus_type.Text = string.Empty;
-
+            pro_Name.Tag = "";
             headerIMEI.Text = string.Empty;
            // IMEI.Text = string.Empty;
             pro_bill.Text = string.Empty;
             pro_BuyT.DateTimeText = string.Empty;
             pro_col.Text = string.Empty;
             //pro_Error.Text = string.Empty;
-            pro_GetT.DateTimeText = string.Empty;
+          //  pro_GetT.DateTimeText = string.Empty;
            
             pro_note.Text = string.Empty;
             pro_other.Text = string.Empty;
             pro_outside.Text = string.Empty;
             pro_sn.Text = string.Empty;
-            pro_type.TextBox.SearchText = string.Empty;
-
+            //pro_type.TextBox.SearchText = string.Empty;
+            pro_type.Text = string.Empty;
             chk_price.Value = 0;
             chk_note.Text = string.Empty;
 
@@ -560,19 +733,23 @@ namespace UserMS.Views.AfterSale
             }
 
 
-            if ((cus_type.SelectedItem as ComboBoxItem).Content.ToString() == "最终用户")
-            {
+           // if ((cus_type.SelectedItem as ComboBoxItem).Content.ToString() == "最终用户")
+           // {
                 if (string.IsNullOrEmpty(this.cus_name.Text))
                 {
                     MessageBox.Show("客户姓名不能为空！");
                     return false;
-                } if (string.IsNullOrEmpty(this.cus_phone.Text))
-                {
-                    MessageBox.Show("联系电话不能为空！");
-                    return false;
                 }
-            }
-            else
+                if (string.IsNullOrEmpty(this.cus_phone.Text))
+                {
+                    if (string.IsNullOrEmpty(this.cus_phone2.Text))
+                    {
+                        MessageBox.Show("联系电话不能为空！");
+                        return false;
+                    }
+                }
+           // }
+            if ((cus_type.SelectedItem as ComboBoxItem).Content.ToString() == "经销商")
             {
                 if (string.IsNullOrEmpty(this.cus_cpc.Text))
                 {
@@ -604,8 +781,8 @@ namespace UserMS.Views.AfterSale
             //{
             //    MessageBox.Show("主板串码不能为空！");
             //    return false;
-            //}
-            if (string.IsNullOrEmpty(pro_type.TextBox.SearchText))
+            //}pro_type.TextBox.SearchText
+            if (string.IsNullOrEmpty(pro_type.Text))
             {
                 MessageBox.Show("产品品牌不能为空！");
                 return false;
@@ -615,7 +792,7 @@ namespace UserMS.Views.AfterSale
                 MessageBox.Show("主板SN不能为空！");
                 return false;
             }
-            if (string.IsNullOrEmpty(this.pro_Name.TextBox.SearchText))
+            if (string.IsNullOrEmpty(this.pro_Name.txt.Text))
             {
                 MessageBox.Show("产品名称不能为空！");
                 return false;
@@ -658,6 +835,11 @@ namespace UserMS.Views.AfterSale
                     return false;
                 }
             }
+            if (string.IsNullOrEmpty(pdDate.DateTimeText))
+            {
+                MessageBox.Show("请填写预计修复日期！");
+                return false;
+            }
     
             //受理和维修都可以添加备机  受理录入之后维修不可再录入
             //if (bjModels.Count() == 0)
@@ -679,18 +861,12 @@ namespace UserMS.Views.AfterSale
             //    return false;
             //}
 
-            if (repairer.Tag == null && string.IsNullOrEmpty(this.repairer.Text))
-            {
-                MessageBox.Show("请选择指定维修师！");
-                return false;
-            }
-
-
             return true;
         }
 
         private void vipIMEI_LostFocus(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(vipIMEI.Text)) { return; }
             PublicRequestHelp prh = new PublicRequestHelp(this.isbusy,319,new object[]{ vipIMEI.Text.Trim() },
                 new EventHandler<API.MainCompletedEventArgs>(GetVipInfo));
         }
@@ -724,7 +900,7 @@ namespace UserMS.Views.AfterSale
                 this.cus_email.IsReadOnly = true;
                 cus_name.IsReadOnly = true;
                 cus_phone.IsReadOnly = true;
-                cus_phone2.IsReadOnly = true;
+                //cus_phone2.IsReadOnly = true;
 
             }
            
@@ -851,45 +1027,42 @@ namespace UserMS.Views.AfterSale
             cus_phone2.IsReadOnly = false;
             cus_addr.IsReadOnly = false;
             cus_email.IsReadOnly = false;
-
-            cus_cpc.IsReadOnly = false;
-            sendRer.IsReadOnly = false;
-            sendRer_phone.IsReadOnly = false;
+            ckbAdd.IsEnabled = true;
+      
             if ((cus_type.SelectedItem as ComboBoxItem).Content.ToString() == "最终用户")
             {
+                ckbAdd.IsEnabled = false;
                 cus_cpc.Text = string.Empty;
                 sendRer.Text = string.Empty;
                 sendRer_phone.Text = string.Empty;
 
-                vipIMEI.IsReadOnly = false;
-                cus_name.IsReadOnly = false;
-                cus_phone.IsReadOnly = false;
-                cus_phone2.IsReadOnly = false;
-                cus_addr.IsReadOnly = false;
-                cus_email.IsReadOnly = false;
+                //vipIMEI.IsReadOnly = false;
+                //cus_name.IsReadOnly = false;
+                //cus_phone.IsReadOnly = false;
+                //cus_phone2.IsReadOnly = false;
+                //cus_addr.IsReadOnly = false;
+                //cus_email.IsReadOnly = false;
 
+                dealer.IsEnabled = false;
+                dealer.txt.Text = "";
+                dealer.Tag = null;
                 cus_cpc.IsReadOnly = true;
                 sendRer.IsReadOnly = true;
                 sendRer_phone.IsReadOnly = true;
+                stpDealer.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
             {
-                vipIMEI.Text = string.Empty;
-                cus_name.Text = string.Empty;
-                cus_phone.Text = string.Empty;
-                cus_phone2.Text = string.Empty;
-                cus_addr.Text = string.Empty;
-                cus_email.Text = string.Empty; 
-                vipIMEI.IsReadOnly = true;
-                cus_name.IsReadOnly = true;
-                cus_phone.IsReadOnly = true;
-                cus_phone2.IsReadOnly = true;
-                cus_addr.IsReadOnly = true;
-                cus_email.IsReadOnly = true;
-
-                cus_cpc.IsReadOnly = false;
-                sendRer.IsReadOnly = false;
-                sendRer_phone.IsReadOnly = false;
+                ckbAdd.IsEnabled = true;
+                //vipIMEI.Text = string.Empty;
+                //cus_name.Text = string.Empty;
+                //cus_phone.Text = string.Empty;
+                //cus_phone2.Text = string.Empty;
+                //cus_addr.Text = string.Empty;
+                //cus_email.Text = string.Empty;
+      
+                dealer.IsEnabled = true;
+    
             }
         }
 
@@ -899,11 +1072,14 @@ namespace UserMS.Views.AfterSale
             {
                 return;
             }
-
-            if ((chk_fid.SelectedItem as API.ASP_CheckInfo).ChkName == "非保")
+            API.ASP_CheckInfo model = chk_fid.SelectedItem as API.ASP_CheckInfo;
+            if (model.ChkName == "非保" || model.ChkName == "非保返修" || model.ChkName == "延保"
+                || model.ChkName == "会员服务")
             {
                 (chk_inOut.SelectedItem as ComboBoxItem).Content = "保外";
                 chk_price.IsEnabled = true;
+                List<int> list = Store.RepairerProductInfo.Select(a => a.TypeID).OfType<int>().ToList();
+                repairer.TextBox.Tag = list;
             }
             else
             {
@@ -911,6 +1087,68 @@ namespace UserMS.Views.AfterSale
                 (chk_inOut.SelectedItem as ComboBoxItem).Content = "保内";
             }
         }
+
+        private void dealer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //API.ASP_Dealer model = dealer.SelectedItem as API.ASP_Dealer;
+            //if (model == null)
+            //{
+            //    dealer.Text = "";
+            //    cus_cpc.Text = "";
+            //    sendRer.Text = "";
+            //    sendRer_phone.Text = "";
+            //    return;
+            //}
+            //cus_cpc.Text = model.Dealer;
+            //sendRer.Text = model.UserName;
+            //sendRer_phone.Text = model.Phone;
+        }
+
+        private void dealer_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (dealer.IsEnabled==false)
+            {
+                cus_cpc.Text = "";
+                sendRer.Text = "";
+                sendRer_phone.Text = "";
+
+            }
+        }
+
+        private void ckbAdd_Click(object sender, RoutedEventArgs e)
+        {
+            dealer.IsEnabled = true;
+            if (ckbAdd.IsChecked == true)
+            {
+                cus_cpc.IsReadOnly = false;
+                sendRer.IsReadOnly = false;
+                sendRer_phone.IsReadOnly = false;
+                stpDealer.Visibility = System.Windows.Visibility.Visible;
+                dealer.IsEnabled = false;
+                dealer.Text = "";
+            }
+            else
+            {
+                cus_cpc.IsReadOnly = true;
+                //sendRer.IsReadOnly = true;
+                //sendRer_phone.IsReadOnly = true;
+                stpDealer.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void dispatchRep_Click(object sender, RoutedEventArgs e)
+        {
+            if (dispatchRep.IsChecked==true)
+            {
+                repairer.IsEnabled = true;
+            }
+            else
+            {
+                repairer.IsEnabled = false;
+            }
+        }
+
+  
 
     }
 

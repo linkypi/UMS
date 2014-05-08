@@ -233,6 +233,7 @@ namespace DAL
                 foreach (var proImei in temp)
                 {
                     proImei.Pro_SellInfo = sellback.Pro_SellInfo;
+                    proImei.State = 1;
                     proImei.Pro_SellOffAduitInfo = null;
                 }
                 foreach (var proSellListInfo in model2.Pro_SellListInfo)
@@ -1145,6 +1146,7 @@ namespace DAL
                             child.Pro_SellListInfo.ProCost = child.Pro_IMEI.Pro_InOrderList.InitInList.Price;
                             child.Pro_IMEI.Pro_StoreInfo.ProCount--;
                             child.Pro_IMEI.Pro_SellInfo = model;
+                            child.Pro_IMEI.State = 1;
                         }
                         #endregion
 
@@ -2427,16 +2429,17 @@ namespace DAL
                             continue;
                         }
 
-                        if (
-                            child.Pro_SellTypeProduct.Pro_ProInfo.Pro_ClassInfo != null &&
-                            child.Pro_SellTypeProduct.Pro_ProInfo.Pro_ClassInfo.Pro_ClassType != null &&
-                            child.Pro_SellTypeProduct.Pro_ProInfo.Pro_ClassInfo.Pro_ClassType.ID == 1 &&
-                            child.Pro_SellListInfo.YanbaoModelPrice == 0)
-                        {
-                            NoError = false;
-                            child.Pro_SellListInfo.Note = "终端的单卖价未定价";
-                            continue;
-                        }
+//                        if (
+//                            child.Pro_SellTypeProduct.Pro_ProInfo.Pro_ClassInfo != null &&
+//                            child.Pro_SellTypeProduct.Pro_ProInfo.Pro_ClassInfo.Pro_ClassType != null &&
+//                            child.Pro_SellTypeProduct.Pro_ProInfo.Pro_ClassInfo.Pro_ClassType.ID == 1 
+////                            &&child.Pro_SellListInfo.YanbaoModelPrice == 0)
+//                            )
+//                        {
+//                            NoError = false;
+//                            child.Pro_SellListInfo.Note = "终端的单卖价未定价";
+//                            continue;
+//                        }
                         #region 合同
                         if (child.Pro_SellListInfo.Pro_BillInfo != null)
                         {
@@ -2481,7 +2484,7 @@ namespace DAL
                                 lqh.Umsdb.Pro_BillInfo.Where(
                                     p =>
                                         p.MobileIMEI == child.Pro_SellListInfo.Pro_BillInfo.MobileIMEI &&
-                                         p.Pro_SellListInfo.BackID == null).Select(o => o.BillIMEI);
+                                         p.Pro_SellListInfo.Pro_SellBackList.Count == 0).Select(o => o.BillIMEI);
                             var proidlist = lqh.Umsdb.Pro_SellListInfo.Where(
                                 p => imeilist.Contains(p.IMEI))
                                 .GroupBy(o => o.IMEI)
@@ -2678,6 +2681,25 @@ namespace DAL
                                         modelprice = temp.YanbaoModelPrice;
                                         selltype = temp.SellType;
                                         selldate = temp.Pro_SellInfo.SellDate;
+
+
+                                        #region 延保价格
+                                        decimal temps = temp.CashPrice + temp.TicketUsed +
+                   temp.Pro_SellList_RulesInfo.Where(p => p.CanGetBack).Sum(o => o.RealPrice);
+                                        if (temps == 0)
+                                        {
+                                            temps = lqh.Umsdb.Pro_SellTypeProduct.First(o => o.SellType == temp.SellType && o.ProID == temp.ProID).LowPrice;
+
+                                        }
+                                        if (modelprice != temps)
+                                        {
+                                            NoError = false;
+                                            child.Pro_SellListInfo.Note = "延保价格验证失败";
+                                            continue;
+                                        }
+                                      
+                                        #endregion 延保价格
+
                                     }
                                     else
                                     {
@@ -2706,6 +2728,12 @@ namespace DAL
                                 }
                                 else
                                 {
+                                    if (modelprice == 0)
+                                    {
+                                        NoError = false;
+                                        child.Pro_SellListInfo.Note = "对应终端延保价格为0 不可销售延保";
+                                        continue;
+                                    }
                                     if (
                                         lqh.Umsdb.Pro_YanbaoPriceStepInfo.Any(
                                             p => p.ProID == child.Pro_SellListInfo.ProID && p.StepPrice >= modelprice))
@@ -2781,6 +2809,8 @@ namespace DAL
                                 NoError = false;
                                 continue;
                             }
+
+
                             if (!string.IsNullOrEmpty(child.Pro_SellListInfo.TicketID)){
                                 if (child.Pro_SellTypeProduct.IsTicketUseful != true)
                                 {
@@ -2793,6 +2823,21 @@ namespace DAL
                                     Pro_SellListInfo = child.Pro_SellListInfo,
                                     TicketID = child.Pro_SellListInfo.TicketID
                                 });
+                                if (child.Pro_SellListInfo.CashTicket > 0)
+                                {
+                                    if ((child.Pro_SellTypeProduct.MinTicket > 0) &&
+                                        child.Pro_SellTypeProduct.MaxTicket > 0)
+                                    {
+                                        if (child.Pro_SellListInfo.CashTicket < child.Pro_SellTypeProduct.MinTicket ||
+                                            child.Pro_SellListInfo.CashTicket > child.Pro_SellTypeProduct.MaxTicket
+                                            )
+                                        {
+                                            child.Pro_SellListInfo.Note = "券面值不在允许范围内";
+                                            NoError = false;
+                                            continue;
+                                        }
+                                    }
+                                }
 
                             if (str_ticket.Contains(child.Pro_SellListInfo.TicketID))
                             {
@@ -2993,7 +3038,17 @@ namespace DAL
                             continue;
                         }
                         #endregion
+                        #region 更新延保价格
+                        decimal ytemps = child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed +
+   child.Pro_SellListInfo.Pro_SellList_RulesInfo.Where(p => p.CanGetBack).Sum(o => o.RealPrice);
+                        if (ytemps == 0)
+                        {
+                            ytemps = lqh.Umsdb.Pro_SellTypeProduct.First(o => o.SellType == child.Pro_SellListInfo.SellType && o.ProID == child.Pro_SellListInfo.ProID).LowPrice;
 
+                        }
+                        child.Pro_SellListInfo.YanbaoModelPrice = ytemps;
+
+                        #endregion 
 //                        #region 验证列收
 //                        if ((child.Pro_SellListInfo.ProPrice - child.Pro_SellListInfo.AnBu -
 //                             child.Pro_SellListInfo.TicketUsed - child.Pro_SellListInfo.OffPrice -
@@ -3040,6 +3095,7 @@ namespace DAL
                             child.Pro_SellListInfo.ProCost = child.Pro_IMEI.Pro_InOrderList.InitInList.Price;
                             child.Pro_IMEI.Pro_StoreInfo.ProCount--;
                             child.Pro_IMEI.Pro_SellInfo = model;
+                            child.Pro_IMEI.State = 1;
                             modifedIMEI.Add(child.Pro_IMEI);
                         }
                         #endregion
@@ -3067,19 +3123,18 @@ namespace DAL
                             //无套餐提成
                         {
                             var today = DateTime.Today;
-                            var query = lqh.Umsdb.Sys_SalaryCurrentList.Where(
-                                p =>
-                                    p.SalaryYear == today.Year && p.SalaryMonth == today.Month &&
-                                    p.SalaryDay == today.Day)
-                                .Where(
+                            var query = lqh.Umsdb.Sys_CurrentSalary.Where(p=>p.StartDate<DateTime.Now&&p.EndDate>=DateTime.Now);
+                             query=query.Where(
                                     o =>
                                         o.ProID == child.Pro_SellListInfo.ProID &&
                                         o.SellType == child.Pro_SellListInfo.SellType);
                             query =
                                 query.Where(
                                     p =>
-                                        p.Min >= (child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed) &&
-                                        p.Max < (child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed));
+                                        p.PriceNum >=
+                                        (child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed));
+                            query = query.OrderBy(p => p.PriceNum);
+                                       
                             if (query.Any())
                             {
                                 var salarymodel = query.First();
@@ -3088,15 +3143,11 @@ namespace DAL
                                 {
                                     childsalary += salarymodel.BaseSalary;
                                 }
-                                else
-                                {
-                                    childsalary += Convert.ToDecimal(child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed)*
-                                                   salarymodel.SpecialSalary;
-                                }
+                                
                                 if ((child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed) >
-                                    salarymodel.Ratio)
+                                    salarymodel.OverNum)
                                 {
-                                    childsalary += Convert.ToDecimal(child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed - salarymodel.Ratio) *
+                                    childsalary += Convert.ToDecimal(child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed - salarymodel.OverNum) *
                                                    salarymodel.OverRatio;
                                 }
                                 child.Pro_SellListInfo.Salary = childsalary;
@@ -3454,6 +3505,7 @@ namespace DAL
                         foreach (var proImei in modifedIMEI)
                         {
                             proImei.Pro_SellInfo = null;
+                            proImei.State = null;
                             proImei.Pro_SellOffAduitInfo = aduit_model;
 
                         }
@@ -3496,6 +3548,16 @@ namespace DAL
                     }
                     #endregion
                     lqh.Umsdb.SubmitChanges();
+                    try
+                    {
+                        lqh.Umsdb.UpdateReportSellListInfo();
+                        
+                    }
+                    catch
+                    {
+                        
+                    }
+
                     if (returnobjs != null)
                     {
                         returnobjs = lqh.Umsdb.Print_SellListInfo.Where(info => info.系统自增外键编号 == model.ID).ToList();
@@ -3816,19 +3878,18 @@ namespace DAL
                         //无套餐提成
                         {
                             var today = DateTime.Today;
-                            var query = lqh.Umsdb.Sys_SalaryCurrentList.Where(
-                                p =>
-                                    p.SalaryYear == today.Year && p.SalaryMonth == today.Month &&
-                                    p.SalaryDay == today.Day)
-                                .Where(
-                                    o =>
-                                        o.ProID == child.Pro_SellListInfo.ProID &&
-                                        o.SellType == child.Pro_SellListInfo.SellType);
+                            var query = lqh.Umsdb.Sys_CurrentSalary.Where(p => p.StartDate < DateTime.Now && p.EndDate >= DateTime.Now);
+                            query = query.Where(
+                                   o =>
+                                       o.ProID == child.Pro_SellListInfo.ProID &&
+                                       o.SellType == child.Pro_SellListInfo.SellType);
                             query =
                                 query.Where(
                                     p =>
-                                        p.Min >= (child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed) &&
-                                        p.Max < (child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed));
+                                        p.PriceNum >=
+                                        (child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed));
+                            query = query.OrderBy(p => p.PriceNum);
+
                             if (query.Any())
                             {
                                 var salarymodel = query.First();
@@ -3837,15 +3898,11 @@ namespace DAL
                                 {
                                     childsalary += salarymodel.BaseSalary;
                                 }
-                                else
-                                {
-                                    childsalary += Convert.ToDecimal(child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed) *
-                                                   salarymodel.SpecialSalary;
-                                }
+
                                 if ((child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed) >
-                                    salarymodel.Ratio)
+                                    salarymodel.OverNum)
                                 {
-                                    childsalary += Convert.ToDecimal(child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed - salarymodel.Ratio) *
+                                    childsalary += Convert.ToDecimal(child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed - salarymodel.OverNum) *
                                                    salarymodel.OverRatio;
                                 }
                                 child.Pro_SellListInfo.Salary = childsalary;
@@ -3887,6 +3944,7 @@ namespace DAL
                             child.Pro_SellListInfo.InListID = child.Pro_IMEI.InListID;
                             child.Pro_IMEI.Pro_StoreInfo.ProCount--;
                             child.Pro_IMEI.Pro_SellInfo = model;
+                            child.Pro_IMEI.State = 1;
                         }
                         #endregion
 
@@ -3940,7 +3998,15 @@ namespace DAL
                     lqh.Umsdb.Pro_SellInfo.InsertOnSubmit(model);
 
                     lqh.Umsdb.SubmitChanges();
+                    try
+                    {
+                        lqh.Umsdb.UpdateReportSellListInfo();
 
+                    }
+                    catch
+                    {
+
+                    }
 
 
 
@@ -4272,6 +4338,7 @@ namespace DAL
                             }
                             child.Pro_IMEI.Pro_StoreInfo.ProCount--;
                             child.Pro_IMEI.Pro_SellInfo = model;
+                            child.Pro_IMEI.State = 1;
                         }
                         #endregion
 
@@ -4367,6 +4434,493 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// 延保导入
+        /// </summary>
+        /// <param name="sysUser"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public Model.WebReturn ImportYanbao(Model.Sys_UserInfo sysUser, List<Model.Pro_SellInfo> models)
+        {
+            Model.WebReturn r = null;
+            bool NoError = true;
+            using (LinQSqlHelper lqh = new LinQSqlHelper())
+                {
+                    DataLoadOptions dataload = new DataLoadOptions();
+                    //d.LoadWith<Model.Pro_ProInfo>(c => c.Pro_SellTypeProduct);
+
+                    dataload.LoadWith<Model.Pro_SellAduit>(c => c.Pro_SellAduitList);
+                    //d.LoadWith<Model.VIP_OffList>(c => c.VIP_ProOffList);
+                    //d.LoadWith<Model.VIP_OffList>(c => c.VIP_VIPOffLIst);
+                    //d.LoadWith<Model.VIP_OffList>(c => c.VIP_VIPTypeOffLIst);
+
+                    dataload.LoadWith<Model.VIP_VIPInfo>(c => c.VIP_OffTicket);
+                    lqh.Umsdb.LoadOptions = dataload;
+                    foreach (var model in models)
+                    {
+                        
+                   
+
+            this._NewSellListInfo = model.Pro_SellListInfo;
+            //model.Pro_SellListInfo[0].VIP_OffList.
+            //验证优惠的有效性
+            //生成单号
+            //
+            try
+            {
+                
+                   
+
+                    #region 验证会员信息
+                    var vip_query = from b in lqh.Umsdb.VIP_VIPInfo
+                                    select b;
+                    if (vip_query.Count() <= 0)
+                    {
+                        return new Model.WebReturn() { ReturnValue = false, Message = "该会员不存在" };
+                    }
+                    var vip = vip_query.First();
+                    #endregion
+
+                    #region 验证促销 操作人员
+
+                    var user_seller = from b in lqh.Umsdb.Sys_UserInfo
+                                      where b.UserID == model.UserID && b.CanLogin == true && b.Flag == true
+                                      select b;
+                    if (user_seller.Count() == 0)
+                    {
+                        return new Model.WebReturn() { ReturnValue = false, Message = "操作员不存在" };
+                    }
+
+                    var user_Oper = from b in lqh.Umsdb.Sys_UserInfo
+                                    where b.UserID == model.Seller && b.Flag == true
+                                    select b;
+                    if (user_Oper.Count() == 0)
+                    {
+                        return new Model.WebReturn() { ReturnValue = false, Message = "销售员不存在" };
+                    }
+                    #endregion
+
+                    #region 验证仓库 、商品权限
+                    //有权限的仓库
+                    List<string> ValidHallIDS = new List<string>();
+                    //有权限的商品
+                    List<string> ValidProIDS = new List<string>();
+
+                    //                    if (r.ReturnValue != true)
+                    //                        return r;
+                    //有仓库限制，而且仓库不在权限范围内
+                    if (ValidHallIDS.Count() > 0 && !ValidHallIDS.Contains(model.HallID))
+                        return new Model.WebReturn() { ReturnValue = false, Message = model.HallID + "仓库无权操作" };
+                    #endregion
+
+                    //                    #region 生产单号
+                    //                    string SellID = "";
+                    //                    lqh.Umsdb.OrderMacker(1, "XS", "XS", ref SellID);
+                    //                    if (SellID=="")
+                    //                    {
+                    //                        return new Model.WebReturn() { ReturnValue = false, Message = "销售单生成出错" };
+                    //                    }
+                    //                    model.SellID = SellID;
+                    //
+                    //                    #endregion
+
+
+                    //存放串码
+                    List<string> IMEI = new List<string>();
+                    //商品 销售类别
+                    List<int?> SellType_ProID_List = new List<int?>();
+                    //存放无串码
+                    List<string> ProIDNoIMEI = new List<string>();
+
+                    #region 获取当前订单包含的串号、商品编号
+
+                    foreach (Model.Pro_SellListInfo m in model.Pro_SellListInfo)
+                    {
+                        ////有商品限制，而且商品不在权限范围内
+                        if (ValidProIDS.Count() > 0 && !ValidProIDS.Contains(m.ProID))
+                        {
+                            NoError = false;
+                            m.Note = "无权操作";
+                            continue;
+                        }
+                        SellType_ProID_List.Add(m.SellType_Pro_ID);
+                        //串码
+                        if (!string.IsNullOrEmpty(m.IMEI))
+                        {
+                            if (IMEI.Contains(m.IMEI))
+                            {
+                                NoError = false;
+                                m.Note = m.IMEI + "串码重复";
+                                continue;
+                            }
+                            else
+                                IMEI.Add(m.IMEI);
+                        }
+
+                        //商品编号
+                        if (!ProIDNoIMEI.Contains(m.ProID) && string.IsNullOrEmpty(m.IMEI))
+                            ProIDNoIMEI.Add(m.ProID);
+
+
+                    }
+                    #endregion
+
+
+                    if (!NoError)
+                    {
+                        return new Model.WebReturn() { ReturnValue = false, Obj = model, Message = "提交错误" };
+                    }
+
+                    //串码类拣货
+                    var imeiList = (from b in lqh.Umsdb.Pro_IMEI
+                                    where IMEI.Contains(b.IMEI) && b.HallID == model.HallID
+                                    select b).ToList();
+                    //非串码
+                    var StoreList = (from b in lqh.Umsdb.Pro_StoreInfo
+                                     where b.HallID == model.HallID && ProIDNoIMEI.Contains(b.ProID) && b.ProCount > 0
+                                     orderby b.InListID
+                                     select b).ToList();
+                    //按照商品编号 取批次号最小的
+                    var StoreList__ = (from b in StoreList
+                                       group b by b.ProID into temp
+                                       select temp.Single(p => p.InListID == temp.Min(p2 => p2.InListID))).ToList();
+
+
+
+                    #region 生成验证销售方式、各种价格左连接部分
+                    //                    var Pro_SellTypeList = (from b in lqh.Umsdb.Pro_SellTypeProduct
+                    //                                            where SellType_ProID_List.Contains(b.ID)
+                    //                                            select b).ToList();
+
+                    var Pro_SellTypeList = (from b in lqh.Umsdb.Pro_SellTypeProduct
+                                            where
+                                                (model.Pro_SellListInfo.Select(p => p.ProID).ToList()).Contains(b.ProID)
+                                            select b).ToList();
+
+
+                    var Pro_SellTypeList2 = (from b in lqh.Umsdb.Pro_SellTypeProduct
+                                             where
+                                                 (model.Pro_SellListInfo.Select(p => p.ProID).ToList()).Contains(b.ProID) && b.SellType == 1
+                                             select b).ToList();
+
+                    #endregion
+
+
+                    #region 左连接单品优惠 组合优惠 销售方式
+
+
+                    var join_query = from b in model.Pro_SellListInfo
+                                     join e in Pro_SellTypeList
+                                         //on b.SellType_Pro_ID equals e.ID 
+                                     on new
+                                     {
+                                         b.ProID,
+                                         b.SellType
+                                     } equals new
+                                     {
+                                         e.ProID,
+                                         e.SellType
+                                     }
+                                     into temp3
+                                     from e1 in temp3.DefaultIfEmpty()
+                                     join f in imeiList
+                                     on b.IMEI equals f.IMEI
+                                     into temp4
+                                     from f1 in temp4.DefaultIfEmpty()
+                                     join g in StoreList__
+                                     on b.ProID equals g.ProID
+                                     into temp5
+//                                     from g1 in temp5.DefaultIfEmpty()
+//                                     join h in sellAudit.Pro_SellAduitList
+//                                     on b.ProID equals h.ProID
+//                                     into temp6
+//
+//                                     from h1 in temp6.DefaultIfEmpty()
+//
+//                                     join p1 in Pro_SellTypeList2 on b.ProID equals p1.ProID
+//                                     into temp7
+                                     from t1 in temp5.DefaultIfEmpty()
+                                     select new
+                                     {
+                                         Pro_SellListInfo = b,
+                                         Pro_SellTypeProduct = e1,
+                                         Pro_IMEI = f1,
+                                         Pro_StoreInfo = t1,
+//                                         Pro_SellAduitList = h1,
+//                                         Pro_SellTypeProduct2 = t1
+                                     };
+                    #endregion
+
+                    List<Model.Pro_SellListInfo> sellListTemp = new List<Model.Pro_SellListInfo>();
+
+                    decimal? cashPrice = 0;
+                    foreach (var child in join_query)
+                    {
+                        //SellType_ProID_List.Add(child.SellType_Pro_ID);
+                        //ProID.Add(child.Pro_SellListInfo.ProID);
+                        //OffID_List.Add(child.OffID);
+                        #region 验证单品优惠 组合优惠 商品信息 销售类别 有无串码 单价
+
+
+                        //验证销售类别、商品信息
+                        if (child.Pro_SellTypeProduct == null || child.Pro_SellTypeProduct.Pro_ProInfo == null)
+                        {
+                            NoError = false;
+                            child.Pro_SellListInfo.Note = "商品不存在或销售类别不正确";
+                            continue;
+                        }
+                        if (child.Pro_SellTypeProduct.Pro_ProInfo.NeedIMEI == true && string.IsNullOrEmpty(child.Pro_SellListInfo.IMEI))
+                        {
+                            NoError = false;
+                            child.Pro_SellListInfo.Note = "商品缺少串码";
+                            continue;
+                        }
+                        if (child.Pro_SellTypeProduct.Pro_ProInfo.NeedIMEI != true && !string.IsNullOrEmpty(child.Pro_SellListInfo.IMEI))
+                        {
+                            NoError = false;
+                            child.Pro_SellListInfo.Note = "属于无串码商品";
+                            continue;
+                        }
+                        child.Pro_SellListInfo.Pro_SellTypeProduct = child.Pro_SellTypeProduct;
+                        child.Pro_SellListInfo.LowPrice = child.Pro_SellTypeProduct.LowPrice;
+                        child.Pro_SellListInfo.ProCost = child.Pro_SellTypeProduct.ProCost;
+                       
+
+                       
+
+                        if (child.Pro_SellListInfo.Pro_Sell_Yanbao == null)
+                        {
+                            NoError = false;
+                            child.Pro_SellListInfo.Note = "延保数据错误";
+                            continue;
+                        }
+
+
+
+
+                            #region 延保
+                        else
+                        {
+                            
+                           
+                            #region 判断是否已销售过延保
+                            if (
+                                lqh.Umsdb.Pro_Sell_Yanbao.Any(
+                                    p =>
+                                    p.MobileIMEI == child.Pro_SellListInfo.Pro_Sell_Yanbao.MobileIMEI &&
+
+                                    p.Pro_SellListInfo.Pro_SellBackList.Count == 0 && p.Pro_SellListInfo.BackID == null))
+                            {
+                                NoError = false;
+                                child.Pro_SellListInfo.Note = "该商品已销售过延保";
+                                continue;
+                            }
+                            else
+                            {
+                                decimal modelprice = 0;
+                                int? selltype = 0;
+                                DateTime? selldate;
+
+                                modelprice = Convert.ToDecimal(child.Pro_SellListInfo.Pro_Sell_Yanbao.MobilePrice);
+                                    selltype = 0;
+                                    selldate = DateTime.Now;
+
+                                
+                                
+
+                               
+                                    if (
+                                        lqh.Umsdb.Pro_YanbaoPriceStepInfo.Any(
+                                            p => p.ProID == child.Pro_SellListInfo.ProID && p.StepPrice >= modelprice))
+                                    {
+                                        var yanbostep = lqh.Umsdb.Pro_YanbaoPriceStepInfo.OrderBy(p=>p.StepPrice).First(
+                                            p => p.ProID == child.Pro_SellListInfo.ProID && p.StepPrice >= modelprice);
+                                        if (yanbostep.ProPrice !=
+                                            child.Pro_SellListInfo.ProPrice)
+                                        {
+                                            NoError = false;
+                                            child.Pro_SellListInfo.Note = "商品的单价有误";
+                                            continue;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        NoError = false;
+                                        child.Pro_SellListInfo.Note = "延保无法定价 无法销售";
+                                        continue;
+                                    }
+                              
+
+                                child.Pro_SellListInfo.Pro_Sell_Yanbao.SellType = selltype;
+                                child.Pro_SellListInfo.Pro_Sell_Yanbao.MobilePrice = modelprice;
+                                child.Pro_SellListInfo.Pro_Sell_Yanbao.MobileDate = selldate;
+                               
+
+                            }
+                            #endregion
+
+                        }
+                        #endregion
+                        #endregion
+
+                        if (!NoError)
+                            continue;
+
+
+
+
+
+
+
+                        #region 计算提成
+
+                        if (child.Pro_SellListInfo.Salary == 0 || child.Pro_SellListInfo.Salary == null)
+                        //无套餐提成
+                        {
+                            var today = DateTime.Today;
+                            var query = lqh.Umsdb.Sys_CurrentSalary.Where(p => p.StartDate < DateTime.Now && p.EndDate >= DateTime.Now);
+                            query = query.Where(
+                                   o =>
+                                       o.ProID == child.Pro_SellListInfo.ProID &&
+                                       o.SellType == child.Pro_SellListInfo.SellType);
+                            query =
+                                query.Where(
+                                    p =>
+                                        p.PriceNum >=
+                                        (child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed));
+                            query = query.OrderBy(p => p.PriceNum);
+
+                            if (query.Any())
+                            {
+                                var salarymodel = query.First();
+                                decimal childsalary = 0;
+                                if (salarymodel.BaseSalary > 0)
+                                {
+                                    childsalary += salarymodel.BaseSalary;
+                                }
+
+                                if ((child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed) >
+                                    salarymodel.OverNum)
+                                {
+                                    childsalary += Convert.ToDecimal(child.Pro_SellListInfo.CashPrice + child.Pro_SellListInfo.TicketUsed - salarymodel.OverNum) *
+                                                   salarymodel.OverRatio;
+                                }
+                                child.Pro_SellListInfo.Salary = childsalary;
+
+                            }
+                        }
+                        #endregion
+
+
+
+                        #region 验证实收
+                        child.Pro_SellListInfo.TicketUsed = 0;
+                        child.Pro_SellListInfo.OffSepecialPrice = 0;
+                        child.Pro_SellListInfo.OffPrice = 0;
+
+                        decimal? real = child.Pro_SellListInfo.ProPrice - child.Pro_SellListInfo.WholeSaleOffPrice;
+                        if (real * child.Pro_SellListInfo.ProCount != child.Pro_SellListInfo.CashPrice * child.Pro_SellListInfo.ProCount)
+                        {
+                            NoError = false;
+                            child.Pro_SellListInfo.Note = "实收计算有误";
+                            continue;
+                        }
+                        #endregion
+
+
+
+                        cashPrice += child.Pro_SellListInfo.CashPrice * child.Pro_SellListInfo.ProCount;
+
+                        #region 串码类验证
+                        if (!string.IsNullOrEmpty(child.Pro_SellListInfo.IMEI))
+                        {
+                            r = CheckIMEI(child.Pro_IMEI);
+                            if (!r.ReturnValue)
+                            {
+                                NoError = false;
+                                child.Pro_SellListInfo.Note = r.Message;
+                                continue;
+                            }
+                            child.Pro_SellListInfo.InListID = child.Pro_IMEI.InListID;
+                            child.Pro_IMEI.Pro_StoreInfo.ProCount--;
+                            child.Pro_IMEI.Pro_SellInfo = model;
+                            child.Pro_IMEI.State = 1;
+                        }
+                        #endregion
+
+
+
+                        #region 非串码类验证
+                        if (string.IsNullOrEmpty(child.Pro_SellListInfo.IMEI))
+                        {
+                            r = FitInOrderListIDNoIMEI(child.Pro_SellListInfo, child.Pro_StoreInfo, sellListTemp);
+                            if (!r.ReturnValue == true)
+                            {
+                                NoError = false;
+                                continue;
+                            }
+                        }
+                        #endregion
+
+                    }
+                    if (!NoError)//有错误
+                    {
+                        return new Model.WebReturn() { ReturnValue = false, Message = "提交有误", Obj = model };
+                    }
+                    if (cashPrice != model.CashTotle)
+                    {
+                        return new Model.WebReturn() { ReturnValue = false, Message = "订单总金额计算有误", Obj = model };
+                    }
+                    #region 存在未拣完货的
+                    if (sellListTemp.Count > 0)
+                    {
+                        r = FitInOrderListIDNoIMEI(sellListTemp, StoreList);
+                        if (r.ReturnValue != true)
+                        {
+                            r.Obj = model;
+                            return r;
+                        }
+                        model.Pro_SellListInfo.AddRange(sellListTemp);
+                    }
+                    #endregion
+
+                    #region 生成单号
+                    string SellID = "";
+                    lqh.Umsdb.OrderMacker2(model.HallID, ref SellID);
+                    if (SellID == "")
+                    {
+                        return new Model.WebReturn() { ReturnValue = false, Message = "销售单生成出错" };
+                    }
+                    model.SellID = SellID;
+                    #endregion
+
+
+                    lqh.Umsdb.Pro_SellInfo.InsertOnSubmit(model);
+
+                    
+            }
+            catch (Exception ex)
+            {
+                return new Model.WebReturn() { ReturnValue = false, Message = "" + ex.Message };
+            }
+                    }
+            lqh.Umsdb.SubmitChanges();
+
+
+            try
+            {
+                lqh.Umsdb.UpdateReportSellListInfo();
+
+            }
+            catch
+            {
+
+            }
+
+
+                }
+            return new Model.WebReturn() { ReturnValue = true, Message = "保存成功" };
+        }
 
 
         public Model.WebReturn AddGXYamBao_Temp(Model.Sys_UserInfo userinfo, List<Model.Pro_SellListInfo_Temp> models)
@@ -4736,6 +5290,7 @@ namespace DAL
                             }
                             m.Pro_IMEI.Pro_StoreInfo.ProCount--;
                             m.Pro_IMEI.Pro_SellInfo = model;
+                            m.Pro_IMEI.State = 1;
 
                          
                         #endregion
@@ -5264,6 +5819,7 @@ namespace DAL
                             }
                             m.Pro_IMEI.Pro_StoreInfo.ProCount--;
                             m.Pro_IMEI.Pro_SellInfo = model;
+                            m.Pro_IMEI.State = 1;
 
                         }
                         #endregion
@@ -6124,6 +6680,8 @@ namespace DAL
                 case 14:
                 case 13:
                 case 10:
+                case 26:
+                case 27:
                 {
                     if (string.IsNullOrEmpty(model.TicketID))
                     {
@@ -6214,6 +6772,7 @@ namespace DAL
                         ticket += band.BeforeRate;
                     else
                         ticket += band.AfterRate;
+
 
 
                     if (model.CashTicket < band.TicketLevel) //小于临界值
@@ -6394,6 +6953,8 @@ namespace DAL
                 case 16:
                 case 13:
                 case 10:
+                case 26:
+                case 27:
                 {
                     if (string.IsNullOrEmpty(model.TicketID))
                     {
@@ -6690,6 +7251,12 @@ namespace DAL
                                 b,
                                 c
                            };
+                    if (x.Count() != model.Pro_SellListInfo.Count())
+                    {
+                        return new Model.WebReturn() { ReturnValue = false, Message = "系统错误，" + "有商品未定价" };
+
+                    }
+
                     foreach (var m in x)
                     {
                         m.b.ProPrice = m.b.ProPrice!=0?m.b.ProPrice: m.c.Price;
@@ -6930,6 +7497,11 @@ namespace DAL
                                 b,
                                 c
                             };
+                    if(x.Count()!=model.Pro_SellListInfo.Count()){
+                        return new Model.WebReturn() { ReturnValue = false, Message = "系统错误，" + "有商品未定价" };
+                    
+                    }
+
                     foreach (var m in x)
                     {
                         m.b.ProPrice = m.b.ProPrice != 0 ? m.b.ProPrice : m.c.Price;
@@ -7111,7 +7683,7 @@ namespace DAL
                 r.Message = "属于无串码商品";
                 r.ReturnValue = false;
             }
-            else if (imei.SellID > 0 || imei.OutID > 0 || imei.BorowID > 0 || imei.RepairID > 0||imei.AuditID>0||imei.AssetID>0)
+            else if (imei.SellID > 0 || imei.OutID > 0 || imei.BorowID > 0 || imei.RepairID > 0||imei.AuditID>0||imei.AssetID>0||imei.State>0)
             {
                 r.Message = "串码已处理";
                 r.ReturnValue = false;

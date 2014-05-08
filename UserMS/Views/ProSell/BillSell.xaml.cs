@@ -169,11 +169,34 @@ namespace UserMS
 
 	    private void SaveSellInfos()
 	    {
+            
+
 	        var selllists = new List<Pro_SellListInfo_Temp>();
 	        foreach (var proBillInfoTemp in BillLists)
 	        {
                 API.Pro_SellListInfo_Temp sellList = new Pro_SellListInfo_Temp();
                 var model = proBillInfoTemp;
+
+                var query = Store.BillFields.Where(p => p.ProID == model.ProID);
+                if (query.Any())
+                {
+                    foreach (var proBillFieldInfo in query)
+                    {
+
+                        var num = proBillFieldInfo.BillFieldName;
+                        var val=model.GetType().GetProperty(num).GetValue(model,null)+"";
+                        
+                            if (string.IsNullOrEmpty(val))
+                            {
+                                MessageBox.Show(System.Windows.Application.Current.MainWindow, "有字段未填完");
+                                return;
+                            }
+                       
+                    }
+
+
+                }
+
                 sellList.HallID = this.Hall.HallID;
                 sellList.ProID = model.ProID;
                 sellList.IMEI = model.BillIMEI;

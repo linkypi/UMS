@@ -176,10 +176,10 @@ namespace UserMS.Views.ProSell.Salary
                                     }
 
                                     string stName = excelReader.GetString(2);
-                                    int stID = 0;
+                              
                                     try
                                     {
-                                        stID = sellTypeDic[stName];
+                                        sm.SellType = sellTypeDic[stName];
                                     }
                                     catch (Exception ez)
                                     {
@@ -751,7 +751,7 @@ namespace UserMS.Views.ProSell.Salary
                                select a;
                     if (valc.Count() > 1)
                     {
-                        System.Windows.MessageBox.Show("商品 "+item.ProName+" 区间 "+child.PriceStep+" 重复！");
+                        System.Windows.MessageBox.Show("商品 "+item.ProName+" 区间 "+child.Step+" 重复！");
                         return;
                     }
                 

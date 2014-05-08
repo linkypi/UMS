@@ -1,0 +1,117 @@
+﻿<Page x:Class="UserMS.Views.AfterSale.AddFactory"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+              xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter" 
+   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+	Title="AddFactory">
+
+    <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
+        <DockPanel>
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="30"  toolkit:DockPanel.Dock="Top" >
+                <telerik:RadMenuItem   Header="添  加"  Name="add"  Click="add_Click" VerticalAlignment="Top"/>
+            </telerik:RadMenu>
+
+            <DockPanel DockPanel.Dock="Bottom">
+                <DockPanel DockPanel.Dock="Bottom" >
+                    <!--新增-->
+                    <DockPanel DockPanel.Dock="Top">
+                        <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" Margin="0,2">
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="厂家名称"></TextBlock>
+                                <TextBox Width="150" x:Name="facname" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="编码"></TextBlock>
+                                <TextBox Width="150" x:Name="faccode" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="区域" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="area"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="省份"></TextBlock>
+                                <TextBox Width="150" x:Name="province" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="城市" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="city"></TextBox>
+                            </StackPanel>
+
+
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="价格级别"></TextBlock>
+                                <TextBox Width="150" x:Name="pricelevel" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="联系人"></TextBlock>
+                                <TextBox Width="150" x:Name="contact" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="电话" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="phone"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="传真"></TextBlock>
+                                <TextBox Width="150" x:Name="fax" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="电子邮件" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="email"></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="地址"></TextBlock>
+                                <TextBox Width="150" x:Name="addr" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="邮编"></TextBlock>
+                                <TextBox Width="150" x:Name="postcode" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="负责人" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="responser"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="税务编码"></TextBlock>
+                                <TextBox Width="150" x:Name="taxcode" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="开户银行" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="bank"></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="80" Text="银行帐号"></TextBlock>
+                                <TextBox Width="150" x:Name="banknum" ></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="3,2">
+                                <TextBlock Width="70" Text="备注" ></TextBlock>
+                                <TextBox Width="150"  Margin="10 0 0 0" x:Name="note"></TextBox>
+                            </StackPanel>
+
+
+                          
+                        </toolkit:WrapPanel>
+                    </DockPanel>
+                  
+                </DockPanel>
+
+              
+            </DockPanel>
+
+        </DockPanel>
+    </xctk:BusyIndicator>
+</Page>

@@ -82,28 +82,36 @@ namespace UserMS.Views.AfterSale
             //HasRepaired.ParamValues = true;
             //rpp.ParamList.Add(HasRepaired);  //HasFetch
 
-            API.ReportSqlParams_Bool HasFetch = new API.ReportSqlParams_Bool();
-            HasFetch.ParamName = "HasFetch";
-            HasFetch.ParamValues = false;
-            rpp.ParamList.Add(HasFetch);
+            //API.ReportSqlParams_Bool HasFetch = new API.ReportSqlParams_Bool();
+            //HasFetch.ParamName = "HasFetch";
+            //HasFetch.ParamValues = false;
+            //rpp.ParamList.Add(HasFetch);
 
-            API.ReportSqlParams_Bool Finished = new API.ReportSqlParams_Bool();
-            Finished.ParamName = "Finished";
-            Finished.ParamValues = false;
-            rpp.ParamList.Add(Finished);
+            //API.ReportSqlParams_Bool Finished = new API.ReportSqlParams_Bool();
+            //Finished.ParamName = "Finished";
+            //Finished.ParamValues = false;
+            //rpp.ParamList.Add(Finished);
 
-            //审核未通过
-            API.ReportSqlParams_Bool IsPassed = new API.ReportSqlParams_Bool();
-            IsPassed.ParamName = "IsPassed";
-            IsPassed.ParamValues = true;
-            rpp.ParamList.Add(IsPassed);
+            ////审核未通过
+            //API.ReportSqlParams_Bool IsPassed = new API.ReportSqlParams_Bool();
+            //IsPassed.ParamName = "IsPassed";
+            //IsPassed.ParamValues = true;
+            //rpp.ParamList.Add(IsPassed);
 
-            API.ReportSqlParams_Bool IsAudit = new API.ReportSqlParams_Bool();
-            IsAudit.ParamName = "IsAudit";
-            IsAudit.ParamValues = true;
-            rpp.ParamList.Add(IsAudit);
+            //API.ReportSqlParams_Bool IsAudit = new API.ReportSqlParams_Bool();
+            //IsAudit.ParamName = "IsAudit";
+            //IsAudit.ParamValues = true;
+            //rpp.ParamList.Add(IsAudit);
 
-            if (!string.IsNullOrEmpty(this.hall.Tag.ToString()))
+            if (state.SelectedIndex != 0)
+            {
+                API.ReportSqlParams_String repstate = new API.ReportSqlParams_String();
+                repstate.ParamName = "RpState";
+                object obj = (state.SelectedItem as ComboBoxItem).Content;
+                repstate.ParamValues = obj == null ? "" : obj.ToString();
+                rpp.ParamList.Add(repstate);
+            }
+            if (!string.IsNullOrEmpty(this.hall.Tag + ""))
             {
                 API.ReportSqlParams_String hall = new API.ReportSqlParams_String();
                 hall.ParamName = "HallID";
@@ -164,6 +172,9 @@ namespace UserMS.Views.AfterSale
 
         private void Clear()
         {
+            proNote.Text = string.Empty;
+            repairnote.Text = string.Empty;
+            position.Text = string.Empty;
             serviceHall.Text = string.Empty;
             chkInOut.Text = string.Empty;
             repairHall.Text = string.Empty;
@@ -311,10 +322,13 @@ namespace UserMS.Views.AfterSale
             {
                 HasRepaired.IsChecked = false;
             }
+            repairnote.Text = model.RepairNote;
+            position.Text = model.Position;
             serviceHall.Text = model.RecHallName;
             chkInOut.Text = model.Chk_InOut;
             repairHall.Text = model.RepairHallName;
            // this.repairer.Text = model.Repairer;
+            proNote.Text = model.Pro_Note;
             oldID.Text = model.OldID;
             receiver.Text = model.Receiver;
             vipIMEI.Text = model.IMEI;
@@ -413,17 +427,22 @@ namespace UserMS.Views.AfterSale
                 return;
             }
 
-            //if (realPay.Value == 0)
-            //{
-            //    MessageBox.Show("实收金额不能为0！");
-            //    return;
-            //}
             API.VIP_VIPInfo vip = null;
-            API.View_ASPSHInfo model = searchGrid.SelectedItem as API.View_ASPSHInfo;
+            List<API.View_ASPSHInfo> list = new List<API.View_ASPSHInfo>();
             List<API.View_BJModels> bjinfo = bjGrid.ItemsSource as List<API.View_BJModels>;
 
-            if (passed)
+            #region  单个取机
+            if (searchGrid.SelectedItems.Count() == 1)
             {
+                API.View_ASPSHInfo model = searchGrid.SelectedItem as API.View_ASPSHInfo;
+                if (model.RpState != "待取机")
+                {
+                    MessageBox.Show("单号 " + model.OldID + "处于" + model.RpState + "状态，无法取机！");
+                    return;
+                }
+
+                #region  输入会员卡号
+
                 VIPWindow vw = new VIPWindow();
                 vw.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 if (vw.ShowDialog() == true)
@@ -432,60 +451,94 @@ namespace UserMS.Views.AfterSale
                     vw.Close();
                 }
 
-                model.FetchNote = fetchNote.Text.Trim();
-                model.FetchNeedAudit = false;
+                #endregion
 
-                foreach (var item in bjinfo)
+                if (passed)
                 {
-                    if (string.IsNullOrEmpty(item.NewIMEI))
+                    model.FetchNote = fetchNote.Text.Trim();
+                    model.FetchNeedAudit = false;
+
+                    foreach (var item in bjinfo)
                     {
-                        continue;
+                        if (string.IsNullOrEmpty(item.NewIMEI))
+                        {
+                            continue;
+                        }
+
+                        if (!item.IMEI.ToUpper().Equals(item.NewIMEI))
+                        {
+                            model.FetchNeedAudit = true;
+                        }
                     }
 
-                    if (!item.IMEI.ToUpper().Equals(item.NewIMEI))
+
+                    decimal tot = 0;
+
+                    if (vip != null)
                     {
-                        model.FetchNeedAudit = true;
+                        tot = (decimal)(model.WorkMoney * Convert.ToDecimal(0.80) + model.ProMoney - model.BJ_Money);
                     }
-                }
-
-
-                decimal tot = 0;
-
-                if (vip != null)
-                {
-                    tot = (decimal)(model.WorkMoney * Convert.ToDecimal(0.80) + model.ProMoney - model.BJ_Money);
+                    else
+                    {
+                        tot = (decimal)(model.WorkMoney + model.ProMoney - model.BJ_Money);
+                    }
+                    // if (tot < 0) { tot = 0; }
+                    model.ShouldPay = model.WorkMoney + model.ProMoney;
+                    model.RealPay = tot;
+                    if (MessageBox.Show("实收金额为：￥ " + model.RealPay + " , 确定取机吗？", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                    {
+                        return;
+                    }
+                    list.Add(model);
                 }
                 else
                 {
-                    tot = (decimal)(model.WorkMoney + model.ProMoney - model.BJ_Money);
-                }
-                if (tot < 0) { tot = 0; }
-                model.ShouldPay = model.WorkMoney + model.ProMoney;
-                model.RealPay = tot;
-                if (MessageBox.Show("实收金额为：￥ " + model.RealPay + " , 确定取机吗？", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
-                {
-                    return;
+                    if (MessageBox.Show("确定保存吗？", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                    {
+                        return;
+                    }
                 }
             }
-            else
+            #endregion 
+
+            #region  批量取机
+
+            if (searchGrid.SelectedItems.Count() > 1)
             {
+                foreach (var item in searchGrid.SelectedItems)
+                {
+                    API.View_ASPSHInfo model = item as API.View_ASPSHInfo;
+                    if (model.RpState != "待取机")
+                    {
+                        MessageBox.Show("单号 " + model.OldID + "处于" + model.RpState + "状态，无法取机！");
+                        return;
+                    }
+                    model.FetchNote = fetchNote.Text.Trim();
+                    model.FetchNeedAudit = false;
+                    decimal tot = 0;
+
+                    if (vip != null)
+                    {
+                        tot = (decimal)(model.WorkMoney * Convert.ToDecimal(0.80) + model.ProMoney - model.BJ_Money);
+                    }
+                    else
+                    {
+                        tot = (decimal)(model.WorkMoney + model.ProMoney - model.BJ_Money);
+                    }
+                    model.ShouldPay = model.WorkMoney + model.ProMoney;
+                    model.RealPay = tot;
+                    list.Add(model);
+                }
                 if (MessageBox.Show("确定保存吗？", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
                 {
                     return;
                 }
             }
 
-            API.ASP_FethchInfo fetch = new API.ASP_FethchInfo();
-            fetch.BJ_money = model.BJ_Money;
-
-            fetch.HallID = model.BJHallID;
-            fetch.Note = fetchNote.Text.Trim();
-            fetch.OrderID = model.OrderID;
-            fetch.RealPay = model.RealPay;
-            fetch.ShouldPay = model.ShouldPay;
+            #endregion 
 
             PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 334,
-            new object[] { model, bjinfo, fetch, passed, vip??new API.VIP_VIPInfo() }, new EventHandler<API.MainCompletedEventArgs>(SaveCompleted));
+            new object[] { list, bjinfo, passed, vip??new API.VIP_VIPInfo() }, new EventHandler<API.MainCompletedEventArgs>(SaveCompleted));
         }
 
         private void SaveCompleted(object sender, API.MainCompletedEventArgs e)

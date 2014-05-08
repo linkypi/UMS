@@ -78,29 +78,31 @@ namespace UserMS.Views.AfterSale
             //HasRepaired.ParamName = "HasRepaired";
             //HasRepaired.ParamValues = true;
             //rpp.ParamList.Add(HasRepaired);
+            if (state.SelectedIndex != 0)
+            {
+                API.ReportSqlParams_String repstate = new API.ReportSqlParams_String();
+                repstate.ParamName = "RpState";
+                object obj = (state.SelectedItem as ComboBoxItem).Content;
+                repstate.ParamValues = obj == null ? "" : obj.ToString();
+                rpp.ParamList.Add(repstate);
+            }
 
-            //已取机
-            API.ReportSqlParams_Bool HasFetch = new API.ReportSqlParams_Bool();
-            HasFetch.ParamName = "HasFetch";
-            HasFetch.ParamValues = true;
-            rpp.ParamList.Add(HasFetch);  //HasAudited
+            //API.ReportSqlParams_Bool HasAudited = new API.ReportSqlParams_Bool();
+            //HasAudited.ParamName = "HasAudited";
+            //HasAudited.ParamValues = false;
+            //rpp.ParamList.Add(HasAudited);  // 
 
-            API.ReportSqlParams_Bool HasAudited = new API.ReportSqlParams_Bool();
-            HasAudited.ParamName = "HasAudited";
-            HasAudited.ParamValues = false;
-            rpp.ParamList.Add(HasAudited);  // 
-
-            API.ReportSqlParams_Bool HasCallBack = new API.ReportSqlParams_Bool();
-            HasCallBack.ParamName = "HasCallBack";
-            HasCallBack.ParamValues = true;
-            rpp.ParamList.Add(HasCallBack);
+            //API.ReportSqlParams_Bool HasCallBack = new API.ReportSqlParams_Bool();
+            //HasCallBack.ParamName = "HasCallBack";
+            //HasCallBack.ParamValues = true;
+            //rpp.ParamList.Add(HasCallBack);
             
-            API.ReportSqlParams_Bool IsToFact = new API.ReportSqlParams_Bool();
-            IsToFact.ParamName = "FetchHasAuditedOrUnNeedAudit";
-            IsToFact.ParamValues = true;
-            rpp.ParamList.Add(IsToFact);
+            //API.ReportSqlParams_Bool IsToFact = new API.ReportSqlParams_Bool();
+            //IsToFact.ParamName = "FetchHasAuditedOrUnNeedAudit";
+            //IsToFact.ParamValues = true;
+            //rpp.ParamList.Add(IsToFact);
 
-            if (!string.IsNullOrEmpty(this.hall.Tag.ToString()))
+            if (!string.IsNullOrEmpty(this.hall.Tag + ""))
             {
                 API.ReportSqlParams_String hall = new API.ReportSqlParams_String();
                 hall.ParamName = "HallID";
@@ -155,7 +157,7 @@ namespace UserMS.Views.AfterSale
                 rpp.ParamList.Add(bt);
             }
 
-            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 325, new object[] { rpp }, new EventHandler<API.MainCompletedEventArgs>(SearchCompleted));
+            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 362, new object[] { rpp }, new EventHandler<API.MainCompletedEventArgs>(SearchCompleted));
 
         }
 
@@ -335,12 +337,14 @@ namespace UserMS.Views.AfterSale
             bjMoney.Text = model.BJ_Money.ToString();
             workMoney.Text = model.WorkMoney.ToString();
             proMoney.Text = model.ProMoney.ToString();
-            //decimal tot = (decimal)(model.WorkMoney + model.ProMoney - model.BJ_Money);
-            //total.Text = tot.ToString();
+            decimal tot = (decimal)(Convert.ToDecimal(model.WorkMoney) + 
+                Convert.ToDecimal(model.ProMoney) - Convert.ToDecimal(model.BJ_Money));
+            total.Text = tot.ToString();
             shouldPay.Text = model.ShouldPay.ToString();
             realPay.Text = model.RealPay.ToString();
-            //repairCount .Text = model.
-
+            repCount.Text = model.RepairCount == null ? "0" : model.RepairCount.ToString(); ;
+            auditMoney.Value = Convert.ToDouble(model.RealPay);
+            lowMoney.Value = Convert.ToDouble(model.RealPay);
             PublicRequestHelp peh = new PublicRequestHelp(this.isbusy, 326, new object[] { model.ID },
                 new EventHandler<API.MainCompletedEventArgs>(GetCompleted));
         }
@@ -385,6 +389,11 @@ namespace UserMS.Views.AfterSale
             }
 
             API.View_ASPRepairInfo model = searchGrid.SelectedItem as API.View_ASPRepairInfo;
+            if (model.RpState != "待审计")
+            {
+                MessageBox.Show("单号 " + model.OldID + "处于" + model.RpState + "状态，无法审计！");
+                return;
+            }
             model.AuditLowMoney = Convert.ToDecimal(lowMoney.Value);
             model.AuditMoney = Convert.ToDecimal(auditMoney.Value);
             model.AuditNote = auditNote.Text.Trim();
@@ -395,7 +404,9 @@ namespace UserMS.Views.AfterSale
             audit.AuditMoney = Convert.ToDecimal(auditMoney.Value);
             audit.OrderID = model.OrderID;
 
-            if (MessageBox.Show("确定保存吗？", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+            if (MessageBox.Show("审计金额为：￥" + auditMoney.Value
+                + ", 结算金额为：￥" + lowMoney.Value + ", 确定保存吗？", 
+                "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
             {
                 return;
             }

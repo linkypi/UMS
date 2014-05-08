@@ -1,0 +1,9 @@
+D:\UMS\client\UserMS\Model\bin\Debug\Model.dll.config
+D:\UMS\client\UserMS\Model\bin\Debug\Model.dll
+D:\UMS\client\UserMS\Model\bin\Debug\Model.pdb
+D:\UMS\client\UserMS\Model\bin\Debug\EntityFramework.dll
+D:\UMS\client\UserMS\Model\bin\Debug\EntityFramework.xml
+D:\UMS\client\UserMS\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\UMS\client\UserMS\Model\obj\Debug\Model.dll
+D:\UMS\client\UserMS\Model\obj\Debug\Model.pdb
+D:\UMS\client\UserMS\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

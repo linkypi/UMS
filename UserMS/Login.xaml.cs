@@ -23,7 +23,11 @@ namespace UserMS
         {
             //            StyleManager.ApplicationTheme = new Windows8Theme();
             InitializeComponent();
-
+#if HZ
+            Application.Current.MainWindow.Title = "渠道运营部综合管理系统-惠州区域";
+#endif
+            this.ServerSelect.SelectedIndex = int.Parse(ConfigurationManager.AppSettings["server"]);
+            
 
             DateTime dt = new DateTime(2000, 1, 1);
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -258,41 +262,6 @@ namespace UserMS
             {
                 Store.IsTesting = true;
                 Store.ReportServiceURL = "http://www.zs96000.com:23457/WcfReportService.svc";
-//                this.webservice=new UserMsServiceClient("TSET",new EndpointAddress(
-//                        "http://192.168.0.8:23457/UserMSService.svc"));
-//         ;
-//                this.webservice = new UserMsServiceClient(new WSHttpBinding()
-//                {
-//                    
-//                    ReaderQuotas =
-//                        new XmlDictionaryReaderQuotas()
-//                        {
-//                            MaxArrayLength = 2147483646,
-//                            MaxBytesPerRead = 2147483646,
-//                            MaxDepth = 2147483646,
-//                            MaxNameTableCharCount = 2147483646,
-//                            MaxStringContentLength = 2147483646
-//                        },
-//                    AllowCookies = true,
-//                    MessageEncoding = WSMessageEncoding.Mtom,
-//                    MaxReceivedMessageSize = 2147483647
-//                    ,
-//                    MaxBufferPoolSize = 2147483647
-//                    ,
-//                    ReliableSession =
-//                        new OptionalReliableSession() {Enabled = true, InactivityTimeout = new TimeSpan(8, 0, 0)},
-//                    Security = new WSHttpSecurity() {Mode = SecurityMode.None}
-//                    
-//                },
-//                    new EndpointAddress(
-//                        "http://192.168.0.8:23457/UserMSService.svc"));
-//                this.webservice.Endpoint.Behaviors.Add(new DataContractSerializerOperationBehavior(
-//                    )
-//                {
-//                    MaxItemsInObjectGraph
-//                        =
-//                        2147483647
-//                });
                 this.webservice=new UserMsServiceClient();
                 this.webservice.Endpoint.Address=new EndpointAddress( "http://www.zs96000.com:23457/UserMSService.svc");
                 ;
@@ -300,8 +269,20 @@ namespace UserMS
             else
             {
                 Store.IsTesting = false;
-                Store.ReportServiceURL = ConfigurationManager.AppSettings["ReportServiceUrl"];
-                this.webservice = new UserMsServiceClient();
+                Store.LoginServer = this.ServerSelect.SelectedIndex;
+                switch (Store.LoginServer)
+                {
+                    case 1:
+                        Store.ReportServiceURL = "http://gxhz.mytzb.com/WcfReportService.svc";
+                        this.webservice = new UserMsServiceClient();
+                        this.webservice.Endpoint.Address = new EndpointAddress("http://gxhz.mytzb.com/UserMSService.svc");
+                        break;
+                    default:
+                        Store.ReportServiceURL = ConfigurationManager.AppSettings["ReportServiceUrl"];
+                        this.webservice = new UserMsServiceClient();
+                        break;
+                }
+
             }
 
             this.webservice.LoginCompleted += new EventHandler<LoginCompletedEventArgs>(LoginCompleted);

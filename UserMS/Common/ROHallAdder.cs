@@ -51,11 +51,11 @@ namespace UserMS.Common
             // tb.btnSearch.Click += SearchHall;
             tb.SearchEvent = new RoutedEventHandler(SearchHall);
             //默认选中第一个
-            if (hallInfo.Count > 0)
-            {
-                this.Hall.Tag += hallInfo[0].HallID;
-                this.Hall.Text += hallInfo[0].HallName;
-            }
+            //if (hallInfo.Count > 0)
+            //{
+            //    this.Hall.Tag += hallInfo[0].HallID;
+            //    this.Hall.Text += hallInfo[0].HallName;
+            //}
 
             if (AddCompleted != null)
             {
@@ -96,11 +96,11 @@ namespace UserMS.Common
                        // tb.btnSearch.Click += SearchHall;
                 tb.SearchEvent = new RoutedEventHandler(SearchHall);
             //默认选中第一个
-                if (hallInfo.Count > 0)
-                {
-                    this.Hall.Tag += hallInfo[0].HallID;
-                    this.Hall.Text += hallInfo[0].HallName;
-                }
+                //if (hallInfo.Count > 0)
+                //{
+                //    this.Hall.Tag += hallInfo[0].HallID;
+                //    this.Hall.Text += hallInfo[0].HallName;
+                //}
         }
 
         public void SearchHall(object sender, RoutedEventArgs e)

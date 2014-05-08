@@ -7,7 +7,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
     xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter" 
     mc:Ignorable="d" Loaded="Page_Loaded"   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-    xmlns:MyControl="clr-namespace:UserMS.MyControl" 
+    xmlns:MyControl="http://www.zs96000.com/wpf" 
 	Title="AfterSale">
     <telerik:RadBusyIndicator x:Name="isbusy">
 

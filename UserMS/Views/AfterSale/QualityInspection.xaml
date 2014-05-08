@@ -7,7 +7,7 @@
      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
     xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter" 
    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-    xmlns:UserMS="clr-namespace:UserMS"  xmlns:MyControl="clr-namespace:UserMS.MyControl"
+    xmlns:UserMS="http://www.zs96000.com/wpf"  xmlns:MyControl="http://www.zs96000.com/wpf"
 	Title="QualityInspection">
 
     <telerik:RadBusyIndicator x:Name="isbusy">
@@ -33,27 +33,45 @@
                             <telerik:RadDatePicker Height="25" Width="150" Name="sysdate"></telerik:RadDatePicker>
                         </StackPanel>-->
                         <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                            <TextBlock Height="25" Width="80" Text="状态:" Foreground="Black"></TextBlock>
+                            <ComboBox Width="150" Name="state" Height="25" >
+                                <ComboBoxItem Content="全部"></ComboBoxItem>
+                                <ComboBoxItem Content="待指派维修师"></ComboBoxItem>
+                                <ComboBoxItem Content="待维修"></ComboBoxItem>
+                                <ComboBoxItem Content="待质检" IsSelected="True"></ComboBoxItem>
+                                <ComboBoxItem Content="待送厂"></ComboBoxItem>
+                                <ComboBoxItem Content="待返厂"></ComboBoxItem>
+                                <ComboBoxItem Content="待审核"></ComboBoxItem>
+                                <ComboBoxItem Content="待取机"></ComboBoxItem>
+                                <ComboBoxItem Content="待备机返库审批"></ComboBoxItem>
+                                <ComboBoxItem Content="待回访"></ComboBoxItem>
+                                <ComboBoxItem Content="待审计"></ComboBoxItem>
+                                <ComboBoxItem Content="完成"></ComboBoxItem>
+                                <ComboBoxItem Content="已撤销"></ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
                             <TextBlock Height="25" Width="80" Text="手工单号:" Foreground="Black"></TextBlock>
-                            <TextBox Height="25" Width="150" Text="" Name="oldid"></TextBox>
+                            <TextBox Height="25" KeyUp="Button_KeyUp" Width="150" Text="" Name="oldid"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
                             <TextBlock Height="25" Width="80" Text="主板串码:" Foreground="Black"></TextBlock>
-                            <TextBox Height="25" Width="150" Text="" Name="pro_imei"></TextBox>
+                            <TextBox Height="25" Width="150" KeyUp="Button_KeyUp"  Text="" Name="pro_imei"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
                             <TextBlock Height="25" Width="80" Text="客户姓名:" Foreground="Black"></TextBlock>
-                            <TextBox Height="25" Width="150" Text="" Name="cus_name"></TextBox>
+                            <TextBox Height="25" Width="150" KeyUp="Button_KeyUp"  Text="" Name="cus_name"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
                             <TextBlock Height="25" Width="80" Text="手机号码:" Foreground="Black"></TextBlock>
-                            <TextBox Height="25" Width="150" Text="" Name="cus_phone"></TextBox>
+                            <TextBox Height="25" Width="150"  KeyUp="Button_KeyUp" Text="" Name="cus_phone"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
                             <TextBlock Height="25" Width="80" Text="会员卡号:" Foreground="Black"></TextBlock>
-                            <TextBox Height="25" Width="150" Text="" Name="vipimei"></TextBox>
+                            <TextBox Height="25" Width="150" KeyUp="Button_KeyUp"  Text="" Name="vipimei"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
-                            <Button Content="查询" Width="80" Click="search_Click"></Button>
+                            <Button Content="查询" Width="80"  KeyUp="Button_KeyUp" Click="search_Click"></Button>
                         </StackPanel>
                     </WrapPanel>
                 </DockPanel>
@@ -68,19 +86,74 @@
                  SelectionMode="Extended"  SelectionChanged="RepairGrid_SelectionChanged" MinHeight="150" AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
                     <telerik:RadGridView.Columns>
                         <telerik:GridViewSelectColumn />
-                        <telerik:GridViewBoundColumnBase  Header="受理单号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ServiceID}" IsFilterable="False" />
                         <telerik:GridViewBoundColumnBase  Header="手工单号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding OldID}"  IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="受理单号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ServiceID}" IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="状态" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding RpState}"  IsFilterable="False" />
                         <telerik:GridViewBoundColumnBase  Header="客户姓名" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Cus_Name}"  IsFilterable="False" />
                         <telerik:GridViewBoundColumnBase  Header="手机号码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Cus_Phone}" IsFilterable="False" />
                         <telerik:GridViewBoundColumnBase  Header="会员卡号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding IMEI}" IsFilterable="False" />
                         <telerik:GridViewBoundColumnBase  Header="服务网点" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding RecHallName}"  IsFilterable="False"/>
                         <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_Type}"    IsFilterable="False"/>
                         <telerik:GridViewBoundColumnBase  Header="商品名称" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_Name}"   IsFilterable="False" />
-                        <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProFormat}"    IsFilterable="False"/>
-                        <!--<telerik:GridViewBoundColumnBase  Header="机头串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_IMEI}"   IsFilterable="False" />-->
-                        <!--<telerik:GridViewBoundColumnBase  Header="主板串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_HeaderIMEI}"   IsFilterable="False" />-->
+                        <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_Color}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="保内保外" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Chk_InOut}"   IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="故障类型" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Errors}"   IsFilterable="False" />
+
                         <telerik:GridViewBoundColumnBase  Header="串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Pro_HeaderIMEI}"   IsFilterable="False" />
                         <telerik:GridViewBoundColumnBase  Header="受理日期" DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding SysDate}"  />
+
+                        <telerik:GridViewBoundColumnBase  Header="接机日期" DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 接机日期}"  />
+                        <telerik:GridViewBoundColumnBase  Header="维修完成时间" DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 维修完成时间}"  />
+                        <telerik:GridViewBoundColumnBase  Header="更换配件" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ChangPros}"   IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="维修方式" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding Chk_RType}"   IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="维修种类" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding RepKind}"   IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="维修备注" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding RepairNote}"   IsFilterable="False" />
+
+
+                        <telerik:GridViewBoundColumnBase  Header="需送厂" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 需送厂}" IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="送厂时间" Width="auto"  IsReadOnly="True"  DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" DataMemberBinding="{Binding 送厂时间}"  IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="送厂人" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 送厂人}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="送厂批次" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 送厂批次}"   IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="厂家名称" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 厂家名称}"    IsFilterable="False"/>
+
+                        <telerik:GridViewBoundColumnBase  Header="返厂人" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 返厂人}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="返厂批次" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 返厂批次}"   IsFilterable="False" />
+                        <telerik:GridViewBoundColumnBase  Header="返厂备注" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 返厂备注}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="返厂日期" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 返厂日期}"    IsFilterable="False"/>
+
+                        <telerik:GridViewBoundColumnBase  Header="质检日期" DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 质检日期}"  />
+                        <telerik:GridViewBoundColumnBase  Header="质检人" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 质检人}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="质检备注"  Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 质检备注}"  />
+                        <telerik:GridViewBoundColumnBase  Header="审核人" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 审核人}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="审核备注" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 审核备注}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="审核日期" DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 审核日期}"  />
+
+                        <telerik:GridViewBoundColumnBase  Header="备机押金" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 备机押金}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="配件费"  Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 配件费}"  />
+                        <telerik:GridViewBoundColumnBase  Header="劳务费" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 劳务费}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="实收" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 实收}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="应收"  Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 应收}"  />
+
+                        <telerik:GridViewBoundColumnBase  Header="挂账类型"  Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 挂账类型}"  />
+                        <telerik:GridViewBoundColumnBase  Header="挂账金额" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 挂账金额}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="取机人" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 取机人}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="取机备注"  Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 取机备注}"  />
+
+                        <telerik:GridViewBoundColumnBase  Header="取机日期" DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 取机日期}"  />
+                        <telerik:GridViewBoundColumnBase  Header="回访人" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 回访人}"    IsFilterable="False"/>
+
+                        <telerik:GridViewBoundColumnBase  Header="回访日期" DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 回访日期}"  />
+
+                        <telerik:GridViewBoundColumnBase  Header="审计人" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 审计人}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="审计金额" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding 审计金额}"    IsFilterable="False"/>
+                        <telerik:GridViewBoundColumnBase  Header="结算金额"  Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 结算金额}"  />
+                        <telerik:GridViewBoundColumnBase  Header="审计备注"  Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 审计备注}"  />
+                        <telerik:GridViewBoundColumnBase  Header="审计日期" DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 审计日期}"  />
+
+                        <telerik:GridViewBoundColumnBase  Header="撤销人" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 撤销人}"  />
+                        <telerik:GridViewBoundColumnBase  Header="撤销时间" DataFormatString="{}{0:yyyy-MM-dd HH:mm:ss}" Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 撤销时间}"  />
+                        <telerik:GridViewBoundColumnBase  Header="撤销备注"  Width="auto"  IsReadOnly="True"  IsFilterable="False" DataMemberBinding="{Binding 撤销备注}"  />
+
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
             </DockPanel>
@@ -136,6 +209,7 @@
                         <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
                             <TextBlock Height="25" Width="80" Text="保内/保外:" Foreground="Black"></TextBlock>
                             <TextBox Height="25" Width="150"  IsReadOnly="True" Name="chkInOut"></TextBox>
+                            <TextBlock Text="*" Margin="0 5 0 0" FontWeight="Bold"  Foreground="White"></TextBlock>
                         </StackPanel>
                         <!--<StackPanel Orientation="Horizontal" Margin="10 5 0 5">
                             <TextBlock Height="25" Width="80" Text="状态名称:" Foreground="Black"></TextBlock>
@@ -151,12 +225,33 @@
                             <TextBox  Height="25" Name="chk_price" IsReadOnly="True" Width="150" />
                             <!--<TextBlock Text="*" Margin="0 5 0 0" FontWeight="Bold"  Foreground="Red"></TextBlock>-->
                         </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                            <TextBlock Height="25" Width="80" Text="厂家名称:" Foreground="Black"></TextBlock>
+                            <TextBox Height="25" Width="150" Name="facName" IsReadOnly="True" ></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                            <TextBlock Height="25" Width="80" Text="送厂批号:" Foreground="Black"></TextBlock>
+                            <TextBox Height="25" Width="150" Name="toFacListID" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                            <TextBlock Height="25" Width="80" Text="返库批号:" Foreground="Black"></TextBlock>
+                            <TextBox Height="25" Width="150" Name="backInlistID" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                            <TextBlock Height="25" Width="80" Text="新IMEI:" Foreground="Black"></TextBlock>
+                            <TextBox Height="25" Width="150" Name="newIMEI" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                            <TextBlock Height="25" Width="80" Text="新SN:" Foreground="Black"></TextBlock>
+                            <TextBox Height="25" Width="150" Name="newSN" IsReadOnly="True"></TextBox>
+                        </StackPanel>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
 
                         <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
                             <TextBlock Height="25" Width="80" Text="维修备注:" Foreground="Black"></TextBlock>
-                            <TextBox Height="45" Width="630"  IsReadOnly="True" Name="repairNote"></TextBox>
+                            <TextBox Height="5" Width="630"  IsReadOnly="True" Name="repairNote"></TextBox>
                         </StackPanel>
 
                     </WrapPanel>
@@ -167,49 +262,116 @@
                         </StackPanel>
                     </WrapPanel>
                 </DockPanel>
-                
-                <DockPanel DockPanel.Dock="Top" VerticalAlignment="Stretch" MinHeight="100" HorizontalAlignment="Stretch">
-                    <telerik:RadGridView MinWidth="300"  DockPanel.Dock="Left"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                                       Name="oldErrGrid"     SelectionMode="Extended"  AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
-                        <telerik:RadGridView.Columns>
-                            <telerik:GridViewSelectColumn />
-                            <telerik:GridViewBoundColumnBase  Header="故障编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ErrorID}" IsFilterable="False" />
-                            <telerik:GridViewBoundColumnBase  Header="受理故障现象" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ErrorName}"  IsFilterable="False"  />
-                        </telerik:RadGridView.Columns>
-                    </telerik:RadGridView>
-                    <Splitter:DockPanelSplitter DockPanel.Dock="Left" Background="Silver"></Splitter:DockPanelSplitter>
-                    <telerik:RadGridView x:Name="newErrGrid"  MinWidth="300"  DockPanel.Dock="Left"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                                  SelectionMode="Extended"  AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
-                        <telerik:RadGridView.Columns>
-                            <telerik:GridViewSelectColumn />
-                            <telerik:GridViewBoundColumnBase  Header="新故障编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ErrorID}"  IsFilterable="False"  />
-                            <telerik:GridViewBoundColumnBase  Header="维修确认故障现象" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ErrorName}"  IsFilterable="False"  />
-                        </telerik:RadGridView.Columns>
-                    </telerik:RadGridView>
-                </DockPanel>
-                
+               
                 <Splitter:DockPanelSplitter DockPanel.Dock="Top" Background="Silver"></Splitter:DockPanelSplitter>
+                <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <telerik:RadTabControl  Foreground="Black" DockPanel.Dock="Top">
 
-                <telerik:RadGridView  DockPanel.Dock="Top" Name="prosGrid"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                        <telerik:RadTabItem Header="维修信息">
+                            <DockPanel DockPanel.Dock="top" >
+                                <DockPanel DockPanel.Dock="Top">
+                                    <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                  
+                                    </WrapPanel>
+                                    <WrapPanel  Orientation="Horizontal" DockPanel.Dock="Top">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                                            <TextBlock Height="25" Width="80" Text="送修备注:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25" Name="pro_Note" Width="630" IsReadOnly="True"></TextBox>
+                                        </StackPanel>
+                                    </WrapPanel>
+                                    <WrapPanel  Orientation="Horizontal" DockPanel.Dock="Top">
+                                        <StackPanel Orientation="Horizontal" Margin="10 5 0 5" >
+                                            <TextBlock Height="25" Width="80" Text="审核备注:" Foreground="Black"></TextBlock>
+                                            <TextBox Height="25"  AcceptsReturn="True" IsReadOnly="True" Name="chkNote" Width="630"  ></TextBox>
+                                        </StackPanel>
+                                    </WrapPanel>
+                                </DockPanel>
+                            </DockPanel>
+                        </telerik:RadTabItem>
+                        
+                    <telerik:RadTabItem Header="配件信息">
+                        <DockPanel  >
+                            <telerik:RadGridView  DockPanel.Dock="Top" Name="prosGrid"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                          SelectionMode="Extended" MinHeight="100" AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True" >
-                    <telerik:RadGridView.Columns>
-                        <telerik:GridViewSelectColumn />
-                        <telerik:GridViewBoundColumnBase  Header="商品编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProID}"  IsFilterable="False"  />
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewSelectColumn />
+                                    <telerik:GridViewBoundColumnBase  Header="商品编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProID}"  IsFilterable="False"  />
+                                    <telerik:GridViewBoundColumnBase  Header="商品类别" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ClassName}" IsFilterable="False"   />
+                                    <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding TypeName}"  IsFilterable="False"  />
+                                    <telerik:GridViewBoundColumnBase  Header="商品型号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProName}"  IsFilterable="False"  />
+                                    <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProFormat}"  IsFilterable="False"  />
+                                    <telerik:GridViewBoundColumnBase  Header="串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding IMEI,Mode=TwoWay}"  IsFilterable="False"  />
+                                    <telerik:GridViewBoundColumnBase  Header="数量" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProCount}"  IsFilterable="False"  />
+                                    <telerik:GridViewBoundColumnBase Header="归属" DataMemberBinding="{Binding TName,Mode=TwoWay}" IsFilterable="False" ></telerik:GridViewBoundColumnBase>
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>
 
-                        <telerik:GridViewBoundColumnBase  Header="商品类别" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ClassName}" IsFilterable="False"   />
-                        <telerik:GridViewBoundColumnBase  Header="商品品牌" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding TypeName}"  IsFilterable="False"  />
-                        <telerik:GridViewBoundColumnBase  Header="商品型号" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProName}"  IsFilterable="False"  />
-                        <telerik:GridViewBoundColumnBase  Header="商品属性" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProFormat}"  IsFilterable="False"  />
-                        <telerik:GridViewBoundColumnBase  Header="新串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding IMEI,Mode=TwoWay}"  IsFilterable="False"  />
-                        <telerik:GridViewBoundColumnBase  Header="旧串码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding OldIMEI}"  IsFilterable="False"  />
+                        </DockPanel>
+                    </telerik:RadTabItem>
 
-                        <telerik:GridViewBoundColumnBase  Header="数量" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ProCount}"  IsFilterable="False"  />
-                        <telerik:GridViewBoundColumnBase Header="归属" DataMemberBinding="{Binding TName,Mode=TwoWay}" IsFilterable="False" ></telerik:GridViewBoundColumnBase>
-                        <!--<telerik:GridViewCheckBoxColumn Header="主板" DataMemberBinding="{Binding NotHeader,Mode=TwoWay}" IsFilterable="False" ></telerik:GridViewCheckBoxColumn>-->
+                    <telerik:RadTabItem Header="故障信息">
+                        <DockPanel >
+                            <DockPanel DockPanel.Dock="Top" VerticalAlignment="Stretch" MinHeight="100" HorizontalAlignment="Stretch">
+                                <telerik:RadGridView MinWidth="300"  DockPanel.Dock="Left"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                       Name="oldErrGrid"     SelectionMode="Extended"  AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                                    <telerik:RadGridView.Columns>
+                                        <telerik:GridViewSelectColumn />
+                                        <telerik:GridViewBoundColumnBase  Header="故障编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ErrorID}" IsFilterable="False" />
+                                        <telerik:GridViewBoundColumnBase  Header="受理故障现象" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ErrorName}"  IsFilterable="False"  />
+                                    </telerik:RadGridView.Columns>
+                                </telerik:RadGridView>
+                                <Splitter:DockPanelSplitter DockPanel.Dock="Left" Background="Silver"></Splitter:DockPanelSplitter>
+                                <telerik:RadGridView x:Name="newErrGrid"  MinWidth="300"  DockPanel.Dock="Left"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                  SelectionMode="Extended"  AutoGenerateColumns="False" ShowGroupPanel="False"     CanUserDeleteRows="False" CanUserInsertRows="False" IsReadOnly="True"  >
+                                    <telerik:RadGridView.Columns>
+                                        <telerik:GridViewSelectColumn />
+                                        <telerik:GridViewBoundColumnBase  Header="新故障编码" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ErrorID}"  IsFilterable="False"  />
+                                        <telerik:GridViewBoundColumnBase  Header="维修确认故障现象" Width="auto"  IsReadOnly="True" DataMemberBinding="{Binding ErrorName}"  IsFilterable="False"  />
+                                    </telerik:RadGridView.Columns>
+                                </telerik:RadGridView>
+                            </DockPanel>
 
-                    </telerik:RadGridView.Columns>
-                </telerik:RadGridView>
-          
+                        </DockPanel>
+                    </telerik:RadTabItem>
+
+                    <telerik:RadTabItem Header="费用信息">
+                            <DockPanel DockPanel.Dock="Top">
+                                <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="押金金额:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150"  IsReadOnly="True" Name="bjMoney"></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="劳务费用:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150"  IsReadOnly="True" Name="workMoney"></TextBox>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="配件费用:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150"  IsReadOnly="True" Name="proMoney"></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="合计费用:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150"  IsReadOnly="True" Name="total"></TextBox>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="应收:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150"  IsReadOnly="True" Name="shouldPay"></TextBox>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 5">
+                                        <TextBlock Height="25" Width="80" Text="实收:" Foreground="Black"></TextBlock>
+                                        <TextBox Height="25" Width="150"  IsReadOnly="True" Name="realPay"></TextBox>
+                                    </StackPanel>
+
+                                </WrapPanel>
+                            </DockPanel>
+                        </telerik:RadTabItem>
+
+                    </telerik:RadTabControl>
+                   </DockPanel>
+            
             </DockPanel>
         </DockPanel>
     </telerik:RadBusyIndicator>

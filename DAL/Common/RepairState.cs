@@ -7,6 +7,7 @@ namespace Common
 {
     public enum RepairState:uint
     {
+        WFDispatch = 0,
         WFRepaire = 1,  //"待维修",
         WFToFac = 2,    //"待送厂",
         WFBack =3,      // "待返厂",
@@ -14,8 +15,8 @@ namespace Common
         WFShenHe = 5,   //"待审核",
         WFGetMobile = 6,//"待取机",
         WFBJAudit = 7,  //"待备机返库审批",
-        WFAudit = 8,    //"待审计",
-        WFCallBack = 9, //"待回访",
+        WFAudit = 9,    //"待审计",
+        WFCallBack = 8, //"待回访",
         Finished = 10   //"完成"
     }
 }

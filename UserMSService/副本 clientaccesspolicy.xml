@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xml:base="http://services.odata.org/Northwind/Northwind.svc/" xmlns="http://www.w3.org/2005/Atom" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+  <m:count>91</m:count>
+  <id>http://services.odata.org/Northwind/Northwind.svc/Customers</id>
+  <title type="text">Customers</title>
+  <updated>2014-03-28T10:16:42Z</updated>
+  <link rel="self" title="Customers" href="Customers" />
+  <entry>
+    <id>http://services.odata.org/Northwind/Northwind.svc/Customers('BSBEV')</id>
+    <category term="NorthwindModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="Customer" href="Customers('BSBEV')" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('BSBEV')/Orders" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('BSBEV')/CustomerDemographics" />
+    <title />
+    <updated>2014-03-28T10:16:42Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:CustomerID>BSBEV</d:CustomerID>
+        <d:CompanyName>B's Beverages</d:CompanyName>
+        <d:ContactName>Victoria Ashworth</d:ContactName>
+        <d:ContactTitle>Sales Representative</d:ContactTitle>
+        <d:Address>Fauntleroy Circus</d:Address>
+        <d:City>London</d:City>
+        <d:Region m:null="true" />
+        <d:PostalCode>EC2 5NT</d:PostalCode>
+        <d:Country>UK</d:Country>
+        <d:Phone>(171) 555-1212</d:Phone>
+        <d:Fax m:null="true" />
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://services.odata.org/Northwind/Northwind.svc/Customers('CACTU')</id>
+    <category term="NorthwindModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="Customer" href="Customers('CACTU')" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('CACTU')/Orders" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('CACTU')/CustomerDemographics" />
+    <title />
+    <updated>2014-03-28T10:16:42Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:CustomerID>CACTU</d:CustomerID>
+        <d:CompanyName>Cactus Comidas para llevar</d:CompanyName>
+        <d:ContactName>Patricio Simpson</d:ContactName>
+        <d:ContactTitle>Sales Agent</d:ContactTitle>
+        <d:Address>Cerrito 333</d:Address>
+        <d:City>Buenos Aires</d:City>
+        <d:Region m:null="true" />
+        <d:PostalCode>1010</d:PostalCode>
+        <d:Country>Argentina</d:Country>
+        <d:Phone>(1) 135-5555</d:Phone>
+        <d:Fax>(1) 135-4892</d:Fax>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://services.odata.org/Northwind/Northwind.svc/Customers('CENTC')</id>
+    <category term="NorthwindModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="Customer" href="Customers('CENTC')" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('CENTC')/Orders" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('CENTC')/CustomerDemographics" />
+    <title />
+    <updated>2014-03-28T10:16:42Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:CustomerID>CENTC</d:CustomerID>
+        <d:CompanyName>Centro comercial Moctezuma</d:CompanyName>
+        <d:ContactName>Francisco Chang</d:ContactName>
+        <d:ContactTitle>Marketing Manager</d:ContactTitle>
+        <d:Address>Sierras de Granada 9993</d:Address>
+        <d:City>México D.F.</d:City>
+        <d:Region m:null="true" />
+        <d:PostalCode>05022</d:PostalCode>
+        <d:Country>Mexico</d:Country>
+        <d:Phone>(5) 555-3392</d:Phone>
+        <d:Fax>(5) 555-7293</d:Fax>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://services.odata.org/Northwind/Northwind.svc/Customers('CHOPS')</id>
+    <category term="NorthwindModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="Customer" href="Customers('CHOPS')" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('CHOPS')/Orders" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('CHOPS')/CustomerDemographics" />
+    <title />
+    <updated>2014-03-28T10:16:42Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:CustomerID>CHOPS</d:CustomerID>
+        <d:CompanyName>Chop-suey Chinese</d:CompanyName>
+        <d:ContactName>Yang Wang</d:ContactName>
+        <d:ContactTitle>Owner</d:ContactTitle>
+        <d:Address>Hauptstr. 29</d:Address>
+        <d:City>Bern</d:City>
+        <d:Region m:null="true" />
+        <d:PostalCode>3012</d:PostalCode>
+        <d:Country>Switzerland</d:Country>
+        <d:Phone>0452-076545</d:Phone>
+        <d:Fax m:null="true" />
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://services.odata.org/Northwind/Northwind.svc/Customers('COMMI')</id>
+    <category term="NorthwindModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="Customer" href="Customers('COMMI')" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('COMMI')/Orders" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('COMMI')/CustomerDemographics" />
+    <title />
+    <updated>2014-03-28T10:16:42Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:CustomerID>COMMI</d:CustomerID>
+        <d:CompanyName>Comércio Mineiro</d:CompanyName>
+        <d:ContactName>Pedro Afonso</d:ContactName>
+        <d:ContactTitle>Sales Associate</d:ContactTitle>
+        <d:Address>Av. dos Lusíadas, 23</d:Address>
+        <d:City>Sao Paulo</d:City>
+        <d:Region>SP</d:Region>
+        <d:PostalCode>05432-043</d:PostalCode>
+        <d:Country>Brazil</d:Country>
+        <d:Phone>(11) 555-7647</d:Phone>
+        <d:Fax m:null="true" />
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://services.odata.org/Northwind/Northwind.svc/Customers('CONSH')</id>
+    <category term="NorthwindModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="Customer" href="Customers('CONSH')" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('CONSH')/Orders" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('CONSH')/CustomerDemographics" />
+    <title />
+    <updated>2014-03-28T10:16:42Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:CustomerID>CONSH</d:CustomerID>
+        <d:CompanyName>Consolidated Holdings</d:CompanyName>
+        <d:ContactName>Elizabeth Brown</d:ContactName>
+        <d:ContactTitle>Sales Representative</d:ContactTitle>
+        <d:Address>Berkeley Gardens 12  Brewery</d:Address>
+        <d:City>London</d:City>
+        <d:Region m:null="true" />
+        <d:PostalCode>WX1 6LT</d:PostalCode>
+        <d:Country>UK</d:Country>
+        <d:Phone>(171) 555-2282</d:Phone>
+        <d:Fax>(171) 555-9199</d:Fax>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://services.odata.org/Northwind/Northwind.svc/Customers('DRACD')</id>
+    <category term="NorthwindModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="Customer" href="Customers('DRACD')" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('DRACD')/Orders" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('DRACD')/CustomerDemographics" />
+    <title />
+    <updated>2014-03-28T10:16:42Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:CustomerID>DRACD</d:CustomerID>
+        <d:CompanyName>Drachenblut Delikatessen</d:CompanyName>
+        <d:ContactName>Sven Ottlieb</d:ContactName>
+        <d:ContactTitle>Order Administrator</d:ContactTitle>
+        <d:Address>Walserweg 21</d:Address>
+        <d:City>Aachen</d:City>
+        <d:Region m:null="true" />
+        <d:PostalCode>52066</d:PostalCode>
+        <d:Country>Germany</d:Country>
+        <d:Phone>0241-039123</d:Phone>
+        <d:Fax>0241-059428</d:Fax>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://services.odata.org/Northwind/Northwind.svc/Customers('DUMON')</id>
+    <category term="NorthwindModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="Customer" href="Customers('DUMON')" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('DUMON')/Orders" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('DUMON')/CustomerDemographics" />
+    <title />
+    <updated>2014-03-28T10:16:42Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:CustomerID>DUMON</d:CustomerID>
+        <d:CompanyName>Du monde entier</d:CompanyName>
+        <d:ContactName>Janine Labrune</d:ContactName>
+        <d:ContactTitle>Owner</d:ContactTitle>
+        <d:Address>67, rue des Cinquante Otages</d:Address>
+        <d:City>Nantes</d:City>
+        <d:Region m:null="true" />
+        <d:PostalCode>44000</d:PostalCode>
+        <d:Country>France</d:Country>
+        <d:Phone>40.67.88.88</d:Phone>
+        <d:Fax>40.67.89.89</d:Fax>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://services.odata.org/Northwind/Northwind.svc/Customers('EASTC')</id>
+    <category term="NorthwindModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="Customer" href="Customers('EASTC')" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('EASTC')/Orders" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('EASTC')/CustomerDemographics" />
+    <title />
+    <updated>2014-03-28T10:16:42Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:CustomerID>EASTC</d:CustomerID>
+        <d:CompanyName>Eastern Connection</d:CompanyName>
+        <d:ContactName>Ann Devon</d:ContactName>
+        <d:ContactTitle>Sales Agent</d:ContactTitle>
+        <d:Address>35 King George</d:Address>
+        <d:City>London</d:City>
+        <d:Region m:null="true" />
+        <d:PostalCode>WX3 6FW</d:PostalCode>
+        <d:Country>UK</d:Country>
+        <d:Phone>(171) 555-0297</d:Phone>
+        <d:Fax>(171) 555-3373</d:Fax>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://services.odata.org/Northwind/Northwind.svc/Customers('ERNSH')</id>
+    <category term="NorthwindModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="Customer" href="Customers('ERNSH')" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('ERNSH')/Orders" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('ERNSH')/CustomerDemographics" />
+    <title />
+    <updated>2014-03-28T10:16:42Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:CustomerID>ERNSH</d:CustomerID>
+        <d:CompanyName>Ernst Handel</d:CompanyName>
+        <d:ContactName>Roland Mendel</d:ContactName>
+        <d:ContactTitle>Sales Manager</d:ContactTitle>
+        <d:Address>Kirchgasse 6</d:Address>
+        <d:City>Graz</d:City>
+        <d:Region m:null="true" />
+        <d:PostalCode>8010</d:PostalCode>
+        <d:Country>Austria</d:Country>
+        <d:Phone>7675-3425</d:Phone>
+        <d:Fax>7675-3426</d:Fax>
+      </m:properties>
+    </content>
+  </entry>
+</feed>

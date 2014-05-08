@@ -111,9 +111,9 @@ namespace UserMS.Views.AfterSale
             Finished.ParamName = "Finished";
             Finished.ParamValues = false;
             rpp.ParamList.Add(Finished);
-            
 
-            if (!string.IsNullOrEmpty(this.hall.Tag.ToString()))
+
+            if (!string.IsNullOrEmpty(this.hall.Tag + ""))
             {
                 API.ReportSqlParams_String hall = new API.ReportSqlParams_String();
                 hall.ParamName = "HallID";

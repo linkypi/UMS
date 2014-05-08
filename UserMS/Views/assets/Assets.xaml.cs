@@ -32,6 +32,11 @@ namespace UserMS
         private List<UserMS.Model.UserOpModel> UserOpList = new List<UserOpModel>();
 	    private string UseUserID;
 	    private string RespUserID;
+	    private API.Sys_DeptInfo dept1;
+        private API.Sys_DeptInfo dept2;
+        private API.Sys_DeptInfo dept3;
+
+
 		public Assets()
 		{
 			this.InitializeComponent();
@@ -281,6 +286,21 @@ namespace UserMS
                             {
                                 this.RespUser.TextBox.SearchText = query2.First().RealName;
                             }
+                            var queryd1 = Store.DeptInfo.Where(p => p.DtpID == a.AssUseInfo.Dept1);
+                            var queryd2 = Store.DeptInfo.Where(p => p.DtpID == a.AssUseInfo.Dept2);
+                            var queryd3 = Store.DeptInfo.Where(p => p.DtpID == a.AssUseInfo.Dept3);
+                            if (queryd1.Any())
+                            {
+                                this.Dept1.DataContext = queryd1.First();
+                            }
+                            if (queryd2.Any())
+                            {
+                                this.Dept2.DataContext = queryd2.First();
+                            }
+                            if (queryd3.Any())
+                            {
+                                this.Dept3.DataContext = queryd3.First();
+                            }
 
                         }
                         else
@@ -292,6 +312,10 @@ namespace UserMS
                             newinfo.HallID = this.Hall.HallID;
                             this.MainPanel.DataContext = newinfo;
                             this.MainPanel.IsEnabled = true;
+                            this.Dept1.DataContext = null;
+                            this.Dept2.DataContext = null;
+                            this.Dept3.DataContext = null;
+
                         }
                     }
                     else
@@ -323,5 +347,67 @@ namespace UserMS
 
         }
 
+	    private void Dept1_OnClick(object sender, RoutedEventArgs e)
+	    {
+            var m = this.MainPanel.DataContext as API.Asset_UseInfo;
+            if (m == null) return;
+            
+	        SingleSelecter w = new SingleSelecter(null, Store.DeptInfo, null, "", new string[] {"DptName"}, new string[] {"名称"});
+	        w.Closed += (o, args) =>
+	        {
+                SingleSelecter s=o as SingleSelecter;
+	            if (s == null) return;
+	            if (s.DialogResult == true)
+	            {
+	                API.Sys_DeptInfo selected = s.SelectedItem as Sys_DeptInfo;
+	                if (selected == null) return;
+	                this.Dept1.DataContext = selected;
+	                m.Dept1 = selected.DtpID;
+	            }
+
+	        };
+	        w.ShowDialog();
+	    }
+        private void Dept2_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            var m = this.MainPanel.DataContext as API.Asset_UseInfo;
+            if (m == null) return;
+            SingleSelecter w = new SingleSelecter(null, Store.DeptInfo, null, "", new string[] { "DptName" }, new string[] { "名称" });
+            w.Closed += (o, args) =>
+            {
+                SingleSelecter s = o as SingleSelecter;
+                if (s == null) return;
+                if (s.DialogResult == true)
+                {
+                    API.Sys_DeptInfo selected = s.SelectedItem as Sys_DeptInfo;
+                    if (selected == null) return;
+                    this.Dept2.DataContext = selected;
+                    m.Dept2 = selected.DtpID;
+                }
+
+            };
+            w.ShowDialog();
+        }
+        private void Dept3_OnClick(object sender, RoutedEventArgs e)
+        {
+            var m = this.MainPanel.DataContext as API.Asset_UseInfo;
+            if (m == null) return;
+            SingleSelecter w = new SingleSelecter(null, Store.DeptInfo, null, "", new string[] { "DptName" }, new string[] { "名称" });
+            w.Closed += (o, args) =>
+            {
+                SingleSelecter s = o as SingleSelecter;
+                if (s == null) return;
+                if (s.DialogResult == true)
+                {
+                    API.Sys_DeptInfo selected = s.SelectedItem as Sys_DeptInfo;
+                    if (selected == null) return;
+                    this.Dept3.DataContext = selected;
+                    m.Dept3 = selected.DtpID;
+                }
+
+            };
+            w.ShowDialog();
+        }
 	}
 }

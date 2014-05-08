@@ -11,7 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls;
 using UserMS.Common;
+using UserMS.Views.StockMS.Allot;
 
 namespace UserMS.Views.AfterSale
 {
@@ -76,18 +78,23 @@ namespace UserMS.Views.AfterSale
             HasRepaired.ParamValues = false;
             rpp.ParamList.Add(HasRepaired);
 
+            API.ReportSqlParams_String Repairer = new API.ReportSqlParams_String();
+            Repairer.ParamName = "Repairer";
+            Repairer.ParamValues = Store.LoginUserInfo.UserID;
+            rpp.ParamList.Add(Repairer);
+
             API.ReportSqlParams_Bool IsLack = new API.ReportSqlParams_Bool();
             IsLack.ParamName = "IsLack";  //缺料
             IsLack.ParamValues = true;
             rpp.ParamList.Add(IsLack);
 
-            if (!string.IsNullOrEmpty(this.hall.Tag.ToString()))
-            {
-                API.ReportSqlParams_String hall = new API.ReportSqlParams_String();
-                hall.ParamName = "HallID";
-                hall.ParamValues = this.hall.Tag.ToString();
-                rpp.ParamList.Add(hall);
-            }
+            //if (!string.IsNullOrEmpty(this.hall.Tag+""))
+            //{
+            //    API.ReportSqlParams_String hall = new API.ReportSqlParams_String();
+            //    hall.ParamName = "HallID";
+            //    hall.ParamValues = this.hall.Tag.ToString();
+            //    rpp.ParamList.Add(hall);
+            //}
 
             //if (!string.IsNullOrEmpty(this.sysdate.DateTimeText.ToString()))
             //{
@@ -136,7 +143,7 @@ namespace UserMS.Views.AfterSale
                 rpp.ParamList.Add(bt);
             }
 
-            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 325, new object[] { rpp }, new EventHandler<API.MainCompletedEventArgs>(SearchCompleted));
+            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 361, new object[] { rpp }, new EventHandler<API.MainCompletedEventArgs>(SearchCompleted));
 
         }
 
@@ -167,7 +174,7 @@ namespace UserMS.Views.AfterSale
             if (e.Result.ReturnValue)
             {
                 API.ReportPagingParam pageParam = e.Result.Obj as API.ReportPagingParam;
-
+                if (pageParam == null) { return; }
                 List<API.View_ASPRepairInfo> list = pageParam.Obj as List<API.View_ASPRepairInfo>;
                 if (list == null) { return; }
                 models.Clear();
@@ -240,6 +247,48 @@ namespace UserMS.Views.AfterSale
         }
 
         #endregion
+
+        private void out_Click(object sender, Telerik.Windows.RadRoutedEventArgs e)
+        {
+            var rols = Store.RoleInfo.Where(u => u.RoleID == Store.LoginUserInfo.RoleID);
+
+
+            if (rols.Count() == 0)
+            {
+                MessageBox.Show("您当前无权执行调拨操作！");
+                return;
+            }
+            var menus = rols.First().Sys_Role_MenuInfo.Where(m => m.MenuID == 11);
+
+            if (menus.Count() == 0)
+            {
+                MessageBox.Show("您当前无权执行调拨操作！");
+                return;
+            }
+            if(searchGrid.SelectedItems.Count==0)
+            {
+                MessageBox.Show("请选择需调拨的单号！");return;
+            }
+
+            List<int> list = new List<int>();
+            string hallid = ( searchGrid.SelectedItem as API.View_ASPRepairInfo).HallID;
+            foreach (var item in searchGrid.SelectedItems)
+            {
+                API.View_ASPRepairInfo model = searchGrid.SelectedItem as API.View_ASPRepairInfo;
+                if (!model.HallID.Equals(hallid))
+                {
+                    MessageBox.Show("接收仓库为同一个仓库才可以执行批量生存调拨单！");
+                    return;
+                }
+                list.Add(model.ID);
+            }
+            
+            Main_allot alloc = new Main_allot(list,hallid);
+            this.Title = "新增调拨单";
+            // NavigationService.GetNavigationService(this).Navigate(new Uri("Page2.xaml", UriKind.Relative));
+
+            this.NavigationService.Navigate(alloc);
+        }
 
     
     }

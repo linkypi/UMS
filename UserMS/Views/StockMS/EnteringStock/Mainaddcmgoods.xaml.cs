@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
+using Excel;
 using Telerik.Windows.Controls;
 using UserMS.Common;
+using UserMS.Report.Print;
 
 namespace UserMS.Views.StockMS.EnteringStock
 {
@@ -135,10 +139,11 @@ namespace UserMS.Views.StockMS.EnteringStock
         /// <param name="e"></param>
         private void Sumbit_Click(object sender, RoutedEventArgs e)
         {
+            inOrderID.Text = "系统自动生成";
             List<API.SeleterModel> vmodels = this.DGPro.ItemsSource as List<API.SeleterModel>;
             if (this.HallID.TextBox.SearchText == "")
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"未添加仓库");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"未添加仓库");
                 return;
             }
 
@@ -152,7 +157,7 @@ namespace UserMS.Views.StockMS.EnteringStock
             inorder.UserID = Store.LoginUserInfo.UserID;
             if (String.IsNullOrEmpty(inDate.SelectedValue.ToString()))
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"请填写时间");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"请填写时间");
                 return;
             }
             inorder.InDate = inDate.SelectedValue;
@@ -160,7 +165,7 @@ namespace UserMS.Views.StockMS.EnteringStock
 
             if (vmodels == null || vmodels.Count() == 0)
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"请添加商品");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"请添加商品");
                 return;
             }
 
@@ -172,7 +177,7 @@ namespace UserMS.Views.StockMS.EnteringStock
                 inOdList.ProID = vm.ProID;
                 //if (vm.Price == 0)
                 //{
-                //    MessageBox.Show(System.Windows.Application.Current.MainWindow,"请添加成本价");
+                //    System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"请添加成本价");
                 //    return;
                 //}
                 try
@@ -180,13 +185,13 @@ namespace UserMS.Views.StockMS.EnteringStock
                     inOdList.Price = vm.Price;                
                     if (inOdList.Price==0)
                     {
-                        if (MessageBox.Show(System.Windows.Application.Current.MainWindow,vm.ProName+"成本价确定为0？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                        if (System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,vm.ProName+"成本价确定为0？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
                             return;
                     }
                 }
                 catch
                 {
-                    MessageBox.Show(System.Windows.Application.Current.MainWindow,"输入值无效！");
+                    System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"输入值无效！");
                     return;
                 }
                 try
@@ -194,13 +199,13 @@ namespace UserMS.Views.StockMS.EnteringStock
                     inOdList.RetailPrice = vm.RetailPrice;
                     if (inOdList.RetailPrice == 0)
                     {
-                        if (MessageBox.Show(System.Windows.Application.Current.MainWindow, vm.ProName + "零售价确定为0？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                        if (System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow, vm.ProName + "零售价确定为0？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
                             return;
                     }
                 }
                 catch
                 {
-                    MessageBox.Show(System.Windows.Application.Current.MainWindow, "输入值无效！");
+                    System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow, "输入值无效！");
                     return;
                 }
 
@@ -208,7 +213,7 @@ namespace UserMS.Views.StockMS.EnteringStock
                     inOdList.Note = vm.Note;
                 if (vm.Count == 0)
                 {
-                    MessageBox.Show(System.Windows.Application.Current.MainWindow,"无串码商品请添加数量");
+                    System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"无串码商品请添加数量");
                     return;
                 }
          
@@ -262,7 +267,7 @@ namespace UserMS.Views.StockMS.EnteringStock
                     Logger.Log("入库操作失败！");
                     if (eb.Message != null)
                     {
-                        MessageBox.Show(System.Windows.Application.Current.MainWindow,eb.Message);
+                        System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,eb.Message);
                     }
                     if (eb.Obj != null)
                     {
@@ -300,12 +305,22 @@ namespace UserMS.Views.StockMS.EnteringStock
                     ///清空数据
                     Clear();
                     Logger.Log("入库操作成功！");
-                    MessageBox.Show(System.Windows.Application.Current.MainWindow,eb.Message);
+             
+                    tbNote.Text = "入库单号为：" + (eb.Obj == null ? "" : eb.Obj.ToString());
+                    //System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,eb.Message);
+                    if (System.Windows.MessageBox.Show("保存成功，是否打印？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                    {
+                        return;
+                    }
+                    PrintInOrder print = new PrintInOrder(mcea.Result.ArrList[0] as List<API.Report_InlistInfoWithIMEI>);
+
+                    print.SrcPage = "/Views/StockMS/EnteringStock/Mainaddcmgoods.xaml?MenuID=7";
+                    this.NavigationService.Navigate(print);
                 }
             }
             else
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"服务器出现异常!");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"服务器出现异常!");
             }
         }
 
@@ -343,7 +358,7 @@ namespace UserMS.Views.StockMS.EnteringStock
 
             if (Item.RetailPrice < 0)
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow, "零售价不能为负数");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow, "零售价不能为负数");
                 Item.RetailPrice = 0;
                 return;
             }
@@ -355,13 +370,13 @@ namespace UserMS.Views.StockMS.EnteringStock
             }
             catch
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow, "零售价请输入的正确数值！");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow, "零售价请输入的正确数值！");
                 Item.RetailPrice = 0;
             }
 
             if (Item.Price < 0)
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"成本价不能为负数");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"成本价不能为负数");
                 Item.Price = 0;
                 return;
             }
@@ -373,12 +388,12 @@ namespace UserMS.Views.StockMS.EnteringStock
             }
             catch
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"请成本价请输入的正确数值！");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"请成本价请输入的正确数值！");
                 Item.Price = 0;
             }
             if (Item.Count <0 )
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"商品数量不能为负数");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"商品数量不能为负数");
                 Item.Count = 0;
                 return;
             }
@@ -390,7 +405,7 @@ namespace UserMS.Views.StockMS.EnteringStock
                 }
                 catch
                 {
-                    MessageBox.Show(System.Windows.Application.Current.MainWindow,"请输入正确数值！");
+                    System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"请输入正确数值！");
 
                 }
             }
@@ -402,7 +417,7 @@ namespace UserMS.Views.StockMS.EnteringStock
             }
             catch
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"请输入正确的数值！");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"请输入正确的数值！");
                 Item.Count = 0;
             }
         }
@@ -421,7 +436,7 @@ namespace UserMS.Views.StockMS.EnteringStock
             }
             catch
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"获取菜单ID失败！");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"获取菜单ID失败！");
             }
         }
         #endregion
@@ -431,7 +446,7 @@ namespace UserMS.Views.StockMS.EnteringStock
         {
             AddIMEI();
         }
-        private void txt_iMEI_KeyUp_1(object sender, KeyEventArgs e)
+        private void txt_iMEI_KeyUp_1(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
@@ -442,18 +457,18 @@ namespace UserMS.Views.StockMS.EnteringStock
         {
             if (DGPro.SelectedItems.Count() != 1)
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"请选择一个商品！");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"请选择一个商品！");
                 return;
             }
             API.SeleterModel pinfo = DGPro.SelectedItem as API.SeleterModel;
             if (pinfo.IsNeedIMEI != true)
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"无串码商品，请填写数量");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"无串码商品，请填写数量");
                 return;
             }
             if (String.IsNullOrEmpty(this.txt_iMEI.Text))
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"商品串码不能为空");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"商品串码不能为空");
                 return;
             }
 
@@ -485,7 +500,7 @@ namespace UserMS.Views.StockMS.EnteringStock
             API.SeleterModel pinfo = DGPro.SelectedItem as API.SeleterModel;
             if (PormptPage.IsMax(imei, 12) == false)
             {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"字符串不能超过24位！");
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"字符串不能超过24位！");
                 return true;
             }
             var query = (from b in pinfo.IsIMEI
@@ -521,7 +536,7 @@ namespace UserMS.Views.StockMS.EnteringStock
         #region 删除串码
         private void DeleteIMEI_Click_1(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
-            if (MessageBox.Show(System.Windows.Application.Current.MainWindow,"确定删除串码？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+            if (System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"确定删除串码？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
                 return;
             List<API.SelecterIMEI> IMEIList = this.DGIMEI.ItemsSource as List<API.SelecterIMEI>;
             API.SeleterModel proInfo = this.DGPro.SelectedItem as API.SeleterModel;
@@ -543,7 +558,7 @@ namespace UserMS.Views.StockMS.EnteringStock
             {
                 if (DGPro.SelectedItems == null)
                 {
-                    MessageBox.Show(System.Windows.Application.Current.MainWindow,"未选中任何项！");
+                    System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow,"未选中任何项！");
                     return;
                 }
                 List<API.SeleterModel> ProList = this.DGPro.ItemsSource as List<API.SeleterModel>;
@@ -555,6 +570,143 @@ namespace UserMS.Views.StockMS.EnteringStock
             }
         }
         #endregion 
+
+        #region 导入 
+
+        /// <summary>
+        /// 格式： 类别 | 品牌 | 型号 | 数量 | 成本 | 零售价 | 串码(使用逗号分割) 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void import_Click(object sender, Telerik.Windows.RadRoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.Filter = "Excel 文件 (*.xls, *.xlsx)|*.xlsx;*.xls";
+            Stream myStream;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = openFileDialog.OpenFile()) != null)
+                    {
+                        using (myStream)
+                        {
+                            IExcelDataReader excelReader = null;
+                            if (System.IO.Path.GetExtension(openFileDialog.SafeFileName) == ".xls")
+                            {
+                                excelReader = ExcelReaderFactory.CreateBinaryReader(myStream);
+                            }
+                            else if (System.IO.Path.GetExtension(openFileDialog.SafeFileName) == ".xlsx")
+                            {
+                                excelReader = ExcelReaderFactory.CreateOpenXmlReader(myStream);
+                            }
+                            else
+                            {
+                                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow, "导入失败");
+                                return;
+                            }
+                            excelReader.IsFirstRowAsColumnNames = true;
+
+                            List<API.SeleterModel> list = new List<API.SeleterModel>();
+                            try
+                            {
+                                #region  读取数据
+                              
+                                while (excelReader.Read())
+                                {
+                                    API.SeleterModel sm = new API.SeleterModel();
+                                    sm.ProClassName = excelReader.GetString(0);
+                                    sm.ProTypeName = excelReader.GetString(1);
+                                    sm.ProName = excelReader.GetString(2);
+                                    sm.Count = Convert.ToInt32(excelReader.GetString(3));
+                                    sm.Price = Convert.ToDecimal(excelReader.GetString(4));
+                                    sm.RetailPrice = Convert.ToDecimal(excelReader.GetString(5));
+
+                                   var cla = Store.ProClassInfo.Where(c => c.ClassName == sm.ProClassName);
+                                    if (cla.Count() == 0) {
+                                        System.Windows.MessageBox.Show("商品类别 "+sm.ProClassName  +" 不存在！");
+                                        return;
+                                    }
+                                    sm.ClassID = cla.First().ClassID;
+                                    var tp = Store.ProTypeInfo.Where(c => c.TypeName == sm.ProTypeName);
+                                    if (tp.Count() == 0)
+                                    {
+                                        System.Windows.MessageBox.Show("商品品牌 " + sm.ProTypeName + " 不存在！");
+                                        return;
+                                    }
+                                    sm.TypeID = tp.First().TypeID;
+                                    var p = Store.ProInfo.Where(c => c.ProName == sm.ProName);
+                                    if (p.Count() == 0)
+                                    {
+                                        System.Windows.MessageBox.Show("商品型号 " + sm.ProName + " 不存在！");
+                                        return;
+                                    }
+                                    sm.ProID = p.First().ProID;
+                                    sm.IsNeedIMEI = p.First().NeedIMEI;
+                                    sm.ProFormat = p.First().ProFormat;
+                                 
+
+                                    #region 获取串码
+
+                                    sm.IMEIS = excelReader.GetString(6);
+                                    //sm.Note = excelReader.GetString(7);
+                                    if (sm.IMEIS != null)
+                                    {
+                                        sm.IsIMEI = new List<API.SelecterIMEI>();
+                                        List<string> imeis = sm.IMEIS.Split(',','，').ToList();
+                                        if (imeis.Count > 0)
+                                        {
+                                            sm.Count = 0;
+                                            foreach (var item in imeis)
+                                            {
+                                                if (string.IsNullOrEmpty(item) == false)
+                                                {
+                                                    if (sm.IsIMEI.Select(x=>x.IMEI).Contains(item))
+                                                    {
+                                                        System.Windows.MessageBox.Show("商品 "+sm.ProName+"串码重复："+item);
+                                                        return;
+                                                    }
+                                                    
+                                                    API.SelecterIMEI a = new API.SelecterIMEI();
+
+                                                    a.IMEI = item;
+                                                    sm.IsIMEI.Add(a);
+                                                    sm.Count++;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    #endregion 
+
+                                    list.Add(sm);
+                                }
+                                #endregion
+
+                                excelReader.Close();
+                                myStream.Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Windows.MessageBox.Show("Excel格式有误！");
+                                return;
+                            }
+
+                            this.DGPro.ItemsSource = list;
+                            DGPro.Rebind();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow, "请先关闭Excel再导入！");
+
+                }
+            }
+        }
+
+        #endregion 
+
     }
 
 }

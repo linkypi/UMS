@@ -1,0 +1,16 @@
+﻿<telerik:RadContextMenu xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="UserMS.MyControl.MyContextMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              
+    mc:Ignorable="d" 
+                 
+    d:DesignHeight="300" d:DesignWidth="400">
+    <telerik:RadMenuItem Header="关闭当前页" x:Name="CloseCurrent"/>
+    <telerik:RadMenuItem Header="关闭其他页" x:Name="CloseOthers"/>
+    <telerik:RadMenuItem Header="关闭所有" x:Name="CloseAll"/>
+  
+
+
+</telerik:RadContextMenu>

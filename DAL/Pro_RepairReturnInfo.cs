@@ -79,7 +79,8 @@ namespace DAL
                             return new Model.WebReturn() { ReturnValue = false, Message = "返库单已接收，接收失败！" };
                         }
                         model.First().Receiver = user.UserID;
-                        model.First().RecvTime = dt;
+                        model.First().RecvTime = DateTime.Now;
+                        lqh.Umsdb.SubmitChanges();
 
                         if (query.Count() == 0|| model.Count()==0)
                         {
@@ -99,6 +100,16 @@ namespace DAL
 
                         #endregion 
 
+
+                        var hall = from a in lqh.Umsdb.Pro_HallInfo
+                                   where a.HallID == hallid
+                                   select a;
+                        var hallinfo = hall.First();
+                        if (hallinfo == null)
+                        {
+                            return new WebReturn() {ReturnValue=false,Message="未能找到指定仓库，接收失败！" };
+                        }
+                        DateTime sdate = new DateTime(2000, 1, 1);
                         foreach (var rinfo in query)
                         {
                             var quec = from c in lqh.Umsdb.Pro_ClassInfo
@@ -110,30 +121,61 @@ namespace DAL
                             classids.Add(quec.First().ClassID.ToString());
                            
                             #region 若串码有改变则更新串码
-
+                            DateTime tdate = DateTime.Now;
+                           
                             if (!string.IsNullOrEmpty(rinfo.NEW_IMEI))
                             {
                                 var query1 = from b in lqh.Umsdb.GetTable<Model.Pro_IMEI>()
                                              where b.IMEI == rinfo.OLD_IMEI && b.InListID == rinfo.InListID
                                              && b.ProID == rinfo.ProID && b.HallID == hallid
                                              select b;
-                                List<Model.Pro_IMEI> oldimei = query1.ToList(); 
-                               
-                                if (oldimei.Count() == 0)
+                                if (query1.Count() == 0)
                                 {
-                                    return new Model.WebReturn() { ReturnValue =false,Message="未能找到指定串码数据，接收失败！"};
+                                    return new Model.WebReturn() { ReturnValue = false, Message = "未能找到指定串码数据，接收失败！" };
                                 }
-                                if (oldimei[0].RepairID == null)
+
+                                Model.Pro_IMEI oldimei = query1.First();
+
+                                #region  库龄操作
+
+                                if (oldimei.RepairID == null)
                                 {
                                     return new Model.WebReturn() { ReturnValue = false, Message = "串码"+query1.First().IMEI+"已返库，接收失败！" };
                                 }
-                                //原串码直接删除  更改于2013.6.15（原来只需将原串码的NEW_IMEI_ID加标记）
-                                //标记已删除
-                                Model.Pro_IMEI_Deleted del = new Pro_IMEI_Deleted();
-                                del.IMEI = oldimei[0].IMEI;
-                                lqh.Umsdb.Pro_IMEI_Deleted.InsertOnSubmit(del);
 
-                                lqh.Umsdb.Pro_IMEI.DeleteOnSubmit(oldimei[0]);
+                                if (oldimei.OutRecDate != null)
+                                {
+                                    TimeSpan tspan = (TimeSpan)(tdate - oldimei.OutRecDate);
+                                    if (oldimei.AreaAgeDelta == null)
+                                    {
+                                        oldimei.AreaAgeDelta = new DateTime(2000, 1, 1);
+                                    }
+                                    if (oldimei.AreaAgeDelta< sdate)
+                                    {
+                                        oldimei.AreaAgeDelta =sdate;
+                                    }
+                                    oldimei.AreaAgeDelta = ((DateTime)(oldimei.AreaAgeDelta)).Add(tspan);
+                                
+                                }
+
+                                if (hallinfo.IsAreaAge == true)
+                                {
+                                    oldimei.OutRecDate = null;
+                                }
+                                else
+                                {
+                                    oldimei.OutRecDate = DateTime.Now;
+                                }
+
+
+                                if (hallinfo.IsAreaAge == true)
+                                {
+                                    if (oldimei.AreaAgeInitDate == null)
+                                    {
+                                        oldimei.AreaAgeInitDate = DateTime.Now;
+                                    }
+                                }
+                                #endregion 
 
                                 //验证新串码是否已存在
                                 var imei = from a in lqh.Umsdb.Pro_IMEI
@@ -147,6 +189,9 @@ namespace DAL
                                 Model.Pro_IMEI newIMEI = new Model.Pro_IMEI();
                                 newIMEI.IMEI = rinfo.NEW_IMEI;
                                 newIMEI.HallID = hallid;
+                                newIMEI.OutRecDate = oldimei.OutRecDate;
+                                newIMEI.AreaAgeDelta = oldimei.AreaAgeDelta;
+                                newIMEI.AreaAgeInitDate = oldimei.AreaAgeInitDate;
                                 newIMEI.InListID = rinfo.InListID;
                                 newIMEI.ProID = rinfo.ProID;
                                 lqh.Umsdb.Pro_IMEI.InsertOnSubmit(newIMEI);
@@ -166,6 +211,13 @@ namespace DAL
                                 {
                                     store.First().ProCount += 1;
                                 }
+
+                                //原串码直接删除  更改于2013.6.15（原来只需将原串码的NEW_IMEI_ID加标记）
+                                //标记已删除
+                                Model.Pro_IMEI_Deleted del = new Pro_IMEI_Deleted();
+                                del.IMEI = oldimei.IMEI;
+                                lqh.Umsdb.Pro_IMEI_Deleted.InsertOnSubmit(del);
+                                lqh.Umsdb.Pro_IMEI.DeleteOnSubmit(oldimei);
                                 lqh.Umsdb.SubmitChanges();
                                 continue;
                             }
@@ -179,8 +231,54 @@ namespace DAL
                                              where b.IMEI == rinfo.OLD_IMEI && b.InListID == rinfo.InListID
                                              && b.ProID == rinfo.ProID && b.HallID == hallid
                                              select b;
-                                query1.First().RepairID = null;
-                                query1.First().State = 0;
+                                if (query1.Count() == 0)
+                                {
+                                    return new WebReturn() {ReturnValue=false,Message="未能找到指定旧串码，接收失败！" };
+                                }
+                                Model.Pro_IMEI pimei = query1.First();
+                             
+
+                                #region  库龄操作
+
+                                if (pimei.RepairID == null)
+                                {
+                                    return new Model.WebReturn() { ReturnValue = false, Message = "串码" + query1.First().IMEI + "已返库，接收失败！" };
+                                }
+                                pimei.RepairID = null;
+                                pimei.State = 0;
+                                if (pimei.OutRecDate != null)
+                                {
+                                    TimeSpan tspan = (TimeSpan)(tdate - pimei.OutRecDate);
+                                    if (pimei.AreaAgeDelta == null)
+                                    {
+                                        pimei.AreaAgeDelta = new DateTime(2000, 1, 1);
+                                    }
+                                    if (pimei.AreaAgeDelta < sdate)
+                                    {
+                                        pimei.AreaAgeDelta = sdate;
+                                    }
+                                    pimei.AreaAgeDelta = ((DateTime)(pimei.AreaAgeDelta)).Add(tspan);
+                                
+                                }
+
+                                if (hallinfo.IsAreaAge == true)
+                                {
+                                    pimei.OutRecDate = null;
+                                }
+                                else
+                                {
+                                    pimei.OutRecDate = DateTime.Now;
+                                }
+
+
+                                if (hallinfo.IsAreaAge == true)
+                                {
+                                    if (pimei.AreaAgeInitDate == null)
+                                    {
+                                        pimei.AreaAgeInitDate = DateTime.Now;
+                                    }
+                                }
+                                #endregion 
                             }
 
                             #endregion
@@ -195,7 +293,7 @@ namespace DAL
                                 return new Model.WebReturn() { ReturnValue=false,Message="库存不足，接收失败！"};
                             }
                             query3.First().ProCount += decimal.Parse(rinfo.ProCount.ToString());
-
+                            lqh.Umsdb.SubmitChanges();
                             #endregion
                         }
 
@@ -288,6 +386,7 @@ namespace DAL
                             return new WebReturn() { ReturnValue=false,Message="部分返库单不存在，接收失败！"};
                         }
                         var models = queryList.ToList();
+                        DateTime tdate = DateTime.Now;
                         foreach (var model in models)
                         {
                             //对每一张单执行接收
@@ -314,6 +413,14 @@ namespace DAL
                             var query = from list in lqh.Umsdb.Pro_RepairReturnListInfo
                                         where list.RepairReturnID == model.ID
                                         select list;
+                            var hall = from a in lqh.Umsdb.Pro_HallInfo
+                                       where a.HallID == model.HallID
+                                       select a;
+                            var hallinfo = hall.First();
+                            if (hallinfo == null)
+                            {
+                                return new WebReturn() { ReturnValue = false, Message = "未能找到指定仓库，接收失败！" };
+                            }
 
                             foreach (var rinfo in query)
                             {
@@ -326,6 +433,7 @@ namespace DAL
                                 classids.Add(quec.First().ClassID.ToString());
 
                                 #region 若串码有改变则更新串码
+                                DateTime sdate = DateTime.Now;
 
                                 if (!string.IsNullOrEmpty(rinfo.NEW_IMEI))
                                 {
@@ -333,19 +441,55 @@ namespace DAL
                                                  where b.IMEI == rinfo.OLD_IMEI && b.InListID == rinfo.InListID
                                                  && b.ProID == rinfo.ProID && b.HallID == model.HallID
                                                  select b;
-                                    List<Model.Pro_IMEI> oldimei = query1.ToList();
-                                    if (oldimei.Count() == 0)
+                                    if (query1.Count() == 0)
                                     {
                                         return new Model.WebReturn() { ReturnValue = false, Message = "未能找到指定串码数据，接收失败！" };
                                     }
-                                    if (oldimei[0].RepairID == null)
+                                   // List<Model.Pro_IMEI> oldimei = query1.ToList();
+                                    Model.Pro_IMEI oldimei = query1.First();
+                                 
+                                    if (oldimei.RepairID == null)
                                     {
                                         return new Model.WebReturn() { ReturnValue = false, Message = "串码" + query1.First().IMEI + "已返库，接收失败！" };
                                     }
-                                    //原串码直接删除  更改于2013.6.15（原来只需将原串码的NEW_IMEI_ID加标记）
-                                    lqh.Umsdb.Pro_IMEI.DeleteOnSubmit(oldimei[0]);
+                                  
 
-                                    //验证新串码是否已存在
+                                    #region  库龄操作
+
+                                    if (oldimei.OutRecDate != null)
+                                    {
+                                        TimeSpan tspan = (TimeSpan)(tdate - oldimei.OutRecDate);
+                                        if (oldimei.AreaAgeDelta == null)
+                                        {
+                                            oldimei.AreaAgeDelta = new DateTime(2000, 1, 1);
+                                        }
+                                        if (oldimei.AreaAgeDelta < sdate)
+                                        {
+                                            oldimei.AreaAgeDelta = sdate;
+                                        }
+                                        oldimei.AreaAgeDelta = ((DateTime)(oldimei.AreaAgeDelta)).Add(tspan);
+                                
+                                    }
+
+                                    if (hallinfo.IsAreaAge == true)
+                                    {
+                                        oldimei.OutRecDate = null;
+                                    }
+                                    else
+                                    {
+                                        oldimei.OutRecDate = DateTime.Now;
+                                    }
+
+
+                                    if (hallinfo.IsAreaAge == true)
+                                    {
+                                        if (oldimei.AreaAgeInitDate == null)
+                                        {
+                                            oldimei.AreaAgeInitDate = DateTime.Now;
+                                        }
+                                    }
+                                    #endregion 
+
                                     //验证新串码是否已存在
                                     var imei = from a in lqh.Umsdb.Pro_IMEI
                                                where a.IMEI == rinfo.NEW_IMEI && string.IsNullOrEmpty(rinfo.NEW_IMEI)==false
@@ -361,11 +505,13 @@ namespace DAL
                                     newIMEI.HallID = model.HallID;
                                     newIMEI.InListID = rinfo.InListID;
                                     newIMEI.ProID = rinfo.ProID;
+                                    newIMEI.OutRecDate = oldimei.OutRecDate;
+                                    newIMEI.AreaAgeDelta = oldimei.AreaAgeDelta;
+                                    newIMEI.AreaAgeInitDate = oldimei.AreaAgeInitDate;
                                     lqh.Umsdb.Pro_IMEI.InsertOnSubmit(newIMEI);
-                                   // lqh.Umsdb.SubmitChanges();
-                                    //oldimei[0].RepairID = null;
-                                    //oldimei[0].NEW_IMEI_ID = newIMEI.ID;
-
+                                    //原串码直接删除  更改于2013.6.15（原来只需将原串码的NEW_IMEI_ID加标记）
+                                    lqh.Umsdb.Pro_IMEI.DeleteOnSubmit(oldimei);
+                               
                                     //为新的串码添加新库存
                                     var store = from s in lqh.Umsdb.Pro_StoreInfo
                                                 where s.ProID == rinfo.ProID && s.InListID == rinfo.InListID && s.HallID == model.HallID
@@ -391,8 +537,50 @@ namespace DAL
                                                  where b.IMEI == rinfo.OLD_IMEI && b.InListID == rinfo.InListID
                                                  && b.ProID == rinfo.ProID && b.HallID == model.HallID
                                                  select b;
-                                    query1.First().RepairID = null;
-                                    query1.First().State = 0;
+                                  
+                                    Model.Pro_IMEI pimei = query1.First();
+                                 
+                                    #region  库龄操作
+
+                                    if (pimei.RepairID == null)
+                                    {
+                                        return new Model.WebReturn() { ReturnValue = false, Message = "串码" + query1.First().IMEI + "已返库，接收失败！" };
+                                    }
+                                    pimei.RepairID = null;
+                                    pimei.State = 0;
+
+                                    if (pimei.OutRecDate != null)
+                                    {
+                                        TimeSpan tspan = (TimeSpan)(tdate - pimei.OutRecDate);
+                                        if (pimei.AreaAgeDelta == null)
+                                        {
+                                            pimei.AreaAgeDelta = new DateTime(2000, 1, 1);
+                                        }
+                                        if (pimei.AreaAgeDelta < sdate)
+                                        {
+                                            pimei.AreaAgeDelta = sdate;
+                                        }
+                                        pimei.AreaAgeDelta = ((DateTime)(pimei.AreaAgeDelta)).Add(tspan);
+                                    }
+
+                                    if (hallinfo.IsAreaAge == true)
+                                    {
+                                        pimei.OutRecDate = null;
+                                    }
+                                    else
+                                    {
+                                        pimei.OutRecDate = DateTime.Now;
+                                    }
+
+
+                                    if (hallinfo.IsAreaAge == true)
+                                    {
+                                        if (pimei.AreaAgeInitDate == null)
+                                        {
+                                            pimei.AreaAgeInitDate = DateTime.Now;
+                                        }
+                                    }
+                                    #endregion 
                                 }
 
                                 #endregion
@@ -428,6 +616,8 @@ namespace DAL
                             //标记已接收接收返库
                             model.IsReceived = true;
                             model.IsDelete = false;
+                            model.RecvTime = DateTime.Now;
+                            model.Receiver = user.UserID;
                             lqh.Umsdb.SubmitChanges();
                         }
 

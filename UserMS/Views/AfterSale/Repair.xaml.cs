@@ -56,6 +56,7 @@ namespace UserMS.Views.AfterSale
         {
             InitializeComponent();
 
+            proMoney.Tag = 0;
             bjGrid.ItemsSource = bjModels;
             chkmodels.AddRange( new   List<SlModel.CkbModel>(){
             new SlModel.CkbModel(false,"保内"),
@@ -71,6 +72,26 @@ namespace UserMS.Views.AfterSale
             prosGrid.ItemsSource = proModels;
             prosGrid2.ItemsSource = lackProModels;
 
+            List<string> list = new List<string>();
+            foreach (var item in Store.ProInfo)
+            {
+                API.Pro_ProInfo p = new API.Pro_ProInfo();
+                //p.ProName = item.ProName;
+                list.Add(item.ProName);
+            }
+            
+            proName.ItemsSource = list.Distinct();
+            proName.SelectedIndex = -1;
+          
+            //配件仓库默认选择维修师所在仓库
+            API.Sys_UserOPList op =   Store.UserOpList.Where(a => a.UserID == Store.LoginUserInfo.UserID).First();
+            if (op != null)
+            {
+                this.proHall.Tag = op.HallID;
+                API.Pro_HallInfo hinfo = Store.ProHallInfo.Where(h => h.HallID == op.HallID).First();
+
+                this.proHall.Text =hinfo==null?"": hinfo.HallName;
+            }
             bjHadder = new ROHallAdder(ref this.bjHall, menuid, new EventHandler<MyEventArgs>(bjHadder_AddCompleted));
 
             //bjHadder = new HallFilter(menuid.ToString(), false, bjHall, new EventHandler<MyEventArgs>(bjHadder_AddCompleted));
@@ -83,7 +104,8 @@ namespace UserMS.Views.AfterSale
             hadder = new ROHallAdder(ref this.hall, menuid);
 
             List<API.BJModel> arr = new List<API.BJModel>();
-            foreach (var item in  Store.ProInfo)
+            List<API.Pro_ProInfo> lackpros = Store.ProInfo.Where(a => new List<int>(){ 128, 115, 129, 131 }.Contains((int)a.Pro_ClassID)).ToList();
+            foreach (var item in lackpros)
             {
                 API.BJModel bj = new API.BJModel();
                 bj.ClassID = Convert.ToInt32(item.Pro_ClassID);
@@ -109,14 +131,15 @@ namespace UserMS.Views.AfterSale
 
            // this.prosGrid.AddHandler(RadComboBox.SelectionChangedEvent, new SelectionChangedEventHandler(GridViewComboBoxColumn_PropertyChanged_1));
 
-         
-
             flag = true;
             List<SlModel.CkbModel> list2 = new List<SlModel.CkbModel>(){
               new   SlModel.CkbModel(false,"软件升级"),
               new   SlModel.CkbModel(false,"修复"),
               new   SlModel.CkbModel(false,"更换配件"),
-               new   SlModel.CkbModel(false,"退回")
+               new   SlModel.CkbModel(false,"报价不修"),
+              new   SlModel.CkbModel(false,"退回"),
+                  new   SlModel.CkbModel(false,"检测正常")  
+                  , new   SlModel.CkbModel(false,"检测不正常") 
              };
             repKind.ItemsSource = list2;
             repKind.SelectedIndex = 0;
@@ -285,21 +308,15 @@ namespace UserMS.Views.AfterSale
             HasRepaired.ParamValues = false;
             rpp.ParamList.Add(HasRepaired);
 
-            if (!string.IsNullOrEmpty(this.hall.Tag == null ? "" : this.hall.Tag.ToString()))
-            {
-                API.ReportSqlParams_String hall = new API.ReportSqlParams_String();
-                hall.ParamName = "HallID";
-                hall.ParamValues = this.hall.Tag.ToString();
-                rpp.ParamList.Add(hall);
-            }
+            //proName
 
-            //if (!string.IsNullOrEmpty(this.sysdate.DateTimeText.ToString()))
-            //{
-            //    API.ReportSqlParams_DataTime date = new API.ReportSqlParams_DataTime();
-            //    date.ParamName = "SysDate";
-            //    date.ParamValues = this.sysdate.SelectedDate;
-            //    rpp.ParamList.Add(date);
-            //}
+            if (proName.SelectedIndex>=0)
+            {
+                API.ReportSqlParams_String date = new API.ReportSqlParams_String();
+                date.ParamName = "ProName";
+                date.ParamValues = proName.SelectedValue.ToString();
+                rpp.ParamList.Add(date);
+            }
 
             if (!string.IsNullOrEmpty(this.oldid.Text.ToString()))
             {
@@ -425,7 +442,9 @@ namespace UserMS.Views.AfterSale
             limitPrice.Text = model.Chk_Price.ToString();
             OldID.Text = model.OldID;
             hallname.Text = model.HallName;
-            
+            chkNote.Text = model.Chk_Note;
+            repairNote.Text = model.RepairNote;
+            workMoney.Value = Convert.ToDouble(model.WorkMoney);
             foreach (var item in chk_InOut.ItemsSource)
             {
                 if ((item as SlModel.CkbModel).Text == model.Chk_InOut)
@@ -475,7 +494,7 @@ namespace UserMS.Views.AfterSale
                 delBJ.IsEnabled = true;
             }
             
-            PublicRequestHelp peh = new PublicRequestHelp(this.isbusy,322,new object[]{model.ID,model.HasBJ},
+            PublicRequestHelp peh = new PublicRequestHelp(this.isbusy,322,new object[]{model.ID},
                 new EventHandler<API.MainCompletedEventArgs>(GetCompleted));
         }
 
@@ -483,6 +502,17 @@ namespace UserMS.Views.AfterSale
         {
             this.isbusy.IsBusy = false;
             errinfo.Clear();
+            oldErrGrid.ItemsSource = errinfo;
+            newErrGrid.ItemsSource = errinfo;
+            oldErrGrid.Rebind();
+            newErrGrid.Rebind();
+            bjModels.Clear();
+            bjGrid.Rebind();
+            lackProModels.Clear();
+            proModels.Clear();
+            prosGrid2.Rebind();
+            prosGrid.Rebind();
+
             if (e.Result.ReturnValue)
             {
                 errinfo.AddRange(e.Result.Obj as List<API.ASP_ErrorInfo>);
@@ -656,7 +686,8 @@ namespace UserMS.Views.AfterSale
                 MessageBox.Show("请选维修单！");
                 return;
             }
-            adder.Add();
+          
+            adder.Add2();
         }
 
         /// <summary>
@@ -682,10 +713,10 @@ namespace UserMS.Views.AfterSale
                 }
             }
             prosGrid.Rebind();
-            if ((chk_InOut.SelectedItem as SlModel.CkbModel).Text == "保外")
-            {
-                GetProPrice();
-            }
+            //if ((chk_InOut.SelectedItem as SlModel.CkbModel).Text == "保外")
+            //{
+            //    GetProPrice();
+            //}
         }
 
         private void GetProPrice()
@@ -735,7 +766,14 @@ namespace UserMS.Views.AfterSale
                 proModels.Remove(item as API.View_ASPCurrentOrderPros);
             }
             prosGrid.Rebind();
-            GetProPrice();
+            proMoney.Text = "";
+            decimal sum = 0;
+            foreach (var item in proModels)
+            {
+                sum += Convert.ToDecimal(item.Price);
+            }
+            proMoney.Text = sum.ToString();
+            //GetProPrice();
         }
 
         #endregion 
@@ -768,7 +806,7 @@ namespace UserMS.Views.AfterSale
             rep.Chk_InOut = (this.chk_InOut.SelectedItem as SlModel.CkbModel).Text.ToString();
             rep.OldID = order.OldID;
             rep.RepairCount = order.RepairCount;
-            rep.RepairerHallID = proHall.Tag.ToString();
+         
             bool isToFact = (repType.SelectedItem as ComboBoxItem).Tag.ToString() == "1" ? true : false;
             rep.Chk_RType = (repType.SelectedItem as ComboBoxItem).Content.ToString();
 
@@ -785,13 +823,22 @@ namespace UserMS.Views.AfterSale
                     MessageBox.Show("请添加故障信息！");
                     return;
                 }
-                if ((this.chk_InOut.SelectedItem as SlModel.CkbModel).Text.ToString() == "保内")
+                if ((this.chk_InOut.SelectedItem as SlModel.CkbModel).Text.ToString() == "保外")
                 {
-                    if (workMoney.Value == 0)
+                    //"报价不修"
+                    //退回维修款
+                    if ((repKind.SelectedItem as SlModel.CkbModel).Text == "软件升级"
+                        || (repKind.SelectedItem as SlModel.CkbModel).Text == "更换配件")
                     {
-                        MessageBox.Show("人工费用不能为0！");
-                        return;
+                        if (workMoney.Value == 0)
+                        {
+                            MessageBox.Show("人工费用不能为0！");
+                            return;
+                        }
                     }
+                    //软件升级
+                    //修复
+                    //更换配件
                 }
 
                 foreach (var item in proModels)
@@ -828,6 +875,7 @@ namespace UserMS.Views.AfterSale
                     {
                         MessageBox.Show("请添加配件信息！"); return;
                     }
+                    decimal sum = 0;
                     foreach (var item in proModels)
                     {
                         if (item.NeedIMEI && string.IsNullOrEmpty(item.OldIMEI))
@@ -835,7 +883,17 @@ namespace UserMS.Views.AfterSale
                             MessageBox.Show("商品 "+item.ProName+" 的旧串码不能为空！");
                             return;
                         }
+                        if ((this.chk_InOut.SelectedItem as SlModel.CkbModel).Text.ToString() == "保外")
+                        {
+                            if (Convert.ToDecimal(item.Price) == 0)
+                            {
+                                MessageBox.Show("配件费用不能为0！"); return;
+                            }
+                        }
+                        sum += Convert.ToDecimal(item.Price);
                     }
+                    proMoney.Text = sum.ToString();
+                    rep.RepairerHallID = proHall.Tag.ToString();
                 }
                 rep.ASP_CurrentOrder_Pros = new List<API.ASP_CurrentOrder_Pros>();
                 foreach (var item in proModels)
@@ -851,6 +909,7 @@ namespace UserMS.Views.AfterSale
                         p.OldIMEI = item.OldIMEI;
                         p.IMEI = item.IMEI;
                     }
+                    p.Price = item.Price;
                     p.InListID = item.InListID;
                     p.ProCount = item.ProCount;
                     p.ProID = item.ProID;
@@ -883,16 +942,23 @@ namespace UserMS.Views.AfterSale
             {
                 rep.NeedToFact = true;
             }
-           
+
+            if (order.PredictDate == null)
+            {
+                MessageBox.Show("请填写预计修复时间！");
+                return;
+            }
+            rep.PredictDate = order.PredictDate;
             rep.OrderID = order.ID;
             rep.OrderHallID = order.HallID;
             rep.RepairNote = repairNote.Text;
+           
             //rep.Repairer = Store.LoginUserInfo.UserID;
 
             #region 添加备机信息
 
             rep.ASP_CurrentOrder_BackupPhoneInfo = new List<API.ASP_CurrentOrder_BackupPhoneInfo>();
-            rep.BJHallID = bjHall.Tag.ToString();
+            rep.BJHallID = bjHall.Tag==null?"":bjHall.Tag.ToString();
             if (order.HasBJ == false)
             {
                 rep.BJUserID = bj_user.Text;
@@ -910,10 +976,20 @@ namespace UserMS.Views.AfterSale
             }
             #endregion
 
-
-            if (MessageBox.Show("确定保存吗？", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+            if (Convert.ToDecimal(proMoney.Text == "" ? "0":proMoney.Text) == 0 &&
+                isToFact == false && proModels.Count > 0 && lackProModels.Count==0 )
             {
-                return;
+                if (MessageBox.Show("配件费为0 ，确定保存吗？", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("确定保存吗？", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
             }
 
             PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 324, new object[] { rep },
@@ -928,6 +1004,12 @@ namespace UserMS.Views.AfterSale
                 MessageBox.Show(e.Result.Message);
                 Clear();
                 Search();
+                API.WebReturn web = Store.wsclient.Main(318, new List<object>() { proHall.Tag == null ? "" : proHall.Tag.ToString(), false });
+
+                List<API.BJModel> pros = web.Obj as List<API.BJModel>;
+                adder = new ProDetailAdder<API.View_ASPCurrentOrderPros>(proModels, prosGrid, pros,
+                    new EventHandler<MyEventArgs>(AddProsCompleted));
+
             }
             else
             {
@@ -1034,25 +1116,25 @@ namespace UserMS.Views.AfterSale
 
             API.CHKModel itemx = comboBox.SelectedItem as API.CHKModel;
             if (itemx == null) { return; }
-            foreach (var item in proModels)
-            {
-                if (itemx.Text == item.TName)
-                {
-                    item.TName = "配件";
-                    return;
-                }
-            }
+            //foreach (var item in proModels)
+            //{
+            //    if (itemx.Text == item.TName)
+            //    {
+            //        item.TName = "配件";
+            //        return;
+            //    }
+            //}
 
             foreach (var item in proModels)
             {
                  if (comboBox.Tag == null) { continue; }
                 if ((item.IMEI+"").ToUpper() == comboBox.Tag.ToString())
                 {
-                    if (itemx.Text == "主板")
-                    {
-                        item.OldIMEI = model.Pro_IMEI;
-                    }
-                    else if (itemx.Text == "机头")
+                    //if (itemx.Text == "主板")
+                    //{
+                    //    item.OldIMEI = model.Pro_IMEI;
+                    //}else
+                     if (itemx.Text == "机头")
                     {
                         item.OldIMEI = model.Pro_HeaderIMEI;
                     }
@@ -1078,6 +1160,160 @@ namespace UserMS.Views.AfterSale
                 addPros.IsEnabled = true;
                 delClick.IsEnabled = true;
             }
+            if (cb.SelectedValue.ToString() == "退回")
+            {
+                workMoney.Minimum = -10000;
+            }
+        }
+
+        private void saveTime_Click(object sender, Telerik.Windows.RadRoutedEventArgs e)
+        {
+            if (RepairGrid.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("请选择数据！"); return;
+            }
+            List<int> ids = new List<int>();
+            foreach (var item in RepairGrid.SelectedItems)
+            {
+                API.View_ASPCurrentOrderInfo a = new API.View_ASPCurrentOrderInfo();
+                ids.Add(a.ID);
+            }
+            TimeWin tw = new TimeWin(381,ids);
+            tw.Show();
+
+        }
+
+        private void prosGrid_CellEditEnded(object sender, GridViewCellEditEndedEventArgs e)
+        {
+            proMoney.Text = "";
+            decimal sum = 0;
+            foreach (var item in proModels)
+            {
+                sum += Convert.ToDecimal( item.Price);
+            }
+            proMoney.Text = sum.ToString();
+
+        }
+
+        private void tmpSave_Click(object sender, Telerik.Windows.RadRoutedEventArgs e)
+        {
+            if (RepairGrid.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("请选择数据！"); return;
+            }
+
+            API.View_ASPCurrentOrderInfo model = RepairGrid.SelectedItem as API.View_ASPCurrentOrderInfo;
+        
+            API.ASP_RepairInfo rep = new API.ASP_RepairInfo();
+            rep.ID = Convert.ToInt32(model.CurrentRepairID);
+            rep.OrderID = model.ID;
+            rep.RepairNote = repairNote.Text;
+            rep.LackNote = qlNote.Text;
+
+            #region 添加故障信息
+
+            rep.ASP_CurrentOrder_ErrorInfo = new List<API.ASP_CurrentOrder_ErrorInfo>();
+            foreach (var item in errinfo)
+            {
+                API.ASP_CurrentOrder_ErrorInfo er = new API.ASP_CurrentOrder_ErrorInfo();
+                er.ErrorID = item.ID;
+
+                rep.ASP_CurrentOrder_ErrorInfo.Add(er);
+            }
+
+            #endregion
+
+            #region 添加配件信息
+            if ((repKind.SelectedItem as SlModel.CkbModel).Text.ToString() == "更换配件")
+            {
+                if (proModels.Count == 0)
+                {
+                    MessageBox.Show("请添加配件信息！"); return;
+                }
+                decimal sum = 0;
+                foreach (var item in proModels)
+                {
+                    if (item.NeedIMEI && string.IsNullOrEmpty(item.OldIMEI))
+                    {
+                        MessageBox.Show("商品 " + item.ProName + " 的旧串码不能为空！");
+                        return;
+                    }
+                
+                    if ((this.chk_InOut.SelectedItem as SlModel.CkbModel).Text.ToString() == "保外")
+                    {
+                        if (Convert.ToDecimal(item.Price) == 0)
+                        {
+                            MessageBox.Show("配件费用不能为0！"); return;
+                        }
+                    }
+                    sum += Convert.ToDecimal(item.Price);
+                }
+                proMoney.Text = sum.ToString();
+                rep.RepairerHallID = proHall.Tag.ToString();
+            }
+            rep.ASP_CurrentOrder_Pros = new List<API.ASP_CurrentOrder_Pros>();
+            foreach (var item in proModels)
+            {
+                API.ASP_CurrentOrder_Pros p = new API.ASP_CurrentOrder_Pros();
+
+                // p.IsHeader = item.IsHeader; //是否是机身串码
+                p.TName = item.TName;
+                p.OrderID = model.ID;
+                p.ID = item.ID;
+                if (item.NeedIMEI)
+                {
+                    p.OldIMEI = item.OldIMEI;
+                    p.IMEI = item.IMEI;
+                }
+                p.Price = item.Price;
+                p.InListID = item.InListID;
+                p.ProCount = item.ProCount;
+                p.ProID = item.ProID;
+                rep.ASP_CurrentOrder_Pros.Add(p);
+            }
+            foreach (var item in lackProModels)
+            {
+                API.ASP_CurrentOrder_Pros p = new API.ASP_CurrentOrder_Pros();
+                p.OrderID = model.ID;
+                p.TName = item.TName;
+                p.ProCount = item.ProCount;
+                p.ProID = item.ProID;
+                p.ID = item.ID;
+                p.IsLack = item.IsLack;
+                rep.ASP_CurrentOrder_Pros.Add(p);
+            }
+            #endregion
+
+            #region 添加备机信息
+
+            rep.ASP_CurrentOrder_BackupPhoneInfo = new List<API.ASP_CurrentOrder_BackupPhoneInfo>();
+            rep.BJHallID = bjHall.Tag==null?"":bjHall.Tag.ToString();
+            if (model.HasBJ == false)
+            {
+                rep.BJUserID = bj_user.Text;
+                rep.BJ_Money = Convert.ToDecimal(bj_money.Value);
+                foreach (var item in bjModels)
+                {
+                    API.ASP_CurrentOrder_BackupPhoneInfo m = new API.ASP_CurrentOrder_BackupPhoneInfo();
+                    m.IMEI = item.IMEI;
+                    //m.NeedIMEI = item.NeedIMEI;
+                    m.InListID = item.InListID;
+                    m.ProCount = 1;
+                    m.ProID = item.ProID;
+                    rep.ASP_CurrentOrder_BackupPhoneInfo.Add(m);
+                }
+            }
+
+            #endregion
+
+            PublicRequestHelp sp = new PublicRequestHelp(this.isbusy, 382, new object[] { rep },
+              TmpSaveCompleted);
+        }
+
+        private void TmpSaveCompleted(object sender, API.MainCompletedEventArgs e)
+        {
+            this.isbusy.IsBusy = false;
+            MessageBox.Show(e.Result.Message);
         }
 
     }

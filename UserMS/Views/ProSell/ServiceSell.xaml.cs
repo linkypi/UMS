@@ -792,33 +792,65 @@ namespace UserMS.Views.ProSell
 
         void w_OnSelectedPro(object sender, SelectedProInfoArgs e)
         {
-
-            if (UserProInfos.Select(p => p.ProID).Contains(e.ProInfo.ProID))
+            List<Pro_SellListInfo> list = new List<Pro_SellListInfo>();
+            foreach (var imei in e.Results.Keys)
             {
-                var l = new ProSellGridModel();
-
-                if (SellGridModels.All(p => p.IMEI != e.IMEI))
+                if (UserProInfos.Select(p => p.ProID).Contains(e.Results[imei].ProID))
                 {
-                    List<Pro_SellListInfo> list = new List<Pro_SellListInfo>();
-                    API.Pro_ProInfo i = e.ProInfo;
-                    l.ProID = i.ProID;
-                    //                l.ProName = i.ProName;
-                    l.ProCount = 1;
-                    l.IMEI = e.IMEI;
 
-                    Pro_SellListInfo model = new Pro_SellListInfo();
-                    model.ProID = i.ProID;
-                    model.SellType = 1;
-                    model.IMEI = e.IMEI;
-                    list.Add(model);
+                    var l = new ProSellGridModel();
 
-                    PublicRequestHelp a = new PublicRequestHelp(this.PageBusy, MethodID_GetPrice, new object[] { list }, GetPrice_Completed);
+                    if (SellGridModels.All(p => p.IMEI != imei))
+                    {
+
+                        API.Pro_ProInfo i = e.Results[imei];
+                        l.ProID = i.ProID;
+                        //                l.ProName = i.ProName;
+                        l.ProCount = 1;
+                        l.IMEI = imei;
+                        Pro_SellListInfo model = new Pro_SellListInfo();
+                        model.ProID = i.ProID;
+                        model.SellType = 1;
+                        model.IMEI = imei;
+                        list.Add(model);
+                    }
                 }
+                else
+                {
+
+                    MessageBox.Show(System.Windows.Application.Current.MainWindow, "串码: " + imei + " 无该商品操作权限");
+                }
+                PublicRequestHelp a = new PublicRequestHelp(this.PageBusy, MethodID_GetPrice, new object[] { list }, GetPrice_Completed);
             }
-            else
-            {
-                MessageBox.Show(System.Windows.Application.Current.MainWindow,"无该商品操作权限");
-            }
+
+            
+
+//            if (UserProInfos.Select(p => p.ProID).Contains(e.ProInfo.ProID))
+//            {
+//                var l = new ProSellGridModel();
+//
+//                if (SellGridModels.All(p => p.IMEI != e.IMEI))
+//                {
+//                    List<Pro_SellListInfo> list = new List<Pro_SellListInfo>();
+//                    API.Pro_ProInfo i = e.ProInfo;
+//                    l.ProID = i.ProID;
+//                    //                l.ProName = i.ProName;
+//                    l.ProCount = 1;
+//                    l.IMEI = e.IMEI;
+//
+//                    Pro_SellListInfo model = new Pro_SellListInfo();
+//                    model.ProID = i.ProID;
+//                    model.SellType = 1;
+//                    model.IMEI = e.IMEI;
+//                    list.Add(model);
+//
+//                    PublicRequestHelp a = new PublicRequestHelp(this.PageBusy, MethodID_GetPrice, new object[] { list }, GetPrice_Completed);
+//                }
+//            }
+//            else
+//            {
+//                MessageBox.Show(System.Windows.Application.Current.MainWindow,"无该商品操作权限");
+//            }
         }
 
 

@@ -35,6 +35,8 @@ namespace UserMS.Common
                 case 14:
                 case 13:
                 case 16:
+                case 26:
+                case 27:
                 {
                     if (string.IsNullOrEmpty(model.TicketID))
                     {
@@ -509,6 +511,64 @@ namespace UserMS.Common
             }
             return result;
         }
+
+
+        public static List<TreeViewModel> RepairerHallTree( List<API.ASP_RepairerProductInfo> repers )
+        {
+            List<TreeViewModel> result = new List<TreeViewModel>();
+            foreach (var proAreaInfo in Store.AreaInfo)
+            {
+                TreeViewModel p = new TreeViewModel();
+                p.ID = "";
+                p.Title = proAreaInfo.AreaName;
+                p.Children = new List<TreeViewModel>();
+                Pro_AreaInfo info = proAreaInfo;
+                List<API.Sys_UserOPList> oplist =  Store.UserOpList.Where(a => repers.Select(r=>r.RepairerID).Contains(a.UserID)).ToList();
+                List<API.Pro_HallInfo> halss = Store.ProHallInfo.Where(q => q.AreaID == info.AreaID && oplist.Select(o=>o.HallID).Contains(q.HallID)).ToList();
+                foreach (var hall in halss)
+                {
+                    if (hall.HallName.Contains("_"))
+                    {
+                        TreeViewModel c = new TreeViewModel();
+                        c.ID = hall.HallID;
+                        c.Title = hall.HallName;
+                        p.Children.Add(c);
+                    }
+                }
+                result.Add(p);
+
+            }
+            return result.Where(p=>p.Children.Count>0).ToList();
+        }
+
+        public static List<TreeViewModel> RepairerHallTree()
+        {
+            List<TreeViewModel> result = new List<TreeViewModel>();
+            foreach (var proAreaInfo in Store.AreaInfo)
+            {
+                TreeViewModel p = new TreeViewModel();
+                p.ID = "";
+                p.Title = proAreaInfo.AreaName;
+                p.Children = new List<TreeViewModel>();
+                Pro_AreaInfo info = proAreaInfo;
+
+                List<API.Pro_HallInfo> halss = Store.ProHallInfo.Where(q => q.AreaID == info.AreaID).ToList();
+                foreach (var hall in halss)
+                {
+                    if (hall.HallName.Contains("_"))
+                    {
+                        TreeViewModel c = new TreeViewModel();
+                        c.ID = hall.HallID;
+                        c.Title = hall.HallName;
+                        p.Children.Add(c);
+                    }
+                }
+                result.Add(p);
+
+            }
+            return result.Where(p => p.Children.Count > 0).ToList();
+        }
+
 
         public static TreeViewModel SalesViewModel(int salesNameID, List<API.Package_SalesNameInfo> SalesNameInfo)
         {

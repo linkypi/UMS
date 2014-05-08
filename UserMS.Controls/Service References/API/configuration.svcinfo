@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configurationSnapshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:schemas-microsoft-com:xml-wcfconfigurationsnapshot">
+  <behaviors />
+  <bindings>
+    <binding digest="System.ServiceModel.Configuration.WSHttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data messageEncoding=&quot;Mtom&quot; name=&quot;CustomBinding_UserMsService&quot;&gt;&lt;reliableSession enabled=&quot;true&quot; inactivityTimeout=&quot;08:00:00&quot; /&gt;&lt;security mode=&quot;None&quot; /&gt;&lt;/Data&gt;" bindingType="wsHttpBinding" name="CustomBinding_UserMsService" />
+  </bindings>
+  <endpoints>
+    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://localhost/UserMSService/UserMSService.svc&quot; binding=&quot;wsHttpBinding&quot; bindingConfiguration=&quot;CustomBinding_UserMsService&quot; contract=&quot;API.UserMsService&quot; name=&quot;CustomBinding_UserMsService&quot;&gt;&lt;identity&gt;&lt;dns value=&quot;localhost&quot; /&gt;&lt;/identity&gt;&lt;/Data&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://localhost/UserMSService/UserMSService.svc&quot; binding=&quot;wsHttpBinding&quot; bindingConfiguration=&quot;CustomBinding_UserMsService&quot; contract=&quot;API.UserMsService&quot; name=&quot;CustomBinding_UserMsService&quot;&gt;&lt;identity&gt;&lt;dns value=&quot;localhost&quot; /&gt;&lt;/identity&gt;&lt;/Data&gt;" contractName="API.UserMsService" name="CustomBinding_UserMsService" />
+  </endpoints>
+</configurationSnapshot>

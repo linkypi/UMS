@@ -30,9 +30,22 @@ namespace UserMSService
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
 
 
-    #region Model序列化定义
-
-    [ServiceKnownType(typeof(Model.Report_IMEIInfo))]
+    #region Model序列化定义  
+    
+    [ServiceKnownType(typeof(Model.Report_OutOrderListInfoWithIMEI))]
+    [ServiceKnownType(typeof(Model.Report_InlistInfoWithIMEI))]
+    [ServiceKnownType(typeof(Model.Report_OutOrderListInfo))]
+    [ServiceKnownType(typeof(Model.Report_OutOrderIMEIInfo))] 
+    [ServiceKnownType(typeof(Model.ASP_Dealer))]
+    [ServiceKnownType(typeof(Model.RepairerProInfo))]
+      [ServiceKnownType(typeof(Model.ASP_Dealer))]
+      [ServiceKnownType(typeof(Model.ASP_RepairerProductInfo))]
+    [ServiceKnownType(typeof(Model.ASP_BackApply))]
+    [ServiceKnownType(typeof(Model.View_ASPBackApply))]
+    [ServiceKnownType(typeof(Model.ASP_Factory))]
+    [ServiceKnownType(typeof(Model.Report_RepTimeControl))]
+    [ServiceKnownType(typeof(Model.View_ASPRepairProgress))]
+    [ServiceKnownType(typeof(Model.Report_IMEIInfo))] 
     [ServiceKnownType(typeof(Model.GetInOutSellInfoResult))]
     [ServiceKnownType(typeof(Model.AduitListInfo))]
     [ServiceKnownType(typeof(Model.AduitModel))]
@@ -365,7 +378,21 @@ namespace UserMSService
     [ServiceKnownType(typeof(Model.View_ASPGetPhoneInfo))]   //
     [ServiceKnownType(typeof(Model.Sys_SalaryList_StepInfo))]
     #endregion
-    #region List Model序列化定义
+    #region List Model序列化定义  
+    [ServiceKnownType(typeof(List<Model.Report_OutOrderListInfoWithIMEI>))]
+    [ServiceKnownType(typeof(List<Model.Report_InlistInfoWithIMEI>))]
+    [ServiceKnownType(typeof(List<Model.Report_InOrderIMEIInfo>))]
+    [ServiceKnownType(typeof(List<Model.Report_OutOrderIMEIInfo>))] 
+    [ServiceKnownType(typeof(List<Model.Report_OutOrderListInfo>))]
+    [ServiceKnownType(typeof(List<Model.ASP_Dealer>))]
+    [ServiceKnownType(typeof(List<Model.RepairerProInfo>))]
+    [ServiceKnownType(typeof(List<Model.ASP_RepairerProductInfo>))]
+    [ServiceKnownType(typeof(List<Model.ASP_Dealer>))]
+    [ServiceKnownType(typeof(List<Model.ASP_BackApply>))]
+    [ServiceKnownType(typeof(List<Model.View_ASPBackApply>))]
+    [ServiceKnownType(typeof(List<Model.Report_RepTimeControl>))]
+    [ServiceKnownType(typeof(List<Model.ASP_Factory>))]
+    [ServiceKnownType(typeof(List<Model.View_ASPRepairProgress>))]
     [ServiceKnownType(typeof(List<Model.Report_IMEIInfo>))]
     [ServiceKnownType(typeof(List<Model.GetInOutSellInfoResult>))]
     [ServiceKnownType(typeof(List<string>))]

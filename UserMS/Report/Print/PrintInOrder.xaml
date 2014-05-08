@@ -1,0 +1,28 @@
+﻿<Page x:Class="UserMS.Report.Print.PrintInOrder"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+       xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+           xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+           xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"      
+           xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms" 
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+          mc:Ignorable="d"  Loaded="BasePage_Loaded"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PrintInOrder">
+
+    <xctk:BusyIndicator x:Name="busy">
+        <DockPanel>
+            <telerik:RadMenu VerticalAlignment="Top" DockPanel.Dock="Top">
+                <telerik:RadMenuItem x:Name="Prev" Header="返回" Click="Prev_Click"/>
+
+            </telerik:RadMenu>
+            <WindowsFormsHost  DockPanel.Dock="Top">
+                <rv:ReportViewer x:Name="_reportViewer">
+
+                </rv:ReportViewer>
+            </WindowsFormsHost>
+        </DockPanel>
+    </xctk:BusyIndicator>
+</Page>

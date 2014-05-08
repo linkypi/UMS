@@ -6,7 +6,7 @@
            mc:Ignorable="d" Loaded="Page_Loaded"
            xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
            xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
-           xmlns:src="clr-namespace:UserMS"
+           xmlns:src="http://www.zs96000.com/wpf"
                xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter" 
            Title="AddSingleOff Page">
     

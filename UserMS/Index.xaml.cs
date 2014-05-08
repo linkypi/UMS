@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 using System.Xml.Linq;
@@ -23,6 +24,7 @@ namespace UserMS
 
         public Index()
         {
+            InitializeComponent();
             if (Store.IsTesting)
             {
                 Windows8Palette.Palette.AccentColor = Colors.Tomato;
@@ -30,8 +32,26 @@ namespace UserMS
             }
             else
             {
-                Windows8Palette.Palette.AccentColor = Store.defaultcolor;
-                
+
+               
+                switch (Store.LoginServer)
+                {
+                    case 1:
+                        Windows8Palette.Palette.AccentColor = Colors.SeaGreen;
+
+
+                        //this.Logo.Source = new BitmapImage(new Uri(@"Images/logoserver1.png", UriKind.Relative));
+                        this.Logo.Source = new BitmapImage(new Uri(@"Images/logo2.png", UriKind.Relative));
+                        
+                        break;
+                    default:
+                        Windows8Palette.Palette.AccentColor = Store.defaultcolor;
+
+                        this.Logo.Source = new BitmapImage(new Uri(@"Images/logoserver0.png", UriKind.Relative));
+                        break;
+                }
+
+
             }
 
             //获取消息提醒时间间隔
@@ -46,7 +66,7 @@ namespace UserMS
             {
                 TimeItvOfRem = 15000;
             }
-            InitializeComponent();
+            
             //API.UserMsServiceClient client = new API.UserMsServiceClient();
             //client.MainAsync(1,null);
             //client.MainCompleted += client_MainCompleted;

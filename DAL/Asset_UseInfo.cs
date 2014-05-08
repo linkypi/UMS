@@ -71,7 +71,7 @@ namespace DAL
                         imeimodel.Pro_StoreInfo.ProCount -= 1;
 
                         imeimodel.Asset_UseInfo = model;
-                       
+                        imeimodel.State = 1;
                         lqh.Umsdb.Asset_UseInfo.InsertOnSubmit(model);
                         
                         lqh.Umsdb.SubmitChanges();
@@ -151,8 +151,10 @@ namespace DAL
 
                         imeimodel.Pro_StoreInfo.ProCount += 1;
                         imeimodel.Asset_UseInfo = null;
+                        imeimodel.State = null;
                         Model.Flag = true;
-
+                        Model.FlagDate = DateTime.Now;
+                        Model.FlagUserID = sysUser.UserID;
                         Model.EndDate = DateTime.Now;
                         lqh.Umsdb.SubmitChanges();
                         return new WebReturn()

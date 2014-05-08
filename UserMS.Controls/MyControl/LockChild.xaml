@@ -1,0 +1,15 @@
+﻿<telerik:RadWindow	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation"	xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"	x:Class="UserMS.LockChild"
+	Header="锁定"
+	Width="262" Height="128" CanMove="False" CanClose="False" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="Auto" MinHeight="32" />
+		</Grid.RowDefinitions>
+		<telerik:Label Content="输入密码" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+		<telerik:RadButton Content="解锁" x:Name="Unlock" Click="Unlock_OnClick" HorizontalAlignment="Center" Grid.Row="1" d:LayoutOverrides="Height" VerticalAlignment="Center" Width="100"/>
+        <PasswordBox telerik:StyleManager.Theme="Windows8" x:Name="Password" VerticalAlignment="Bottom"/>
+	</Grid>
+</telerik:RadWindow>

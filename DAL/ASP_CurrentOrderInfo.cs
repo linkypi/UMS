@@ -67,11 +67,18 @@ namespace DAL
                             case "Repairer":
                                 Model.ReportSqlParams_String Repairer = (Model.ReportSqlParams_String)item;
                                  aduit_query = from b in aduit_query
-                                               where b.Repairer==Repairer.ParamValues
+                                               where b.RepairID==Repairer.ParamValues
                                                   select b;
                               
                                 break;
+                            case "ProName":
+                                Model.ReportSqlParams_String proname = (Model.ReportSqlParams_String)item;
+                                aduit_query = from b in aduit_query
+                                              where b.Pro_Name.Contains( proname.ParamValues)
+                                              select b;
 
+                                break;
+                            
                             case "HasRepaired":
                                 Model.ReportSqlParams_Bool HasRepaired = (Model.ReportSqlParams_Bool)item;
                                 if (HasRepaired.ParamValues)
@@ -143,7 +150,7 @@ namespace DAL
                                 Model.ReportSqlParams_String imei = (Model.ReportSqlParams_String)item;
 
                                 aduit_query = from b in aduit_query
-                                              where b.Pro_IMEI == imei.ParamValues
+                                              where b.Pro_HeaderIMEI.Contains( imei.ParamValues)
                                               select b;
                                 break;
                            
@@ -262,7 +269,7 @@ namespace DAL
         /// <param name="user"></param>
         /// <param name="orderid"></param>
         /// <returns></returns>
-        public Model.WebReturn GetErrorInfo(Model.Sys_UserInfo user,int orderid,bool hasBJ )
+        public Model.WebReturn GetErrorInfo(Model.Sys_UserInfo user,int orderid )
         {
             using (LinQSqlHelper lqh = new LinQSqlHelper())
             {
@@ -288,15 +295,11 @@ namespace DAL
                                    where a.RepairID == rid
                                    select b;
 
-                        var bjinfo = from a in lqh.Umsdb.View_BJModels
-                                     where a.RepairID==rid
-                                     select a;
-
                         var pjinfo = from a in lqh.Umsdb.View_ASPCurrentOrderPros
                                      where a.RepairID == rid
                                      select a;
                         errlist = list.Count() == 0 ? new List<Model.ASP_ErrorInfo>() : list.ToList();
-                        bjlist = bjinfo.Count() == 0 ? new List<Model.View_BJModels>() : bjinfo.ToList();
+                      
                         pros = pjinfo.Count()==0?new  List<Model.View_ASPCurrentOrderPros>():pjinfo.ToList();
                     }
                     else  //否则去原始单数据
@@ -306,20 +309,33 @@ namespace DAL
                                    where a.OrderID == orderid
                                    select b;
 
-                        var bjinfo = from a in lqh.Umsdb.View_BJModels
-                                     join b in lqh.Umsdb.ASP_CurrentOrderInfo
-                                     on a.OrderID equals b.ID
-                                     where a.OrderID == orderid && b.HasBJ == true && a.RepairID==null
-                                     select a;
 
                         var pjinfo = from a in lqh.Umsdb.View_ASPCurrentOrderPros
                                      where a.OrderID == orderid && a.RepairID == null
                                      select a;
                         errlist = list.Count() == 0 ? new List<Model.ASP_ErrorInfo>() : list.ToList();
-                        bjlist = bjinfo.Count() == 0 ? new List<Model.View_BJModels>() : bjinfo.ToList();
+                      
                         pros = pjinfo.Count() == 0 ? new List<Model.View_ASPCurrentOrderPros>() : pjinfo.ToList();
                     }
 
+
+                    var bjinfo = from a in lqh.Umsdb.View_BJModels
+                                 where a.RepairID == rid
+                                 select a;
+                    bjlist = bjinfo.Count() == 0 ? new List<Model.View_BJModels>() : bjinfo.ToList();
+
+                    if (bjlist.Count() == 0)
+                    {
+                         bjinfo = from a in lqh.Umsdb.View_BJModels
+                                     join c in lqh.Umsdb.ASP_ReceiveInfo
+                                     on a.ReceiveID equals c.ID
+                                    join b in lqh.Umsdb.ASP_CurrentOrderInfo
+                                    on c.ID equals b.ReceiveID
+                                     where b.ID == orderid// && b.HasBJ == true 
+                                    // && a.RepairID == null
+                                     select a;
+                        bjlist = bjinfo.Count() == 0 ? new List<Model.View_BJModels>() : bjinfo.ToList();
+                    }
                     //foreach (var item in pros)
                     //{
                     //    var need = from a in lqh.Umsdb.Pro_ProInfo
@@ -358,6 +374,24 @@ namespace DAL
                         var ids = (from a in recInfo
                                   select a.ID).ToList();
 
+                        var reclist = from a in lqh.Umsdb.ASP_ReceiveInfo
+                                      where ids.Contains(a.ID)
+                                      select a;
+                        if (reclist.Count() > 0)
+                        {
+                            foreach (var item in reclist)
+                            {
+                                foreach (var child in recInfo)
+	                            {
+                                    if (item.ID == child.ID)
+                                    {
+                                        item.DeleteNote = child.DelNote;
+                                        break;
+                                    }
+	                            }
+                               
+                            }
+                        }
                         var list = from a in lqh.Umsdb.ASP_CurrentOrderInfo
                                    where ids.Contains((int)a.ReceiveID) 
                                    select a;
@@ -378,11 +412,64 @@ namespace DAL
                                 return new WebReturn() { ReturnValue = false, Message = "受理单 "+ac.First().ServiceID+" 已使用，删除失败！" };
                             }
                         }
+                        #region  返还备机
 
                         var backup = from a in lqh.Umsdb.ASP_CurrentOrder_BackupPhoneInfo
                                   join b in lqh.Umsdb.ASP_CurrentOrderInfo on a.OrderID equals b.ID
-                                  where ids.Contains(b.ID) 
+                                  where ids.Contains((int)b.ReceiveID) 
                                   select a;
+                        
+                        foreach (var item in backup)
+                        {
+                            var imei = from a in lqh.Umsdb.Pro_IMEI
+                                       where a.IMEI == item.IMEI
+                                       select a;
+                            var m = imei.First();
+                            if (m != null)
+                            {
+                                imei.First().BJID = null;
+                                imei.First().State = 0;
+                            }
+                            else
+                            {
+                                return new WebReturn() { Message = "串码: " + item.IMEI + " 不存在,删除失败！", ReturnValue = false };
+                            }
+
+                            var s = from a in lqh.Umsdb.Pro_StoreInfo
+                                    join b in lqh.Umsdb.ASP_CurrentOrderInfo on a.HallID equals b.HallID
+                                    where a.ProID == m.ProID && a.InListID == m.InListID
+                                    && b.ID == item.OrderID
+                                    select a;
+                            var store = s.First();
+                            if (store != null)
+                            {
+                                store.ProCount += 1;
+                            }
+                            else
+                            {
+                                Model.Pro_StoreInfo sto = new Pro_StoreInfo();
+                                sto.ProCount = 1;
+                                sto.ProID = m.ProID;
+                                sto.InListID = m.InListID;
+                                var cur = from a in lqh.Umsdb.ASP_CurrentOrderInfo
+                                          where a.ID == item.OrderID
+                                          select a ;
+                                if (cur.Count() > 0)
+                                {
+                                    sto.HallID = cur.First().HallID;
+                                }
+                                else
+                                {
+                                    return new WebReturn() { Message = "未能找到指定受理单，删除失败！", ReturnValue = false };
+                                }
+
+                                lqh.Umsdb.Pro_StoreInfo.InsertOnSubmit(sto);
+
+                            }
+                            lqh.Umsdb.SubmitChanges();
+                        }
+
+                        #endregion
 
                         var err = from a in lqh.Umsdb.ASP_CurrentOrder_ErrorInfo
                                   join b in lqh.Umsdb.ASP_CurrentOrderInfo on a.OrderID equals b.ID
@@ -404,6 +491,8 @@ namespace DAL
                             foreach (var item in rec)
                             {
                                 item.Flag = false;
+                                item.DelDate = DateTime.Now;
+                                item.Deleter = user.UserID;
                             }
                         }
                         #endregion

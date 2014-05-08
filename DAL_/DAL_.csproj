@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B5E0D3EE-9A58-4683-9D1E-C4EC862B5D18}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL_</RootNamespace>
+    <AssemblyName>DAL_</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LinQSqlHelper.cs" />
+    <Compile Include="Pro_AreaInfo.cs" />
+    <Compile Include="Pro_ClassInfo.cs" />
+    <Compile Include="Pro_HallInfo.cs" />
+    <Compile Include="Pro_LevelInfo.cs" />
+    <Compile Include="Pro_ProInfo.cs" />
+    <Compile Include="Pro_Property.cs" />
+    <Compile Include="Pro_PropertyValue.cs" />
+    <Compile Include="Pro_ProProperty_F.cs" />
+    <Compile Include="Pro_SellInfo.cs" />
+    <Compile Include="Pro_SellType.cs" />
+    <Compile Include="Pro_SellTypeProduct.cs" />
+    <Compile Include="Pro_TypeInfo.cs" />
+    <Compile Include="Sys_DeptInfo.cs" />
+    <Compile Include="Sys_InitParentInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pro_BackInfo.cs" />
+    <Compile Include="Pro_BorowInfo.cs" />
+    <Compile Include="Pro_InOrder.cs" />
+    <Compile Include="Pro_OutInfo.cs" />
+    <Compile Include="Pro_PriceChange.cs" />
+    <Compile Include="Pro_PriceCostChange.cs" />
+    <Compile Include="Pro_RepairInfo.cs" />
+    <Compile Include="Pro_RepairReturnInfo.cs" />
+    <Compile Include="Pro_ReturnInfo.cs" />
+    <Compile Include="Sys_InitDataStatus.cs" />
+    <Compile Include="Sys_LoginInfo.cs" />
+    <Compile Include="Sys_RoleInfo.cs" />
+    <Compile Include="Sys_UserInfo.cs" />
+    <Compile Include="Sys_UserOp.cs" />
+    <Compile Include="Sys_UserOPList.cs" />
+    <Compile Include="Sys_UserRemidList.cs" />
+    <Compile Include="VIP_IDCardType.cs" />
+    <Compile Include="VIP_OffList.cs" />
+    <Compile Include="VIP_Renew.cs" />
+    <Compile Include="VIP_RenewBack.cs" />
+    <Compile Include="VIP_VIPInfo.cs" />
+    <Compile Include="VIP_VIPType.cs" />
+    <Compile Include="VIP_VIPTypeService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UMLCD_Login.cd" />
+    <None Include="UMLCD_Price.cd" />
+    <None Include="UMLCD_Role.cd" />
+    <None Include="UMLCD_Sell.cd" />
+    <None Include="UMLCD_Store.cd" />
+    <None Include="UMLCD_VIP.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{6c43b4d7-2ac3-4006-9e7c-594a6d9f8c38}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{7716ce6f-26b2-41bb-b463-cea37166784d}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

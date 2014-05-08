@@ -51,6 +51,7 @@ namespace DAL
             get { return _paramList; }
             set { _paramList = value; }
         }
+
         #region 获取调入实体
         /// <summary>
         /// 获取调入实体
@@ -572,6 +573,7 @@ namespace DAL
                         {
                             return new Model.WebReturn() { Obj = null, ReturnValue = false, Message = "无数据" };
                         }
+                   
                         return new Model.WebReturn() { Obj = query, ReturnValue = true, Message = "已获取" };
                     }
                     catch (Exception ex)
@@ -584,6 +586,7 @@ namespace DAL
         }
         #endregion
 
+
         #region 新增调拨单
 
         /// <summary>
@@ -591,8 +594,9 @@ namespace DAL
         /// </summary>
         /// <param name="user"></param>
         /// <param name="model"></param>
+        /// <param name="repairids">售后维修单号</param>
         /// <returns></returns>
-        public Model.WebReturn Add(Model.Sys_UserInfo user, Model.Pro_OutInfo model, List<string> s)
+        public Model.WebReturn Add(Model.Sys_UserInfo user, Model.Pro_OutInfo model, List<string> s,bool forRepairOut,List<int> repairids)
         {
             //插入表头 
             //插入明细
@@ -661,7 +665,53 @@ namespace DAL
                         model.OutDate = DateTime.Now;
                         lqh.Umsdb.Pro_OutInfo.InsertOnSubmit(model);
                         lqh.Umsdb.SubmitChanges();
+
+                        var outlist = from a in lqh.Umsdb.Report_OutOrderListInfoWithIMEI
+                                      where a.调拨单号 == msg
+                                      select a;
+                        List<Model.Report_OutOrderListInfoWithIMEI> olist = new List<Model.Report_OutOrderListInfoWithIMEI>();
+                        if (outlist.Count() > 0)
+                        {
+                            olist = outlist.ToList();
+                        }
+
+                        #region 关联asp_repairinfo
+
+                        if (forRepairOut)
+                        {
+                            var repair = from a in lqh.Umsdb.ASP_RepairInfo
+                                         where repairids.Contains(a.ID)
+                                         select a;
+                            if (repair.Count() == 0)
+                            {
+                                return new WebReturn() { ReturnValue=false,Message="未能找到指定售后维修单，调拨失败！"};
+                            }
+                            foreach (var item in repair)
+                            {
+                                item.OutID = model.ID;
+                            }
+                        }
+
+                        #endregion 
+
+                        #region
+
                         List<string> InListIDList = new List<string>();
+
+                        //更新串码表
+                        var query = from b in lqh.Umsdb.GetTable<Model.Pro_IMEI>()
+                                    where s.Contains(b.IMEI) //&&(b.OutID==null||b.OutID==0)&&(b.BorowID==null||b.BorowID==0)&&(b.RepairID==null||b.RepairID==0)&&(b.SellID==null||b.SellID==0)
+                                    select b;
+                        foreach (var item in query)
+                        {
+                            Model.WebReturn rets = Common.Utils.CheckIMEI(item);
+                            if (rets.ReturnValue == false)
+                            {
+                                return rets;
+                            }
+                        }
+
+
                         foreach (var i in model.Pro_OutOrderList)
                         {
                             //减库存
@@ -688,19 +738,12 @@ namespace DAL
                         {
                             return new Model.WebReturn() { ReturnValue = false, Message = "部分批次号无效！" };
                         }
-                        //更新串码表
-                        var query = from b in lqh.Umsdb.GetTable<Model.Pro_IMEI>()
-                                    where s.Contains(b.IMEI) //&&(b.OutID==null||b.OutID==0)&&(b.BorowID==null||b.BorowID==0)&&(b.RepairID==null||b.RepairID==0)&&(b.SellID==null||b.SellID==0)
-                                    select b;
-                       
+                 
                         //if (query.Count() != s.Count())
                         //{
                         //    return new Model.WebReturn() { ReturnValue = false, Message = "存在串码不在库！" };
                         //}
-                        foreach (var item in query)
-                        {
-                            Common.Utils.CheckIMEI(item);
-                        }
+                      
                         foreach (var imei in query)
                         {
                             imei.OutID = model.ID;
@@ -708,7 +751,12 @@ namespace DAL
                         }
                         lqh.Umsdb.SubmitChanges();
                         ts.Complete();
-                        return new Model.WebReturn() { Obj = null, ReturnValue = true, Message = "调拨成功" };
+
+                        #endregion 
+
+                   
+
+                        return new Model.WebReturn() { Obj = olist, ReturnValue = true, Message = "调拨成功" };
                     }
                     catch(Exception ex)
                     {
@@ -955,7 +1003,14 @@ namespace DAL
                         //{
                         //    return new Model.WebReturn() { ReturnValue = false, Message = "部分批次号无效，调拨失败！" };
                         //}
-                       
+                        //var outlist = from a in lqh.Umsdb.Report_OutOrderIMEIInfo
+                        //              where a.调拨单号 == msg
+                        //              select a;
+                        //List<Model.Report_OutOrderIMEIInfo> olist = new List<Model.Report_OutOrderIMEIInfo>();
+                        //if (outlist.Count() > 0)
+                        //{
+                        //    olist = outlist.ToList();
+                        //}
                   
                         lqh.Umsdb.SubmitChanges();
                         ts.Complete();
@@ -1041,7 +1096,7 @@ namespace DAL
 
 
                         var query = from b in lqh.Umsdb.Pro_OutInfo
-                                    where b.OutOrderID == model.OutOrderID&&(b.IsDelete==null||b.IsDelete==false)
+                                    where b.ID == model.ID&&(b.IsDelete==null||b.IsDelete==false)
                                     select b;
                         if (query.Count() == 0 || query == null)
                         {
@@ -1063,6 +1118,11 @@ namespace DAL
                         {
                             return new WebReturn() { ReturnValue = false, Message = "单据的商品明细为空" };
                         }
+                        var hall = from a in lqh.Umsdb.Pro_HallInfo
+                                   where a.HallID == outHead.Pro_HallID
+                                   select a;
+                        Model.Pro_HallInfo toHall = hall.First();
+
                         foreach (var next in outHead.Pro_OutOrderList)
                         {
                             if (next.ProCount == 0)
@@ -1076,7 +1136,6 @@ namespace DAL
                             if (queryStore.Count() == 0)
                             {
                                 //更新库存
-
                                 Model.Pro_StoreInfo store = new Model.Pro_StoreInfo();
                                 store.InListID = next.InListID;
                                 store.ProID = next.ProID;
@@ -1099,11 +1158,45 @@ namespace DAL
                             {
                                 return new Model.WebReturn() { ReturnValue = false, Message = "串码数量不一致！" };
                             }
+                            DateTime tdate = DateTime.Now;
+                           DateTime sdate = new DateTime(2000, 1, 1);
                             foreach (var InIMEI in InlistIMEI)
                             {
                                 InIMEI.OutID = null;
                                 InIMEI.State = 0;
                                 InIMEI.HallID = outHead.Pro_HallID;
+
+                                if (InIMEI.OutRecDate != null)
+                                {
+                                    TimeSpan tspan = (TimeSpan)(tdate - InIMEI.OutRecDate);
+                                    if (InIMEI.AreaAgeDelta == null)
+                                    {
+                                        InIMEI.AreaAgeDelta = sdate;
+                                    }
+                                    if (InIMEI.AreaAgeDelta < sdate)
+                                    {
+                                        InIMEI.AreaAgeDelta = sdate;
+                                    }
+                                    InIMEI.AreaAgeDelta = ((DateTime)(InIMEI.AreaAgeDelta)).Add(tspan);
+                                }
+                          
+                                if (toHall.IsAreaAge == true)
+                                {
+                                    InIMEI.OutRecDate = null;
+                                }
+                                else
+                                {
+                                    InIMEI.OutRecDate = DateTime.Now;
+                                }
+                               
+                                
+                                if (toHall.IsAreaAge == true)
+                                {
+                                    if (InIMEI.AreaAgeInitDate == null)
+                                    {
+                                        InIMEI.AreaAgeInitDate = DateTime.Now;
+                                    }
+                                }
                             }
                         }
                         #endregion
@@ -1111,9 +1204,9 @@ namespace DAL
                         ts.Complete();
                         return new Model.WebReturn() { Obj = null, ReturnValue = true, Message = "接受成功" };
                     }
-                    catch
+                    catch(Exception ex)
                     {
-                        return new Model.WebReturn() { Obj = null, ReturnValue = false };
+                        return new Model.WebReturn() { Obj = null, ReturnValue = false,Message= ex.Message};
                     }
                 }
             }
@@ -1205,7 +1298,7 @@ namespace DAL
 
 
                         var query = (from b in lqh.Umsdb.Pro_OutInfo
-                                     where b.OutOrderID == model.OutOrderID && (b.IsDelete == null || b.IsDelete == false)
+                                     where b.ID == model.ID && (b.IsDelete == null || b.IsDelete == false)
                                      select b).ToList();
                         if (query.Count() == 0 || query == null)
                         {
@@ -1270,7 +1363,6 @@ namespace DAL
             }
         }
         #endregion
-
 
         #region 调拨单拣货  275
 
@@ -1410,8 +1502,6 @@ namespace DAL
                     List<OutImportModel> retList = new List<OutImportModel>();
                     List<OutImportModel> checkTotalList = new List<OutImportModel>();
 
-                
-
                     #region  验证串码
 
                     List<string> imeis = new List<string>();
@@ -1430,6 +1520,7 @@ namespace DAL
                                        && Nullable.Equals(e.OutID, null) && Nullable.Equals(e.BorowID, null)
                                        && Nullable.Equals(e.RepairID, null) && Nullable.Equals(e.VIPID, null)
                                        && Nullable.Equals(e.SellID, null) && Nullable.Equals(e.AssetID,null)
+                                       && Nullable.Equals(e.BJID, null) && Nullable.Equals(e.PJID, null)
                                        select e;
                         if (valIMEIs.Count() != imeis.Count)
                         {
@@ -1474,7 +1565,11 @@ namespace DAL
                                   on d.FromHall equals h.HallName
                                   join f in lqh.Umsdb.Pro_HallInfo
                                   on d.ToHall equals f.HallName
-                                 where  a.NeedIMEI == false 
+                                  join s in lqh.Umsdb.Pro_StoreInfo
+                                 on a.ProID equals s.ProID
+                                 where  a.NeedIMEI == false &&
+                                 h.Flag == true && s.ProCount > 0
+                                  && s.HallID == h.HallID 
                                  select new
                                  {
                                      d.OldID,       d.ProCount,

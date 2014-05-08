@@ -515,7 +515,7 @@ namespace DAL
                     }
                     catch (Exception ex)
                     {
-                        return new Model.WebReturn() { ReturnValue = false, Message = "新增失败！" };
+                        return new Model.WebReturn() { ReturnValue = false, Message =ex.Message };
                         throw ex;
                     }
 

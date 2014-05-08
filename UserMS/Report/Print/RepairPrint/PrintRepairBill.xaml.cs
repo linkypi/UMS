@@ -22,21 +22,21 @@ namespace UserMS.Report.Print.RepairPrint
 
 
             this.Printlist = new List<API.View_ASPReceiveInfo>() { 
-            new API.View_ASPReceiveInfo(){
-                HallName="银通银通银通银通银通银通银通银通银通银通银通银通",
-                ServiceID="123456789123456789",
-                Cus_CPC="银通银通银通银通银通银通银通",
-                Cus_Phone="1335555666688889999789789789789",
-                Cus_Phone2="18977778888777788889999666",
-                SysDate=DateTime.Now,
-                Cus_Name="银通银通银通银通银通银通银通银通银通",
-                Pro_Name="银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通",
-                Pro_Error="银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通",
-                Pro_SN="ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                Pro_IMEI="ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                Pro_Note="银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通",
-                Receiver="银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通"
-            },
+            //new API.View_ASPReceiveInfo(){
+            //    HallName="银通银通银通银通银通银通银通银通银通银通银通银通",
+            //    ServiceID="123456789123456789",
+            //    Cus_CPC="银通银通银通银通银通银通银通",
+            //    Cus_Phone="1335555666688889999789789789789",
+            //    Cus_Phone2="18977778888777788889999666",
+            //    SysDate=DateTime.Now,
+            //    Cus_Name="银通银通银通银通银通银通银通银通银通",
+            //    Pro_Name="银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通",
+            //    Pro_Error="银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通",
+            //    Pro_SN="ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            //    Pro_IMEI="ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            //    Pro_Note="银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通",
+            //    Receiver="银通银通银通银通银通银通银通银通银通银通银通银通银通银通银通"
+            //},
             };
         }
 
@@ -67,10 +67,12 @@ namespace UserMS.Report.Print.RepairPrint
 
                 ReportDataSource reportDataSource = new ReportDataSource();
 
-                reportDataSource.Name = "DS_CurrentRepairOrderInfo"; // Name of the DataSet we set in .rdlc
+               // reportDataSource.Name = "DS_CurrentRepairOrderInfo"; // Name of the DataSet we set in .rdlc
 
+                reportDataSource.Name = "DS_CurrentReceiveInfo"; 
+                
                 _reportViewer.LocalReport.DisplayName = "维修受理单";
-                _reportViewer.LocalReport.ReportPath = "Report\\Print\\RepairPrint\\RepairBill.rdlc"; // Path of the rdlc file
+                _reportViewer.LocalReport.ReportPath = "Report\\Print\\RepairPrint\\ReceiveBill.rdlc"; // Path of the rdlc file
                 List<ReportParameter> rptPara = new List<ReportParameter>();
                 rptPara.Add(new ReportParameter("rptName", "维修受理单2"));
                 System.Reflection.FieldInfo info;
@@ -84,6 +86,11 @@ namespace UserMS.Report.Print.RepairPrint
                     }
                 }
 
+                foreach (var item in Printlist)
+                {
+                    item.Receiver = Store.UserInfos.Where(a => a.UserID == item.Receiver).First().UserName;
+                   
+                }
                 reportDataSource.Value = this.Printlist;
                 _reportViewer.LocalReport.DataSources.Add(reportDataSource);
 

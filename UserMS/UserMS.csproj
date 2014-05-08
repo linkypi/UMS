@@ -2,9 +2,10 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <PipelineDependsOnBuild>false</PipelineDependsOnBuild>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.307103</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C1122577-41AD-4982-AF98-63CE071332AC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -49,17 +50,18 @@
     <PublisherName>广东广信通信服务有限公司中山分公司</PublisherName>
     <SuiteName>渠道运营部综合管理系统</SuiteName>
     <MinimumRequiredVersion>1.0.0.102</MinimumRequiredVersion>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>240</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>327</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -68,8 +70,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PublishUrl>发布\</PublishUrl>
+    <InstallUrl>http://www.zs96000.com/</InstallUrl>
+    <UpdateUrl>http://www.zs96000.com/</UpdateUrl>
+    <ProductName>渠道运营部综合管理系统</ProductName>
+    <PublisherName>广东广信通信服务有限公司中山分公司</PublisherName>
+    <SuiteName>渠道运营部综合管理系统</SuiteName>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -128,50 +136,82 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Telerik.Pivot.Core, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Telerik\RadControls for WPF Q2 2013\Binaries\WPF40\Telerik.Windows.Controls.dll</HintPath>
+    <Reference Include="Telerik.Pivot.Core, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Pivot.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Chart, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.Charting, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.Data, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Telerik\RadControls for WPF Q2 2013\Binaries\WPF40\Telerik.Windows.Controls.Data.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.DataServices, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Telerik\RadControls for WPF Q2 2013\Binaries\WPF40\Telerik.Windows.Controls.DataServices.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Chart, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.Chart.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Telerik\RadControls for WPF Q2 2013\Binaries\WPF40\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Charting, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.Charting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.GridView, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Telerik\RadControls for WPF Q2 2013\Binaries\WPF40\Telerik.Windows.Controls.GridView.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Input, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Telerik\RadControls for WPF Q2 2013\Binaries\WPF40\Telerik.Windows.Controls.Input.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.DataServices, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.DataServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Telerik\RadControls for WPF Q2 2013\Binaries\WPF40\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Pivot, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.PivotFieldList, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.RibbonView, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Telerik\RadControls for WPF Q2 2013\Binaries\WPF40\Telerik.Windows.Controls.RibbonView.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Data, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Telerik\RadControls for WPF Q2 2013\Binaries\WPF40\Telerik.Windows.Data.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.Input.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Core, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2013.2.724.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Pivot, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.Pivot.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PivotFieldList, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.PivotFieldList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.RibbonView, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Controls.RibbonView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Documents.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Maths, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Maths.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2014.1.224.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WPF Q1 2014\Binaries\WPF40\Telerik.Windows.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="PresentationCore" />
@@ -193,26 +233,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="App_Code\AnimatedLocation.cs" />
-    <Compile Include="App_Code\BasePage.cs" />
-    <Compile Include="App_Code\BingChinaMapProvider.cs" />
-    <Compile Include="App_Code\BusyIndicatorHelper.cs" />
-    <Compile Include="App_Code\Colors.cs" />
-    <Compile Include="App_Code\DelegateCommand.cs" />
-    <Compile Include="App_Code\ExcelExportHelper.cs" />
-    <Compile Include="App_Code\NotifyMessage.cs" />
-    <Compile Include="App_Code\NotifyMessageManager.cs" />
-    <Compile Include="App_Code\NotifyMessageViewModel.cs" />
-    <Compile Include="App_Code\Screen.cs" />
-    <Compile Include="App_Code\Telerik_Hack\Class1.cs" />
-    <Compile Include="App_Code\Telerik_Hack\Class2.cs" />
     <Compile Include="Common\DataExtensions.cs" />
-    <Compile Include="App_Code\Logger.cs" />
-    <Compile Include="App_Code\MethodIDInfo.cs" />
-    <Compile Include="App_Code\PublicRequestHelp.cs" />
-    <Compile Include="App_Code\ReportServiceContext.cs" />
-    <Compile Include="App_Code\Store.cs" />
-    <Compile Include="App_Code\TreeViewModel.cs" />
     <Compile Include="Common\BaseProFilter.cs" />
     <Compile Include="Common\CommonHelper.cs" />
     <Compile Include="Common\Delegate.cs" />
@@ -240,6 +261,9 @@
     <Compile Include="DemoReport\MapReport.xaml.cs">
       <DependentUpon>MapReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DemoReport\MapReport\MapReportModel.cs" />
+    <Compile Include="DemoReport\MapReport\SellChartModel.cs" />
+    <Compile Include="DemoReport\MapReport\SellChartModel2.cs" />
     <Compile Include="DemoReport\Report1.xaml.cs">
       <DependentUpon>Report1.xaml</DependentUpon>
     </Compile>
@@ -253,16 +277,8 @@
       <DependentUpon>SellChart2.xaml</DependentUpon>
     </Compile>
     <Compile Include="DemoReport\SellChartModel.cs" />
-    <Compile Include="Model\PackageModel\VIPOffModel.cs" />
-    <Compile Include="Model\ProSellCarGridModel.cs" />
-    <Compile Include="Model\RepairNote.cs" />
-    <Compile Include="Model\SalaryChild.cs" />
-    <Compile Include="Model\SalaryHeader.cs" />
-    <Compile Include="MyControl\MyColumnSettings.xaml.cs">
-      <DependentUpon>MyColumnSettings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\NoFileterMulSelect.xaml.cs">
-      <DependentUpon>NoFileterMulSelect.xaml</DependentUpon>
+    <Compile Include="MyWebClient.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\Borrow\BorrowAduit.xaml.cs">
       <DependentUpon>BorrowAduit.xaml</DependentUpon>
@@ -270,14 +286,18 @@
     <Compile Include="Report\Print\PrintAssetsOutOrder.xaml.cs">
       <DependentUpon>PrintAssetsOutOrder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Report\Print\PrintInOrder.xaml.cs">
+      <DependentUpon>PrintInOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Print\PrintOutOrder2.xaml.cs">
+      <DependentUpon>PrintOutOrder2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Report\Print\RepairPrint\PrintRepairBill.xaml.cs">
       <DependentUpon>PrintRepairBill.xaml</DependentUpon>
     </Compile>
     <Compile Include="Report\SellReport1.xaml.cs">
       <DependentUpon>SellReport1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\MapReport\SellChartModel.cs" />
-    <Compile Include="Model\MapReport\SellChartModel2.cs" />
     <Compile Include="GridTest.xaml.cs">
       <DependentUpon>GridTest.xaml</DependentUpon>
     </Compile>
@@ -289,72 +309,6 @@
     </Compile>
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Model\AirChargeModel.cs" />
-    <Compile Include="Model\ExtendServerModels.cs" />
-    <Compile Include="Model\MapAreaModel.cs" />
-    <Compile Include="Model\MapPointModel.cs" />
-    <None Include="Model\MapReport\MapReportModel.__" />
-    <Compile Include="Model\MapReport\MapReportModel.cs" />
-    <Compile Include="Model\NewSellListInfoGridModel.cs" />
-    <Compile Include="Model\PackageModel\GounpSource.cs" />
-    <Compile Include="Model\PackSellGridModel.cs" />
-    <Compile Include="Model\ProSellBackGridModel.cs" />
-    <Compile Include="Model\ProSellGridModel.cs" />
-    <Compile Include="Model\ProSellOffAduitModel.cs" />
-    <Compile Include="Model\ServiceGridModel.cs" />
-    <Compile Include="Model\ServiceSellGridModel.cs" />
-    <Compile Include="Model\UserOpModel.cs" />
-    <Compile Include="Model\UserSales\UserSalesModel.cs" />
-    <Compile Include="Model\VIPSellGridModel.cs" />
-    <Compile Include="Model\WholeSellModel.cs" />
-    <Compile Include="Model\YanbaoModel.cs" />
-    <Compile Include="MyControl\LockChild.xaml.cs">
-      <DependentUpon>LockChild.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\MainTabHeader.xaml.cs">
-      <DependentUpon>MainTabHeader.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\MultSelecter.xaml.cs">
-      <DependentUpon>MultSelecter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\MultSelecter2.xaml.cs">
-      <DependentUpon>MultSelecter2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\MyAutoTextBox.xaml.cs">
-      <DependentUpon>MyAutoTextBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\MyContextMenu.xaml.cs">
-      <DependentUpon>MyContextMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\MyDataImport.xaml.cs">
-      <DependentUpon>MyDataImport.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\MyMulSelect.xaml.cs">
-      <DependentUpon>MyMulSelect.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\MyOutOrderPrint.xaml.cs">
-      <DependentUpon>MyOutOrderPrint.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\MyTabItem.xaml.cs">
-      <DependentUpon>MyTabItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\SimplePager.xaml.cs">
-      <DependentUpon>SimplePager.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\SingleSelecter.xaml.cs">
-      <DependentUpon>SingleSelecter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\SingleSelecter2.xaml.cs">
-      <DependentUpon>SingleSelecter2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControl\ViewModel\Class1.cs" />
-    <Compile Include="MyControl\ViewModel\judgeModel\Judge.cs" />
-    <Compile Include="MyControl\ViewModel\MainViewModel.cs" />
-    <Compile Include="MyControl\ViewModel\MyThemes.cs" />
-    <Compile Include="MyControl\ViewModel\TabViewModel.cs" />
-    <Compile Include="NotifyMessageWindow.xaml.cs">
-      <DependentUpon>NotifyMessageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Report\EveryHallStore\EveryHallStore.xaml.cs">
       <DependentUpon>EveryHallStore.xaml</DependentUpon>
@@ -434,16 +388,6 @@
     <Compile Include="Select_child.xaml.cs">
       <DependentUpon>Select_child.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Service References\API\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\ReportService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.datasvcmap</DependentUpon>
-    </Compile>
     <Compile Include="SetPassWord.xaml.cs">
       <DependentUpon>SetPassWord.xaml</DependentUpon>
     </Compile>
@@ -507,6 +451,15 @@
     <Compile Include="Views\AfterSale\Back.xaml.cs">
       <DependentUpon>Back.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AfterSale\BackMoney\BackApplySearch.xaml.cs">
+      <DependentUpon>BackApplySearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AfterSale\BackMoney\BackMoneyApply.xaml.cs">
+      <DependentUpon>BackMoneyApply.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AfterSale\BackMoney\BackMoneyAudit.xaml.cs">
+      <DependentUpon>BackMoneyAudit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AfterSale\BJReturnAudit.xaml.cs">
       <DependentUpon>BJReturnAudit.xaml</DependentUpon>
     </Compile>
@@ -540,8 +493,17 @@
     <Compile Include="Views\AfterSale\Repair.xaml.cs">
       <DependentUpon>Repair.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AfterSale\RepairerProductInfo.xaml.cs">
+      <DependentUpon>RepairerProductInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AfterSale\RepairProgressSearch.xaml.cs">
+      <DependentUpon>RepairProgressSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AfterSale\ReturnVisit.xaml.cs">
       <DependentUpon>ReturnVisit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AfterSale\TimeWin.xaml.cs">
+      <DependentUpon>TimeWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AfterSale\ToFactory.xaml.cs">
       <DependentUpon>ToFactory.xaml</DependentUpon>
@@ -692,6 +654,9 @@
     </Compile>
     <Compile Include="Views\Configuration\Configuration_Type\Configuration_Type.xaml.cs">
       <DependentUpon>Configuration_Type.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AfterSale\DealerManager.xaml.cs">
+      <DependentUpon>DealerManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HallOff\AddHallOff.xaml.cs">
       <DependentUpon>AddHallOff.xaml</DependentUpon>
@@ -949,6 +914,9 @@
     <Compile Include="Views\ProSell\NewJiangMenGouJi_temp.xaml.cs">
       <DependentUpon>NewJiangMenGouJi_temp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProSell\YanBao\import.xaml.cs">
+      <DependentUpon>import.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Report\MainReport.xaml.cs">
       <DependentUpon>MainReport.xaml</DependentUpon>
     </Compile>
@@ -1033,6 +1001,9 @@
     <Compile Include="Views\StockMS\EnteringStock\Recordsearch.xaml.cs">
       <DependentUpon>Recordsearch.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StockMS\EnteringStock\RepairStockIn.xaml.cs">
+      <DependentUpon>RepairStockIn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StockMS\EnteringStock\TypeOfChange.xaml.cs">
       <DependentUpon>TypeOfChange.xaml</DependentUpon>
     </Compile>
@@ -1086,6 +1057,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RadControlResources.resx</DependentUpon>
     </Compile>
+    <Content Include="Report\Print\Out.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Report\Print\InOrder.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="ClickOnceFlag.txt" />
+    <Content Include="Report\Print\RepairPrint\ReceiveBill.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="images\logoserver0.png" />
+    <Resource Include="images\logoserver1.png" />
     <Content Include="Libs\Kendo.Mvc.dll" />
     <Content Include="Libs\Kendo.Mvc.Examples.dll" />
     <Content Include="Report\SellReport1.rdlc">
@@ -1115,9 +1098,13 @@
     <Content Include="Report\Print\RepairPrint\RepairChildBill.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="DemoReport\MapReport\MapReportModel.__" />
+    <None Include="Properties\DataSources\UserMS.API.ASP_ReceiveInfo.datasource" />
+    <None Include="Properties\DataSources\UserMS.API.Report_InlistInfoWithIMEI.datasource" />
+    <None Include="Properties\DataSources\UserMS.API.Report_OutOrderListInfoWithIMEI.datasource" />
     <None Include="Properties\DataSources\UserMS.API.View_ASPReceiveInfo.datasource" />
+    <None Include="Properties\DataSources\UserMS.ReportService.Report_InOrderIMEIInfo.datasource" />
     <None Include="Properties\DataSources\UserMS.ReportService.Report_OutOrderIMEIInfo.datasource" />
-    <None Include="Service References\API\UserMSService1.disco" />
     <None Include="Properties\DataSources\UserMS.DemoReport.Zhuanxiang5ReportModel.datasource" />
     <None Include="Properties\DataSources\UserMS.DemoReport.Zhuanxiang5ReportModel1.datasource" />
     <None Include="Properties\DataSources\UserMS.Report.Zhuanxiang.datasource" />
@@ -1125,44 +1112,9 @@
     <None Include="Properties\DataSources\UserMS.ReportService.Report_SellListInfo.datasource" />
     <None Include="Properties\DataSources\UserMS.ReportService.Report_VipBuyTimeInfo.datasource" />
     <None Include="Properties\DataSources\UserMS.ReportService.Report_YANBAO.datasource" />
-    <None Include="Service References\API\UserMsService1.wsdl" />
-    <None Include="Service References\API\UserMSService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\API\UserMSService41.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\API\UserMSService42.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\API\UserMSService43.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ReportService\Reference.datasvcmap">
-      <Generator>DataServicesCoreClientGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Report\ProfitReport.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Service References\API\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\API\configuration.svcinfo" />
-    <None Include="Service References\API\configuration91.svcinfo" />
-    <None Include="Service References\API\UserMS.API.Pro_IMEI_Deleted.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\API\UserMS.API.Pro_ProInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\API\UserMS.API.Pro_SellTypeProduct.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\API\UserMS.API.WebReturn.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <EmbeddedResource Include="Localization\RadControlResources.zh-CN.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1195,9 +1147,7 @@
     <Content Include="Report\Print\SellBackPrint\SellBackBill.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="App_Code\Store.cs.orig" />
     <None Include="images\logo2.bak" />
-    <None Include="Model\NewSellListInfoGridModel.cs.orig" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -1206,7 +1156,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\ReportService\service.edmx" />
     <None Include="UserMS_TemporaryKey.pfx" />
     <None Include="Views\ProSell\NewProSell.xaml.cs.orig" />
     <None Include="Views\ProSell\NewProSellSetp2.xaml.cs.orig" />
@@ -1219,6 +1168,9 @@
       <DependentUpon>App.config</DependentUpon>
     </None>
     <None Include="App.Release.config">
+      <DependentUpon>App.config</DependentUpon>
+    </None>
+    <None Include="App.Release_HZ.config">
       <DependentUpon>App.config</DependentUpon>
     </None>
   </ItemGroup>
@@ -1251,14 +1203,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MyControl\MyColumnSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControl\NoFileterMulSelect.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Report\Borrow\BorrowAduit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1266,6 +1210,14 @@
     <Page Include="Report\Print\PrintAssetsOutOrder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Report\Print\PrintInOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Report\Print\PrintOutOrder2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Report\Print\RepairPrint\PrintRepairBill.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1294,86 +1246,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Main.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\LockChild.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\MainTabHeader.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\MultSelecter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\MultSelecter2.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\MyAutoTextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\MyContextMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\MyDataImport.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControl\MyMulSelect.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\MyOutOrderPrint.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\MyTabItem.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\SimplePager.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\SingleSelecter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControl\SingleSelecter2.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="NotifyMessageWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1613,6 +1485,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AfterSale\BackMoney\BackApplySearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AfterSale\BackMoney\BackMoneyApply.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AfterSale\BackMoney\BackMoneyAudit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AfterSale\BJReturnAudit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1657,7 +1541,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AfterSale\RepairerProductInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AfterSale\RepairProgressSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AfterSale\ReturnVisit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AfterSale\TimeWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1942,6 +1838,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AfterSale\DealerManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HallOff\AddHallOff.xaml">
       <SubType>Designer</SubType>
@@ -2377,6 +2277,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ProSell\YanBao\import.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Report\MainReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2531,6 +2435,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\StockMS\EnteringStock\RepairStockIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\StockMS\EnteringStock\TypeOfChange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2620,9 +2528,7 @@
     <Resource Include="images\topmenu_bg.png" />
     <Resource Include="images\top_bg.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Code\Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DockPanelSplitter\DockPanelSplitter.csproj">
       <Project>{60bcd395-0a26-406a-862a-615457cbfd8f}</Project>
@@ -2635,6 +2541,10 @@
     <ProjectReference Include="..\SlModel\SlModel.csproj">
       <Project>{eb7de1ef-ff41-441f-86f0-39f9816e8b83}</Project>
       <Name>SlModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserMS.Controls\UserMS.Commons.csproj">
+      <Project>{ba723d10-a32c-49bb-9794-844bd5b0766b}</Project>
+      <Name>UserMS.Commons</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -2696,6 +2606,31 @@
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_HZ|AnyCPU'">
+    <AssemblyName>UserMS_HZ</AssemblyName>
+    <ProductName>渠道运营部综合管理系统-惠州区域</ProductName>
+    <SuiteName>渠道运营部综合管理系统-惠州区域</SuiteName>
+    <InstallUrl>http://gxhz.mytzb.com/</InstallUrl>
+    <UpdateUrl>http://gxhz.mytzb.com/</UpdateUrl>
+    <PublishUrl>D:\惠州发布\</PublishUrl>
+    <OutputPath>bin\Release_HZ\</OutputPath>
+    <DefineConstants>TRACE;HZ</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_HZ|AnyCPU'">
+    <AssemblyName>UserMS_HZ</AssemblyName>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug_HZ\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;HZ</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -2729,52 +2664,52 @@
   <ItemGroup>
     <PublishFile Include="Microsoft.ReportViewer.Common">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.DataVisualization">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.ProcessingObjectModel">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.WinForms">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.SqlServer.Types">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
@@ -2800,14 +2735,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\API\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ServiceReferenceMetadataStorage Include="Service References\ReportService\">
-      <Type>datasvcmap</Type>
-    </ServiceReferenceMetadataStorage>
   </ItemGroup>
   <!-- Insert transformation targets in the build process -->
   <PropertyGroup>

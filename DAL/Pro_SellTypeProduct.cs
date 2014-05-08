@@ -169,7 +169,9 @@ namespace DAL
                     var list = (from a in lqh.Umsdb.Pro_SellTypeProduct
                                join b in lqh.Umsdb.Pro_SellType
                                on a.SellType equals b.ID
-                               where proids.Contains(a.ProID) && b.Name == "单卖"
+                               join c in lqh.Umsdb.Sys_Option
+                               on b.ID.ToString() equals c.Value
+                                where proids.Contains(a.ProID) && c.ClassName == "SingleSell"
                                select a).Distinct();
                     List<Model.Pro_SellTypeProduct> stp = new List<Model.Pro_SellTypeProduct>();
                     if (list.Count() > 0)

@@ -183,7 +183,11 @@ namespace DAL
                                            select b;
                                 foreach (var child in imei)
                                 {
-                                    Common.Utils.CheckIMEI(child);
+                                    Model   .WebReturn retrs = Common.Utils.CheckIMEI(child);
+                                    if (retrs.ReturnValue == false)
+                                    {
+                                        return retrs;
+                                    }
                                     //if (child.OutID!=null || child.RepairID !=null || child.BorowID!=null||
                                     //    child.SellID!=null || child.VIPID!=null )
                                     //{

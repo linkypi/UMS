@@ -7,7 +7,7 @@
            xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
            xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
            mc:Ignorable="d" 
-           xmlns:src="clr-namespace:UserMS" 
+           xmlns:src="http://www.zs96000.com/wpf" 
 
               d:DesignWidth="640" d:DesignHeight="480"
            Title="AddPro Page">
@@ -62,7 +62,7 @@
                             </StackPanel>
                             <ScrollViewer  toolkit:DockPanel.Dock="Left" Padding="0">
                                 <telerik:RadTreeView    toolkit:DockPanel.Dock="Top"  IsLineEnabled="True"
-				    ItemsOptionListType="CheckList" IsOptionElementsEnabled="True" IsDragDropEnabled="True"
+				      IsOptionElementsEnabled="True" IsDragDropEnabled="True"
 				    IsRootLinesEnabled="True" x:Name="RadTreeView3" IsEnabled="False"  IsTriStateMode="True"
                                            DisplayMemberPath="Title" 
                      ItemTemplate="{StaticResource ttreeTemplate}" />
@@ -83,7 +83,7 @@
 
                 <!--<ScrollViewer  toolkit:DockPanel.Dock="Left" Padding="0">
                         <telerik:RadTreeView     toolkit:DockPanel.Dock="Top" SelectionMode="Single" IsLineEnabled="True" SelectionChanged="RoleTV_SelectionChanged"
-				    ItemsOptionListType="CheckList" IsOptionElementsEnabled="True" IsDragDropEnabled="True" Checked="RoleTV_Checked"  Unchecked="RoleTV_Unchecked"
+				      IsOptionElementsEnabled="True" IsDragDropEnabled="True" Checked="RoleTV_Checked"  Unchecked="RoleTV_Unchecked"
 				    IsRootLinesEnabled="True" x:Name="RoleTV"  IsTriStateMode="True" 
                      />
                     </ScrollViewer>-->

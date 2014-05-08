@@ -50,6 +50,15 @@ namespace UserMS.Views.AfterSale
             //hadder.GetHall(hadder.FilterHall(menuid, Store.ProHallInfo));
         }
 
+
+        private void Button_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Search();
+            }
+        }
+
         #region 查询
 
         private void search_Click(object sender, RoutedEventArgs e)
@@ -75,22 +84,37 @@ namespace UserMS.Views.AfterSale
 
             rpp.ParamList = new List<API.ReportSqlParams>();
 
+        
+
+            //已取机
+            //API.ReportSqlParams_Bool HasFetch = new API.ReportSqlParams_Bool();
+            //HasFetch.ParamName = "HasFetch";
+            //HasFetch.ParamValues = true;
+            //rpp.ParamList.Add(HasFetch); 
+
             //API.ReportSqlParams_Bool HasAudited = new API.ReportSqlParams_Bool();
-            //HasAudited.ParamName = "HasAudited"; // 已审计  HasCallBack
-            //HasAudited.ParamValues = true;
-            //rpp.ParamList.Add(HasAudited);
+            //HasAudited.ParamName = "HasAudited";
+            //HasAudited.ParamValues = false;
 
-            API.ReportSqlParams_Bool HasCallBack = new API.ReportSqlParams_Bool();
-            HasCallBack.ParamName = "HasCallBack";
-            HasCallBack.ParamValues = false;
-            rpp.ParamList.Add(HasCallBack);
-
-            if (!string.IsNullOrEmpty(this.hall.Tag.ToString()))
+            //API.ReportSqlParams_Bool HasCallBack = new API.ReportSqlParams_Bool();
+            //HasCallBack.ParamName = "HasCallBack";
+            //HasCallBack.ParamValues = false;
+            //rpp.ParamList.Add(HasCallBack);
+            if (state.SelectedIndex != 0)
             {
-                API.ReportSqlParams_String hall = new API.ReportSqlParams_String();
-                hall.ParamName = "HallID";
-                hall.ParamValues = this.hall.Tag.ToString();
-                rpp.ParamList.Add(hall);
+                API.ReportSqlParams_String repstate = new API.ReportSqlParams_String();
+                repstate.ParamName = "RpState";
+                object obj = (state.SelectedItem as ComboBoxItem).Content;
+                repstate.ParamValues = obj == null ? "" : obj.ToString();
+                rpp.ParamList.Add(repstate);
+            }
+
+            if (!string.IsNullOrEmpty(this.hall.Tag==null?"":hall.Tag.ToString()))
+            {
+                API.ReportSqlParams_String h = new API.ReportSqlParams_String();
+                h.ParamName = "HallID";
+                h.ParamValues = this.hall.Tag.ToString();
+                rpp.ParamList.Add(h);
             }
 
             //if (!string.IsNullOrEmpty(this.sysdate.DateTimeText ?? ""))
@@ -101,11 +125,11 @@ namespace UserMS.Views.AfterSale
             //    rpp.ParamList.Add(date);
             //}
 
-            if (!string.IsNullOrEmpty(this.oldid.Text.ToString()))
+            if (!string.IsNullOrEmpty(this.searchOldid.Text.ToString()))
             {
                 API.ReportSqlParams_String users = new API.ReportSqlParams_String();
                 users.ParamName = "OldID";
-                users.ParamValues = this.oldid.Text.Trim();
+                users.ParamValues = this.searchOldid.Text.Trim();
                 rpp.ParamList.Add(users);
             }
 
@@ -133,7 +157,7 @@ namespace UserMS.Views.AfterSale
                 rpp.ParamList.Add(bt);
             }
 
-            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 325, new object[] { rpp }, new EventHandler<API.MainCompletedEventArgs>(SearchCompleted));
+            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 363, new object[] { rpp }, new EventHandler<API.MainCompletedEventArgs>(SearchCompleted));
 
         }
 
@@ -143,8 +167,16 @@ namespace UserMS.Views.AfterSale
             receiver.Text = string.Empty;
             cus_phone.Text = string.Empty;
             serviceHall.Text = string.Empty;
+            oldid.Text = string.Empty;
+            repCount.Text = string.Empty;
             models.Clear();
             searchGrid.Rebind();
+
+            foreach (var item in allAnswer.Children)
+            {
+                CheckBox cbox = item as CheckBox;
+                cbox.IsChecked = false;
+            }
         }
 
         /// <summary>
@@ -222,11 +254,23 @@ namespace UserMS.Views.AfterSale
             {
                 return;
             }
-
+            
             API.View_ASPRepairInfo model = searchGrid.SelectedItem as API.View_ASPRepairInfo;
+            bjMoney.Text = Convert.ToString(model.BJ_Money);
+            workMoney.Text = Convert.ToString(model.WorkMoney);
+            proMoney.Text = Convert.ToString(model.ProMoney);
+            decimal to = Convert.ToDecimal(model.WorkMoney) + Convert.ToDecimal(model.ProMoney)
+                - Convert.ToDecimal(model.BJ_Money);
+            total.Text = to.ToString();
+            shouldPay.Text = to.ToString();
+            gzType.Text = model.GzType;
+            gzMoney.Text = Convert.ToString(model.GzMoney);
+            realPay.Text = Convert.ToString(model.RealPay);
 
+            repCount.Text = model.RepairCount==null?"0":model.RepairCount.ToString();
             serviceHall.Text = model.RecHallName;
             oldid.Text = model.OldID;
+            realMoney.Value = Convert.ToDouble(model.RealPay);
             receiver.Text = model.Receiver;
         }
 
@@ -241,12 +285,18 @@ namespace UserMS.Views.AfterSale
                 MessageBox.Show("请选择数据！");
                 return;
             }
+            API.View_ASPRepairInfo model = searchGrid.SelectedItem as API.View_ASPRepairInfo;
 
-            if (realMoney.Value == 0)
+            if (model.RpState != "待回访")
             {
-                MessageBox.Show("实收不能为0！");
+                MessageBox.Show("单号 " + model.OldID + "处于" + model.RpState + "状态，无法回访！");
                 return;
             }
+            //if (realMoney.Value == 0)
+            //{
+            //    MessageBox.Show("实收不能为0！");
+            //    return;
+            //}
 
             string msg = "";
             bool nonChecked = true;
@@ -266,8 +316,7 @@ namespace UserMS.Views.AfterSale
                 return;
             }
 
-            API.View_ASPRepairInfo model = searchGrid.SelectedItem as API.View_ASPRepairInfo;
-
+       
             API.ASP_CallBackInfo cb = new API.ASP_CallBackInfo();
             cb.OrderID = model.OrderID;
             cb.RealMoney = Convert.ToDecimal(realMoney.Value);
@@ -275,6 +324,10 @@ namespace UserMS.Views.AfterSale
             cb.Suggest = cusSuggest.Text.Trim();
             cb.Note =    cbNote.Text.Trim();
 
+            if (MessageBox.Show("确定保存吗？", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+            {
+                return;
+            }
             PublicRequestHelp prh = new PublicRequestHelp(this.isbusy,336,new object[]{model.ID, cb },
                 new EventHandler<API.MainCompletedEventArgs>(SaveCompleted));
         }

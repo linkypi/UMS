@@ -3,6 +3,6 @@ D:\UMS\client\UserMS\SlModel\bin\Release\SlModel.pdb
 D:\UMS\client\UserMS\SlModel\bin\Release\Lite.ExcelLibrary.dll
 D:\UMS\client\UserMS\SlModel\bin\Release\NPOI.dll
 D:\UMS\client\UserMS\SlModel\bin\Release\Lite.Library.dll
-D:\UMS\client\UserMS\SlModel\obj\Release\SlModel.csprojResolveAssemblyReference.cache
 D:\UMS\client\UserMS\SlModel\obj\Release\SlModel.dll
 D:\UMS\client\UserMS\SlModel\obj\Release\SlModel.pdb
+D:\UMS\client\UserMS\SlModel\obj\Release\SlModel.csprojResolveAssemblyReference.cache

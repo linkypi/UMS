@@ -1,4 +1,4 @@
-﻿<src:BasePage   xmlns:UserMS="clr-namespace:UserMS"  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="UserMS.Views.StockMS.EnteringStock.Mainaddcmgoods"
+﻿<src:BasePage   xmlns:UserMS="http://www.zs96000.com/wpf"  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="UserMS.Views.StockMS.EnteringStock.Mainaddcmgoods"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"                  
      mc:Ignorable="d" Loaded="Page_Loaded"
-                    xmlns:src="clr-namespace:UserMS"
+                    xmlns:src="http://www.zs96000.com/wpf"
      d:DesignWidth="800" d:DesignHeight="600" >
     <telerik:RadBusyIndicator x:Name="PageBusy">
         <Grid x:Name="LayoutRoot" Background="White"  VerticalAlignment="Stretch">
@@ -14,14 +14,16 @@
          
             <toolkit:DockPanel>
                 <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  toolkit:DockPanel.Dock="Top">
-                    <toolkit:WrapPanel>
+                    
                     <telerik:RadMenuItem Header="取消" x:Name="cancel" FontSize="13" />
                     <telerik:RadMenuItem x:Name="Sumbit" FontSize="13"  Header="保存"/>
                     <telerik:RadMenuItem x:Name="Add" Header="新增行" FontSize="13" Click="Add_Click_1"/>
                     <telerik:RadMenuItem x:Name="Delete" Header="删除商品" FontSize="13" Click="Delete_Click_1"/>
                     <telerik:RadMenuItem x:Name="DeleteIMEI" Header="删除串码" FontSize="13" Click="DeleteIMEI_Click_1"/>
+                    <telerik:RadMenuItem x:Name="import" Header="导入" FontSize="13" Click="import_Click"/>
 
-                    </toolkit:WrapPanel>
+
+
                 </telerik:RadMenu>
                 <toolkit:WrapPanel toolkit:DockPanel.Dock="Top" MaxHeight="150">
                     <StackPanel Orientation="Horizontal" Margin="2,3">

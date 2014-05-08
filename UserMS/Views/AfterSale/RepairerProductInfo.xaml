@@ -1,0 +1,49 @@
+﻿<Page x:Class="UserMS.Views.AfterSale.RepairerProductInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d"  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+           xmlns:src="http://www.zs96000.com/wpf"
+               xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter" 
+	Title="RepairerProductInfo">
+
+    <xctk:BusyIndicator  x:Name="busy" BusyContent="请稍后...">
+
+        <toolkit:DockPanel x:Name="LayoutRoot"  HorizontalAlignment="Stretch">
+
+            <telerik:RadMenu x:Name="radMenu" ClickToOpen="False"  Height="28"  toolkit:DockPanel.Dock="Top" >
+                <telerik:RadMenuItem  Header="保存" Name="save" Click="save_Click" />
+                <telerik:RadMenuItem  Header="添加维修师" Click="addRep_Click" Name="addRep" />
+                <telerik:RadMenuItem  Header="删除维修师" x:Name="deleteRep" Click="deleteRep_Click"/>
+                <telerik:RadMenuItem  Header="添加商品" Name="add" Click="add_Click" />
+                <telerik:RadMenuItem  Header="删除商品" x:Name="deletePro" Click="deletePro_Click"/>
+            </telerik:RadMenu>
+
+            <telerik:RadGridView x:Name="GridRepList" ShowColumnHeaders="True" GridLinesVisibility="Both" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+                    SelectionChanged="GridRepList_SelectionChanged"   CanUserFreezeColumns="False"  AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+    				 Width="300"  VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewSelectColumn />
+                    <telerik:GridViewBoundColumnBase  Header="维修师" Width="auto"  IsReadOnly="True" HeaderTextAlignment="Center"  DataMemberBinding="{Binding Repairer}" IsFilterable="False" />
+                  
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <Splitter:DockPanelSplitter Background="Silver" DockPanel.Dock="Left"></Splitter:DockPanelSplitter>
+            <telerik:RadGridView  x:Name="GridProDetail" ShowColumnHeaders="True" GridLinesVisibility="Both" CanUserInsertRows="False" ShowGroupPanel="False" RowIndicatorVisibility="Collapsed" IsFilteringAllowed="True" 
+                   CanUserFreezeColumns="False"  AutoGenerateColumns="False" IsBusy="False" SelectionMode="Extended"  CanUserSortColumns="False" CanUserReorderColumns="False" 
+    				RowDetailsVisibilityMode="VisibleWhenSelected"   VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewSelectColumn />
+                    <telerik:GridViewDataColumn  Header="品牌编号" DataMemberBinding="{Binding TypeID, Mode=OneWay}" Width="auto" IsReadOnly="True" IsFilterable="False"/>
+                    <telerik:GridViewDataColumn   Header="商品品牌"  DataMemberBinding="{Binding TypeName, Mode=OneWay}" Width="auto" IsReadOnly="True" IsFilterable="False"  />
+                 
+               </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+        </toolkit:DockPanel>
+
+    </xctk:BusyIndicator>
+</Page>

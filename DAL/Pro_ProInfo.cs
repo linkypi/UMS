@@ -234,6 +234,8 @@ namespace DAL
                 }
             }
         }
+
+       
         #endregion
 
         #region 新增商品和商品权限（旧）
@@ -471,9 +473,9 @@ namespace DAL
                         #endregion                           
                         return new Model.WebReturn() { ReturnValue = true, Message = "添加成功", Obj = ProList };
                     }
-                    catch
+                    catch(Exception ex)
                     {
-                        return new Model.WebReturn() { ReturnValue = false, Message = "添加失败！" };
+                        return new Model.WebReturn() { ReturnValue = false, Message = ex.Message };
                     }
                 }
             }
@@ -496,6 +498,7 @@ namespace DAL
                     var query = from b in lqh.Umsdb.GetTable<Model.Pro_IMEI>()
                                 where b.IMEI == IMEI && b.OutID == null && b.SellID == null
                                 && b.BorowID == null && b.RepairID == null && b.AuditID==null &&b.AssetID==null
+                                && (b.State==null || b.State==0)
                                 select b;
                     if (query == null || query.Count() == 0)
                     {
@@ -535,6 +538,59 @@ namespace DAL
         }
 
 
+        public Model.WebReturn GetModel(Model.Sys_UserInfo user, List<string> IMEI, string hallID)
+        {
+            if (IMEI == null || hallID == null)
+                return new Model.WebReturn() { ReturnValue = false, Obj = null, Message = "传参错误！" };
+            using (LinQSqlHelper lqh = new LinQSqlHelper())
+            {
+
+                var dl = new DataLoadOptions();
+                dl.LoadWith<Model.Pro_ProInfo>(p => p.Pro_SellTypeProduct);
+                lqh.Umsdb.LoadOptions = dl;
+                try
+                {
+                    var query = from b in lqh.Umsdb.GetTable<Model.Pro_IMEI>()
+                                where IMEI.Contains(b.IMEI) && b.OutID == null && b.SellID == null
+                                && b.BorowID == null && b.RepairID == null && b.AuditID == null && b.AssetID == null
+                                && (b.State == null || b.State == 0)
+                                select b;
+                    if (query == null || query.Count() == 0)
+                    {
+                        return new Model.WebReturn() { ReturnValue = false, Obj = null, Message = "不存在串码或存在其他操作！" };
+                    }
+//                    var Pro = lqh.Umsdb.GetTable<Model.Pro_ProInfo>().Where(p => p.ProID == query.First().ProID);
+//                    if (Pro == null || Pro.Count() == 0)
+//                    {
+//                        return new Model.WebReturn() { ReturnValue = false, Obj = null, Message = "不存在该串码的商品" };
+//                    }
+                    
+                        var qureyHall = from b in lqh.Umsdb.Pro_HallInfo
+                                        where b.HallID == hallID
+                                        select b;
+                        if (qureyHall.Count() == 0)
+                        {
+                            return new Model.WebReturn() { ReturnValue = false, Obj = null, Message = "不存在仓库ID" };
+                        }
+                        var query_IMEIhall = from b in query
+                                             where b.HallID == hallID
+                                             select b;
+                        if (query_IMEIhall.Count() == 0)
+                        {
+                            return new Model.WebReturn() { ReturnValue = false, Obj = null, Message = "串码不存在该仓库" };
+                        }
+
+
+                        return new Model.WebReturn() { ReturnValue = true, Obj = query_IMEIhall.ToList(), Message = "已获取" };
+                }
+                catch (Exception ex)
+                {
+                    return new Model.WebReturn() { ReturnValue = false, Message = ex.Message };
+                    throw ex;
+                }
+            }
+        }
+
         public Model.WebReturn GetModel(Model.Sys_UserInfo user, string IMEI, string hallID,int assets)
         {
             if (IMEI == null || hallID == null)
@@ -549,7 +605,8 @@ namespace DAL
                 {
                     var query = from b in lqh.Umsdb.GetTable<Model.Pro_IMEI>()
                                 where b.IMEI == IMEI && b.OutID == null && b.SellID == null
-                                && b.BorowID == null && b.RepairID == null && b.AuditID == null 
+                                && b.BorowID == null && b.RepairID == null && b.AuditID == null
+                                 && (b.State == null || b.State == 0) && b.AssetID == null
                                 select b;
                     if (query == null || query.Count() == 0)
                     {
@@ -817,35 +874,55 @@ namespace DAL
             {
                 try
                 {
-                    int classid = 0;
+                    List<int> classids = new List<int>() ;
                     if (isBJ)
                     {
                         var cls = from a in lqh.Umsdb.Pro_ClassInfo
-                                  where a.ClassName == "备机"
+                                  join b in lqh.Umsdb.Sys_Option
+                                  on a.ClassID.ToString() equals b.Value.ToString()
+                                  where b.ClassName == "BJClassID"
                                   select a;
-                        classid = cls.First().ClassID;
+                        classids.Add(cls.First().ClassID);
+                    }
+                    else
+                    {
+                        classids.AddRange(new List<int>() { 128,129,131});
                     }
                     //非串码
                     var list = from a in lqh.Umsdb.Pro_ProInfo
                                join b in lqh.Umsdb.Pro_StoreInfo on a.ProID equals b.ProID
-                               join c in lqh.Umsdb.Sys_Role_HallInfo on b.HallID equals c.HallID
-                               join d in lqh.Umsdb.Sys_UserInfo on c.RoleID equals d.RoleID
-                               where d.UserID == user.UserID && c.HallID == hid  
+                               //join c in lqh.Umsdb.Sys_Role_Menu_HallInfo on b.HallID equals c.HallID
+                               //join d in lqh.Umsdb.Sys_UserInfo on c.RoleID equals d.RoleID  d.UserID == user.UserID &&
+                               //join p in lqh.Umsdb.Pro_SellTypeProduct on a.ProID equals p.ProID
+                               where b.HallID == hid  && classids.Contains((int)a.Pro_ClassID)
                                && b.ProCount>0 && a.NeedIMEI==false
                                select new {a.ProID,a.ProName,a.ProFormat,a.NeedIMEI,a.Pro_ClassID
-                                   ,a.Pro_TypeID,a.ProMainID,b.InListID,a.ISdecimals};
+                                   ,a.Pro_TypeID,a.ProMainID,b.InListID,a.ISdecimals };
 
                     List<Model.BJModel> arr = new List<BJModel>();
                     foreach (var item in list)
                     {
-                        if (isBJ)
-                        {
-                            if (item.Pro_ClassID != classid)
-                            {
-                                continue;
-                            }
-                        }
+                        //if (isBJ)
+                        //{
+                        //    if (item.Pro_ClassID != classid)
+                        //    {
+                        //        continue;
+                        //    }
+                        //}
                         Model.BJModel bj = new BJModel();
+                        var cost = from a in lqh.Umsdb.Pro_SellTypeProduct
+                                   where a.ProID == item.ProID
+                                   select a;
+                        if (cost.Count() == 0)
+                        {
+                            bj.ProCost = 0;
+                        }
+                        else
+                        {
+                            bj.ProCost = cost.First().ProCost;
+                        }
+
+                       
                         bj.ClassID = Convert.ToInt32(item.Pro_ClassID);
                         bj.InListID = item.InListID;
                         bj.NeedIMEI = item.NeedIMEI;
@@ -858,14 +935,15 @@ namespace DAL
                         arr.Add(bj);
                     }
 
-                    //串码
+                    //串码  d.UserID == user.UserID &
                     var list2 = from a in lqh.Umsdb.Pro_ProInfo
                                join b in lqh.Umsdb.Pro_StoreInfo on a.ProID equals b.ProID
-                               join c in lqh.Umsdb.Sys_Role_HallInfo on b.HallID equals c.HallID
-                               join d in lqh.Umsdb.Sys_UserInfo on c.RoleID equals d.RoleID
+                               // join c in lqh.Umsdb.Sys_Role_Menu_HallInfo on b.HallID equals c.HallID
+                               //join d in lqh.Umsdb.Sys_UserInfo on c.RoleID equals d.RoleID
+                                //join p in lqh.Umsdb.Pro_SellTypeProduct on a.ProID equals p.ProID
                                 join m in lqh.Umsdb.Pro_IMEI on a.ProID equals m.ProID 
-                               where d.UserID == user.UserID && c.HallID == hid  && b.InListID == m.InListID
-                               && b.ProCount > 0 && a.NeedIMEI==true 
+                               where b.HallID == hid  && b.InListID == m.InListID
+                               && b.ProCount > 0 && a.NeedIMEI==true && classids.Contains((int)a.Pro_ClassID)
                                && m.BJID==null &&m.AssetID==null && m.AuditID == null&&m.BorowID == null
                                &&m.OutID == null && m.PJID ==null && m.RepairID == null && m.ReturnID == null 
                                && m.SellID == null && m.VIPID == null
@@ -885,14 +963,25 @@ namespace DAL
 
                     foreach (var item in list2)
                     {
-                        if (isBJ)
-                        {
-                            if (item.Pro_ClassID != classid)
-                            {
-                                continue;
-                            }
-                        }
+                        //if (isBJ)
+                        //{
+                        //    if (item.Pro_ClassID != classid)
+                        //    {
+                        //        continue;
+                        //    }
+                        //}
                         Model.BJModel bj = new BJModel();
+                        var cost = from a in lqh.Umsdb.Pro_SellTypeProduct
+                                   where a.ProID == item.ProID
+                                   select a;
+                        if (cost.Count() == 0)
+                        {
+                            bj.ProCost = 0;
+                        }
+                        else
+                        {
+                            bj.ProCost = cost.First().ProCost;
+                        }
                         bj.ClassID = Convert.ToInt32(item.Pro_ClassID);
                         bj.IMEI = item.IMEI;
                         bj.InListID = item.InListID;
@@ -1019,6 +1108,4 @@ namespace DAL
         #endregion 
 
     }
-
-   
 }

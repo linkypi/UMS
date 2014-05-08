@@ -167,9 +167,9 @@ namespace UserMS
 
 
 
-
+#if !HZ
             VIP_OnMouseLeftButtonUp(null, null);
-
+#endif
 
         }
 
@@ -245,6 +245,11 @@ namespace UserMS
 		{
             
 			this.InitializeComponent();
+#if HZ
+            this.VIPBTN.Visibility = Visibility.Collapsed;
+            this.VIPPOINT.Visibility = Visibility.Collapsed;
+#endif
+            
 
 			// 在此点之下插入创建对象所需的代码。
 		  this.ProSellAutoBox.SelectionMode=AutoCompleteSelectionMode.Single;

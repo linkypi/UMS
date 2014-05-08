@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Telerik.Windows.Controls;
@@ -14,16 +16,21 @@ namespace UserMS
             this.IMEI = IMEI;
         }
     }
-    public class SelectedProInfoArgs:EventArgs
-    { public API.Pro_ProInfo ProInfo { get; set; }
-    public string IMEI { get; set; }
-    public SelectedProInfoArgs(API.Pro_ProInfo p,string imei)
-    {
-        this.ProInfo = p;
-        this.IMEI = imei;
-    }}
 
-	public partial class IMEISell
+    public class SelectedProInfoArgs : EventArgs
+    {
+//        public List<API.Pro_ProInfo> ProInfo { get; set; }
+//        public List<string> IMEI { get; set; }
+        public Dictionary<string, API.Pro_ProInfo> Results; 
+        public SelectedProInfoArgs(Dictionary<string, API.Pro_ProInfo> res)
+        {
+            this.Results = res;
+//            this.ProInfo = p;
+//            this.IMEI = imei;
+        }
+    }
+
+    public partial class IMEISell
 	{
         public delegate void SelectedPro(object sender, SelectedProInfoArgs e);
         private int MethodID_IMEIGetInfo = 5;
@@ -45,14 +52,14 @@ namespace UserMS
 
             if (e.Key == Key.Enter)
             {
-                IMEI.Text = IMEI.Text.ToUpper();
-                SelectedIMEI = IMEI.Text.Trim();
+                IMEI.Text = IMEI.Text.ToUpper().Trim();
+                SelectedIMEI = IMEI.Text;
                 string hallid = "";
                 if (this.Hall != null)
                 {
                     hallid = Hall.HallID;
                 }
-                PublicRequestHelp helper = new PublicRequestHelp(ProBusy, MethodID_IMEIGetInfo, new object[] { SelectedIMEI, hallid }, IMEISearchComp);
+                PublicRequestHelp helper = new PublicRequestHelp(ProBusy, MethodID_IMEIGetInfo, new object[] { SelectedIMEI.Split('\r').Select(p=>p.Trim()).ToList(), hallid }, IMEISearchComp);
 
                 
             }
@@ -69,8 +76,15 @@ namespace UserMS
                 if (e.Result.ReturnValue)
                 {
                     
-                    API.Pro_ProInfo i = (Pro_ProInfo)e.Result.Obj;
-                    SelectedProInfoArgs a = new SelectedProInfoArgs(i, SelectedIMEI);
+//                    API.Pro_ProInfo i = (Pro_ProInfo)e.Result.Obj;
+//                    SelectedProInfoArgs a = new SelectedProInfoArgs(i, SelectedIMEI);
+                    List<API.Pro_IMEI> i = (List<Pro_IMEI>) e.Result.Obj;
+                    Dictionary<string, API.Pro_ProInfo> Results=new Dictionary<string, Pro_ProInfo>();
+                    foreach (var proImei in i)
+                    {
+                        Results.Add(proImei.IMEI, Store.ProInfo.First(p => p.ProID == proImei.ProID));
+                    }
+                    SelectedProInfoArgs a = new SelectedProInfoArgs(Results);
                     OnSelectedPro(this, a);
                     this.IMEI.Text = "";
                     this.ProBusy.IsBusy = false;

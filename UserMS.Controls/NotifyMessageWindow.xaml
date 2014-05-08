@@ -1,0 +1,60 @@
+﻿<Window x:Class="UserMS.NotifyMessageWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None"   WindowStartupLocation="Manual"
+        Cursor="Hand" Title="消息" Height="120" Width="250">
+    <Window.Resources>
+        <Storyboard x:Key="flyinStoryboard">
+            <DoubleAnimation From="{Binding Location.FromLeft}" To="{Binding Location.ToLeft}"
+                    Storyboard.TargetProperty="(Window.Left)" Duration="0:0:1"></DoubleAnimation>
+            <DoubleAnimation From="{Binding Location.FromTop}" To="{Binding Location.ToTop}"
+                    Storyboard.TargetProperty="(Window.Top)" Duration="0:0:1"></DoubleAnimation>
+            
+        </Storyboard>
+        <Storyboard x:Key="fadeInfadeOutStoryboard">
+            <DoubleAnimation BeginTime="0:0:15" Storyboard.TargetProperty="(Window.Opacity)" From="1.0" To="0.0" 
+                   AccelerationRatio="0.4" DecelerationRatio="0.6" Duration="0:0:3"></DoubleAnimation>
+        </Storyboard>
+   </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource flyinStoryboard}" />
+            <BeginStoryboard Storyboard="{StaticResource fadeInfadeOutStoryboard}" />
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <Border
+      HorizontalAlignment="Stretch"
+      Margin="5,5,5,5"
+      BorderThickness="1,1,1,1"
+      BorderBrush="#FF997137">
+            <Border.Effect>
+                <DropShadowEffect Color="#FF747474"/>
+            </Border.Effect>
+            <Border.Background>
+                <LinearGradientBrush
+          EndPoint="0.5,1"
+          StartPoint="0.5,0">
+                    <GradientStop
+            Color="#FF4B4B4B"
+            Offset="0" />
+                    <GradientStop
+            Color="#FF8F8F8F"
+            Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <DockPanel>
+            <Image DockPanel.Dock="Left"
+              HorizontalAlignment="Left"
+              Margin="0,10,0,0"
+              Width="72"
+              Source="Images/Info.png"
+              Stretch="Fill" Height="72" VerticalAlignment="Top" />
+            <DockPanel DockPanel.Dock="Left">
+                <Image HorizontalAlignment="Right" DockPanel.Dock="Top" Margin="0,10,10,0" VerticalAlignment="Top" Width="16" Height="16" Source="Images/Close.png" Stretch="Fill" Opacity="0.4" ToolTip="关闭" x:Name="imgClose" MouseDown="imgClose_MouseDown"/>
+                <TextBlock x:Name="MSGInfo" DockPanel.Dock="Top"   Text="{Binding Message.BodyText}"  Foreground="#FFECAD25" MouseDown="MSGInfo_MouseDown"></TextBlock>
+            </DockPanel>
+        </DockPanel>
+    </Grid> 
+</Window>

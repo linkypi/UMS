@@ -26,8 +26,8 @@ namespace UserMS.Views.AfterSale
         private List<UserOpModel> UserOpList = new List<UserOpModel>();
         public QualityInspection()
         {
-            InitializeComponent();
-
+            InitializeComponent();//Chk_InOut Errors ChangPros RepKind  Chk_RType
+        
             //hadder = new HallFilter(false, ref hall);
             //List<API.Pro_HallInfo> halls = hadder.FilterHall(menuid, Store.ProHallInfo);
             //if (halls.Count != 0)
@@ -69,6 +69,15 @@ namespace UserMS.Views.AfterSale
         int pageIndex = 0;
         private int menuid = 325;
 
+
+        private void Button_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Search();
+            }
+        }
+
         void SearchButton_Click(object sender, RoutedEventArgs e)
         {
            // hadder.GetHall(hadder.FilterHall(menuid, Store.ProHallInfo));
@@ -100,27 +109,36 @@ namespace UserMS.Views.AfterSale
             rpp.ParamList = new List<API.ReportSqlParams>();
 
 
-            API.ReportSqlParams_Bool HasRepaired = new API.ReportSqlParams_Bool();
-            HasRepaired.ParamName = "HasRepaired";
-            HasRepaired.ParamValues = true;
-            rpp.ParamList.Add(HasRepaired);
+            //API.ReportSqlParams_Bool HasRepaired = new API.ReportSqlParams_Bool();
+            //HasRepaired.ParamName = "HasRepaired";
+            //HasRepaired.ParamValues = true;
+            //rpp.ParamList.Add(HasRepaired);
 
-            API.ReportSqlParams_Bool NoToFactOrToFacIsBack = new API.ReportSqlParams_Bool();
-            NoToFactOrToFacIsBack.ParamName = "NoToFactOrToFacIsBack"; ////送厂后已返厂 或者  无需送厂已维修的  （质检过滤此条件）
-            NoToFactOrToFacIsBack.ParamValues = true;
-            rpp.ParamList.Add(NoToFactOrToFacIsBack);
+            //API.ReportSqlParams_Bool NoToFactOrToFacIsBack = new API.ReportSqlParams_Bool();
+            //NoToFactOrToFacIsBack.ParamName = "NoToFactOrToFacIsBack"; ////送厂后已返厂 或者  无需送厂已维修的  （质检过滤此条件）
+            //NoToFactOrToFacIsBack.ParamValues = true;
+            //rpp.ParamList.Add(NoToFactOrToFacIsBack);
 
-            API.ReportSqlParams_Bool pass = new API.ReportSqlParams_Bool();
-            pass.ParamName = "ZJPassed";
-            pass.ParamValues = false;
-            rpp.ParamList.Add(pass);
+            //API.ReportSqlParams_Bool pass = new API.ReportSqlParams_Bool();
+            //pass.ParamName = "ZJPassed";
+            //pass.ParamValues = false;
+            //rpp.ParamList.Add(pass);
 
-            API.ReportSqlParams_Bool Finished = new API.ReportSqlParams_Bool();
-            Finished.ParamName = "Finished";
-            Finished.ParamValues = false;
-            rpp.ParamList.Add(Finished);
+            //API.ReportSqlParams_Bool Finished = new API.ReportSqlParams_Bool();
+            //Finished.ParamName = "Finished";
+            //Finished.ParamValues = false;
+            //rpp.ParamList.Add(Finished);
 
-            if (!string.IsNullOrEmpty(this.hall.Tag.ToString()))
+            if (state.SelectedIndex != 0)
+            {
+                API.ReportSqlParams_String repstate = new API.ReportSqlParams_String();
+                repstate.ParamName = "RpState";
+                object obj = (state.SelectedItem as ComboBoxItem).Content;
+                repstate.ParamValues = obj == null ? "" : obj.ToString();
+                rpp.ParamList.Add(repstate);
+            }
+
+            if (!string.IsNullOrEmpty(this.hall.Tag + ""))
             {
                 API.ReportSqlParams_String hall = new API.ReportSqlParams_String();
                 hall.ParamName = "HallID";
@@ -175,12 +193,19 @@ namespace UserMS.Views.AfterSale
                 rpp.ParamList.Add(bt);
             }
 
-            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 325, new object[] { rpp }, new EventHandler<API.MainCompletedEventArgs>(SearchCompleted));
+            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 360, new object[] { rpp }, new EventHandler<API.MainCompletedEventArgs>(SearchCompleted));
 
         }
 
         private void Clear()
         {
+            facName.Text = string.Empty;
+            toFacListID.Text = string.Empty;
+            backInlistID.Text = string.Empty;
+            newIMEI.Text = string.Empty;
+            newSN.Text = string.Empty;
+             pro_Note.Text = string.Empty;
+             chkNote.Text = string.Empty;
             zjNote.Text = string.Empty;
             serviceHall.Text = string.Empty;
             serviceHallID.Text = string.Empty;
@@ -191,6 +216,14 @@ namespace UserMS.Views.AfterSale
             proHall.Text = string.Empty;
             repairNote.Text = string.Empty;
             zjNote.Text = string.Empty;
+
+            bjMoney.Text =string.Empty;
+            workMoney.Text =string.Empty;
+            proMoney.Text  =string.Empty;
+            total.Text =string.Empty;
+
+            shouldPay.Text = string.Empty;
+            realPay.Text = string.Empty;
 
             oldErrGrid.ItemsSource = null;
             newErrGrid.ItemsSource = null;
@@ -280,6 +313,11 @@ namespace UserMS.Views.AfterSale
 
             API.View_ASPRepairInfo model = searchGrid.SelectedItem as API.View_ASPRepairInfo;
 
+            facName.Text = model.FacName;
+            toFacListID.Text = model.FacInListID;
+            backInlistID.Text = model.BackInListID;
+            newIMEI.Text = model.NewIMEI;
+            newSN.Text = model.NewSN;
             chk_price.Text = model.Chk_Price == null ? "" : model.Chk_Price.ToString();
             repairCount.Text = model.RepairCount.ToString();
             proHall.Text = model.RepairHallName;
@@ -289,7 +327,18 @@ namespace UserMS.Views.AfterSale
             serviceHall.Text = model.RecHallName;
             serviceHallID.Text = model.HallID;
             repairNote.Text = model.RepairNote;
+            pro_Note.Text = model.Pro_Note;
+            chkNote.Text = model.Chk_Note;
             //repairCount .Text = model.
+
+            bjMoney.Text = model.BJ_Money.ToString();
+            workMoney.Text = model.WorkMoney.ToString();
+            proMoney.Text = model.ProMoney.ToString();
+            decimal tot = (decimal)(model.WorkMoney + model.ProMoney - model.BJ_Money);
+            total.Text = tot.ToString();
+
+            shouldPay.Text = (model.WorkMoney + model.ProMoney).ToString();
+            realPay.Text = (tot - Convert.ToDecimal(model.GzMoney)).ToString();
 
             PublicRequestHelp peh = new PublicRequestHelp(this.isbusy, 326, new object[] { model.ID },
                 new EventHandler<API.MainCompletedEventArgs>(GetCompleted));
@@ -372,6 +421,11 @@ namespace UserMS.Views.AfterSale
             foreach (var item in searchGrid.SelectedItems)
             {
                 API.View_ASPRepairInfo m = item as API.View_ASPRepairInfo;
+                if(m.RpState!="待质检")
+                {
+                    MessageBox.Show("单号 "+m.OldID+"处于"+m.RpState+"状态，无法质检！");
+                    return;
+                }
                 m.ZJNote = zjNote.Text;
                 m.ZJPassed = true;
                 list.Add(m);
@@ -382,7 +436,7 @@ namespace UserMS.Views.AfterSale
                 return;
             }
 
-            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy,329,new object[]{list},
+            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy,329,new object[]{list,"null"},
                 new EventHandler<API.MainCompletedEventArgs>(SaveCompleted));
         }
 
@@ -414,6 +468,22 @@ namespace UserMS.Views.AfterSale
                 MessageBox.Show("请选择数据！");
                 return;
             }
+
+            List<API.View_ASPRepairInfo> list = new List<API.View_ASPRepairInfo>();
+            foreach (var item in searchGrid.SelectedItems)
+            {
+                API.View_ASPRepairInfo m = item as API.View_ASPRepairInfo;
+                if (m.RpState != "待质检")
+                {
+                    MessageBox.Show("单号 " + m.OldID + "处于" + m.RpState + "状态，无法质检！");
+                    return;
+                }
+                m.ZJNote = zjNote.Text;
+                m.ZJPassed = false;
+                // m.Repairer = user.UserID;
+                list.Add(m);
+            }
+
             #region  验证指定维修员
 
             List<API.Sys_UserInfo> users = repairer.ItemsSource as List<API.Sys_UserInfo>;
@@ -437,23 +507,12 @@ namespace UserMS.Views.AfterSale
             API.Sys_UserInfo user = repairer.SelectedItem as API.Sys_UserInfo;
             if (user == null) { MessageBox.Show("请选择指定维修师！"); return; }
 
-            List<API.View_ASPRepairInfo> list = new List<API.View_ASPRepairInfo>();
-            foreach (var item in searchGrid.SelectedItems)
-            {
-                API.View_ASPRepairInfo m = item as API.View_ASPRepairInfo;
-                m.ZJNote = zjNote.Text;
-                m.ZJPassed = false;
-                m.Repairer = user.UserID;
-                list.Add(m);
-            }
-
-
             if (MessageBox.Show("确定保存吗？", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
             {
                 return;
             }
 
-            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 329, new object[] {list },
+            PublicRequestHelp prh = new PublicRequestHelp(this.isbusy, 329, new object[] {list,user.UserID },
                 new EventHandler<API.MainCompletedEventArgs>(SaveCompleted));
         }
 

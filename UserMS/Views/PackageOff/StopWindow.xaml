@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
            xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
            xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
-        Title="停止窗口" Height="150" Width="300">
+        Title="" Height="150" Width="300">
     <xctk:BusyIndicator  x:Name="busy" IsBusy="False" BusyContent="请稍后...">
 
         <DockPanel>
             <WrapPanel Orientation="Horizontal" FlowDirection="LeftToRight">
                 <StackPanel Orientation="Horizontal"  Margin="20 20 0 0" >
-                    <TextBlock  Text="结束时间：" Margin="10 5 0 0" Width="80"/>
+                    <TextBlock  Text="结束时间：" Name="txt" Margin="10 5 0 0" Width="80"/>
                     <telerik:RadDateTimePicker Name="enddate" Height="25" Width="150"></telerik:RadDateTimePicker>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">

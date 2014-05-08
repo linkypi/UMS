@@ -1,4 +1,4 @@
-﻿<src:BasePage xmlns:src="clr-namespace:UserMS" x:Class="UserMS.Report.Borrow.BorrowAduit"
+﻿<src:BasePage xmlns:src="http://www.zs96000.com/wpf" x:Class="UserMS.Report.Borrow.BorrowAduit"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,8 @@
            xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
            xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
            xmlns:Splitter="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"      
-           xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms" 
+           xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+           
            mc:Ignorable="d"
            d:DesignWidth="640" d:DesignHeight="480" Loaded="BasePage_Loaded"
            Title="ReportTest Page">

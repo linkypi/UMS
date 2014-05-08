@@ -12,7 +12,6 @@ D:\UMS\client\UserMS\UserMSMobileAPI\bin\DAL.pdb
 D:\UMS\client\UserMS\UserMSMobileAPI\bin\Model.pdb
 D:\UMS\client\UserMS\UserMSMobileAPI\bin\ReportModel.pdb
 D:\UMS\client\UserMS\UserMSMobileAPI\bin\JsonFx.xml
-D:\UMS\client\UserMS\UserMSMobileAPI\obj\Debug\UserMSMobileAPI.csprojResolveAssemblyReference.cache
 D:\UMS\client\UserMS\UserMSMobileAPI\obj\Debug\UserMSMobileAPI.dll
 D:\UMS\client\UserMS\UserMSMobileAPI\obj\Debug\UserMSMobileAPI.pdb
 D:\UMS\client\UserMS\UserMSMobileAPI\bin\HtmlAgilityPack.dll
@@ -23,3 +22,4 @@ D:\UMS\client\UserMS\UserMSMobileAPI\bin\Newtonsoft.Json.dll
 D:\UMS\client\UserMS\UserMSMobileAPI\bin\EntityFramework.xml
 D:\UMS\client\UserMS\UserMSMobileAPI\bin\Newtonsoft.Json.xml
 D:\UMS\client\UserMS\UserMSMobileAPI\bin\zh-Hans\EntityFramework.resources.dll
+D:\UMS\client\UserMS\UserMSMobileAPI\obj\Debug\UserMSMobileAPI.csprojResolveAssemblyReference.cache
